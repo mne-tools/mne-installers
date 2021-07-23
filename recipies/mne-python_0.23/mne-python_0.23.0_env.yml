@@ -1,0 +1,49 @@
+name: mne-python_0.23.0
+
+channels:
+- conda-forge
+
+dependencies:
+- mne ==0.23.0
+- mne-bids
+- python >=3.8
+- pip
+- conda
+- mamba
+- numpy
+- scipy
+- matplotlib
+- numba
+- pandas
+- xlrd
+- scikit-learn
+- h5py
+- pillow
+- statsmodels
+- jupyter
+- jupyterlab
+- ipykernel
+- nb_conda_kernels
+- joblib
+- psutil
+- numexpr
+- imageio
+- tqdm
+- spyder-kernels >=1.10.0
+- imageio-ffmpeg >=0.4.1
+- vtk >=9.0.1
+- pyvista >=0.30
+- pyvistaqt >=0.4.0
+- ipywidgets
+- ipyvtklink
+- darkdetect
+- qdarkstyle
+- mayavi
+- PySurfer
+- dipy
+- nibabel
+- nilearn
+- python-picard
+- pyqt !=5.15.3
+- mffpy >=0.5.7
+- dcm2niix

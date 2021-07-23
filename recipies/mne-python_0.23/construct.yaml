@@ -1,0 +1,11 @@
+name: mne-python_0.23.0
+version: 2021.7.21
+environment_file: mne-python_0.23.0_env.yml
+
+channels:
+- conda-forge
+
+conda_default_channels:
+- conda-forge
+
+company: NeuroSpin
