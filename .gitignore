@@ -1,2 +1,4 @@
 /scripts
 mne-python_*.sh
+.vscode
+.pytest_cache
