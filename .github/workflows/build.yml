@@ -39,8 +39,8 @@ jobs:
           constructor recipes/mne-python_0.23
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v2
         if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
+        uses: actions/upload-artifact@v2
         with:
           name: MNE-Python
           path: |
