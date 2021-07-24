@@ -25,13 +25,13 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Build
+      - name: Build (Linux and macOS)
         if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
         shell: bash -l {0}
         run: |
           constructor recipes/mne-python_0.23
       
-      - name: Build
+      - name: Build (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: powershell
         run: |
