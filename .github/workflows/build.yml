@@ -30,9 +30,16 @@ jobs:
         shell: bash -l {0}
         run: |
           constructor recipes/mne-python_0.23
-      
+
       - name: Build (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: powershell
         run: |
           constructor recipes/mne-python_0.23
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: MNE-Python
+          path: |
+            MNE-Python-*.*

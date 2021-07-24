@@ -1,8 +1,14 @@
-name: mne-python_0.23.0
-version: 2021.1.0
-environment_file: mne-python_0.23.0_env.yml
+name: MNE-Python
+version: 0.23.0-2021.1
+company: MNE-Python Developers
 
+environment_file: mne-python_0.23.0_env.yml
 installer_type: all
+license_file: ../../LICENSE
+
+initialize_by_default: False
+register_python_default: False
+uninstall_name: ${NAME} ${VERSION} (Python ${PYVERSION})
 
 channels:
 - conda-forge
@@ -10,4 +16,4 @@ channels:
 conda_default_channels:
 - conda-forge
 
-company: MNE-Python Developers
+write_condarc: True
