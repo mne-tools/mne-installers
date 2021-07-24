@@ -1,3 +1,3 @@
 # Installers for MNE-Python
 
-Installers for MNE-Python for macOS, Windows, and Linux.
+Installers for MNE-Python on macOS, Windows, and Linux.
