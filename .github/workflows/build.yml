@@ -1,0 +1,79 @@
+name: Build the installers
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, windows-2016, windows-2019]
+
+    runs-on: ${{ matrix.os }}
+
+    continue-on-error: true
+
+    # concurrency: 
+    #   group: ${{ github.head_ref }}
+    #   cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: provision-with-micromamba
+        uses: mamba-org/provision-with-micromamba@v10
+        with:
+          environment-file: environment.yml
+          micromamba-version: latest
+
+      - name: Build (Linux and macOS)
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+        shell: bash -l {0}
+        run: |
+          constructor recipes/mne-python_0.23
+
+      - name: Build (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        shell: powershell
+        run: |
+          constructor recipes/mne-python_0.23
+
+      - name: Run installer (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
+        run: |
+          installer -pkg MNE-Python-0.23.0_installer-2021.1-macOS.pkg -target CurrentUserHomeDirectory
+
+      - name: Run installer (Linux)
+        if: ${{ runner.os == 'Linux' }}
+        shell: bash -l {0}
+        run: |
+          sh ./MNE-Python-0.23.0_installer-2021.1-Linux.sh -b
+
+      - name: Check installation (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
+        run: |
+          source ~/mne-python/bin/activate
+          mne sys_info
+
+      - name: Check installation (Linux)
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          sudo apt-get install -y xvfb
+          source ~/mne-python/0.23.0/bin/activate
+          xvfb-run mne sys_info
+
+      # - name: Archive artifacts
+      #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: MNE-Python
+      #     path: |
+      #       MNE-Python-*.*

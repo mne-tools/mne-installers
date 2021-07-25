@@ -1,0 +1,7 @@
+name: constructor-env
+
+channels:
+- conda-forge
+
+dependencies:
+- constructor
