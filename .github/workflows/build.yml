@@ -66,9 +66,9 @@ jobs:
       - name: Check installation (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
-        sudo apt-get install -y xvfb
-        conda activate ~/mne-python/0.23.0
-        xvfb-run mne sys_info
+          sudo apt-get install -y xvfb
+          conda activate ~/mne-python/0.23.0
+          xvfb-run mne sys_info
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
