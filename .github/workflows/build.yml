@@ -67,7 +67,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get install -y xvfb
-          conda activate ~/mne-python/0.23.0
+          source ~/mne-python/0.23.0/bin/activate
           xvfb-run mne sys_info
 
       # - name: Archive artifacts
