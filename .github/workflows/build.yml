@@ -44,10 +44,37 @@ jobs:
         run: |
           constructor recipes/mne-python_0.23
 
-      - name: Archive artifacts
-        if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: MNE-Python
-          path: |
-            MNE-Python-*.*
+      # - name: Archive artifacts
+      #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: MNE-Python
+      #     path: |
+      #       MNE-Python-*.*
+
+      - name: Run installer (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
+        run: |
+          installer -pkg MNE-Python-0.23.0_installer-2021.1-macOS.pkg -target CurrentUserHomeDirectory
+
+      - name: Run installer (Linux)
+        if: ${{ runner.os == 'Linux' }}
+        shell: bash -l {0}
+        run: |
+          sh ./MNE-Python-0.23.0_installer-2021.1-Linux.sh -b
+
+      - name: Check installation (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
+        run: |
+          source ~/mne-python/bin/activate
+          mne sys_info
+
+      - name: Check installation (Linux)
+        if: ${{ runner.os == 'Linux' }}
+        shell: bash -l {0}
+        run: |
+          source ~/mne-python/0.23.0/bin/activate
+          mne sys_info
+
