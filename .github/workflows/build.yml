@@ -88,3 +88,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           prerelease: true
+          allowUpdates: true
