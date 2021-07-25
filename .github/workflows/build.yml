@@ -67,7 +67,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: conda activate ~/mne-python/0.23.0 && mne sys_info
+          run: ~/mne-python/0.23.0/bin/conda init && conda activate ~/mne-python/0.23.0 && mne sys_info
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
