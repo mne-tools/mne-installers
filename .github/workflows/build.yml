@@ -73,8 +73,6 @@ jobs:
 
       - name: Check installation (Linux)
         if: ${{ runner.os == 'Linux' }}
-        shell: bash -l {0}
-        run: |
-          source ~/mne-python/0.23.0/bin/activate
-          mne sys_info
-
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: source ~/mne-python/0.23.0/bin/activate && mne sys_info
