@@ -77,3 +77,11 @@ jobs:
       #     name: MNE-Python
       #     path: |
       #       MNE-Python-*.*
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: MNE-Python-*installer*.*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
