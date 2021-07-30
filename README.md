@@ -20,7 +20,7 @@ You do not need to manually install Anaconda before running the installation.
 
 ### MacOS
 
-Move to your home directory and activate the environment:
+Open a terminal and activate the environment:
 
 ```bash
 source ~/mne-python/bin/activate
