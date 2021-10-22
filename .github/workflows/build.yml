@@ -50,13 +50,13 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         shell: bash -l {0}
         run: |
-          installer -pkg MNE-Python-0.23.0_installer-2021.1-macOS.pkg -target CurrentUserHomeDirectory
+          installer -pkg MNE-Python-0.23.4_installer-2021.1-macOS.pkg -target CurrentUserHomeDirectory
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
         shell: bash -l {0}
         run: |
-          sh ./MNE-Python-0.23.0_installer-2021.1-Linux.sh -b
+          sh ./MNE-Python-0.23.4_installer-2021.1-Linux.sh -b
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -69,7 +69,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get install -y xvfb
-          source ~/mne-python/0.23.0/bin/activate
+          source ~/mne-python/0.23.4/bin/activate
           xvfb-run mne sys_info
 
       # - name: Archive artifacts
