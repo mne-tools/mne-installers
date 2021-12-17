@@ -50,13 +50,13 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         shell: bash -l {0}
         run: |
-          installer -pkg MNE-Python-0.24.1_installer-2021.0-macOS.pkg -target CurrentUserHomeDirectory
+          installer -pkg MNE-Python-0.24.1_installer-2021.2-macOS.pkg -target CurrentUserHomeDirectory
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
         shell: bash -l {0}
         run: |
-          sh ./MNE-Python-0.24.1_installer-2021.0-Linux.sh -b
+          sh ./MNE-Python-0.24.1_installer-2021.2-Linux.sh -b
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}

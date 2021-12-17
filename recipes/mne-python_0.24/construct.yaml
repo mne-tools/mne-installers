@@ -1,5 +1,5 @@
 name: MNE-Python
-version: 0.24.1_installer-2021.0
+version: 0.24.1_installer-2021.2
 company: MNE-Python Developers
 
 environment_file: mne-python_0.24.1_env.yml
@@ -12,9 +12,9 @@ default_prefix: ${USERPROFILE}\mne-python\0.24.1  # [win]
 uninstall_name: MNE-Python 0.24.1 (${VERSION}, Python ${PYVERSION})
 
 installer_type: pkg  # [osx]
-installer_filename: MNE-Python-0.24.1_installer-2021.0-macOS.pkg    # [osx]
-installer_filename: MNE-Python-0.24.1_installer-2021.0-Windows.exe  # [win]
-installer_filename: MNE-Python-0.24.1_installer-2021.0-Linux.sh     # [linux]
+installer_filename: MNE-Python-0.24.1_installer-2021.2-macOS.pkg    # [osx]
+installer_filename: MNE-Python-0.24.1_installer-2021.2-Windows.exe  # [win]
+installer_filename: MNE-Python-0.24.1_installer-2021.2-Linux.sh     # [linux]
 
 channels:
 - conda-forge
