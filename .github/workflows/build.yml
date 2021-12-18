@@ -56,6 +56,7 @@ jobs:
         shell: bash -l {0}
         run: |
           source ~/mne-python/bin/activate
+          conda info
           mne sys_info
 
       - name: Check installation (Linux)
@@ -63,6 +64,7 @@ jobs:
         run: |
           sudo apt-get install -y xvfb
           source ~/mne-python/0.24.1/bin/activate
+          conda info
           xvfb-run mne sys_info
 
       # - name: Archive artifacts
