@@ -15,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, windows-2016, windows-2019]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
 
     runs-on: ${{ matrix.os }}
 
@@ -34,15 +34,8 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Build (Linux and macOS)
-        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+      - name: Build installer
         shell: bash -l {0}
-        run: |
-          constructor recipes/mne-python_0.24
-
-      - name: Build (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        shell: powershell
         run: |
           constructor recipes/mne-python_0.24
 
