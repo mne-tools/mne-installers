@@ -30,7 +30,6 @@ jobs:
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
-        shell: bash -l {0}
         with:
           environment-file: environment.yml
           micromamba-version: latest
