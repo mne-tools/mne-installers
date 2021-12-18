@@ -16,7 +16,12 @@ installer_filename: MNE-Python-0.24.1_installer-2021.2-macOS.pkg    # [osx]
 installer_filename: MNE-Python-0.24.1_installer-2021.2-Windows.exe  # [win]
 installer_filename: MNE-Python-0.24.1_installer-2021.2-Linux.sh     # [linux]
 
+channels:
+  - conda-forge
+
 condarc:
-  channels: "conda-forge"
-  default_channels: "conda-forge"
+  channels:
+    - conda-forge
+  default_channels:
+    - conda-forge
   env_prompt: (mne-0.24.1)
