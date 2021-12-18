@@ -28,8 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: provision-with-micromamba
-        uses: mamba-org/provision-with-micromamba@v11
+      - name: Install Micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        shell: bash -l {0}
         with:
           environment-file: environment.yml
           micromamba-version: latest
