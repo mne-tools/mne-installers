@@ -15,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, windows-2016, windows-2019]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
 
     runs-on: ${{ matrix.os }}
 
@@ -28,21 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: provision-with-micromamba
-        uses: mamba-org/provision-with-micromamba@v10
+      - name: Install Micromamba
+        uses: mamba-org/provision-with-micromamba@main
         with:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Build (Linux and macOS)
-        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+      - name: Build installer
         shell: bash -l {0}
-        run: |
-          constructor recipes/mne-python_0.24
-
-      - name: Build (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        shell: powershell
         run: |
           constructor recipes/mne-python_0.24
 
@@ -63,6 +56,7 @@ jobs:
         shell: bash -l {0}
         run: |
           source ~/mne-python/bin/activate
+          conda info
           mne sys_info
 
       - name: Check installation (Linux)
@@ -70,6 +64,7 @@ jobs:
         run: |
           sudo apt-get install -y xvfb
           source ~/mne-python/0.24.1/bin/activate
+          conda info
           xvfb-run mne sys_info
 
       # - name: Archive artifacts
@@ -81,7 +76,9 @@ jobs:
       #       MNE-Python-*.*
 
       - name: Release
-        if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
+        if: |
+          github.ref == 'main' &&
+          (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*installer*.*"
