@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: provision-with-micromamba
-        uses: mamba-org/provision-with-micromamba@v10
+        uses: mamba-org/provision-with-micromamba@v11
         with:
           environment-file: environment.yml
           micromamba-version: latest
