@@ -74,8 +74,9 @@ jobs:
       #       MNE-Python-*.*
 
       - name: Release
-        if: ${{ github.head_ref == 'main' }}
-        if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019' }}
+        if: |
+          github.ref == 'main' &&
+          (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*installer*.*"
