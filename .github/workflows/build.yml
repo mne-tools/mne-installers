@@ -29,11 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Print UserProfile
-        shell: pwsh
-        run: |
-          echo $env:UserProfile
-
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -59,7 +54,7 @@ jobs:
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /D=%UserProfile%\mne-python
+          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /D=$env:UserProfile\mne-python
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -79,7 +74,7 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          %UserProfile%\mne-python\bin\activate
+          $env:UserProfile\mne-python\bin\activate
           conda info
           mne sys_info
 
