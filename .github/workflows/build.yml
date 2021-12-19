@@ -29,6 +29,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Print UserProfile
+        shell: pwsh
+        run: |
+          echo $env:UserProfile
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
