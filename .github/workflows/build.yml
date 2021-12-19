@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         # os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
-        os: [windows-2019, windows-2022]
+        os: [windows-2022]
 
     runs-on: ${{ matrix.os }}
 
@@ -74,7 +74,7 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $env:UserProfile\mne-python\bin\activate
+          "$env:UserProfile\mne-python\bin\activate"
           conda info
           mne sys_info
 
