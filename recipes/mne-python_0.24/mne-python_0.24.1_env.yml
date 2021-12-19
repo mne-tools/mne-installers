@@ -9,6 +9,7 @@ dependencies:
 # - python ==3.9
 # - pip
 - conda
+- miniforge_console_shortcut  # [win]
 # - mamba
 # - jupyter
 # - jupyterlab
