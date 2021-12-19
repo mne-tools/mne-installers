@@ -74,7 +74,9 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          "$env:UserProfile\mne-python\bin\activate"
+          "$env:UserProfile\mne-python\condabin\conda-hook.ps1"
+          "activate $env:UserProfile\mne-python"
+          conda info
           mne sys_info
 
       # - name: Archive artifacts
