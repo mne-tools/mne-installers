@@ -75,7 +75,7 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         run: |
           $MneRoot = "$env:UserProfile\mne-python"
-          (& "$MneRoot\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
+          (& "$MneRoot\bin\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           "conda activate $MneRoot"
           conda info
           mne sys_info
