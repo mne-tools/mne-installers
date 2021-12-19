@@ -54,7 +54,7 @@ jobs:
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /D=$env:UserProfile\mne-python /AddToPath=1
+          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /D="$env:UserProfile\mne-python"
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
