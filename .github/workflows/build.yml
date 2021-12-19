@@ -76,17 +76,10 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         run: |
           $MneRoot = "$env:UserProfile\mne-python"
-          Get-ChildItem -path "$MneRoot" -Recurse
-
-      - name: Check installation (Windows, rest)
-        if: ${{ runner.os == 'Windows' }}
-        # shell: cmd
-        run: |
-          $MneRoot = "$env:UserProfile\mne-python"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
-          & "$MneRoot\bin\mne sys_info"
+          Get-ChildItem -path "$MneRoot\bin" -Recurse
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
