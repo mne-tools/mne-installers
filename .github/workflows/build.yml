@@ -74,7 +74,7 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          "$env:UserProfile\mne-python\condabin\conda-hook.ps1"
+          "$env:UserProfile\mne-python\shell\condabin\conda-hook.ps1"
           "activate $env:UserProfile\mne-python"
           conda info
           mne sys_info
