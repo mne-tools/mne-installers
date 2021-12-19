@@ -80,9 +80,11 @@ jobs:
 
       - name: Check installation (Windows, rest)
         if: ${{ runner.os == 'Windows' }}
-        shell: cmd
+        # shell: cmd
         run: |
-          conda activate %UserProfile%\mne-python
+          $MneRoot = "$env:UserProfile\mne-python"
+          . "$MneRoot\shell\condabin\conda-hook.ps1"
+          conda activate $MneRoot
           conda info
           mne sys_info
 
