@@ -55,7 +55,7 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         shell: cmd
         run: |
-          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /InstallationType=AllUsers /AddToPath=1 /D=C:\mne-python
+          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /InstallationType=JustMe /AddToPath=1 /D="$env:UserProfile\mne-python"
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -75,12 +75,13 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $MneRoot = "C:\mne-python"
-          Get-ChildItem -path "C:\mne-python" -Recurse
+          $MneRoot = ""$env:UserProfile\mne-python""
+          Get-ChildItem -path "$MneRoot" -Recurse
 
       - name: Check installation (Windows, rest)
         if: ${{ runner.os == 'Windows' }}
         run: |
+          $MneRoot = ""$env:UserProfile\mne-python""
           "$MneRoot\shell\condabin\conda-hook.ps1"
           & "$MneRoot\shell\condabin\conda-hook.ps1"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
