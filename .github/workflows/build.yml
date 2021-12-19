@@ -78,8 +78,8 @@ jobs:
           $env:path += ";$env:UserProfile\mne-python\condabin"
           echo $env:UserProfile
           echo $env:path
-          "activate $env:UserProfile\mne-python"
           conda info
+          "conda activate $env:UserProfile\mne-python"
           mne sys_info
 
       # - name: Archive artifacts
