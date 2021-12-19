@@ -4,20 +4,20 @@ channels:
 - conda-forge
 
 dependencies:
-- mne ==0.24.1
-- mne-bids ==0.9
-- python ==3.9
-- pip
+- mne-base ==0.24.1
+# - mne-bids ==0.9
+# - python ==3.9
+# - pip
 - conda
-- mamba
-- jupyter
-- jupyterlab
-- ipykernel
-- nb_conda_kernels
-- spyder-kernels >=1.10.0
-- ipympl
-- ipywidgets
-- ipyvtklink
-- darkdetect
-- qdarkstyle
-- dcm2niix
+# - mamba
+# - jupyter
+# - jupyterlab
+# - ipykernel
+# - nb_conda_kernels
+# - spyder-kernels >=1.10.0
+# - ipympl
+# - ipywidgets
+# - ipyvtklink
+# - darkdetect
+# - qdarkstyle
+# - dcm2niix
