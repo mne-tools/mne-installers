@@ -74,7 +74,7 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          "$env:UserProfile\mne-python\bin\activate"
+          "$env:UserProfile\mne-python\condabin\conda.bat" init
           conda info
           mne sys_info
 
