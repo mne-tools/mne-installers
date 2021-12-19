@@ -75,7 +75,7 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         run: |
           $MneRoot = "$env:UserProfile\mne-python"
-          Get-ChildItem -Recurse "$MneRoot\shell"
+          Get-ChildItem -Recurse "$env:UserProfile\mne-python\shell\"
 
       - name: Check installation (Windows, rest)
         if: ${{ runner.os == 'Windows' }}
