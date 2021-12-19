@@ -54,7 +54,7 @@ jobs:
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /D=$env:UserProfile\mne-python
+          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /D=$env:UserProfile\mne-python /AddToPath=1
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -74,8 +74,10 @@ jobs:
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $env:path += ";$env:UserProfile\mne-python\bin;$env:UserProfile\mne-python\Scripts;$env:UserProfile\mne-python\Library\bin;;$env:UserProfile\mne-python\condabin"
           "$env:UserProfile\mne-python\shell\condabin\conda-hook.ps1"
+          $env:path += ";$env:UserProfile\mne-python\condabin"
+          echo $env:UserProfile
+          echo $env:path
           "activate $env:UserProfile\mne-python"
           conda info
           mne sys_info
