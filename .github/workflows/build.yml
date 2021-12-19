@@ -75,6 +75,7 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         run: |
           $MneRoot = "$env:UserProfile\mne-python"
+          Get-ChildItem -Recurse "$MneRoot\shell"
           "$MneRoot\shell\condabin\conda-hook.ps1"
           & "$MneRoot\shell\condabin\conda-hook.ps1"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
