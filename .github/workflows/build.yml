@@ -73,12 +73,10 @@ jobs:
 
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
+        shell: pwsh -ExecutionPolicy ByPass -NoExit -Command ". {0}"
         run: |
           "$env:UserProfile\mne-python\shell\condabin\conda-hook.ps1"
-          $env:path += ";$env:UserProfile\mne-python\condabin"
-          echo $env:UserProfile
-          echo $env:path
-          "$env:UserProfile\mne-python\condabin\conda activate $env:UserProfile\mne-python"
+          "conda activate $env:UserProfile\mne-python"
           conda info
           mne sys_info
 
