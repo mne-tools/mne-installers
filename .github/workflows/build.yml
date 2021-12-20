@@ -77,7 +77,7 @@ jobs:
         run: |
           $MneRoot = "$env:UserProfile\mne-python"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
-          . "$MneRoot\Scripts\activate"
+          conda activate $MneRoot
           conda info
           . "$MneRoot\Scripts\mne.exe"
 
