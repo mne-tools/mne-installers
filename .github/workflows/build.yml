@@ -79,7 +79,7 @@ jobs:
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
-          . "$MneRoot\Scripts\mne.exe sys_info"
+          . "$MneRoot\Scripts\mne.exe" sys_info
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
