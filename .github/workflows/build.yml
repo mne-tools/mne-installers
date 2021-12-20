@@ -76,10 +76,9 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         run: |
           $MneRoot = "$env:UserProfile\mne-python"
-          . "$MneRoot\shell\condabin\conda-hook.ps1"
-          conda activate $MneRoot
+          . "$MneRoot\Scripts\activate"
           conda info
-          . "$MneRoot\Scripts\mne.exe sys_info"
+          & "$MneRoot\Scripts\mne.exe"
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
