@@ -2,12 +2,11 @@
 
 Installers for MNE-Python for macOS, Windows, and Linux.
 
-
 ## Installation
 
 To install MNE-Python simply:
 * double click the installer on MacOS or Windows, or
-* run the shell script using `sh MNE-Python-0.23.0_installer-2021.1-Linux.sh` on *nix.
+* run the shell script using `sh MNE-Python-0.24.1_installer-2021.2-Linux.sh` on *nix.
 
 You can customize some parameters, but the default values should suit most users.
 By default, a conda evironment will be installed in your home directory,
