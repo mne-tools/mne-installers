@@ -61,6 +61,7 @@ jobs:
         run: |
           source ~/mne-python/bin/activate
           conda info
+          mamba env export
           mne sys_info
 
       - name: Check installation (Linux)
@@ -69,18 +70,20 @@ jobs:
           sudo apt-get install -y xvfb
           source ~/mne-python/0.24.1/bin/activate
           conda info
+          mamba env export
           xvfb-run mne sys_info
 
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          git clone --depth 1 git://github.com/pyvista/gl-ci-helpers.git
+          git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
           ./gl-ci-helpers/appveyor/install_opengl.ps1
 
           $MneRoot = "$env:UserProfile\mne-python"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
+          mamba env export
           . "$MneRoot\Scripts\mne.exe" sys_info
 
       # - name: Archive artifacts
