@@ -42,7 +42,7 @@ jobs:
       - name: Build installer
         shell: bash -l {0}
         run: |
-          # source ~/mne_env/bin/activate
+          source ~/mne_env/bin/activate
           constructor recipes/mne-python_0.24
 
       - name: Run installer (macOS)

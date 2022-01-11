@@ -9,7 +9,7 @@ dependencies:
 - python ==3.9
 - pip
 - conda
-# - constructor
+- constructor
 # - miniforge_console_shortcut  # [win]
 - mamba
 - jupyter
