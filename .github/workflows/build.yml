@@ -34,9 +34,15 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Create MNE environment
+        shell: bash -l {0}
+        run: |
+          mamba env create -f recipes/mne-python_0.24/mne-python_0.24.1_env.yml
+
       - name: Build installer
         shell: bash -l {0}
         run: |
+          conda activate mne-python_0.24.1
           constructor recipes/mne-python_0.24
 
       - name: Run installer (macOS)
@@ -61,7 +67,7 @@ jobs:
         run: |
           source ~/mne-python/bin/activate
           conda info
-          mamba env export
+          mamba list
           mne sys_info
 
       - name: Check installation (Linux)
@@ -70,7 +76,7 @@ jobs:
           sudo apt-get install -y xvfb
           source ~/mne-python/0.24.1/bin/activate
           conda info
-          mamba env export
+          mamba list
           xvfb-run mne sys_info
 
       - name: Check installation (Windows)
@@ -83,7 +89,7 @@ jobs:
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
-          mamba env export
+          mamba list
           . "$MneRoot\Scripts\mne.exe" sys_info
 
       # - name: Archive artifacts
