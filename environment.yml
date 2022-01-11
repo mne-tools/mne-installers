@@ -5,7 +5,7 @@ channels:
 
 dependencies:
   - mamba
-# - constructor
+  - constructor
 # https://github.com/conda/constructor/pull/477
 # - pip
 # - pip:
