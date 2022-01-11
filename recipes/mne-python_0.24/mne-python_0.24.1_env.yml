@@ -16,6 +16,7 @@ dependencies:
 - ipykernel
 - nb_conda_kernels
 - spyder-kernels >=1.10.0
+- spyder
 - ipympl
 - ipywidgets
 - ipyvtklink
