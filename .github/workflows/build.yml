@@ -46,7 +46,7 @@ jobs:
           conda info
           mamba env list
           mamba list
-          constructor --output-dir=~ recipes/mne-python_0.24
+          constructor --output-dir=/home/runner/work recipes/mne-python_0.24
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -56,7 +56,7 @@ jobs:
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
-          sh ~/MNE-Python-0.24.1_installer-2021.2-Linux.sh -b
+          sh ~/work/MNE-Python-0.24.1_installer-2021.2-Linux.sh -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
