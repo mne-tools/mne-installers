@@ -3,6 +3,7 @@ version: 0.24.1_installer-2022.1
 company: MNE-Python Developers
 
 # environment_file: mne-python_0.24.1_env.yml
+environment: mne_env
 license_file: ../../LICENSE
 
 initialize_by_default: False
