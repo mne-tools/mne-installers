@@ -37,12 +37,12 @@ jobs:
       - name: Create MNE environment
         shell: bash -l {0}
         run: |
-          mamba env create -f recipes/mne-python_0.24/mne-python_0.24.1_env.yml
+          mamba env create -f recipes/mne-python_0.24/mne-python_0.24.1_env.yml -p ~/mne_env
 
       - name: Build installer
         shell: bash -l {0}
         run: |
-          conda activate mne-python_0.24.1
+          source ~/mne_env/bin/activate
           constructor recipes/mne-python_0.24
 
       - name: Run installer (macOS)
