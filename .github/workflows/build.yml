@@ -43,6 +43,9 @@ jobs:
         shell: bash -l {0}
         run: |
           source ~/mne_env/bin/activate
+          conda info
+          mamba env list
+          mamba list
           constructor recipes/mne-python_0.24
 
       - name: Run installer (macOS)
