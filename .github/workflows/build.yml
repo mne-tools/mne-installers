@@ -96,7 +96,8 @@ jobs:
 
       - name: Release
         if: |
-          github.ref == 'main' &&
+          github.ref_name == 'main' &&
+          github.ref_type == 'branch' &&
           (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
@@ -105,3 +106,4 @@ jobs:
           draft: true
           prerelease: true
           allowUpdates: true
+          generateReleaseNotes: true
