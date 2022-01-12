@@ -46,8 +46,7 @@ jobs:
           conda info
           mamba env list
           mamba list
-          mkdir ~/cache
-          constructor --output-dir=/home/runner/work --cache-dir=/home/runner/cache recipes/mne-python_0.24
+          constructor --verbose --output-dir=/home/runner/work --cache-dir=/home/runner/cache recipes/mne-python_0.24
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
