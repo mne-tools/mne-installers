@@ -37,6 +37,7 @@ jobs:
       - name: Create MNE environment
         shell: bash -l {0}
         run: |
+          echo `pwd`
           mamba env create -f recipes/mne-python_0.24/mne-python_0.24.1_env.yml -p ~/mne_env
 
       - name: Build installer
@@ -107,7 +108,6 @@ jobs:
         if: |
           github.ref_type == 'tag' &&
           (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019')
-        working-directory: /home/runner/work
         uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*installer*.*"
