@@ -46,6 +46,7 @@ jobs:
           conda info
           mamba env list
           mamba list
+          mkdir -p ~/.conda/constructor/linux-64
           constructor --output-dir=/home/runner/work recipes/mne-python_0.24
 
       - name: Run installer (macOS)
