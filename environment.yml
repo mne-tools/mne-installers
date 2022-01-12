@@ -1,11 +1,12 @@
 name: constructor-env
 
 channels:
-- conda-forge
+  - conda-forge
 
 dependencies:
- - constructor
+  - mamba
+  # - constructor
 # https://github.com/conda/constructor/pull/477
- - pip
- - pip:
-   - https://github.com/conda/constructor/archive/refs/heads/fix-env-mode.zip
+# - pip
+# - pip:
+#   - https://github.com/conda/constructor/archive/refs/heads/fix-env-mode.zip

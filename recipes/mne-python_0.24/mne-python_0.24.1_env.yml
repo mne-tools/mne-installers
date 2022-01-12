@@ -9,6 +9,7 @@ dependencies:
 - python ==3.9
 - pip
 - conda
+- constructor
 # - miniforge_console_shortcut  # [win]
 - mamba
 - jupyter
@@ -23,3 +24,5 @@ dependencies:
 - darkdetect
 - qdarkstyle
 - dcm2niix
+- pip:
+  - https://github.com/conda/constructor/archive/refs/heads/fix-env-mode.zip

@@ -34,34 +34,43 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Create MNE environment
+        shell: bash -l {0}
+        run: |
+          mamba env create -f recipes/mne-python_0.24/mne-python_0.24.1_env.yml -p ~/mne_env
+
       - name: Build installer
         shell: bash -l {0}
         run: |
-          constructor recipes/mne-python_0.24
+          source ~/mne_env/bin/activate
+          conda info
+          mamba env list
+          mamba list
+          constructor --verbose --output-dir=/home/runner/work --cache-dir=/home/runner/cache recipes/mne-python_0.24
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          installer -pkg MNE-Python-0.24.1_installer-2021.2-macOS.pkg -target CurrentUserHomeDirectory
+          installer -pkg ./MNE-Python-0.24.1_installer-2022.1-macOS.pkg -target CurrentUserHomeDirectory
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
-          sh ./MNE-Python-0.24.1_installer-2021.2-Linux.sh -b
+          sh ~/work/MNE-Python-0.24.1_installer-2022.1-Linux.sh -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\MNE-Python-0.24.1_installer-2021.2-Windows.exe /S /InstallationType=JustMe /AddToPath=1 /D=%UserProfile%\mne-python
+          .\MNE-Python-0.24.1_installer-2022.1-Windows.exe /S /InstallationType=JustMe /AddToPath=1 /D=%UserProfile%\mne-python
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
           source ~/mne-python/bin/activate
           conda info
-          mamba env export
+          mamba list
           mne sys_info
 
       - name: Check installation (Linux)
@@ -70,7 +79,7 @@ jobs:
           sudo apt-get install -y xvfb
           source ~/mne-python/0.24.1/bin/activate
           conda info
-          mamba env export
+          mamba list
           xvfb-run mne sys_info
 
       - name: Check installation (Windows)
@@ -83,7 +92,7 @@ jobs:
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
-          mamba env export
+          mamba list
           . "$MneRoot\Scripts\mne.exe" sys_info
 
       # - name: Archive artifacts
