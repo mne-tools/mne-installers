@@ -38,6 +38,7 @@ jobs:
         shell: bash -l {0}
         run: |
           echo `pwd`
+          ls
           mamba env create -f recipes/mne-python_0.24/mne-python_0.24.1_env.yml -p ~/mne_env
 
       - name: Build installer
