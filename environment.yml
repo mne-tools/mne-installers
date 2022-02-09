@@ -1,12 +1,11 @@
 name: constructor-env
 
 channels:
+  - napari/label/bundle_tools
   - conda-forge
 
 dependencies:
-  - mamba
-  # - constructor
-# https://github.com/conda/constructor/pull/477
-# - pip
-# - pip:
-#   - https://github.com/conda/constructor/archive/refs/heads/fix-env-mode.zip
+  - constructor
+  - conda-standalone 
+  - menuinst
+  - conda

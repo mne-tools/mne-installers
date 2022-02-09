@@ -1,10 +1,11 @@
 name: MNE-Python
-version: 0.24.1_installer-2022.1
+version: 0.24.1_installer-2022.2
 company: MNE-Python Developers
 
-# environment_file: mne-python_0.24.1_env.yml
-environment: base
 license_file: ../../LICENSE
+welcome_image: ../../assets/mne.png
+welcome_file: ../../assets/welcome.rtf
+readme_text: ""
 
 initialize_by_default: False
 register_python_default: False
@@ -13,16 +14,43 @@ default_prefix: ${USERPROFILE}\mne-python\0.24.1  # [win]
 uninstall_name: MNE-Python 0.24.1 (${VERSION}, Python ${PYVERSION})
 
 installer_type: pkg  # [osx]
-installer_filename: MNE-Python-0.24.1_installer-2022.1-macOS.pkg    # [osx]
-installer_filename: MNE-Python-0.24.1_installer-2022.1-Windows.exe  # [win]
-installer_filename: MNE-Python-0.24.1_installer-2022.1-Linux.sh     # [linux]
+installer_filename: MNE-Python-0.24.1_installer-2022.2-macOS.pkg    # [osx]
+installer_filename: MNE-Python-0.24.1_installer-2022.2-Windows.exe  # [win]
+installer_filename: MNE-Python-0.24.1_installer-2022.2-Linux.sh     # [linux]
 
 channels:
   - conda-forge
 
+specs:
+  - mne ==0.24.1
+  - mne-bids =0.9
+  - python =3.9
+  - pip
+  - conda
+  - mamba
+  - miniforge_console_shortcut  # [win]
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - nb_conda_kernels
+  - spyder-kernels >=1.10.0
+  - spyder
+  - ipympl
+  - ipywidgets
+  - ipyvtklink
+  - darkdetect
+  - qdarkstyle
+  # NeuroSpin needs the following packages
+  - questionary
+  - dcm2niix
+  - neurodsp
+  - bycycle
+
 condarc:
   channels:
     - conda-forge
-  default_channels:
-    - conda-forge
+  # default_channels:
+  #   - conda-forge
+  channel_priority: strict
+  allow_other_channels: False
   env_prompt: (mne-0.24.1)
