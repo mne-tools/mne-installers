@@ -1,4 +1,5 @@
-name: MNE-Python
+name: MNE-Python         # [not osx]
+name: MNE-Python_0.24.1  # [osx]
 version: 0.24.1_installer-2022.2
 company: MNE-Python Developers
 
