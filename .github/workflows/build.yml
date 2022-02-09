@@ -41,12 +41,16 @@ jobs:
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
         run: |
+          echo `pwd`
           installer -pkg MNE-Python-0.24.1_installer-2021.2-macOS.pkg -target CurrentUserHomeDirectory
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
+        shell: bash -l {0}
         run: |
+          echo `pwd`
           sh ./MNE-Python-0.24.1_installer-2021.2-Linux.sh -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
