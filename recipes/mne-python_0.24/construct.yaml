@@ -45,6 +45,8 @@ specs:
 condarc:
   channels:
     - conda-forge
-  default_channels:
-    - conda-forge
+  # default_channels:
+  #   - conda-forge
+  channel_priority: strict
+  allow_other_channels: False
   env_prompt: (mne-0.24.1)
