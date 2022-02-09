@@ -61,7 +61,7 @@ jobs:
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source ~/mne-python/bin/activate
+          source ~/mne-python_0.24.1/bin/activate
           conda info
           mamba list
           mne sys_info
