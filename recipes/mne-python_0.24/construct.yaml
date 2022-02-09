@@ -6,6 +6,7 @@ license_file: ../../LICENSE
 welcome_image: ../../assets/mne.png
 welcome_file: ../../assets/welcome.rtf
 readme_text: ""
+conclusion_file: ../../assets/conclusion.rtf
 
 initialize_by_default: False
 register_python_default: False
