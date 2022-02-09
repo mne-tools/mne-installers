@@ -24,6 +24,7 @@ channels:
 specs:
   - mne ==0.24.1
   - mne-bids =0.9
+  - mne-nirs =0.1
   - python =3.9
   - pip
   - conda
