@@ -23,8 +23,8 @@ channels:
 
 specs:
   - mne ==0.24.1
-  - mne-bids ==0.9
-  - python ==3.9
+  - mne-bids =0.9
+  - python =3.9
   - pip
   - conda
   - miniforge_console_shortcut  # [win]
