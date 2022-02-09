@@ -27,8 +27,8 @@ specs:
   - python =3.9
   - pip
   - conda
-  - miniforge_console_shortcut  # [win]
   - mamba
+  - miniforge_console_shortcut  # [win]
   - jupyter
   - jupyterlab
   - ipykernel
@@ -40,7 +40,11 @@ specs:
   - ipyvtklink
   - darkdetect
   - qdarkstyle
+  # NeuroSpin needs the following packages
+  - questionary
   - dcm2niix
+  - neurodsp
+  - bycycle
 
 condarc:
   channels:
