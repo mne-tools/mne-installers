@@ -11,9 +11,9 @@ initialize_by_default: False
 register_python_default: False
 
 default_prefix: ${HOME}/mne-python/0.24.1                      # [unix]
-default_prefix: %USERPROFILE%\mne-python\0.24.1                # [win]
-default_prefix_domain_user: %LOCALAPPDATA%\mne-python\0.24.1   # [win]
-default_prefix_all_users: %ALLUSERSPROFILE%\mne-python\0.24.1  # [win]
+default_prefix: "%USERPROFILE%\mne-python\0.24.1"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\mne-python\0.24.1"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\mne-python\0.24.1"  # [win]
 
 uninstall_name: MNE-Python 0.24.1 (${VERSION}, Python ${PYVERSION})
 
