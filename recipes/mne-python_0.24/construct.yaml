@@ -3,7 +3,7 @@ name: MNE-Python_0.24.1  # [osx]
 version: 0.24.1_installer-2022.2
 company: MNE-Python Developers
 
-license_file: ../../LICENSE
+license_file: ../../assets/license.rtf
 welcome_image: ../../assets/welcome_macOS.png  # [osx]
 welcome_image: ../../assets/welcome.png        # [not osx]
 header_image: ../../assets/header.png
