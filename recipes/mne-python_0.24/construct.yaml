@@ -1,11 +1,16 @@
-name: MNE-Python
+name: MNE-Python         # [not osx]
+name: MNE-Python_0.24.1  # [osx]
 version: 0.24.1_installer-2022.2
 company: MNE-Python Developers
 
-license_file: ../../LICENSE
-welcome_image: ../../assets/mne.png
+license_file: ../../assets/license.rtf
+welcome_image: ../../assets/welcome_macOS.png  # [osx]
+welcome_image: ../../assets/welcome.png        # [not osx]
+header_image: ../../assets/header.png
+icon_image: ../../assets/icon.png
 welcome_file: ../../assets/welcome.rtf
 readme_text: ""
+conclusion_file: ../../assets/conclusion.rtf
 
 initialize_by_default: False
 register_python_default: False
@@ -28,6 +33,7 @@ channels:
 specs:
   - mne ==0.24.1
   - mne-bids =0.9
+  - mne-nirs =0.1
   - python =3.9
   - pip
   - conda
