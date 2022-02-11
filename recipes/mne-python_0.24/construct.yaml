@@ -33,6 +33,8 @@ channels:
 specs:
   - mne ==0.24.1
   - mne-bids =0.9
+  - mne-connectivity =0.2
+  - mne-faster =1.0
   - mne-nirs =0.1
   - python =3.9
   - pip
@@ -50,11 +52,19 @@ specs:
   - ipyvtklink
   - darkdetect
   - qdarkstyle
+  # Helpful for statistics
+  - pingouin
+  # MRI viewer
+  - fsleyes
   # NeuroSpin needs the following packages
   - questionary
   - dcm2niix
   - neurodsp
   - bycycle
+  - fooof
+  - pycircstat
+  - pactools
+  - tensorpac
 
 condarc:
   channels:
