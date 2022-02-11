@@ -52,6 +52,9 @@ specs:
   - ipyvtklink
   - darkdetect
   - qdarkstyle
+  # Excel I/O
+  - openpyxl
+  - xlrd
   # Helpful for statistics
   - pingouin
   # MRI viewer
