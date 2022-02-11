@@ -55,6 +55,8 @@ specs:
   - dcm2niix
   - neurodsp
   - bycycle
+  - pip:
+    - mnelab =0.7
 
 condarc:
   channels:
