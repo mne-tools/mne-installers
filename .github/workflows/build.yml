@@ -108,3 +108,25 @@ jobs:
           prerelease: true
           allowUpdates: true
           generateReleaseNotes: true
+
+  add_release_hashes:
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate hashes of release artifacts
+        uses: MCJack123/ghaction-generate-release-hashes@v1
+        with:
+          hash-type: sha256
+          file-name: hashes.txt
+
+      - name: Add hashes to release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: hashes.txt
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          prerelease: true
+          allowUpdates: true
+          generateReleaseNotes: true
