@@ -36,6 +36,7 @@ specs:
   - mne-connectivity =0.2
   - mne-faster =1.0
   - mne-nirs =0.1
+  - mne-realtime >=0.1
   - autoreject =0.3
   - python =3.9
   - pip
