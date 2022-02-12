@@ -56,20 +56,21 @@ specs:
   # Excel I/O
   - openpyxl
   - xlrd
-  # Helpful for statistics
+  # Statistics
   - pingouin
-  # MRI viewer
-  - fsleyes
-  # NeuroSpin needs the following packages
-  - questionary
-  - dcm2niix
-  - neurodsp
-  - bycycle
-  - fooof
   - pycircstat
+  # MRI
+  - fsleyes
+  - dcm2niix
+  # Time-frequency analysis
   - pactools
   - tensorpac
   - emd
+  - neurodsp
+  - bycycle
+  - fooof
+  # NeuroSpin needs the following
+  - questionary
 
 condarc:
   channels:
