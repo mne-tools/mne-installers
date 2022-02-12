@@ -27,9 +27,9 @@ default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\0.24.1_2"  # [win]
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
 installer_type: pkg  # [osx]
-installer_filename: MNE-Python-0.24.1_2-macOS_x64.pkg  # [osx]
-installer_filename: MNE-Python-0.24.1_2-Windows.exe    # [win]
-installer_filename: MNE-Python-0.24.1_2-Linux.sh       # [linux]
+installer_filename: MNE-Python-0.24.1_2-macOS_Intel.pkg  # [osx]
+installer_filename: MNE-Python-0.24.1_2-Windows.exe      # [win]
+installer_filename: MNE-Python-0.24.1_2-Linux.sh         # [linux]
 
 channels:
   - conda-forge
