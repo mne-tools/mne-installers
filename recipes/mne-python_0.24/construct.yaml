@@ -69,6 +69,7 @@ specs:
   - pycircstat
   - pactools
   - tensorpac
+  - emd
 
 condarc:
   channels:
