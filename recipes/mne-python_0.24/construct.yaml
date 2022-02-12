@@ -35,45 +35,45 @@ channels:
   - conda-forge
 
 specs:
-  # - mne ==0.24.1
-  # - mne-bids =0.9
-  # - mne-connectivity =0.2
-  # - mne-faster =1.0
-  # - mne-nirs =0.1
-  # - autoreject =0.3
+  - mne ==0.24.1
+  - mne-bids =0.9
+  - mne-connectivity =0.2
+  - mne-faster =1.0
+  - mne-nirs =0.1
+  - autoreject =0.3
   - python =3.9
   - pip
   - conda
-  # - mamba
-  # - miniforge_console_shortcut  # [win]
-  # - jupyter
-  # - jupyterlab
-  # - ipykernel
-  # - nb_conda_kernels
-  # - spyder-kernels >=1.10.0
-  # - spyder
-  # - ipympl
-  # - ipywidgets
-  # - ipyvtklink
-  # - darkdetect
-  # - qdarkstyle
-  # # Excel I/O
-  # - openpyxl
-  # - xlrd
-  # # Helpful for statistics
-  # - pingouin
-  # # MRI viewer
-  # - fsleyes
-  # # NeuroSpin needs the following packages
-  # - questionary
-  # - dcm2niix
-  # - neurodsp
-  # - bycycle
-  # - fooof
-  # - pycircstat
-  # - pactools
-  # - tensorpac
-  # - emd
+  - mamba
+  - miniforge_console_shortcut  # [win]
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - nb_conda_kernels
+  - spyder-kernels >=1.10.0
+  - spyder
+  - ipympl
+  - ipywidgets
+  - ipyvtklink
+  - darkdetect
+  - qdarkstyle
+  # Excel I/O
+  - openpyxl
+  - xlrd
+  # Helpful for statistics
+  - pingouin
+  # MRI viewer
+  - fsleyes
+  # NeuroSpin needs the following packages
+  - questionary
+  - dcm2niix
+  - neurodsp
+  - bycycle
+  - fooof
+  - pycircstat
+  - pactools
+  - tensorpac
+  - emd
 
 condarc:
   channels:
