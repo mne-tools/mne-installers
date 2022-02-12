@@ -112,7 +112,7 @@ jobs:
   add_release_hashes:
     if: github.ref_type == 'tag'
     needs: build
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Generate hashes of release artifacts
