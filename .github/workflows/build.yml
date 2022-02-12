@@ -43,25 +43,25 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: |
           echo `pwd`
-          installer -pkg MNE-Python-0.24.1_installer-2022.2-macOS.pkg -target CurrentUserHomeDirectory
+          installer -pkg MNE-Python-0.24.1_2-macOS.pkg -target CurrentUserHomeDirectory
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
           echo `pwd`
-          sh ./MNE-Python-0.24.1_installer-2022.2-Linux.sh -b
+          sh ./MNE-Python-0.24.1_2-Linux.sh -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\MNE-Python-0.24.1_installer-2022.2-Windows.exe /S /InstallationType=JustMe /AddToPath=1 /D=%UserProfile%\mne-python
+          .\MNE-Python-0.24.1_2-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source ~/mne-python_0.24.1/bin/activate
+          source ~/mne-python_0.24.1_2/bin/activate
           conda info
           mamba list
           mne sys_info
@@ -70,7 +70,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get install -y xvfb
-          source ~/mne-python/0.24.1/bin/activate
+          source ~/mne-python/0.24.1_2/bin/activate
           conda info
           mamba list
           xvfb-run mne sys_info
@@ -81,7 +81,7 @@ jobs:
           git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
           ./gl-ci-helpers/appveyor/install_opengl.ps1
 
-          $MneRoot = "$env:UserProfile\mne-python"
+          $MneRoot = "$env:UserProfile\mne-python\0.24.1_2"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
