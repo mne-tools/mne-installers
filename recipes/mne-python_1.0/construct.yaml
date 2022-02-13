@@ -32,6 +32,8 @@ installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
 channels:
+  - conda-forge/labels/mne_dev
+  - conda-forge/labels/mne-bids_dev
   - conda-forge
 
 specs:
@@ -78,8 +80,6 @@ specs:
 condarc:
   channels:
     - conda-forge
-    - conda-forge/labels/mne_dev
-    - conda-forge/labels/mne-bids_dev
   channel_priority: strict
   allow_other_channels: False
   env_prompt: (mne-1.0.0_0)
