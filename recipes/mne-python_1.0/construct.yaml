@@ -32,8 +32,8 @@ installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
 channels:
-  - conda-forge/labels/mne_dev
-  - conda-forge/labels/mne-bids_dev
+  - conda-forge/label/mne_dev
+  - conda-forge/label/mne-bids_dev
   - conda-forge
 
 specs:
