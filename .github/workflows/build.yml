@@ -37,7 +37,7 @@ jobs:
       - name: Build installer
         shell: bash -l {0}
         run: |
-          constructor recipes/mne-python_0.24
+          constructor recipes/mne-python_1.0
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
