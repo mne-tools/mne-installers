@@ -1,0 +1,85 @@
+version: 1.0.0_0
+name: MNE-Python           # [not osx]
+# macOS .pkg installer defaults to ~/$NAME, so let's include the version number
+# in this path
+name: MNE-Python_1.0.0_0  # [osx]
+
+company: MNE-Python Developers
+
+license_file: ../../assets/license.rtf
+welcome_image: ../../assets/welcome_macOS.png  # [osx]
+welcome_image: ../../assets/welcome.png        # [not osx]
+header_image: ../../assets/header.png
+icon_image: ../../assets/icon.png
+welcome_file: ../../assets/welcome.rtf
+readme_text: ""
+conclusion_file: ../../assets/conclusion.rtf
+
+initialize_by_default: False
+register_python_default: False
+
+# default_prefix will be ignored by macOS .pkg installer!
+default_prefix: ${HOME}/mne-python/1.0.0_0                          # [unix]
+default_prefix: "%USERPROFILE%\\mne-python\\1.0.0_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.0_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.0_0"  # [win]
+
+uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
+
+installer_type: pkg  # [osx]
+installer_filename: MNE-Python-1.0.0_0-macOS_Intel.pkg  # [osx]
+installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
+
+channels:
+  - conda-forge
+
+specs:
+  - mne ==0.24.1
+  - mne-bids =0.9
+  - mne-connectivity =0.2
+  - mne-faster =1.0
+  - mne-nirs =0.1
+  - mne-realtime =0.1
+  - autoreject =0.3
+  - python =3.9
+  - pip
+  - conda
+  - mamba
+  - miniforge_console_shortcut  # [win]
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - nb_conda_kernels
+  - spyder-kernels >=1.10.0
+  - spyder
+  - ipympl
+  - darkdetect
+  - qdarkstyle
+  # Excel I/O
+  - openpyxl
+  - xlrd
+  # Statistics
+  - pingouin
+  - pycircstat
+  # MRI
+  - fsleyes
+  - dcm2niix
+  # Time-frequency analysis
+  - pactools
+  - tensorpac
+  - emd
+  - neurodsp
+  - bycycle
+  - fooof
+  # NeuroSpin needs the following
+  - questionary
+
+condarc:
+  channels:
+    - conda-forge/labels/mne_dev
+    - conda-forge/labels/mne-bids_dev
+    - conda-forge
+  channel_priority: strict
+  allow_other_channels: False
+  env_prompt: (mne-1.0.0_0)
