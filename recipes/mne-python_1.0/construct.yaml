@@ -44,7 +44,7 @@ specs:
   - mne-nirs =0.1
   - mne-realtime =0.1
   - autoreject =0.3
-  - python =3.10
+  - python =3.9
   - pip
   - conda
   - mamba
