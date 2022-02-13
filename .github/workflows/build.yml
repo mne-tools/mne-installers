@@ -1,4 +1,7 @@
 name: Build the installers
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
+  cancel-in-progress: true
 
 on:
   push:
@@ -21,9 +24,6 @@ jobs:
 
     continue-on-error: true
 
-    # concurrency: 
-    #   group: ${{ github.head_ref }}
-    #   cancel-in-progress: true
 
     steps:
       - uses: actions/checkout@v2
