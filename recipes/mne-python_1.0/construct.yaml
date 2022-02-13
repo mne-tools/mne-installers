@@ -1,7 +1,7 @@
 version: 1.0.0_0
 name: MNE-Python           # [not osx]
-# macOS .pkg installer defaults to ~/$NAME, so let's include the version number
-# in this path
+# macOS .pkg installation target directory defaults to ~/$NAME, so let's
+# include the version number in this path
 name: MNE-Python_1.0.0_0  # [osx]
 
 company: MNE-Python Developers
