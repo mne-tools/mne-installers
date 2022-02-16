@@ -31,6 +31,10 @@ installer_filename: MNE-Python-1.0.0_0-macOS_Intel.pkg  # [osx]
 installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
+# Only create menus for mne-installer-menus
+menu_packages:
+  - mne-installer-menus
+
 channels:
   - conda-forge/label/mne_dev
   - conda-forge/label/mne-bids_dev
@@ -49,7 +53,6 @@ specs:
   - pip
   - conda
   - mamba
-  - miniforge_console_shortcut  # [win]
   - jupyter
   - jupyterlab
   - ipykernel
