@@ -102,7 +102,7 @@ jobs:
           (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "MNE-Python-*installer*.*"
+          artifacts: "MNE-Python-*.*"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           prerelease: true
