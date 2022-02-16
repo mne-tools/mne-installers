@@ -63,6 +63,9 @@ jobs:
           # FIXME: Really needed?
           security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
+          # Make the keychain the default
+          security default-keychain -s $KEYCHAIN_PATH
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
