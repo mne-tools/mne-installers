@@ -56,7 +56,7 @@ jobs:
           # documented; see https://github.com/fastlane/fastlane/issues/13564#issue-372273249
           # and https://stackoverflow.com/a/40039594
           # FIXME: Really needed?
-          # security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
           # import certificates to keychain
           security import $APPLICATION_CERT_PATH -P "$APPLICATION_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
