@@ -66,6 +66,9 @@ jobs:
           # Make the keychain the default
           security default-keychain -s $KEYCHAIN_PATH
 
+          # List available signing identities
+          security find-identity -v
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
