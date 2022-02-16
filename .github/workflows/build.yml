@@ -33,7 +33,9 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         env:
           APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
+          APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
           INSTALLER_CERT_BASE64: ${{ secrets.APPLE_INSTALLER_CERT_BASE64 }}
+          INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_INSTALLER_CERT_PASSWORD }}
           KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
         run: |
           # create variables
@@ -52,11 +54,13 @@ jobs:
 
           # Avoid a password prompt; what this actually does is not properly
           # documented; see https://github.com/fastlane/fastlane/issues/13564#issue-372273249
-          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          # and https://stackoverflow.com/a/40039594
+          # FIXME: Really needed?
+          # security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
           # import certificates to keychain
-          security import $APPLICATION_CERT_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security import $INSTALLER_CERT_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import $APPLICATION_CERT_PATH -P "$APPLICATION_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import $INSTALLER_CERT_PATH -P "$INSTALLER_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
 
       - name: Install Micromamba
