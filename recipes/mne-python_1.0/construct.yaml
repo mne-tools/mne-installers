@@ -31,7 +31,7 @@ installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
 # Create signed macOS .pkg installer
-installer_type: pkg  # [osx]
+installer_type: pkg                     # [osx]
 signing_identity_name: 9779L28NP8       # [osx]
 notarization_identity_name: 9779L28NP8  # [osx]
 
