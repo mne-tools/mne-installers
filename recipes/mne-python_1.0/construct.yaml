@@ -38,6 +38,7 @@ channels:
 
 specs:
   - mne =1.0
+  - mne-installer-menus =1.0
   - mne-bids =0.10
   - mne-connectivity =0.2
   - mne-faster =1.0
