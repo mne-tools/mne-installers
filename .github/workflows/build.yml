@@ -28,6 +28,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+      - name: Install the Apple code-signing certificates
+        if: ${{ runner.os == 'macOS' }}
+        env:
+          APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
+          INSTALLER_CERT_BASE64: ${{ secrets.APPLE_INSTALLER_CERT_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          APPLICATION_CERT_PATH=$RUNNER_TEMP/application_cert.p12
+          INSTALLER_CERT_PATH=$RUNNER_TEMP/installer_cert.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificatefrom secrets
+          echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_PATH
+          echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificates to keychain
+          security import $APPLICATION_CERT_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import $INSTALLER_CERT_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -38,6 +65,11 @@ jobs:
         shell: bash -l {0}
         run: |
           constructor recipes/mne-python_1.0
+
+      - name: Check installer signature (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        run: |
+          codesign --verify MNE-Python-1.0.0_0-macOS_Intel.pkg
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
