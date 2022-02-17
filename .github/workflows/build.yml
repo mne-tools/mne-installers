@@ -114,7 +114,7 @@ jobs:
 
       - name: Notarize installer (macOS)
         if: |
-          matrix.os == 'macOS-10.15'
+          matrix.os == 'macOS-11'
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
@@ -190,7 +190,7 @@ jobs:
       - name: Release
         if: |
           github.ref_type == 'tag' &&
-          (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2019')
+          (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-11' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*.*"
