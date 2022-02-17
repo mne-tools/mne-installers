@@ -57,27 +57,18 @@ jobs:
           curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
           curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
 
-          # security import ./AppleIncRootCertificate.cer -A -k $KEYCHAIN_PATH
-          # security import ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
-          # security import ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
-
-          # security add-certificates -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
-          # security add-certificates -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
-          security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
-
           sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
           sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
+          security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
 
-          # import certificates to keychain
+          # import certificates into keychain
           openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
           security import $APPLICATION_CERT_PATH -P "$APPLICATION_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security find-identity -v $KEYCHAIN_PATH
 
           openssl pkcs12 -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
           security import $INSTALLER_CERT_PATH -P "$INSTALLER_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          
           security find-identity -v $KEYCHAIN_PATH
-
-          security list-keychain -d user -s $KEYCHAIN_PATH
 
           # Avoid a password prompt; what this actually does is not properly
           # documented; see https://github.com/fastlane/fastlane/issues/13564#issue-372273249
@@ -105,7 +96,7 @@ jobs:
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          codesign --verify MNE-Python-1.0.0_0-macOS_Intel.pkg
+          pkgutil --check-signature MNE-Python-1.0.0_0-macOS_Intel.pkg
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
