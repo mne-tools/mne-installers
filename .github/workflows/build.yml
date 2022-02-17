@@ -54,7 +54,7 @@ jobs:
 
           # import Apple WWDR certificate
           curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
-          security import ./AppleWWDRCA.cer -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
 
           # import certificates to keychain
           openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
