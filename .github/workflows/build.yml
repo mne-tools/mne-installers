@@ -61,9 +61,9 @@ jobs:
           # security import ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
           # security import ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
 
-          security add-certificates -A -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
-          security add-certificates -A -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
-          security add-certificates -A -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
+          security add-certificates -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
+          security add-certificates -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
+          security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
 
           # import certificates to keychain
           openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
