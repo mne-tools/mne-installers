@@ -102,7 +102,13 @@ jobs:
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
+          # Installer package
           pkgutil --check-signature MNE-Python-1.0.0_0-macOS_Intel.pkg
+          # Now extract the package and check that the _conde.exe binary is
+          # properly signed as well
+          pkgutil --expand-full MNE-Python-1.0.0_0-macOS_Intel.pkg ./mne-extracted
+          codesign -vd ./mne-extracted/main.pkg/Payload/mne-python_1.0.0_0/_conda.exe
+          rm -rf ./mne-extracted
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
