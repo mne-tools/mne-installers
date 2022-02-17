@@ -112,6 +112,24 @@ jobs:
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/mne-python_1.0.0_0/_conda.exe
           rm -rf ./mne-extracted
 
+      - name: Notarize installer (macOS)
+        if: |
+          # github.ref_type == 'tag' && matrix.os == 'macOS-10.15'
+          matrix.os == 'macOS-10.15'  # FIXME Let's see if this works
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # Notarize the installer
+          xcrun notarytool submit ./MNE-Python-1.0.0_0-macOS_Intel.pkg \
+              --wait \
+              --apple-id=$APPLE_ID \
+              --password=$APPLE_ID_PASSWORD \
+              --team-id=$APPLE_TEAM_ID
+          # Staple the notarization certificate onto it
+          xcrun stapler staple MNE-Python-1.0.0_0-macOS_Intel.pkg
+
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
@@ -169,23 +187,6 @@ jobs:
       #     path: |
       #       MNE-Python-*.*
 
-      - name: Notarize installer in preparation for release (macOS)
-        if: |
-          # github.ref_type == 'tag' && matrix.os == 'macOS-10.15'
-          matrix.os == 'macOS-10.15'  # FIXME Let's see if this works
-        env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: |
-          # Notarize the installer
-          xcrun notarytool submit ./MNE-Python-1.0.0_0-macOS_Intel.pkg \
-              --wait \
-              --apple-id=$APPLE_ID \
-              --password=$APPLE_ID_PASSWORD \
-              --team-id=$APPLE_TEAM_ID
-          # Staple the notarization certificate onto it
-          xcrun stapler staple MNE-Python-1.0.0_0-macOS_Intel.pkg
 
       - name: Release
         if: |
