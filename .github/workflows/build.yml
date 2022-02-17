@@ -114,8 +114,7 @@ jobs:
 
       - name: Notarize installer (macOS)
         if: |
-          # github.ref_type == 'tag' && matrix.os == 'macOS-10.15'
-          matrix.os == 'macOS-10.15'  # FIXME Let's see if this works
+          matrix.os == 'macOS-10.15'
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
