@@ -48,19 +48,22 @@ jobs:
           echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
 
           # create temporary keychain
-          security list-keychains -d user -s login.keychain  # FIXME: necessary?
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
           # import Apple certificates
-          # curl https://www.apple.com/appleca/AppleIncRootCertificate.cer -L --output AppleIncRootCertificate.cer
-          # curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
-          # curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
+          curl https://www.apple.com/appleca/AppleIncRootCertificate.cer -L --output AppleIncRootCertificate.cer
+          curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
+          curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
 
           # security import ./AppleIncRootCertificate.cer -A -k $KEYCHAIN_PATH
           # security import ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
           # security import ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
+
+          security add-certificates ./AppleIncRootCertificate.cer -A -k $KEYCHAIN_PATH
+          security add-certificates ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
+          security add-certificates ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
 
           # import certificates to keychain
           openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
