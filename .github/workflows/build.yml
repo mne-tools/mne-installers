@@ -57,8 +57,12 @@ jobs:
           curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
           curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
 
-          security import ./AppleIncRootCertificate.cer -A -k $KEYCHAIN_PATH
-          security import ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
+          # security import ./AppleIncRootCertificate.cer -A -k $KEYCHAIN_PATH
+          # security import ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
+
+          security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
+          security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
+
           security import ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
 
           # import certificates to keychain
