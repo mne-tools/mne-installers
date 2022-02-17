@@ -65,13 +65,15 @@ jobs:
           sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
           security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
 
-          # import certificates into keychain
+          # ensure we're going to import the correct developer certificates into keychain
           openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
-          security import $APPLICATION_CERT_PATH -P "$APPLICATION_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-
           openssl pkcs12 -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
+
+          # import developer certificates
+          security import $APPLICATION_CERT_PATH -P "$APPLICATION_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security import $INSTALLER_CERT_PATH -P "$INSTALLER_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          
+
+          # ensure the imported certificates are valid
           security find-identity -v $KEYCHAIN_PATH
 
           # Avoid a password prompt; what this actually does is not properly
@@ -83,7 +85,7 @@ jobs:
           # Make the keychain the default
           security default-keychain -s $KEYCHAIN_PATH
 
-          # List available signing identities
+          # List available signing identities (for debugging purposes)
           security find-identity
 
       - name: Install Micromamba
