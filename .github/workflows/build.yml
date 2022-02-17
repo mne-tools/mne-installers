@@ -108,6 +108,8 @@ jobs:
           # properly signed as well
           pkgutil --expand-full MNE-Python-1.0.0_0-macOS_Intel.pkg ./mne-extracted
           codesign -vd ./mne-extracted/main.pkg/Payload/mne-python_1.0.0_0/_conda.exe
+          # Check entitlements of _conda.exe binary
+          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/mne-python_1.0.0_0/_conda.exe
           rm -rf ./mne-extracted
 
       - name: Run installer (macOS)
