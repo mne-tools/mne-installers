@@ -52,8 +52,13 @@ jobs:
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
-          # import Apple WWDR certificate
+          # import Apple certificates
+          curl https://www.apple.com/appleca/AppleIncRootCertificate.cer -L --output AppleIncRootCertificate.cer
+          curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
           curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
+
+          security import ./AppleIncRootCertificate.cer -A -k $KEYCHAIN_PATH
+          security import ./AppleComputerRootCertificate.cer -A -k $KEYCHAIN_PATH
           security import ./AppleWWDRCA.cer -A -k $KEYCHAIN_PATH
 
           # import certificates to keychain
