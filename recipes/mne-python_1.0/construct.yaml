@@ -46,7 +46,7 @@ channels:
   - conda-forge
 
 specs:
-  - mne =1.0
+  - mne =1.0*=*202202181
   - mne-installer-menus =1.0
   - mne-bids =0.10
   - mne-connectivity =0.2
