@@ -149,7 +149,7 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: |
           echo `pwd`
-          installer -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target CurrentUserHomeDirectory
+          installer -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target /
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
@@ -167,9 +167,12 @@ jobs:
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source ~/mne-python_1.0.0_0/bin/activate
+          source /Applications/mne-python_1.0.0_0/bin/activate
           conda info
           mamba list
+          # Check the CONDA_SUBDIR variable is set correctly
+          mamba env config vars list
+          python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
           mne sys_info
 
       - name: Check installation (Linux)

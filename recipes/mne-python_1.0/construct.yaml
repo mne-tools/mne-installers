@@ -30,6 +30,8 @@ installer_filename: MNE-Python-1.0.0_0-macOS_Intel.pkg  # [osx]
 installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
+post_install: ../../assets/post_install_macOS.sh        # [osx]
+
 # Create signed macOS .pkg installer
 installer_type: pkg                     # [osx]
 signing_identity_name: 9779L28NP8       # [osx]  Used for productsign
@@ -46,8 +48,8 @@ channels:
   - conda-forge
 
 specs:
-  - mne =1.0*=*202202181
-  - mne-installer-menus =1.0
+  - mne =1.0*=*20220219
+  - mne-installer-menus =1.0*=*20220219
   - mne-bids =0.10
   - mne-connectivity =0.2
   - mne-faster =1.0
