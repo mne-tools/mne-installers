@@ -129,6 +129,16 @@ jobs:
           # Staple the notarization certificate onto it
           xcrun stapler staple MNE-Python-1.0.0_0-macOS_Intel.pkg
 
+      - name: Calculate SHA256 hash of installer package
+        shell: bash
+        run: |
+          - shopt -s nullglob  # Fail if the following pattern yields no results
+          - matches=(MNE-Python-*-macOS_Intel.pkg)
+          - installer_fname="${matches[0]}"
+          - hash_fname="${installer_fname}.sha256.txt"
+          - shasum -a 256 "$installer_fname" > "$hash_fname"
+          - cat "$hash_fname"
+
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
@@ -185,16 +195,6 @@ jobs:
       #     name: MNE-Python
       #     path: |
       #       MNE-Python-*.*
-
-      - name: Calculate SHA256 hash
-        shell: bash
-        run: |
-          - shopt -s nullglob  # Fail if the following pattern yields no results
-          - matches=(MNE-Python-*-macOS_Intel.pkg)
-          - installer_fname="${matches[0]}"
-          - hash_fname="${installer_fname}.sha256.txt"
-          - shasum -a 256 "$installer_fname" > "$hash_fname"
-          - cat "$hash_fname"
 
       - name: Release
         if: |
