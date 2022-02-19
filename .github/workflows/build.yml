@@ -189,14 +189,14 @@ jobs:
 
       - name: Export frozen environment definition (macOS)
         if: {{ runner.os == 'macOS }}
-      - run: |
+        run: |
           source ~/mne-python_1.0.0_0/bin/activate
           mamba list --json > MNE-Python-1.0.0_0-macOS_Intel.env.json
           cat MNE-Python-1.0.0_0-macOS_Intel.env.json
 
       - name: Export frozen environment definition (Linux)
         if: {{ runner.os == 'Linux }}
-      - run: |
+        run: |
           source ~/mne-python/1.0.0_0/bin/activate
           mamba list --json > MNE-Python-1.0.0_0-Linux.env.json
           cat MNE-Python-1.0.0_0-Linux.env.json
