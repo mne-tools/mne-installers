@@ -187,6 +187,29 @@ jobs:
       #       MNE-Python-*.*
 
 
+      - name: Export frozen environment definition (macOS)
+        if: {{ runner.os == 'macOS }}
+      - run: |
+          source ~/mne-python_1.0.0_0/bin/activate
+          mamba list --json > MNE-Python-1.0.0_0-macOS_Intel.env.json
+          cat MNE-Python-1.0.0_0-macOS_Intel.env.json
+
+      - name: Export frozen environment definition (Linux)
+        if: {{ runner.os == 'Linux }}
+      - run: |
+          source ~/mne-python/1.0.0_0/bin/activate
+          mamba list --json > MNE-Python-1.0.0_0-Linux.env.json
+          cat MNE-Python-1.0.0_0-Linux.env.json
+
+      - name: Export frozen environment definition (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        run: |
+          $MneRoot = "$env:UserProfile\mne-python\1.0.0_0"
+          . "$MneRoot\shell\condabin\conda-hook.ps1"
+          conda activate $MneRoot
+          mamba list --json > MNE-Python-1.0.0_0-Windows.env.json
+          Get-Content MNE-Python-1.0.0_0-Windows.env.json
+
       - name: Release
         if: |
           github.ref_type == 'tag' &&
