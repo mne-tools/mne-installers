@@ -129,6 +129,22 @@ jobs:
           # Staple the notarization certificate onto it
           xcrun stapler staple MNE-Python-1.0.0_0-macOS_Intel.pkg
 
+      - name: Calculate SHA256 hash of installer package (macOS & Linux)
+        if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
+        run: |
+          shopt -s nullglob  # Fail if the following pattern yields no results
+          matches=(MNE-Python-*-*.*)
+          installer_fname="${matches[0]}"
+          hash_fname="${installer_fname}.sha256.txt"
+          shasum -a 256 "$installer_fname" > "$hash_fname"
+          cat "$hash_fname"
+
+      - name: Calculate SHA256 hash of installer package (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        run: |
+          Get-FileHash MNE-Python-1.0.0_0-Windows.exe -Algorithm SHA256 > MNE-Python-1.0.0_0-Windows.exe.sha256.txt
+          Get-Content MNE-Python-1.0.0_0-Windows.exe.sha256.txt
+
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
@@ -185,7 +201,6 @@ jobs:
       #     name: MNE-Python
       #     path: |
       #       MNE-Python-*.*
-
 
       - name: Export frozen environment definition (macOS)
         if: ${{ runner.os == 'macOS' }}
