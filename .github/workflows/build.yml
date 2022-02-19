@@ -140,7 +140,7 @@ jobs:
           cat "$hash_fname"
 
       - name: Calculate SHA256 hash of installer package (Windows)
-        if: ${{ runner.os == 'Windows }}
+        if: ${{ runner.os == 'Windows' }}
         run: |
           Get-FileHash MNE-Python-1.0.0_0-Windows.exe -Algorithm SHA256 > MNE-Python-1.0.0_0-Windows.exe.sha256.txt
           Get-Content MNE-Python-1.0.0_0-Windows.exe.sha256.txt
