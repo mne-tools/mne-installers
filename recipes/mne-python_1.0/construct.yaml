@@ -91,4 +91,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: (mne-1.0.0_0)
+  env_prompt: "(mne-1.0.0_0) "
