@@ -10,3 +10,4 @@ mv $USER/Applications/MNE*.app /Applications
 
 echo "Configuring conda to only use Intel packages -- even on Apple Silicon -- when invoked by the user"
 echo "{\"env_vars\": {\"CONDA_SUBDIR\": \"osx-64\"}}" >> "${DSTROOT}/mne-python_1.0.0_0/conda-meta/state"
+chown "${DSTROOT}/mne-python_1.0.0_0/conda-meta/state" $USER
