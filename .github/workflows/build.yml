@@ -149,7 +149,7 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: |
           echo `pwd`
-          installer -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target /
+          sudo installer -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target /
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
