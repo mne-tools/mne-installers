@@ -94,6 +94,11 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Patch constructor (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        run: |
+          patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./patches/constructor_macOS.patch
+
       - name: Build installer
         shell: bash -l {0}
         run: |
@@ -152,7 +157,7 @@ jobs:
           installer -verbose -pkginfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
           installer -verbose -dominfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
           installer -verbose -volinfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
-          sudo installer -verbose -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target /Applications
+          sudo installer -verbose -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target /
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
