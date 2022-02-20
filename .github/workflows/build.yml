@@ -94,6 +94,12 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Patch constructor (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
+        run: |
+          patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./assets/constructor_macOS.patch
+
       - name: Build installer
         shell: bash -l {0}
         run: |
@@ -149,7 +155,14 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: |
           echo `pwd`
-          installer -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg -target CurrentUserHomeDirectory
+          installer -verbose -pkginfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
+          installer -verbose -dominfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
+          installer -verbose -volinfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
+          sudo installer \
+            -verbose \
+            -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg \
+            -target / \
+            || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
@@ -167,9 +180,23 @@ jobs:
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source ~/mne-python_1.0.0_0/bin/activate
+          source /Applications/mne-python_1.0.0_0/bin/activate
           conda info
           mamba list
+
+          # Test that file permissions are set correctly (owned by "runner",
+          # not "root".)
+          # https://unix.stackexchange.com/a/7733
+          [ `ls -ld /Applications/mne-python_1.0.0_0 | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
+
+          # Check that the installed Python is, in fact, an Intel binary
+          python -c "import platform; assert platform.machine() == 'x86_64'"
+
+          # Check the CONDA_SUBDIR variable is set correctly
+          mamba env config vars list
+          python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
+
+          # Finally, run MNE's sys_info
           mne sys_info
 
       - name: Check installation (Linux)
@@ -205,7 +232,7 @@ jobs:
       - name: Export frozen environment definition (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source ~/mne-python_1.0.0_0/bin/activate
+          source /Applications/mne-python_1.0.0_0/bin/activate
           mamba list --json > MNE-Python-1.0.0_0-macOS_Intel.env.json
           cat MNE-Python-1.0.0_0-macOS_Intel.env.json
 
