@@ -183,11 +183,20 @@ jobs:
           source /Applications/mne-python_1.0.0_0/bin/activate
           conda info
           mamba list
+
+          # Test that file permissions are set correctly (owned by "runner",
+          # not "root".)
+          # https://unix.stackexchange.com/a/7733
+          [ `ls -ld /Applications/mne-python_1.0.0_0 | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
+
           # Check that the installed Python is, in fact, an Intel binary
           python -c "import platform; assert platform.machine() == 'x86_64'"
+
           # Check the CONDA_SUBDIR variable is set correctly
           mamba env config vars list
           python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
+
+          # Finally, run MNE's sys_info
           mne sys_info
 
       - name: Check installation (Linux)
