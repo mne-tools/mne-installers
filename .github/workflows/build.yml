@@ -162,7 +162,7 @@ jobs:
             -verbose \
             -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg \
             -target / \
-            || tail -n 30 /var/log/install.log  # display last log messages on error
+            || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
       - name: Run installer (Linux)
         if: ${{ runner.os == 'Linux' }}
