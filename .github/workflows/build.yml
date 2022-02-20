@@ -96,6 +96,7 @@ jobs:
 
       - name: Patch constructor (macOS)
         if: ${{ runner.os == 'macOS' }}
+        shell: bash -l {0}
         run: |
           patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./patches/constructor_macOS.patch
 
