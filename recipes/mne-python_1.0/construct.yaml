@@ -32,6 +32,7 @@ installer_filename: MNE-Python-1.0.0_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
+post_install: ../../assets/post_install_linux.sh        # [linux]
 
 # Create signed macOS .pkg installer
 installer_type: pkg                     # [osx]
@@ -49,8 +50,8 @@ channels:
   - conda-forge
 
 specs:
-  - mne =1.0*=*20220219
-  - mne-installer-menus =1.0*=*20220219
+  - mne =1.0*=*20220222
+  - mne-installer-menus =1.0*=*20220222
   - mne-bids =0.10
   - mne-connectivity =0.2
   - mne-faster =1.0
