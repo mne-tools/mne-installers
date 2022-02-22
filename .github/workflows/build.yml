@@ -223,6 +223,9 @@ jobs:
           test `grep "Terminal=true"  MNE-Python*.desktop | wc -l` -ge 1
           test `grep "Terminal=false" MNE-Python*.desktop | wc -l` -ge 1
 
+          # Display their contents
+          for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
+
           # Finally, run MNE's sys_info
           xvfb-run mne sys_info
 
