@@ -213,9 +213,9 @@ jobs:
           # Check that menu shortcuts were created …
           test `ls /.local/share/applications/MNE-Python*.desktop | wc -l` -eq 5
           # … and patched to work around a bug in menuinst
-          test `grep "Terminal=True" | wc -l` -eq 0
+          test `grep "Terminal=True"  | wc -l` -eq 0
           test `grep "Terminal=False" | wc -l` -eq 0
-          test `grep "Terminal=true" | wc -l` -ge 1
+          test `grep "Terminal=true"  | wc -l` -ge 1
           test `grep "Terminal=false" | wc -l` -ge 1
 
           # Finally, run MNE's sys_info
