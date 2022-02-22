@@ -11,6 +11,6 @@ echo "Fixing menu shortcuts."
 cd "$HOME/.local/share/applications"
 for f in ./MNE-Python*.desktop
 do
-    sed "s/Terminal=True/Terminal=true/" $f > $f
-    sed "s/Terminal=False/Terminal=false/" $f > $f
+    sed -i "s/Terminal=True/Terminal=true/" $f
+    sed -i "s/Terminal=False/Terminal=false/" $f
 done
