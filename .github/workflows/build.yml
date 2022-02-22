@@ -214,8 +214,8 @@ jobs:
           cd ~/.local/share/applications
           ls -l
           echo "Checking for existence of .desktop files"
-          test `ls MNE-Python*.desktop | wc -l` -eq 5
           cat MNE-Python*.desktop
+          test `ls MNE-Python*.desktop | wc -l` -eq 5
           # … and patched to work around a bug in menuinst
           echo "Checking that incorrect Terminal entries have been removed"
           test `grep "Terminal=True"  MNE-Python*.desktop | wc -l` -eq 0
