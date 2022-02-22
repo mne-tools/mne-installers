@@ -197,7 +197,7 @@ jobs:
           python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
 
           # Check we have all .app bundles in /Applications
-          test `ls /Applications/MNE-Python*.app | wc -l` -eq 5
+          test `ls -d "/Applications/MNE "*.app | wc -l` -eq 5
 
           # Finally, run MNE's sys_info
           mne sys_info
