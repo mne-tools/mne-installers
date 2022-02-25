@@ -247,6 +247,8 @@ jobs:
           conda activate $MneRoot
           conda info
           mamba list
+          mamba env config vars list
+          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           . "$MneRoot\Scripts\mne.exe" sys_info
 
       # - name: Archive artifacts
