@@ -22,8 +22,8 @@ logger -p 'install.info' "ℹ️ Moving MNE .app bundles from ${HOME}/Applicatio
 mv "${HOME}"/Applications/MNE*.app /Applications/
 
 # https://conda-forge.org/docs/user/tipsandtricks.html#installing-apple-intel-packages-on-apple-silicon
-logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages -- even on Apple Silicon -- when invoked by the user"
-echo "{\"env_vars\": {\"CONDA_SUBDIR\": \"osx-64\"}}" >> "${DSTROOT}/mne-python_1.0.0_0/conda-meta/state"
+logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages -- even on Apple Silicon; and configuring Python to ignore user-installed local packages"
+echo "{\"env_vars\": {\"CONDA_SUBDIR\": \"osx-64\", \"PYTHONNOUSERSITE\": \"1\"}}" >> "${DSTROOT}/mne-python_1.0.0_0/conda-meta/state"
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/mne-python_1.0.0_0"
