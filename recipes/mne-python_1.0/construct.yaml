@@ -88,6 +88,12 @@ specs:
   - neurodsp
   - bycycle
   - fooof
+  # MNE-BIDS-Pipeline
+  - coloredlogs
+  - json_tricks
+  - fire
+  # OpenNeuro.org data access
+  - openneuro-py
   # NeuroSpin needs the following
   - questionary
 
