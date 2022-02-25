@@ -192,9 +192,11 @@ jobs:
           # Check that the installed Python is, in fact, an Intel binary
           python -c "import platform; assert platform.machine() == 'x86_64'"
 
-          # Check the CONDA_SUBDIR variable is set correctly
+          # Check the deployed environment variables were set correctly upon
+          # environment activation
           mamba env config vars list
           python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
+          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
 
           # Check we have all .app bundles in /Applications
           test `ls -d "/Applications/MNE "*.app | wc -l` -eq 5
@@ -209,6 +211,11 @@ jobs:
           source ~/mne-python/1.0.0_0/bin/activate
           conda info
           mamba list
+
+          # Check the deployed environment variables were set correctly upon
+          # environment activation
+          mamba env config vars list
+          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
 
           # Check that menu shortcuts were created …
           cd ~/.local/share/applications
@@ -240,6 +247,8 @@ jobs:
           conda activate $MneRoot
           conda info
           mamba list
+          mamba env config vars list
+          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           . "$MneRoot\Scripts\mne.exe" sys_info
 
       # - name: Archive artifacts

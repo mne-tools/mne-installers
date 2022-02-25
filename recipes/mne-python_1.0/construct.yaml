@@ -33,6 +33,7 @@ installer_filename: MNE-Python-1.0.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
+post_install: ../../assets/post_install_windows.bat     # [win]
 
 # Create signed macOS .pkg installer
 installer_type: pkg                     # [osx]
