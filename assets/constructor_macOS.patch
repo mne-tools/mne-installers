@@ -1,13 +1,13 @@
 --- lib/python3.9/site-packages/constructor/osxpkg.py	2022-02-09 14:17:06.000000000 +0100
-+++ /Users/hoechenberger/miniforge3/envs/constructor-fork/lib/python3.9/site-packages/constructor/osxpkg.py	2022-02-20 12:15:51.000000000 +0100
++++ /Users/hoechenberger/miniforge3/envs/constructor-fork/lib/python3.9/site-packages/constructor/osxpkg.py	2022-02-28 09:43:14.000000000 +0100
 @@ -153,8 +153,9 @@
      # See below for an explanation of the consequences of this
      # customLocation value.
      for options in root.findall('options'):
 -        options.set('customize', 'allow')
 -        options.set('customLocation', '/')
-+        options.set('customize', 'disallow')
-+        options.set('customLocation', '/Applications')
++        options.set('customize', 'never')
++        options.set('customLocation', '/Applications/MNE-Python')
 +        options.set('rootVolumeOnly', 'true')
  
      # By default, the package builder puts all of our options under
@@ -32,7 +32,7 @@
      args = [
          "pkgbuild",
          "--root", PACKAGE_ROOT,
-+        "--install-location=/Applications",
++        "--install-location=/Applications/MNE-Python",
          "--identifier", "%s.pkg.%s" % (identifier, name),
          "--ownership", "preserve",
  

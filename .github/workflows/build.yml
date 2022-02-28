@@ -198,8 +198,11 @@ jobs:
           python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
 
-          # Check we have all .app bundles in /Applications
-          test `ls -d "/Applications/MNE "*.app | wc -l` -eq 5
+          # Check we have all .app bundles in /Applications/MNE-Python
+          test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
+  
+          # Test that the custom icon was set on the MNE folder in /Applications/MNE-Python
+          test -f /Applications/MNE-Python/Icon$'\r'
 
           # Finally, run MNE's sys_info
           mne sys_info
