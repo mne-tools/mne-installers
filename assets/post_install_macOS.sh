@@ -36,3 +36,6 @@ echo '{"env_vars": {"CONDA_SUBDIR": "osx-64", "PYTHONNOUSERSITE": "1"}}' >> "${D
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/mne-python_1.0.0_0"
+
+logger -p 'install.info' "Opening ${DSTROOT} in Finder"
+open -R "${DSTROOT}"
