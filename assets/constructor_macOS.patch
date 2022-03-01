@@ -1,6 +1,6 @@
 --- lib/python3.9/site-packages/constructor/osxpkg.py	2022-02-09 14:17:06.000000000 +0100
-+++ /Users/hoechenberger/miniforge3/envs/constructor-fork/lib/python3.9/site-packages/constructor/osxpkg.py	2022-02-28 09:43:14.000000000 +0100
-@@ -153,8 +153,9 @@
++++ /Users/hoechenberger/miniforge3/envs/constructor-fork/lib/python3.9/site-packages/constructor/osxpkg.py	2022-03-01 16:17:17.000000000 +0100
+@@ -153,8 +153,11 @@
      # See below for an explanation of the consequences of this
      # customLocation value.
      for options in root.findall('options'):
@@ -9,10 +9,12 @@
 +        options.set('customize', 'never')
 +        options.set('customLocation', '/Applications/MNE-Python')
 +        options.set('rootVolumeOnly', 'true')
++        # Force to run installer through Rosetta 2 on Apple Silicon
++        options.set('hostArchitectures', 'x86_64')
  
      # By default, the package builder puts all of our options under
      # a single master choice. This deletes that master choice and
-@@ -215,10 +216,11 @@
+@@ -215,10 +218,11 @@
      # - Install on a specific disk: /<custom_root>/<name>
      # We have chosen not to do this so that this installer
      # produces the same results as a shell install.
@@ -28,7 +30,7 @@
      tree.write(xml_path)
  
  
-@@ -258,6 +260,7 @@
+@@ -258,6 +262,7 @@
      args = [
          "pkgbuild",
          "--root", PACKAGE_ROOT,
