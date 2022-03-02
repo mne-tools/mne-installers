@@ -106,7 +106,7 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         shell: msys2 {0}
         run: |
-          patch $CONDA_PREFIX$/lib/python3.9/site-packages/constructor/construct.py ./assets/constructor_windows.patch
+          patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/construct.py ./assets/constructor_windows.patch
 
       - uses: actions/checkout@v2
 
