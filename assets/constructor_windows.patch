@@ -5,7 +5,7 @@
  def parse(path, platform):
      try:
 -        with open(path) as fi:
-+        with open(path, encoding='utf-8') as fi:
++        with open(path, encoding='utf-8-sig') as fi:
              data = fi.read()
      except IOError:
          sys.exit("Error: could not open '%s' for reading" % path)
