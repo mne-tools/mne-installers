@@ -100,6 +100,12 @@ jobs:
         run: |
           patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./assets/constructor_macOS.patch
 
+      - name: Patch constructor (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        shell: bash -l {0}
+        run: |
+          patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/construct.py ./assets/constructor_windows.patch
+
       - name: Build installer
         shell: bash -l {0}
         run: |

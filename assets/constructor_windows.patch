@@ -1,0 +1,11 @@
+--- lib/python3.9/site-packages/constructor/construct.py	2022-02-09 14:17:06.000000000 +0100
++++ /Users/hoechenberger/miniforge3/envs/constructor-fork/lib/python3.9/site-packages/constructor/construct.py	2022-03-02 12:29:15.000000000 +0100
+@@ -468,7 +468,7 @@
+ 
+ def parse(path, platform):
+     try:
+-        with open(path) as fi:
++        with open(path, encoding='utf-8') as fi:
+             data = fi.read()
+     except IOError:
+         sys.exit("Error: could not open '%s' for reading" % path)
