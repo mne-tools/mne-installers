@@ -26,8 +26,6 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v2
-
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -88,6 +86,8 @@ jobs:
           # List available signing identities (for debugging purposes)
           security find-identity
 
+      - uses: actions/checkout@v2
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -103,7 +103,7 @@ jobs:
       - name: Build installer
         shell: bash -l {0}
         run: |
-          constructor recipes/mne-python_1.0
+          PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' }}
