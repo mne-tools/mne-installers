@@ -51,14 +51,21 @@ channels:
   - conda-forge
 
 specs:
+  # MNE ecosystem
+
+  # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   - mne =1.0*=*20220228
   - mne-installer-menus =1.0*=*20220228
-  - mne-bids =0.10
-  - mne-connectivity =0.2
-  - mne-faster =1.0
-  - mne-nirs =0.1
+  - mne-bids =0.10*=*20220213
+  # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
+
+  - mne-connectivity =0.3
+  - mne-faster =1.1
+  - mne-nirs =0.2
   - mne-realtime =0.1
+  - mne-features =0.2
   - autoreject =0.3
+  # Python
   - python =3.9
   - pip
   - conda
@@ -67,7 +74,7 @@ specs:
   - jupyterlab
   - ipykernel
   - nb_conda_kernels
-  - spyder-kernels >=1.10.0
+  - spyder-kernels
   - spyder
   - ipympl
   - darkdetect
