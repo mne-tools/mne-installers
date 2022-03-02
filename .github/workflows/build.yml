@@ -86,10 +86,6 @@ jobs:
           # List available signing identities (for debugging purposes)
           security find-identity
 
-      - name: Install MSYS2 UNIX tools (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        uses: msys2/setup-msys2@v2
-
       - uses: actions/checkout@v2
 
       - name: Install Micromamba
@@ -104,16 +100,10 @@ jobs:
         run: |
           patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./assets/constructor_macOS.patch
 
-      - name: Patch constructor (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        shell: msys2 {0}
-        run: |
-          patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/construct.py ./assets/constructor_windows.patch
-
       - name: Build installer
         shell: bash -l {0}
         run: |
-          constructor recipes/mne-python_1.0
+          PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' }}
