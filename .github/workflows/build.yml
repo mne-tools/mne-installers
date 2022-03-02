@@ -26,8 +26,6 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v2
-
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -88,6 +86,10 @@ jobs:
           # List available signing identities (for debugging purposes)
           security find-identity
 
+      - name: Install MSYS2 UNIX tools (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        uses: msys2/setup-msys2@v2
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -102,9 +104,11 @@ jobs:
 
       - name: Patch constructor (Windows)
         if: ${{ runner.os == 'Windows' }}
-        shell: bash -l {0}
+        shell: msys2 {0}
         run: |
-          C:\msys64\usr\bin\patch.exe %CONDA_PREFIX%\lib\python3.9\site-packages\constructor\construct.py .\assets\constructor_windows.patch
+          patch $CONDA_PREFIX$/lib/python3.9/site-packages/constructor/construct.py ./assets/constructor_windows.patch
+
+      - uses: actions/checkout@v2
 
       - name: Build installer
         shell: bash -l {0}
