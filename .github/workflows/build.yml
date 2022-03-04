@@ -26,8 +26,6 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v2
-
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -88,6 +86,8 @@ jobs:
           # List available signing identities (for debugging purposes)
           security find-identity
 
+      - uses: actions/checkout@v2
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -103,7 +103,7 @@ jobs:
       - name: Build installer
         shell: bash -l {0}
         run: |
-          constructor recipes/mne-python_1.0
+          PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -180,14 +180,14 @@ jobs:
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source /Applications/mne-python_1.0.0_0/bin/activate
+          source /Applications/MNE-Python/mne-python_1.0.0_0/bin/activate
           conda info
           mamba list
 
           # Test that file permissions are set correctly (owned by "runner",
           # not "root".)
           # https://unix.stackexchange.com/a/7733
-          [ `ls -ld /Applications/mne-python_1.0.0_0 | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
+          [ `ls -ld /Applications/MNE-Python/mne-python_1.0.0_0 | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
 
           # Check that the installed Python is, in fact, an Intel binary
           python -c "import platform; assert platform.machine() == 'x86_64'"
@@ -198,8 +198,11 @@ jobs:
           python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
 
-          # Check we have all .app bundles in /Applications
-          test `ls -d "/Applications/MNE "*.app | wc -l` -eq 5
+          # Check we have all .app bundles in /Applications/MNE-Python
+          test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
+  
+          # Test that the custom icon was set on the MNE folder in /Applications/MNE-Python
+          test -f /Applications/MNE-Python/Icon$'\r'
 
           # Finally, run MNE's sys_info
           mne sys_info
@@ -262,7 +265,7 @@ jobs:
       - name: Export frozen environment definition (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          source /Applications/mne-python_1.0.0_0/bin/activate
+          source /Applications/MNE-Python/mne-python_1.0.0_0/bin/activate
           mamba list --json > MNE-Python-1.0.0_0-macOS_Intel.env.json
           cat MNE-Python-1.0.0_0-macOS_Intel.env.json
 

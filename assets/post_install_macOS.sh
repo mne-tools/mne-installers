@@ -18,8 +18,17 @@ USER_FROM_HOMEDIR=`basename $HOME`
 logger -p 'install.info' "ℹ️ Fixing permissions of MNE .app bundles in ${HOME}/Applications: new owner will be ${USER_FROM_HOMEDIR}"
 chown -R $USER_FROM_HOMEDIR "${HOME}"/Applications/MNE*.app
 
-logger -p 'install.info' "ℹ️ Moving MNE .app bundles from ${HOME}/Applications to /Applications"
-mv "${HOME}"/Applications/MNE*.app /Applications/
+logger -p 'install.info' "ℹ️ Moving MNE .app bundles from ${HOME}/Applications to /Applications/MNE-Python"
+mv "${HOME}"/Applications/MNE*.app /Applications/MNE-Python/
+
+logger -p 'install.info' "ℹ️ Setting custom folder icon for /Applications/MNE-Python"
+osascript \
+    -e 'set DSTROOT to system attribute "DSTROOT"' \
+    -e 'set iconPath to DSTROOT & "/mne-python_1.0.0_0/Menu/mne.png"' \
+    -e 'use framework "Foundation"' \
+    -e 'use framework "AppKit"' \
+    -e "set imageData to (current application's NSImage's alloc()'s initWithContentsOfFile:iconPath)" \
+    -e "(current application's NSWorkspace's sharedWorkspace()'s setIcon:imageData forFile:DSTROOT options: 0)"
 
 # https://conda-forge.org/docs/user/tipsandtricks.html#installing-apple-intel-packages-on-apple-silicon
 logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages -- even on Apple Silicon; and configuring Python to ignore user-installed local packages"
@@ -27,3 +36,6 @@ echo '{"env_vars": {"CONDA_SUBDIR": "osx-64", "PYTHONNOUSERSITE": "1"}}' >> "${D
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/mne-python_1.0.0_0"
+
+logger -p 'install.info' "Opening ${DSTROOT} in Finder"
+open -R "${DSTROOT}"
