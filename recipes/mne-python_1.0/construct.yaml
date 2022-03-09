@@ -54,8 +54,8 @@ specs:
   # MNE ecosystem
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.0*=*20220305
-  - mne-installer-menus =1.0*=*20220305
+  - mne =1.0*=*20220308
+  - mne-installer-menus =1.0*=*20220308
   - mne-bids =0.10*=*20220213
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
@@ -65,6 +65,7 @@ specs:
   - mne-realtime =0.1
   - mne-features =0.2
   - mne-rsa =0.6
+  - mne-microstates =0.3
   - mne-ari =0.1
   - autoreject =0.3
   # Python
