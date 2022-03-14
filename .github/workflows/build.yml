@@ -28,7 +28,7 @@ jobs:
     steps:
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
-        if: ${{ runner.os == 'macOS' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         env:
           APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
           APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
@@ -54,7 +54,7 @@ jobs:
           curl https://www.apple.com/appleca/AppleIncRootCertificate.cer -L --output AppleIncRootCertificate.cer
           curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
           curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
-          
+
           # install Apple certificates
           # the following line is required for macOS 11+, see
           # https://developer.apple.com/forums/thread/671582?answerId=693632022#693632022
@@ -200,7 +200,7 @@ jobs:
 
           # Check we have all .app bundles in /Applications/MNE-Python
           test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
-  
+
           # Test that the custom icon was set on the MNE folder in /Applications/MNE-Python
           test -f /Applications/MNE-Python/Icon$'\r'
 
