@@ -18,7 +18,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        # TODO: Restore full matrix
+        os: [ubuntu-20.04]  # [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
 
     runs-on: ${{ matrix.os }}
 
@@ -108,7 +109,7 @@ jobs:
 
       - name: Build installer
         shell: bash -l {0}
-        timeout-minutes: 10
+        timeout-minutes: 10  # TODO: Make 15 or more
         run: |
           PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
