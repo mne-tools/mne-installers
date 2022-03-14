@@ -119,8 +119,7 @@ jobs:
           rm -rf ./mne-extracted
 
       - name: Notarize installer (macOS)
-        if: |
-          matrix.os == 'macOS-11'
+        if: ${{ matrix.os == 'macOS-11' && github.event_name != 'pull_request' }}
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
