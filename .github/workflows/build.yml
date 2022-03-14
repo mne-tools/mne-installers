@@ -100,13 +100,19 @@ jobs:
         run: |
           patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./assets/constructor_macOS.patch
 
+      - name: Patch config (macOS pull request)
+        if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
+        shell: bash -l {0}
+        run: |
+          sed -i "s/9779L28NP8//" recipes/mne-python_1.0/construct.yaml
+
       - name: Build installer
         shell: bash -l {0}
         run: |
           PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
       - name: Check installer signature (macOS)
-        if: ${{ runner.os == 'macOS' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
           pkgutil --check-signature MNE-Python-1.0.0_0-macOS_Intel.pkg
