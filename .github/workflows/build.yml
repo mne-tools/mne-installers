@@ -109,6 +109,7 @@ jobs:
 
       - name: Build installer
         shell: bash -l {0}
+        # As of 2022/03/14, ~7 min on the 20.04 run (fastest),
         timeout-minutes: 10  # TODO: Make 15 or more
         run: |
           PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
