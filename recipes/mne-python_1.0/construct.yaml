@@ -56,9 +56,9 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   - mne =1.0*=*20220308
   - mne-installer-menus =1.0*=*20220308
-  - mne-bids =0.10*=*20220213
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
+  - mne-bids =0.10
   - mne-connectivity =0.3
   - mne-faster =1.1
   - mne-nirs =0.2
@@ -110,9 +110,6 @@ specs:
   - openneuro-py
   # NeuroSpin needs the following
   - questionary
-
-exclude:
-  - dipy
 
 condarc:
   channels:
