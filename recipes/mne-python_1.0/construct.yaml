@@ -86,17 +86,17 @@ specs:
   - openpyxl
   - xlrd
   # Statistics
-  # pingouin
-  # pycircstat
+  - pingouin
+  - pycircstat
   # MRI
-  # fsleyes
-  # dcm2niix
+  - fsleyes
+  - dcm2niix
   # Time-frequency analysis
-  # pactools
-  # tensorpac
-  # emd
-  # neurodsp
-  # bycycle
+  - pactools
+  - tensorpac
+  - emd
+  - neurodsp
+  - bycycle
   - fooof
   # MNE-BIDS-Pipeline
   # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
@@ -109,7 +109,7 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py
   # NeuroSpin needs the following
-  - questionary
+  # questionary
   # Copy-paste from mne-feedstock:dev meta.yml that do not show up above
   # https://github.com/conda-forge/mne-feedstock/blob/59978fd907c3ee7f23dd743598766f282bf744a7/recipe/meta.yaml#L56-L85
   - matplotlib >=3.1.0
