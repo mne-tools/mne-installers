@@ -111,6 +111,9 @@ specs:
   # NeuroSpin needs the following
   - questionary
 
+exclude:
+  - dipy
+
 condarc:
   channels:
     - conda-forge
