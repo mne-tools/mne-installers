@@ -104,7 +104,7 @@ jobs:
         if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
         shell: bash -l {0}
         run: |
-          sed -i.bak "s/9779L28NP8//" recipes/mne-python_1.0/construct.yaml
+          sed -i "" "s/9779L28NP8//" recipes/mne-python_1.0/construct.yaml
 
       - name: Build installer
         shell: bash -l {0}
