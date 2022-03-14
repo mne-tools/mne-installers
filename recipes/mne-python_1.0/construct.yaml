@@ -73,15 +73,15 @@ specs:
   - pip
   - conda
   - mamba
-  # jupyter
-  # jupyterlab
-  # ipykernel
-  # nb_conda_kernels
-  # spyder-kernels
-  # spyder
-  # ipympl
-  # darkdetect
-  # qdarkstyle
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - nb_conda_kernels
+  - spyder-kernels
+  - spyder
+  - ipympl
+  - darkdetect
+  - qdarkstyle
   # Excel I/O
   # openpyxl
   # xlrd
