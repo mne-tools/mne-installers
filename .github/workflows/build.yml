@@ -108,6 +108,7 @@ jobs:
 
       - name: Build installer
         shell: bash -l {0}
+        timeout-minutes: 10
         run: |
           PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
