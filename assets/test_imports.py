@@ -27,4 +27,5 @@ import fire
 import dask
 import distributed
 import openneuro
+import neurokit2
 import questionary
