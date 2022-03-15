@@ -56,9 +56,9 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   - mne =1.0*=*20220308
   - mne-installer-menus =1.0*=*20220308
-  - mne-bids =0.10*=*20220213
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
+  - mne-bids =0.10
   - mne-connectivity =0.3
   - mne-faster =1.1
   - mne-nirs =0.2
@@ -69,7 +69,7 @@ specs:
   - mne-ari =0.1
   - autoreject =0.3
   # Python
-  - python =3.9
+  - python =3.10
   - pip
   - conda
   - mamba
