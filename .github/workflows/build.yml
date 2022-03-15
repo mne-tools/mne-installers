@@ -218,9 +218,9 @@ jobs:
 
           # Try to import MNE and all additional packages included in the
           # installer
-          python assets/test_imports.py
-          python assets/test_gui.py
-          python assets/test_notebook.py
+          python tests/test_imports.py
+          python tests/test_gui.py
+          python tests/test_notebook.py
 
       - name: Check installation (Linux)
         if: ${{ runner.os == 'Linux' }}
@@ -259,9 +259,9 @@ jobs:
 
           # Try to import MNE and all additional packages included in the
           # installer
-          python assets/test_imports.py
-          python assets/test_gui.py
-          python assets/test_notebook.py
+          python tests/test_imports.py
+          python tests/test_gui.py
+          python tests/test_notebook.py
 
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -277,9 +277,9 @@ jobs:
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           . "$MneRoot\Scripts\mne.exe" sys_info
-          python assets\test_imports.py
-          python assets\test_gui.py
-          python assets\test_notebook.py
+          python tests\test_imports.py
+          python tests\test_gui.py
+          python tests\test_notebook.py
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}

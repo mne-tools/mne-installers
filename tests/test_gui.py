@@ -13,7 +13,7 @@ this_path = Path(__file__).parent
 
 # Matplotlib
 fig, _ = plt.subplots()
-want = 'MacOSX' if sys.platform == 'darwin' else 'QTAgg'
+want = ' NSView ' if sys.platform == 'darwin' else 'QTAgg '
 assert want in repr(fig.canvas), repr(fig.canvas)
 plt.close('all')
 matplotlib.use('QtAgg', force=True)
