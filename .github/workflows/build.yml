@@ -227,6 +227,7 @@ jobs:
         run: |
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
+          export DISPLAY=":99"
           source ~/mne-python/1.0.0_0/bin/activate
           conda info
           mamba list
