@@ -8,7 +8,7 @@ import mne_features
 import mne_rsa
 import mne_microstates
 import mne_ari
-import autoreject
+# import autoreject
 import darkdetect
 import qdarkstyle
 import openpyxl

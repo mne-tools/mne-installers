@@ -67,7 +67,7 @@ specs:
   - mne-rsa ~=0.6.0
   - mne-microstates ~=0.3.0
   - mne-ari ~=0.1.0
-  - autoreject ~=0.3.1
+  - autoreject ~=0.3
   # Python
   - python =3.10
   - pip
