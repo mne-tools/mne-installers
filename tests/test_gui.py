@@ -29,6 +29,7 @@ plotter.add_mesh(pyvista.Cube())
 if fname.is_file():
     os.remove(fname)
 assert not fname.is_file()
+plotter.render()
 plotter.screenshot(fname)
 assert fname.is_file()
 os.remove(fname)
