@@ -1,6 +1,7 @@
 *.exe
 *.pkg
 /scripts
+assets/test.png
 .vscode
 .pytest_cache
 .DS_Store
