@@ -213,8 +213,12 @@ jobs:
           # Test that the custom icon was set on the MNE folder in /Applications/MNE-Python
           test -f /Applications/MNE-Python/Icon$'\r'
 
-          # Finally, run MNE's sys_info
+          # Run MNE's sys_info
           mne sys_info
+
+          # Try to import MNE and all additional packages included in the
+          # installer
+          python assets/test_imports.py
 
       - name: Check installation (Linux)
         if: ${{ runner.os == 'Linux' }}
@@ -245,8 +249,12 @@ jobs:
           # Display their contents
           for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
 
-          # Finally, run MNE's sys_info
+          # Run MNE's sys_info
           xvfb-run mne sys_info
+
+          # Try to import MNE and all additional packages included in the
+          # installer
+          python assets/test_imports.py
 
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -262,6 +270,8 @@ jobs:
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           . "$MneRoot\Scripts\mne.exe" sys_info
+          python assets\test_imports.py
+
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}

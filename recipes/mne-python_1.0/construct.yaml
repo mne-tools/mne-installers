@@ -46,9 +46,9 @@ menu_packages:
   - mne-installer-menus
 
 channels:
+  - conda-forge
   - conda-forge/label/mne_dev
   - conda-forge/label/mne-bids_dev
-  - conda-forge
 
 specs:
   # MNE ecosystem
