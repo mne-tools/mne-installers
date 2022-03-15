@@ -108,6 +108,8 @@ specs:
   - distributed
   # OpenNeuro.org data access
   - openneuro-py
+  # various biological signals (ECG, EOG, EMG, …)
+  - neurokit2
   # NeuroSpin needs the following
   - questionary
 
