@@ -12,11 +12,8 @@ import mne
 this_path = Path(__file__).parent
 
 # Matplotlib
-fig, _ = plt.subplots()
-want = ' NSView ' if sys.platform == 'darwin' else 'QTAgg '
-assert want in repr(fig.canvas), repr(fig.canvas)
-plt.close('all')
-matplotlib.use('QtAgg', force=True)
+if sys.platform == 'darwin':
+    matplotlib.use('QtAgg')
 fig, _ = plt.subplots()
 want = 'QTAgg'
 assert want in repr(fig.canvas), repr(fig.canvas)

@@ -220,6 +220,7 @@ jobs:
           # installer
           python tests/test_imports.py
           python tests/test_gui.py
+          python tests/test_gui_macosx.py
           python tests/test_notebook.py
 
       - name: Check installation (Linux)
