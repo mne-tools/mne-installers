@@ -46,9 +46,9 @@ menu_packages:
   - mne-installer-menus
 
 channels:
+  - conda-forge
   - conda-forge/label/mne_dev
   - conda-forge/label/mne-bids_dev
-  - conda-forge
 
 specs:
   # MNE ecosystem
@@ -58,16 +58,16 @@ specs:
   - mne-installer-menus =1.0*=*20220308
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  - mne-bids =0.10
-  - mne-connectivity =0.3
-  - mne-faster =1.1
-  - mne-nirs =0.2
-  - mne-realtime =0.1
-  - mne-features =0.2
-  - mne-rsa =0.6
-  - mne-microstates =0.3
-  - mne-ari =0.1
-  - autoreject =0.3
+  - mne-bids ~=0.10.0
+  - mne-connectivity ~=0.3.0
+  - mne-faster ~=1.1.0
+  - mne-nirs ~=0.2.0
+  - mne-realtime ~=0.1.0
+  - mne-features ~=0.2.0
+  - mne-rsa ~=0.6.0
+  - mne-microstates ~=0.3.0
+  - mne-ari ~=0.1.0
+  - autoreject ~=0.3
   # Python
   - python =3.10
   - pip
