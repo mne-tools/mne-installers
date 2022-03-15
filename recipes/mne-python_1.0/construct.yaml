@@ -70,7 +70,7 @@ specs:
   - mne-kit-gui ~=1.0.1
   - autoreject ~=0.3
   # Python
-  - python >=3.9
+  - python >=3.10
   - pip
   - conda
   - mamba
