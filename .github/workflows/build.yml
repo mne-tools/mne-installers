@@ -218,12 +218,17 @@ jobs:
 
           # Try to import MNE and all additional packages included in the
           # installer
-          python assets/test_imports.py
+          python tests/test_imports.py
+          python tests/test_gui.py
+          python tests/test_gui_macosx.py
+          python tests/test_notebook.py
 
       - name: Check installation (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get install -y xvfb
+          /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
+          export DISPLAY=":99"
           source ~/mne-python/1.0.0_0/bin/activate
           conda info
           mamba list
@@ -251,11 +256,13 @@ jobs:
           popd
 
           # Run MNE's sys_info
-          xvfb-run mne sys_info
+          mne sys_info
 
           # Try to import MNE and all additional packages included in the
           # installer
-          python assets/test_imports.py
+          python tests/test_imports.py
+          python tests/test_gui.py
+          python tests/test_notebook.py
 
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -271,8 +278,9 @@ jobs:
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           . "$MneRoot\Scripts\mne.exe" sys_info
-          python assets\test_imports.py
-
+          python tests\test_imports.py
+          python tests\test_gui.py
+          python tests\test_notebook.py
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
