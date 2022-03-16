@@ -10,6 +10,7 @@ import mne_microstates
 import mne_ari
 import mne_kit_gui
 # import autoreject
+import pyprep
 import darkdetect
 import qdarkstyle
 import openpyxl

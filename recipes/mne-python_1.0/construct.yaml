@@ -69,6 +69,7 @@ specs:
   - mne-ari ~=0.1.0
   - mne-kit-gui ~=1.0.1
   - autoreject ~=0.3
+  - pyprep ~=0.4
   # Python
   - python ~=3.10.0
   - pip
