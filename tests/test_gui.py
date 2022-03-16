@@ -42,3 +42,13 @@ raw = mne.io.RawArray(np.zeros((1, 1000)), mne.create_info(1, 1000., 'eeg'))
 fig = raw.plot()
 fig.close()
 assert 'PyQtGraphBrowser' in repr(fig), repr(fig)
+
+# mne-kit-gui
+from pyface.api import GUI  # noqa
+import mne_kit_gui  # noqa
+os.environ['_MNE_GUI_TESTING_MODE'] = 'true'
+gui = GUI()
+gui.process_events()
+ui, frame = mne_kit_gui.kit2fiff()
+assert not frame.model.can_save
+ui.dispose()
