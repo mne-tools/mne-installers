@@ -9,7 +9,7 @@ import mne_rsa
 import mne_microstates
 import mne_ari
 import mne_kit_gui
-# import autoreject
+import autoreject
 import pyprep
 import darkdetect
 import qdarkstyle
