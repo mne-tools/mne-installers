@@ -98,7 +98,9 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         shell: bash -l {0}
         run: |
-          patch $CONDA_PREFIX/lib/python3.9/site-packages/constructor/osxpkg.py ./assets/constructor_macOS.patch
+          export PATCH_PATH=`python -c "import pathlib; print(pathlib.Path('./assets/constructor_macOS.patch').resolve())"`
+          cd $CONDA_PREFIX/lib/python3.9/site-packages/constructor
+          patch -p1 < ${PATCH_PATH}
 
       - name: Patch config (macOS pull request)
         if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
