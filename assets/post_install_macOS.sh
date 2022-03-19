@@ -24,7 +24,7 @@ mv "${HOME}"/Applications/MNE*.app /Applications/MNE-Python/
 logger -p 'install.info' "ℹ️ Setting custom folder icon for /Applications/MNE-Python"
 osascript \
     -e 'set DSTROOT to system attribute "DSTROOT"' \
-    -e 'set iconPath to DSTROOT & "/mne-python/Menu/mne.png"' \
+    -e 'set iconPath to DSTROOT & "/.mne-python/Menu/mne.png"' \
     -e 'use framework "Foundation"' \
     -e 'use framework "AppKit"' \
     -e "set imageData to (current application's NSImage's alloc()'s initWithContentsOfFile:iconPath)" \
@@ -32,10 +32,10 @@ osascript \
 
 # https://conda-forge.org/docs/user/tipsandtricks.html#installing-apple-intel-packages-on-apple-silicon
 logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages -- even on Apple Silicon; and configuring Python to ignore user-installed local packages"
-echo '{"env_vars": {"CONDA_SUBDIR": "osx-64", "PYTHONNOUSERSITE": "1"}}' >> "${DSTROOT}/mne-python/conda-meta/state"
+echo '{"env_vars": {"CONDA_SUBDIR": "osx-64", "PYTHONNOUSERSITE": "1"}}' >> "${DSTROOT}/.mne-python/conda-meta/state"
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
-chown -R $USER_FROM_HOMEDIR "${DSTROOT}/mne-python"
+chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
 
 logger -p 'install.info' "Opening ${DSTROOT} in Finder"
 open -R "${DSTROOT}"
