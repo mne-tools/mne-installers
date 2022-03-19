@@ -68,7 +68,7 @@ diff -Naur constructor-orig/osxpkg.py constructor-patched/osxpkg.py
      args = [
          "pkgbuild",
          "--root", PACKAGE_ROOT,
-+        "--install-location=/Applications/MNE-Python",
++        "--install-location", "/Applications/MNE-Python",
          "--identifier", "%s.pkg.%s" % (identifier, name),
          "--ownership", "preserve",
 
