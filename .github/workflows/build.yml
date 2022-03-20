@@ -125,9 +125,9 @@ jobs:
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
           pkgutil --expand-full MNE-Python-1.0.0_0-macOS_Intel.pkg ./mne-extracted
-          codesign -vd ./mne-extracted/main.pkg/Payload/mne-python_1.0.0_0/_conda.exe
+          codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
-          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/mne-python_1.0.0_0/_conda.exe
+          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           rm -rf ./mne-extracted
 
       - name: Notarize installer (macOS)
