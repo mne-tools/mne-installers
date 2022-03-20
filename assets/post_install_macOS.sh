@@ -16,10 +16,10 @@ logger -p 'install.info' "ℹ️ Running the custom MNE-Python post-install scri
 USER_FROM_HOMEDIR=`basename $HOME`
 
 logger -p 'install.info' "ℹ️ Fixing permissions of MNE .app bundles in ${HOME}/Applications: new owner will be ${USER_FROM_HOMEDIR}"
-chown -R $USER_FROM_HOMEDIR "${HOME}"/Applications/MNE*.app
+chown -R $USER_FROM_HOMEDIR "${HOME}"/Applications/*\(MNE\).app
 
 logger -p 'install.info' "ℹ️ Moving MNE .app bundles from ${HOME}/Applications to /Applications/MNE-Python"
-mv "${HOME}"/Applications/MNE*.app /Applications/MNE-Python/
+mv "${HOME}"/Applications/*\(MNE\).app /Applications/MNE-Python/
 
 logger -p 'install.info' "ℹ️ Setting custom folder icon for /Applications/MNE-Python"
 osascript \
