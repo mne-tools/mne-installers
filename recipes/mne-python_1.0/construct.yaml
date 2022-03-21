@@ -1,4 +1,4 @@
-version: 1.0.0_0
+version: 1.0.0_1
 name: MNE-Python
 company: MNE-Python Developers
 
@@ -51,8 +51,8 @@ specs:
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.0.0=*_0
-  - mne-installer-menus =1.0.0=*_0
+  - mne =1.0.0=*_1
+  - mne-installer-menus =1.0.0=*_1
   - mne-bids ~=0.10.0
   - mne-connectivity ~=0.3.0
   - mne-faster ~=1.1.0
