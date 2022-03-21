@@ -43,17 +43,16 @@ menu_packages:
 
 channels:
   - conda-forge
-  - conda-forge/label/mne_dev
+  # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
 
 specs:
   # MNE ecosystem
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.0*=*20220319
-  - mne-installer-menus =1.0*=*20220319
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-
+  - mne =1.0.0
+  - mne-installer-menus =1.0.0
   - mne-bids ~=0.10.0
   - mne-connectivity ~=0.3.0
   - mne-faster ~=1.1.0
