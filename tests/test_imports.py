@@ -29,5 +29,6 @@ import fire
 import dask
 import distributed
 import openneuro
+import sleepecg
 import neurokit2
 import questionary

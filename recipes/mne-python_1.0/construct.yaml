@@ -105,6 +105,8 @@ specs:
   - distributed
   # OpenNeuro.org data access
   - openneuro-py
+  # sleep staging
+  - sleepecg
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2
   # GitHub client, https://cli.github.com
