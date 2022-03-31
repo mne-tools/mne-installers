@@ -121,10 +121,10 @@ jobs:
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
-          pkgutil --check-signature MNE-Python-1.0.0_0-macOS_Intel.pkg
+          pkgutil --check-signature MNE-Python-1.0.0_1-macOS_Intel.pkg
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
-          pkgutil --expand-full MNE-Python-1.0.0_0-macOS_Intel.pkg ./mne-extracted
+          pkgutil --expand-full MNE-Python-1.0.0_1-macOS_Intel.pkg ./mne-extracted
           codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
@@ -138,13 +138,13 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           # Notarize the installer
-          xcrun notarytool submit ./MNE-Python-1.0.0_0-macOS_Intel.pkg \
+          xcrun notarytool submit ./MNE-Python-1.0.0_1-macOS_Intel.pkg \
               --wait \
               --apple-id=$APPLE_ID \
               --password=$APPLE_ID_PASSWORD \
               --team-id=$APPLE_TEAM_ID
           # Staple the notarization certificate onto it
-          xcrun stapler staple MNE-Python-1.0.0_0-macOS_Intel.pkg
+          xcrun stapler staple MNE-Python-1.0.0_1-macOS_Intel.pkg
 
       - name: Calculate SHA256 hash of installer package (macOS & Linux)
         if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
@@ -159,19 +159,19 @@ jobs:
       - name: Calculate SHA256 hash of installer package (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          Get-FileHash MNE-Python-1.0.0_0-Windows.exe -Algorithm SHA256 > MNE-Python-1.0.0_0-Windows.exe.sha256.txt
-          Get-Content MNE-Python-1.0.0_0-Windows.exe.sha256.txt
+          Get-FileHash MNE-Python-1.0.0_1-Windows.exe -Algorithm SHA256 > MNE-Python-1.0.0_1-Windows.exe.sha256.txt
+          Get-Content MNE-Python-1.0.0_1-Windows.exe.sha256.txt
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
           echo `pwd`
-          installer -verbose -pkginfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
-          installer -verbose -dominfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
-          installer -verbose -volinfo -pkg ./MNE-Python-1.0.0_0-macOS_Intel.pkg
+          installer -verbose -pkginfo -pkg ./MNE-Python-1.0.0_1-macOS_Intel.pkg
+          installer -verbose -dominfo -pkg ./MNE-Python-1.0.0_1-macOS_Intel.pkg
+          installer -verbose -volinfo -pkg ./MNE-Python-1.0.0_1-macOS_Intel.pkg
           sudo installer \
             -verbose \
-            -pkg MNE-Python-1.0.0_0-macOS_Intel.pkg \
+            -pkg MNE-Python-1.0.0_1-macOS_Intel.pkg \
             -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
@@ -179,14 +179,14 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           echo `pwd`
-          sh ./MNE-Python-1.0.0_0-Linux.sh -b
+          sh ./MNE-Python-1.0.0_1-Linux.sh -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\MNE-Python-1.0.0_0-Windows.exe /S /InstallationType=JustMe /AddToPath=1
+          .\MNE-Python-1.0.0_1-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -231,7 +231,7 @@ jobs:
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
-          source ~/mne-python/1.0.0_0/bin/activate
+          source ~/mne-python/1.0.0_1/bin/activate
           conda info
           mamba list
 
@@ -272,7 +272,7 @@ jobs:
           git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
           ./gl-ci-helpers/appveyor/install_opengl.ps1
 
-          $MneRoot = "$env:UserProfile\mne-python\1.0.0_0"
+          $MneRoot = "$env:UserProfile\mne-python\1.0.0_1"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
@@ -296,24 +296,24 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
-          mamba list --json > MNE-Python-1.0.0_0-macOS_Intel.env.json
-          cat MNE-Python-1.0.0_0-macOS_Intel.env.json
+          mamba list --json > MNE-Python-1.0.0_1-macOS_Intel.env.json
+          cat MNE-Python-1.0.0_1-macOS_Intel.env.json
 
       - name: Export frozen environment definition (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
-          source ~/mne-python/1.0.0_0/bin/activate
-          mamba list --json > MNE-Python-1.0.0_0-Linux.env.json
-          cat MNE-Python-1.0.0_0-Linux.env.json
+          source ~/mne-python/1.0.0_1/bin/activate
+          mamba list --json > MNE-Python-1.0.0_1-Linux.env.json
+          cat MNE-Python-1.0.0_1-Linux.env.json
 
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $MneRoot = "$env:UserProfile\mne-python\1.0.0_0"
+          $MneRoot = "$env:UserProfile\mne-python\1.0.0_1"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
-          mamba list --json > MNE-Python-1.0.0_0-Windows.env.json
-          Get-Content MNE-Python-1.0.0_0-Windows.env.json
+          mamba list --json > MNE-Python-1.0.0_1-Windows.env.json
+          Get-Content MNE-Python-1.0.0_1-Windows.env.json
 
       - name: Release
         if: |
