@@ -217,7 +217,7 @@ jobs:
 
           echo "Checking we have all .app bundles in /Applications/MNE-Python:"
           ls -d /Applications/MNE-Python/*.app
-          test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
+          test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 3
 
           echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
           test -f /Applications/MNE-Python/Icon$'\r'
@@ -250,7 +250,7 @@ jobs:
           ls -l
           echo "Checking for existence of .desktop files:"
           ls MNE-Python*.desktop
-          test `ls MNE-Python*.desktop | wc -l` -eq 5
+          test `ls MNE-Python*.desktop | wc -l` -eq 3
           echo ""
 
           # … and patched to work around a bug in menuinst
@@ -318,7 +318,7 @@ jobs:
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
+          $MneRoot = "$env:UserProfile\mne-python\${MNE_INSTALLER_VERSION}"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
