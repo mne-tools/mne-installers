@@ -318,7 +318,7 @@ jobs:
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $MneRoot = "$env:UserProfile\mne-python\${MNE_INSTALLER_VERSION}"
+          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
