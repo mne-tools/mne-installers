@@ -89,12 +89,12 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Extract MNE_INSTALLER_VERSION
+        shell: bash -el {0}
         run: |
           VERSION=$(head -n 1 recipes/mne-python_1.0/construct.yaml | cut -d' ' -f2)
           echo "Version: ${VERSION}"
           echo "MNE_INSTALLER_VERSION=${VERSION}" >> $GITHUB_ENV
           test "$VERSION" != ""
-        shell: bash -el {0}
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
