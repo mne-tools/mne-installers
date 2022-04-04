@@ -88,6 +88,14 @@ jobs:
 
       - uses: actions/checkout@v2
 
+      - name: Extract MNE_INSTALLER_VERSION
+        shell: bash -el {0}
+        run: |
+          VERSION=$(head -n 1 recipes/mne-python_1.0/construct.yaml | cut -d' ' -f2)
+          echo "Version: ${VERSION}"
+          echo "MNE_INSTALLER_VERSION=${VERSION}" >> $GITHUB_ENV
+          test "$VERSION" != ""
+
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -96,7 +104,7 @@ jobs:
 
       - name: Patch constructor (macOS)
         if: ${{ runner.os == 'macOS' }}
-        shell: bash -l {0}
+        shell: bash -el {0}
         run: |
           export PATCH_PATH=`python -c "import pathlib; print(pathlib.Path('./assets/constructor_macOS.patch').resolve())"`
           cd $CONDA_PREFIX/lib/python3.9/site-packages/constructor
@@ -104,12 +112,12 @@ jobs:
 
       - name: Patch config (macOS pull request)
         if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
-        shell: bash -l {0}
+        shell: bash -el {0}
         run: |
           sed -i "" "s/9779L28NP8//" recipes/mne-python_1.0/construct.yaml
 
       - name: Build installer
-        shell: bash -l {0}
+        shell: bash -el {0}
         # As of 2022/03/14, ~7 min on 20.04 (fastest) and ~11 min on windows-2019 (slowest).
         # So let's set this to a reasonable limit that will tell us more quickly
         # if something has gone wrong with dependency resolution.
@@ -121,10 +129,10 @@ jobs:
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
-          pkgutil --check-signature MNE-Python-1.0.0_1-macOS_Intel.pkg
+          pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
-          pkgutil --expand-full MNE-Python-1.0.0_1-macOS_Intel.pkg ./mne-extracted
+          pkgutil --expand-full MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg ./mne-extracted
           codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
@@ -138,13 +146,13 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           # Notarize the installer
-          xcrun notarytool submit ./MNE-Python-1.0.0_1-macOS_Intel.pkg \
+          xcrun notarytool submit ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg \
               --wait \
               --apple-id=$APPLE_ID \
               --password=$APPLE_ID_PASSWORD \
               --team-id=$APPLE_TEAM_ID
           # Staple the notarization certificate onto it
-          xcrun stapler staple MNE-Python-1.0.0_1-macOS_Intel.pkg
+          xcrun stapler staple MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
 
       - name: Calculate SHA256 hash of installer package (macOS & Linux)
         if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
@@ -159,19 +167,19 @@ jobs:
       - name: Calculate SHA256 hash of installer package (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          Get-FileHash MNE-Python-1.0.0_1-Windows.exe -Algorithm SHA256 > MNE-Python-1.0.0_1-Windows.exe.sha256.txt
-          Get-Content MNE-Python-1.0.0_1-Windows.exe.sha256.txt
+          Get-FileHash MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe -Algorithm SHA256 > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
+          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
 
       - name: Run installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
           echo `pwd`
-          installer -verbose -pkginfo -pkg ./MNE-Python-1.0.0_1-macOS_Intel.pkg
-          installer -verbose -dominfo -pkg ./MNE-Python-1.0.0_1-macOS_Intel.pkg
-          installer -verbose -volinfo -pkg ./MNE-Python-1.0.0_1-macOS_Intel.pkg
+          installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
+          installer -verbose -dominfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
+          installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
           sudo installer \
             -verbose \
-            -pkg MNE-Python-1.0.0_1-macOS_Intel.pkg \
+            -pkg MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg \
             -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
@@ -179,14 +187,14 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           echo `pwd`
-          sh ./MNE-Python-1.0.0_1-Linux.sh -b
+          sh ./MNE-Python-${MNE_INSTALLER_VERSION}-Linux.sh -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\MNE-Python-1.0.0_1-Windows.exe /S /InstallationType=JustMe /AddToPath=1
+          .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
@@ -195,31 +203,29 @@ jobs:
           conda info
           mamba list
 
-          # Test that file permissions are set correctly (owned by "runner",
-          # not "root".)
+          echo "Testing that file permissions are set correctly (owned by "runner", not "root".)"
           # https://unix.stackexchange.com/a/7733
           [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
 
           # Check that the installed Python is, in fact, an Intel binary
           python -c "import platform; assert platform.machine() == 'x86_64'"
 
-          # Check the deployed environment variables were set correctly upon
-          # environment activation
+          echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
-          python -c "import os; assert 'CONDA_SUBDIR' in os.environ; assert os.environ['CONDA_SUBDIR'] == 'osx-64'"
-          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
+          python -c "import os; assert os.getenv('CONDA_SUBDIR') == 'osx-64', ('CONDA_SUBDIR != osx-64', os.getenv('CONDA_SUBDIR'))"
+          python -c "import os; assert os.getenv('PYTHONNOUSERSITE') == '1', ('PYTHONNOUSERSITE != 1', os.getenv('PYTHONNOUSERSITE'))"
 
-          # Check we have all .app bundles in /Applications/MNE-Python
+          echo "Checking we have all .app bundles in /Applications/MNE-Python:"
+          ls -d /Applications/MNE-Python/*.app
           test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
 
-          # Test that the custom icon was set on the MNE folder in /Applications/MNE-Python
+          echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
           test -f /Applications/MNE-Python/Icon$'\r'
 
-          # Run MNE's sys_info
+          echo "Running MNE's sys_info"
           mne sys_info
 
-          # Try to import MNE and all additional packages included in the
-          # installer
+          echo "Trying to import MNE and all additional packages included in the installer"
           python tests/test_imports.py
           python tests/test_gui.py
           python tests/test_gui_macosx.py
@@ -231,24 +237,28 @@ jobs:
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
-          source ~/mne-python/1.0.0_1/bin/activate
+          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
           conda info
           mamba list
 
-          # Check the deployed environment variables were set correctly upon
-          # environment activation
+          echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
 
-          # Check that menu shortcuts were created …
+          echo "Checking that menu shortcuts were created …"
           pushd ~/.local/share/applications
           ls -l
-          echo "Checking for existence of .desktop files"
+          echo "Checking for existence of .desktop files:"
+          ls MNE-Python*.desktop
           test `ls MNE-Python*.desktop | wc -l` -eq 5
+          echo ""
+
           # … and patched to work around a bug in menuinst
           echo "Checking that incorrect Terminal entries have been removed"
           test `grep "Terminal=True"  MNE-Python*.desktop | wc -l` -eq 0
           test `grep "Terminal=False" MNE-Python*.desktop | wc -l` -eq 0
+          echo ""
+
           echo "Checking that Terminal entries are correct…"
           test `grep "Terminal=true"  MNE-Python*.desktop | wc -l` -ge 1
           test `grep "Terminal=false" MNE-Python*.desktop | wc -l` -ge 1
@@ -257,11 +267,10 @@ jobs:
           for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
           popd
 
-          # Run MNE's sys_info
+          echo "Running MNE's sys_info"
           mne sys_info
 
-          # Try to import MNE and all additional packages included in the
-          # installer
+          echo "Trying to import MNE and all additional packages included in the installer"
           python tests/test_imports.py
           python tests/test_gui.py
           python tests/test_notebook.py
@@ -272,7 +281,7 @@ jobs:
           git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
           ./gl-ci-helpers/appveyor/install_opengl.ps1
 
-          $MneRoot = "$env:UserProfile\mne-python\1.0.0_1"
+          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
@@ -296,24 +305,24 @@ jobs:
         if: ${{ runner.os == 'macOS' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
-          mamba list --json > MNE-Python-1.0.0_1-macOS_Intel.env.json
-          cat MNE-Python-1.0.0_1-macOS_Intel.env.json
+          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
+          cat MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
 
       - name: Export frozen environment definition (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
-          source ~/mne-python/1.0.0_1/bin/activate
-          mamba list --json > MNE-Python-1.0.0_1-Linux.env.json
-          cat MNE-Python-1.0.0_1-Linux.env.json
+          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
+          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
+          cat MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
 
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          $MneRoot = "$env:UserProfile\mne-python\1.0.0_1"
+          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
-          mamba list --json > MNE-Python-1.0.0_1-Windows.env.json
-          Get-Content MNE-Python-1.0.0_1-Windows.env.json
+          mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
+          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
       - name: Release
         if: |
