@@ -1,4 +1,4 @@
-version: 1.0.1_0
+version: 1.0.1_1
 name: MNE-Python
 company: MNE-Python Developers
 
@@ -16,16 +16,16 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.0.1_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.0.1_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.1_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.1_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.0.1_1                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.0.1_1"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.1_1"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.1_1"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.0.1_0-macOS_Intel.pkg  # [osx]
-installer_filename: MNE-Python-1.0.1_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.0.1_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.0.1_1-macOS_Intel.pkg  # [osx]
+installer_filename: MNE-Python-1.0.1_1-Windows.exe      # [win]
+installer_filename: MNE-Python-1.0.1_1-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -58,7 +58,7 @@ specs:
 
   - mne =1.0.1=*_0
   - mne-installer-menus =1.0.1=*_0
-  - mne-qt-browser ~=0.2.6
+  - mne-qt-browser ~=0.3.0
   - mne-bids ~=0.10.0
   - mne-connectivity ~=0.3.0
   - mne-faster ~=1.1.0
@@ -125,4 +125,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.0.1_0) "
+  env_prompt: "(mne-1.0.1_1) "

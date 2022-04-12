@@ -41,7 +41,7 @@ mne.viz.set_browser_backend('qt')
 raw = mne.io.RawArray(np.zeros((1, 1000)), mne.create_info(1, 1000., 'eeg'))
 fig = raw.plot()
 fig.close()
-assert 'PyQtGraphBrowser' in repr(fig), repr(fig)
+assert 'MNEQtBrowser' in repr(fig), repr(fig)
 
 # mne-kit-gui
 from pyface.api import GUI  # noqa
