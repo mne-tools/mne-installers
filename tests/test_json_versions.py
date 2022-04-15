@@ -14,13 +14,14 @@ sys_name = dict(
     win32='Windows',
 )[sys.platform]
 
-with open(dir_ / 'recipes' / 'mne-python_1.0' / 'construct.yaml') as fid:
+with open(dir_ / 'recipes' / 'mne-python_1.0' / 'construct.yaml',
+          encoding='utf-8') as fid:
     params = yaml.safe_load(fid)
 want_version = params['version']
 
 fname = dir_ / f'MNE-Python-{want_version}-{sys_name}.env.json'
 assert fname.is_file(), (fname, os.listdir(os.getcwd()))
-with open(fname) as fid:
+with open(fname, encoding='utf-8') as fid:
     env_json = json.load(fid)
 got_versions = dict()
 for package in env_json:
