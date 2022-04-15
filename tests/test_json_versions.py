@@ -10,7 +10,7 @@ dir_ = pathlib.Path(__file__).parent.parent
 
 sys_name = dict(
     linux='Linux',
-    darwin='macOS',
+    darwin='macOS_Intel',
     win32='Windows',
 )[sys.platform]
 
