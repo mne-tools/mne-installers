@@ -196,6 +196,29 @@ jobs:
         run: |
           .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
+      - name: Export frozen environment definition (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        run: |
+          source /Applications/MNE-Python/.mne-python/bin/activate
+          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
+          cat MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
+
+      - name: Export frozen environment definition (Linux)
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
+          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
+          cat MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
+
+      - name: Export frozen environment definition (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        run: |
+          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
+          . "$MneRoot\shell\condabin\conda-hook.ps1"
+          conda activate $MneRoot
+          mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
+          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
+
       - name: Check installation (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
@@ -303,29 +326,6 @@ jobs:
       #     name: MNE-Python
       #     path: |
       #       MNE-Python-*.*
-
-      - name: Export frozen environment definition (macOS)
-        if: ${{ runner.os == 'macOS' }}
-        run: |
-          source /Applications/MNE-Python/.mne-python/bin/activate
-          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
-          cat MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
-
-      - name: Export frozen environment definition (Linux)
-        if: ${{ runner.os == 'Linux' }}
-        run: |
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
-          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
-          cat MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
-
-      - name: Export frozen environment definition (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: |
-          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
-          . "$MneRoot\shell\condabin\conda-hook.ps1"
-          conda activate $MneRoot
-          mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
-          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
       - name: Release
         if: |
