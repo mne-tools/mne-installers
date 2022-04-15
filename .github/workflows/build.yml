@@ -230,6 +230,7 @@ jobs:
           python tests/test_gui.py
           python tests/test_gui_macosx.py
           python tests/test_notebook.py
+          python tests/test_json_versions.py
 
       - name: Check installation (Linux)
         if: ${{ runner.os == 'Linux' }}
@@ -274,6 +275,7 @@ jobs:
           python tests/test_imports.py
           python tests/test_gui.py
           python tests/test_notebook.py
+          python tests/test_json_versions.py
 
       - name: Check installation (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -292,6 +294,7 @@ jobs:
           python tests\test_imports.py
           python tests\test_gui.py
           python tests\test_notebook.py
+          python tests/test_json_versions.py
 
       # - name: Archive artifacts
       #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
