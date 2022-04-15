@@ -1,12 +1,12 @@
 # Read the JSON and YAML and make sure the version + build match
 
-import os
-import sys
-from pathlib import Path
 import json
+import os
+import pathlib
+import sys
 import yaml
 
-dir_ = Path(__file__).parent.parent
+dir_ = pathlib.Path(__file__).parent.parent
 
 sys_name = dict(
     linux='Linux',
@@ -29,7 +29,7 @@ for package in env_json:
         got_versions[package['name']] = f'{v}_{b}'
 assert len(got_versions) == 2, got_versions
 
-# sanitize versions
+# check versions
 for name, version in got_versions.items():
     msg = f'{name}: got {repr(version)} != want {repr(want_version)}'
     assert version == want_version, msg
