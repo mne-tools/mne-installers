@@ -1,4 +1,4 @@
-version: 1.0.2_0
+version: 1.0.2_1
 name: MNE-Python
 company: MNE-Python Developers
 
@@ -16,16 +16,16 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.0.2_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.0.2_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.2_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.2_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.0.2_1                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.0.2_1"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.2_1"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.2_1"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.0.2_0-macOS_Intel.pkg  # [osx]
-installer_filename: MNE-Python-1.0.2_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.0.2_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.0.2_1-macOS_Intel.pkg  # [osx]
+installer_filename: MNE-Python-1.0.2_1-Windows.exe      # [win]
+installer_filename: MNE-Python-1.0.2_1-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -119,10 +119,11 @@ specs:
   - gh
   # NeuroSpin needs the following
   - questionary
+  - pqdm
 
 condarc:
   channels:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.0.2_0) "
+  env_prompt: "(mne-1.0.2_1) "
