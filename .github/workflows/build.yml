@@ -123,7 +123,7 @@ jobs:
         # if something has gone wrong with dependency resolution.
         timeout-minutes: 20
         run: |
-          PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
+          PYTHONUTF8=1 constructor --debug recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
