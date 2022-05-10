@@ -46,6 +46,11 @@ channels:
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
 
+  # There is currently no PyTorch build for Windows on conda-forge, but
+  # mne-icalabel needs PyTorch to function. So supply the Windows package from
+  # the official pytorch channel.
+  - pytorch  # [win]
+
 specs:
   # MNE ecosystem
 
@@ -69,6 +74,7 @@ specs:
   - mne-microstates ~=0.3.0
   - mne-ari ~=0.1.0
   - mne-kit-gui ~=1.0.1
+  - mne-icalabel ~=0.1.0
   - autoreject ~=0.3.1
   - pyprep ~=0.4.0
   # Python
@@ -124,6 +130,7 @@ specs:
 condarc:
   channels:
     - conda-forge
+    - pytorch  # [win]
   channel_priority: strict
   allow_other_channels: False
   env_prompt: "(mne-1.0.2_1) "
