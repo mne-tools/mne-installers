@@ -1,3 +1,5 @@
+import sys
+
 import mne
 import mne_bids
 import mne_connectivity
@@ -9,6 +11,8 @@ import mne_rsa
 import mne_microstates
 import mne_ari
 import mne_kit_gui
+if sys.platform != 'win32':
+    import mne_icalabel
 import autoreject
 import pyprep
 import darkdetect

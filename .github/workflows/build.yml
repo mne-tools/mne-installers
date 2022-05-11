@@ -313,7 +313,11 @@ jobs:
           mamba list
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
+
+          echo "Running MNE's sys_info"
           . "$MneRoot\Scripts\mne.exe" sys_info
+
+          echo "Trying to import MNE and all additional packages included in the installer"
           python tests\test_imports.py
           python tests\test_gui.py
           python tests\test_notebook.py
