@@ -91,7 +91,7 @@ jobs:
       - name: Extract MNE_INSTALLER_VERSION
         shell: bash -el {0}
         run: |
-          tools/extract_verion.sh
+          source ./tools/extract_verion.sh
           echo "Version: ${VERSION} (Python=${PYSHORT})"
           echo "MNE_INSTALLER_VERSION=${VERSION}" >> $GITHUB_ENV
           test "$VERSION" != ""
@@ -106,7 +106,7 @@ jobs:
       - name: Patch constructor
         shell: bash -el {0}
         run: |
-          tools/patch_constructor.sh
+          ./tools/patch_constructor.sh
 
       - name: Patch config (macOS pull request)
         if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
@@ -121,7 +121,7 @@ jobs:
         # if something has gone wrong with dependency resolution.
         timeout-minutes: 20
         run: |
-          tools/run_constructor.sh
+          ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
