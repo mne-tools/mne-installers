@@ -1,6 +1,8 @@
 version: 1.0.3_0
 name: MNE-Python
 company: MNE-Python Developers
+# When the version above changes to a new major/minor, it needs to be updated
+# many places here, and in assets/current_version.txt.
 
 license_file: ../../assets/license.txt         # [linux]
 license_file: ../../assets/license.rtf         # [not linux]
