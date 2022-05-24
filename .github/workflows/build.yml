@@ -91,10 +91,7 @@ jobs:
       - name: Extract MNE_INSTALLER_VERSION
         shell: bash -el {0}
         run: |
-          pwd
-          ls -al
-          ls -al ./tools
-          source ./tools/extract_verion.sh
+          source ./tools/extract_version.sh
           echo "Version: ${VERSION} (Python=${PYSHORT})"
           echo "MNE_INSTALLER_VERSION=${VERSION}" >> $GITHUB_ENV
           test "$VERSION" != ""
