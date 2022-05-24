@@ -8,9 +8,7 @@ Please visit [the installers section of the MNE documentation](https://mne.tools
 
 ## Development
 
-Locally, installers can be built using `tools/build_local.sh`. This has only been tested on Linux and macOS M1.
-
-Requirements:
+Locally, installers can be built using `tools/build_local.sh`. Steps:
 
 1. Set up and activate a `conda` env with a patched, forked version of `constructor`:
   ```console
