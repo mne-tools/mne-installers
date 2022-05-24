@@ -93,11 +93,14 @@ jobs:
         run: |
           source ./tools/extract_version.sh
           echo "Version: ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          test "$MNE_INSTALLER_VERSION" != ""
+          test "$PYSHORT" != ""
+          test -d "$SCRIPT_DIR"
+          echo "Recipe:  ${RECIPE_DIR}"
+          test "$RECIPE_DIR" != ""
+          test -d "$RECIPE_DIR"
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
-          test "$MNE_INSTALLER_VERSION" != ""
-          test "$RECIPE_DIR" != ""
-          test "$PYSHORT" != ""
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
