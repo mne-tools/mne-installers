@@ -9,6 +9,6 @@ if [[ $MACHINE == "macOS" ]]; then
         echo "Patching constructor ${CONSTRUCTOR_DIR}..."
         patch -Nd ${CONSTRUCTOR_DIR} -p1 < $PATCHFILE
     else
-        echo "Constructor already patched: ${CONSTRUCTOR_DIR}..."
+        echo "Constructor already patched: ${CONSTRUCTOR_DIR}"
     fi
 fi
