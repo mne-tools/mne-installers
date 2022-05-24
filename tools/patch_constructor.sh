@@ -5,5 +5,5 @@ source ${SCRIPT_DIR}/extract_version.sh
 if [[ $MACHINE == "macOS" ]]; then
     CONSTRUCTOR_DIR=${CONDA_PREFIX}/lib/python${PYSHORT}/site-packages/constructor
     echo "Patching constructor ${CONSTRUCTOR_DIR}..."
-    patch -d ${CONSTRUCTOR_DIR} -p1 < ${SCRIPT_DIR}/assets/constructor_macOS.patch
+    patch -d ${CONSTRUCTOR_DIR} -p1 < ${SCRIPT_DIR}/../assets/constructor_macOS.patch
 fi
