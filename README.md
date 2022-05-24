@@ -14,7 +14,6 @@ Locally, installers can be built using `tools/build_local.sh`. Steps:
   ```console
   $ conda env create -f environment.yml
   $ conda activate constructor-env
-  $ ./tools/patch_constructor.sh
   ```
 2. Run `./tools/build_local.sh`
 3. Install the environment for your platform
