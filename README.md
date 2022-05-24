@@ -11,6 +11,13 @@ Please visit [the installers section of the MNE documentation](https://mne.tools
 Locally, installers can be built using `tools/build_local.sh`. This has only been tested on Linux and macOS M1.
 
 Requirements:
-- `conda` with `constructor` (`conda install -c conda-forge constructor`)
 
-      WARNING: Your constructor will be patched on macOS.
+1. Set up and activate a `conda` env with a patched, forked version of `constructor`:
+  ```console
+  $ conda env create -f environment.yml
+  $ conda activate constructor-env
+  $ ./tools/patch_constructor.sh
+  ```
+2. Run `./tools/build_local.sh`
+3. Install the environment for your platform
+4. Test it using the `tests/`
