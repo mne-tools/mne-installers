@@ -6,7 +6,7 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && 
 export VERSION=$(head -n 1 recipes/mne-python_${VER}/construct.yaml | cut -d' ' -f2)
 export RECIPE_DIR=${SCRIPT_DIR}/../recipes/mne-python_$(echo $VERSION | cut -d . -f-2)
 export RECIPE_DIR=$(realpath "${RECIPE_DIR}")
-export PYSHORT=$(python -c "import sys; print(''.join(map(str, sys.version_info[:2])))")
+export PYSHORT=$(python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 UNAME="$(uname -s)"
 case "${UNAME}" in
     Linux*)     MACHINE=Linux;;
