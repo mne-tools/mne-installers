@@ -92,10 +92,10 @@ jobs:
         shell: bash -el {0}
         run: |
           source ./tools/extract_version.sh
-          echo "Version: ${VERSION} (Python=${PYSHORT})"
-          echo "MNE_INSTALLER_VERSION=\"${VERSION}\"" >> $GITHUB_ENV
+          echo "Version: ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          echo "MNE_INSTALLER_VERSION=\"${MNE_INSTALLER_VERSION}\"" >> $GITHUB_ENV
           echo "RECIPE_DIR=\"${RECIPE_DIR}\"" >> $GITHUB_ENV
-          test "$VERSION" != ""
+          test "$MNE_INSTALLER_VERSION" != ""
           test "$PYSHORT" != ""
 
       - name: Install Micromamba
