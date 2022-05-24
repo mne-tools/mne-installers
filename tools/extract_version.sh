@@ -8,11 +8,13 @@ export RECIPE_DIR=${SCRIPT_DIR}/../recipes/mne-python_$(echo $MNE_INSTALLER_VERS
 export PYSHORT=$(python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 UNAME="$(uname -s)"
 case "${UNAME}" in
-    Linux*)     MACHINE=Linux;;
-    Darwin*)    MACHINE=macOS;;
-    *)          MACHINE="UNKNOWN:${unameOut}"
+    Linux*)      MACHINE=Linux;;
+    Darwin*)     MACHINE=macOS;;
+    MINGW64_NT*) MACHINE=Windows;;
+    *)           MACHINE="UNKNOWN:${UNAME}"
 esac
-if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" ]]; then
+if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" && "$MACHINE" != "Windows" ]]; then
+    echo "Unknown machine: ${UNAME}"
     exit 1
 fi
 export MACHINE=$MACHINE
