@@ -93,7 +93,8 @@ jobs:
         run: |
           source ./tools/extract_version.sh
           echo "Version: ${VERSION} (Python=${PYSHORT})"
-          echo "MNE_INSTALLER_VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_VERSION=\"${VERSION}\"" >> $GITHUB_ENV
+          echo "RECIPE_DIR=\"${RECIPE_DIR}\"" >> $GITHUB_ENV
           test "$VERSION" != ""
           test "$PYSHORT" != ""
 
