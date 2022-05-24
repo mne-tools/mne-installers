@@ -114,10 +114,10 @@ jobs:
           ./tools/patch_constructor.sh
 
       - name: Patch config (macOS pull request)
-        if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         shell: bash -el {0}
         run: |
-          sed -i "" "s/9779L28NP8//" ${RECIPE_DIR}/construct.yaml
+          sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
 
       - name: Build installer
         shell: bash -el {0}

@@ -35,8 +35,8 @@ post_install: ../../assets/post_install_windows.bat     # [win]
 
 # Create signed macOS .pkg installer
 installer_type: pkg                     # [osx]
-signing_identity_name: 9779L28NP8       # [osx]  Used for productsign
-notarization_identity_name: 9779L28NP8  # [osx]  Used for codesign
+signing_identity_name:                  # [osx]  Used for productsign
+notarization_identity_name:             # [osx]  Used for codesign
 reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identifier $reverse_domain_identifier.$name
 
 # Only create menus for mne-installer-menus
