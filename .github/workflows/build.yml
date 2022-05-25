@@ -141,7 +141,7 @@ jobs:
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request'}}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' && matrix.arch == 'native' }}
         run: |
           # Installer package
           pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
