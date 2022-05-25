@@ -26,7 +26,7 @@ default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.3_0"  # [win]
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
 installer_filename: MNE-Python-1.0.3_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.0.3_0-macOS_ARM.pkg  # [osx and arm64]
+installer_filename: MNE-Python-1.0.3_0-macOS_ARM.pkg    # [osx and arm64]
 installer_filename: MNE-Python-1.0.3_0-Windows.exe      # [win]
 installer_filename: MNE-Python-1.0.3_0-Linux.sh         # [linux]
 
