@@ -54,6 +54,10 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
+  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
+  - jinja2 <3.1,>=2.10  # Remove once https://github.com/conda-forge/numpydoc-feedstock/pull/17 has been merged
+  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
+
   - mne =1.0.3=*_0
   - mne-installer-menus =1.0.3=*_0  # [not arm64]
   - mne-qt-browser ~=0.3.0
