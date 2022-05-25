@@ -84,7 +84,7 @@ specs:
   - ipykernel
   - nb_conda_kernels
   - spyder-kernels
-  - spyder
+  - spyder  # [not arm64]
   - ipympl
   - darkdetect
   - qdarkstyle
@@ -96,7 +96,7 @@ specs:
   - pycircstat
   # MRI
   - fsleyes
-  - dcm2niix
+  - dcm2niix  # [not arm64]
   # Time-frequency analysis
   - pactools
   - tensorpac
@@ -115,7 +115,7 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py
   # sleep staging
-  - sleepecg
+  - sleepecg  # [not arm64]
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2
   # GitHub client, https://cli.github.com

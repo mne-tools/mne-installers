@@ -19,6 +19,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        arch: [native]
+        include:
+          - os: [macos-11]
+            arch: [arm64]
 
     runs-on: ${{ matrix.os }}
 
@@ -28,7 +32,7 @@ jobs:
     steps:
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' && matrix.arch == 'native'}}
         env:
           APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
           APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
@@ -113,8 +117,16 @@ jobs:
         run: |
           ./tools/patch_constructor.sh
 
+      - name: Add macOS M1 (ARM) support
+        if: ${{ matrix.arch == 'arm64' }}
+        shell: bash -el {0}
+        run: |
+          conda install -c napari/label/bundle_tools conda-standalone
+          echo "PLATFORM_ARG=\"--platform=osx-arm64\"" >> $GITHUB_ENV
+          echo "EXE_ARG=\"--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe\"" >> $GITHUB_ENV
+
       - name: Patch config (macOS pull request)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' && matrix.arch == 'native' }}
         shell: bash -el {0}
         run: |
           sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
@@ -129,7 +141,7 @@ jobs:
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request'}}
         run: |
           # Installer package
           pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
@@ -174,7 +186,7 @@ jobs:
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
 
       - name: Run installer (macOS)
-        if: ${{ runner.os == 'macOS' }}
+        if: ${{ runner.os == 'macOS' and matrix.arch == 'native' }}
         run: |
           echo `pwd`
           installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
@@ -200,7 +212,7 @@ jobs:
           .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition (macOS)
-        if: ${{ runner.os == 'macOS' }}
+        if: ${{ runner.os == 'macOS' and matrix.arch == 'native' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
@@ -223,7 +235,7 @@ jobs:
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
       - name: Check installation (macOS)
-        if: ${{ runner.os == 'macOS' }}
+        if: ${{ runner.os == 'macOS' and matrix.arch == 'native' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           conda info
