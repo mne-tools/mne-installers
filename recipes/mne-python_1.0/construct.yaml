@@ -1,6 +1,8 @@
 version: 1.0.3_0
 name: MNE-Python
 company: MNE-Python Developers
+# When the version above changes to a new major/minor, it needs to be updated
+# many places here, and in assets/current_version.txt.
 
 license_file: ../../assets/license.txt         # [linux]
 license_file: ../../assets/license.rtf         # [not linux]
@@ -33,8 +35,8 @@ post_install: ../../assets/post_install_windows.bat     # [win]
 
 # Create signed macOS .pkg installer
 installer_type: pkg                     # [osx]
-signing_identity_name: 9779L28NP8       # [osx]  Used for productsign
-notarization_identity_name: 9779L28NP8  # [osx]  Used for codesign
+signing_identity_name:                  # [osx]  Used for productsign
+notarization_identity_name:             # [osx]  Used for codesign
 reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identifier $reverse_domain_identifier.$name
 
 # Only create menus for mne-installer-menus

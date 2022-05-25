@@ -91,10 +91,16 @@ jobs:
       - name: Extract MNE_INSTALLER_VERSION
         shell: bash -el {0}
         run: |
-          VERSION=$(head -n 1 recipes/mne-python_1.0/construct.yaml | cut -d' ' -f2)
-          echo "Version: ${VERSION}"
-          echo "MNE_INSTALLER_VERSION=${VERSION}" >> $GITHUB_ENV
-          test "$VERSION" != ""
+          source ./tools/extract_version.sh
+          echo "Version: ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          test "$MNE_INSTALLER_VERSION" != ""
+          test "$PYSHORT" != ""
+          test -d "$SCRIPT_DIR"
+          echo "Recipe:  ${RECIPE_DIR}"
+          test "$RECIPE_DIR" != ""
+          test -d "$RECIPE_DIR"
+          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
@@ -102,19 +108,16 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Patch constructor (macOS)
-        if: ${{ runner.os == 'macOS' }}
+      - name: Patch constructor
         shell: bash -el {0}
         run: |
-          export PATCH_PATH=`python -c "import pathlib; print(pathlib.Path('./assets/constructor_macOS.patch').resolve())"`
-          cd $CONDA_PREFIX/lib/python3.9/site-packages/constructor
-          patch -p1 < ${PATCH_PATH}
+          ./tools/patch_constructor.sh
 
       - name: Patch config (macOS pull request)
-        if: ${{ runner.os == 'macOS' && github.event_name == 'pull_request' }}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         shell: bash -el {0}
         run: |
-          sed -i "" "s/9779L28NP8//" recipes/mne-python_1.0/construct.yaml
+          sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
 
       - name: Build installer
         shell: bash -el {0}
@@ -123,7 +126,7 @@ jobs:
         # if something has gone wrong with dependency resolution.
         timeout-minutes: 20
         run: |
-          PYTHONUTF8=1 constructor recipes/mne-python_1.0  # enforce UTF-8 encoding when reading files even on Windows
+          ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
