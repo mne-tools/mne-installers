@@ -212,7 +212,7 @@ jobs:
           .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition (macOS)
-        if: ${{ runner.os == 'macOS' and matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
@@ -235,7 +235,7 @@ jobs:
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
       - name: Check installation (macOS)
-        if: ${{ runner.os == 'macOS' and matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           conda info
