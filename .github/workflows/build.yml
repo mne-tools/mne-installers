@@ -186,7 +186,7 @@ jobs:
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
 
       - name: Run installer (macOS)
-        if: ${{ runner.os == 'macOS' and matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
         run: |
           echo `pwd`
           installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
