@@ -18,4 +18,4 @@ if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" && "$MACHINE" != "Windows" 
     exit 1
 fi
 export MACHINE=$MACHINE
-export PYARCH=$(python -c "import platform; print(platform.architecture()[0])")
+export PYMACHINE=$(python -c "import platform; print(platform.machine())")
