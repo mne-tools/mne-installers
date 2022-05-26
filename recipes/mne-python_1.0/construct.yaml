@@ -97,7 +97,7 @@ specs:
   - pycircstat
   # MRI
   - fsleyes  # [not arm64]
-  - dcm2niix  # [not arm64]
+  - dcm2niix
   # Time-frequency analysis
   - pactools
   - tensorpac
