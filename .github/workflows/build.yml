@@ -117,7 +117,7 @@ jobs:
         run: |
           ./tools/patch_constructor.sh
 
-      - name: Add macOS M1 (ARM) support
+      - name: Add macOS M1 support
         if: ${{ matrix.arch == 'arm64' }}
         shell: bash -el {0}
         run: |
@@ -194,7 +194,7 @@ jobs:
           if [[ ${ARCH} == 'native' ]]; then
             MACOS_SUFFIX="Intel"
           else
-            MACOS_SUFFIX="ARM"
+            MACOS_SUFFIX="M1"
           fi
           echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
           installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
