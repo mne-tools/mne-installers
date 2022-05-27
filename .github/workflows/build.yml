@@ -32,7 +32,7 @@ jobs:
     steps:
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' && matrix.arch == 'native'}}
+        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         env:
           APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
           APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
