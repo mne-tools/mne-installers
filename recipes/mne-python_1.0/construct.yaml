@@ -71,7 +71,7 @@ specs:
   - mne-rsa ~=0.6.0
   - mne-microstates ~=0.3.0
   - mne-ari ~=0.1.0
-  - mne-kit-gui ~=1.0.1  # [not arm64]
+  - mne-kit-gui ~=1.0.1
   - mne-icalabel ~=0.1.0  # [not win]
   - autoreject ~=0.3.1
   - pyprep ~=0.4.0
