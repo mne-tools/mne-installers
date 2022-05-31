@@ -57,6 +57,7 @@ specs:
 
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
   - jinja2 <3.1,>=2.10  # Remove once https://github.com/conda-forge/numpydoc-feedstock/pull/17 has been merged
+  - docutils <=0.18.0  # Remove once everyone is Sphinx 5 compatible
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
 
   - mne =1.0.3=*_1
