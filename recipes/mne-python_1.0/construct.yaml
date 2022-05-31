@@ -85,7 +85,7 @@ specs:
   - ipykernel
   - nb_conda_kernels
   - spyder-kernels
-  - spyder  # [not arm64]
+  - spyder
   - ipympl
   - darkdetect
   - qdarkstyle
