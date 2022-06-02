@@ -30,9 +30,20 @@ osascript \
     -e "set imageData to (current application's NSImage's alloc()'s initWithContentsOfFile:iconPath)" \
     -e "(current application's NSWorkspace's sharedWorkspace()'s setIcon:imageData forFile:DSTROOT options: 0)"
 
+# Use Intel packages if the Python binary is x84_64, i.e. not native Apple Silicon
+# (This also applies to an Intel binary running on Apple Silicon through Rosetta)
 # https://conda-forge.org/docs/user/tipsandtricks.html#installing-apple-intel-packages-on-apple-silicon
-logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages -- even on Apple Silicon; and configuring Python to ignore user-installed local packages"
-echo '{"env_vars": {"CONDA_SUBDIR": "osx-64", "PYTHONNOUSERSITE": "1"}}' >> "${DSTROOT}/.mne-python/conda-meta/state"
+export PYTHON_PLATFORM=`${DSTROOT}/.mne-python/bin/conda run python -c "import platform; print(platform.machine())`
+if [ "${PYTHON_PLATFORM}" == "x86_64" ]; then
+    logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages"
+    ${DSTROOT}/.mne-python/bin/conda env config vars set CONDA_SUBDIR=osx-64
+fi
+
+logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
+${DSTROOT}/.mne-python/bin/conda env config vars set PYTHONNOUSERSITE=1
+
+logger -p 'install.info' "ℹ️ Disable mamba package manager banner"
+${DSTROOT}/.mne-python/bin/conda env config vars set MAMBA_NO_BANNER=1
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
