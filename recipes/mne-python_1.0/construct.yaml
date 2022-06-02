@@ -56,7 +56,6 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
-  - docutils <=0.17.0  # Remove once everyone is Sphinx 5 compatible (esp. emd->sphinx-rtd-theme)
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
 
   - mne =1.0.3=*_1
