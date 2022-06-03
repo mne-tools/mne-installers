@@ -13,9 +13,11 @@ if [[ $MACHINE == "macOS" ]]; then
         echo "Patching constructor ${CONSTRUCTOR_DIR}..."
         patch -Nd ${CONSTRUCTOR_DIR} -p1 < $PATCHFILE_COMMON
 
-        if [[ $PYMACHINE != "arm64" ]]; then
+        if [[ $PYMACHINE == "arm64" ]]; then
+            echo "Patching for ARM64"
             patch -Nd ${CONSTRUCTOR_DIR} -p1 < $PATCHFILE_ARM64
         else
+            echo "Patching for Intel"
             patch -Nd ${CONSTRUCTOR_DIR} -p1 < $PATCHFILE_I386
         fi
     else
