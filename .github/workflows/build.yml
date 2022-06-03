@@ -136,7 +136,10 @@ jobs:
         # As of 2022/03/14, ~7 min on 20.04 (fastest) and ~11 min on windows-2019 (slowest).
         # So let's set this to a reasonable limit that will tell us more quickly
         # if something has gone wrong with dependency resolution.
-        timeout-minutes: 20
+        #
+        # Update 2022/06/03: Bump timeout as we're seeing sporadic issues on
+        #                    Linux
+        timeout-minutes: 40
         run: |
           ./tools/run_constructor.sh
 
