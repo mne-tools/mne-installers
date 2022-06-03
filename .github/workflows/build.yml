@@ -112,6 +112,11 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Configure conda to use the libmamba solver
+        shell: bash -el {}
+        run: |
+          conda config --set experimental_solver libmamba --env
+
       - name: Patch constructor
         shell: bash -el {0}
         run: |

@@ -11,10 +11,13 @@ Please visit [the installers section of the MNE documentation](https://mne.tools
 Locally, installers can be built using `tools/build_local.sh`. Steps:
 
 1. Set up and activate a `conda` env with a forked version of `constructor`:
+
    ```console
    $ conda env create -f environment.yml
    $ conda activate constructor-env
+   $ conda config --set experimental_solver libmamba --env
    ```
+
 2. If you want to build an arm64 (M1) package on a macOS Intel machine, run `source ./tools/setup_m1_crosscompile.sh`.
 3. Run `./tools/build_local.sh` (which will patch the constructor on macOS if needed).
 4. Install the environment for your platform.
