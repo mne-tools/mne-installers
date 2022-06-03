@@ -53,7 +53,7 @@ diff -Naur constructor-orig/osxpkg.py constructor-patched/osxpkg.py
      root.append(title)
 
      license = ET.Element('license', file=info.get('license_file',
-@@ -153,8 +153,11 @@
+@@ -153,8 +153,9 @@
      # See below for an explanation of the consequences of this
      # customLocation value.
      for options in root.findall('options'):
@@ -62,8 +62,6 @@ diff -Naur constructor-orig/osxpkg.py constructor-patched/osxpkg.py
 +        options.set('customize', 'never')
 +        options.set('customLocation', '/Applications/MNE-Python')
 +        options.set('rootVolumeOnly', 'true')
-+        # Force to run installer through Rosetta 2 on Apple Silicon
-+        options.set('hostArchitectures', 'x86_64')
 
      # By default, the package builder puts all of our options under
      # a single master choice. This deletes that master choice and

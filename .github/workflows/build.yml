@@ -19,6 +19,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        arch: [native]
+        include:
+          - os: macos-11
+            arch: arm64
 
     runs-on: ${{ matrix.os }}
 
@@ -113,6 +117,14 @@ jobs:
         run: |
           ./tools/patch_constructor.sh
 
+      - name: Add macOS M1 support
+        if: ${{ matrix.arch == 'arm64' }}
+        shell: bash -el {0}
+        run: |
+          source ./tools/setup_m1_crosscompile.sh
+          echo "EXE_ARG=${EXE_ARG}" >> $GITHUB_ENV
+          echo "PLATFORM_ARG=${PLATFORM_ARG}" >> $GITHUB_ENV
+
       - name: Patch config (macOS pull request)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         shell: bash -el {0}
@@ -173,13 +185,25 @@ jobs:
           Get-FileHash MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe -Algorithm SHA256 > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
 
-      - name: Run installer (macOS)
+      - name: Check installer (macOS)
         if: ${{ runner.os == 'macOS' }}
+        env:
+          ARCH: ${{ matrix.arch }}
         run: |
           echo `pwd`
-          installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
-          installer -verbose -dominfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
-          installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
+          if [[ ${ARCH} == 'native' ]]; then
+            MACOS_SUFFIX="Intel"
+          else
+            MACOS_SUFFIX="M1"
+          fi
+          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
+          installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          installer -verbose -dominfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+
+      - name: Run installer (macOS Intel)
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        run: |
           sudo installer \
             -verbose \
             -pkg MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg \
@@ -199,8 +223,8 @@ jobs:
         run: |
           .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
-      - name: Export frozen environment definition (macOS)
-        if: ${{ runner.os == 'macOS' }}
+      - name: Export frozen environment definition (macOS Intel)
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
@@ -222,8 +246,8 @@ jobs:
           mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
-      - name: Check installation (macOS)
-        if: ${{ runner.os == 'macOS' }}
+      - name: Check installation (macOS Intel)
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           conda info

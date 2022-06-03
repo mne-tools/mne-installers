@@ -1,0 +1,12 @@
+diff -Naur constructor-orig/osxpkg.py constructor-patched/osxpkg.py
+--- constructor-orig/osxpkg.py	2022-06-02 23:30:08.000000000 +0200
++++ constructor-patched/osxpkg-patched.py	2022-06-02 23:31:41.000000000 +0200
+@@ -156,6 +156,8 @@
+         options.set('customize', 'never')
+         options.set('customLocation', '/Applications/MNE-Python')
+         options.set('rootVolumeOnly', 'true')
++        # Be explicit and declare we're only able to work on Apple Silicon
++        options.set('hostArchitectures', 'arm64')
+
+     # By default, the package builder puts all of our options under
+     # a single master choice. This deletes that master choice and
