@@ -140,14 +140,26 @@ jobs:
         run: |
           ./tools/run_constructor.sh
 
+      - name: Prepare for running installers on different architectures (macOS)
+        if: ${{ runner.os == 'macOS' }}
+        env:
+          ARCH: ${{ matrix.arch }}
+        run: |
+          if [[ ${ARCH} == 'native' ]]; then
+            MACOS_SUFFIX="Intel"
+          else
+            MACOS_SUFFIX="M1"
+          fi
+          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
+
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
-          pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
+          pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
-          pkgutil --expand-full MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg ./mne-extracted
+          pkgutil --expand-full MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg ./mne-extracted
           codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
@@ -161,13 +173,13 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           # Notarize the installer
-          xcrun notarytool submit ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg \
+          xcrun notarytool submit ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg \
               --wait \
               --apple-id=$APPLE_ID \
               --password=$APPLE_ID_PASSWORD \
               --team-id=$APPLE_TEAM_ID
           # Staple the notarization certificate onto it
-          xcrun stapler staple MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg
+          xcrun stapler staple MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
 
       - name: Calculate SHA256 hash of installer package (macOS & Linux)
         if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
@@ -187,16 +199,7 @@ jobs:
 
       - name: Check installer (macOS)
         if: ${{ runner.os == 'macOS' }}
-        env:
-          ARCH: ${{ matrix.arch }}
         run: |
-          echo `pwd`
-          if [[ ${ARCH} == 'native' ]]; then
-            MACOS_SUFFIX="Intel"
-          else
-            MACOS_SUFFIX="M1"
-          fi
-          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
           installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
           installer -verbose -dominfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
           installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
