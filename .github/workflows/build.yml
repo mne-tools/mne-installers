@@ -139,7 +139,7 @@ jobs:
         #
         # Update 2022/06/03: Bump timeout as we're seeing sporadic issues on
         #                    Linux
-        timeout-minutes: 30
+        timeout-minutes: 40
         run: |
           ./tools/run_constructor.sh
 
