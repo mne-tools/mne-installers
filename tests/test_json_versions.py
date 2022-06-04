@@ -14,8 +14,7 @@ sys_name = dict(
     win32='Windows',
 )[sys.platform]
 
-with open(dir_ / 'assets' / 'current_version.txt') as fid:
-    ver = fid.read().strip()
+ver = (dir_ / 'assets' / 'current_version.txt').read_text().strip()
 with open(dir_ / 'recipes' / f'mne-python_{ver}' / 'construct.yaml',
           encoding='utf-8') as fid:
     params = yaml.safe_load(fid)
