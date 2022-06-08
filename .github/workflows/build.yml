@@ -228,6 +228,8 @@ jobs:
         run: |
           source ./tools/extract_version.sh
           echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
 
       - name: Download appropriate installer
         uses: actions/download-artifact@v3
