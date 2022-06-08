@@ -14,20 +14,29 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Aliases to reuse
+_parse_variables: &parse_variables
+  name: Extract installer name from matrix variables
+  id: parse-variables
+  shell: bash -el {0}
+  # Eventually we could set other outputs here if we need them
+  run: |
+    installer_name=$(echo ${{ matrix.os }} | cut -d- -f1)-${{ matrix.arch }}
+    echo "Setting parse-variables.outputs.installer_name=$installer_name"
+    echo "::set-output name=installer_name::$installer_name"
+
 jobs:
+  # Build installers
   build:
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        os: [ubuntu-18.04, macos-10.15, windows-2019]
         arch: [native]
         include:
           - os: macos-11
             arch: arm64
 
     runs-on: ${{ matrix.os }}
-
-    continue-on-error: true
-
 
     steps:
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
@@ -252,6 +261,36 @@ jobs:
           mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
+      - <<: *parse_variables
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
+          path: |
+            MNE-Python-*.*
+
+  # Test
+  test:
+    needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        arch: [native]
+        # We currently can't/don't test anything about the arm64 build
+        # include:
+        #   - os: macos-11
+        #     arch: arm64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - <<: *parse_variables
+
+      - name: Download artifacts
+        with:
+          name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
+
       - name: Check installation (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
         run: |
@@ -366,18 +405,26 @@ jobs:
           python tests\test_notebook.py
           python tests/test_json_versions.py
 
-      # - name: Archive artifacts
-      #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: MNE-Python
-      #     path: |
-      #       MNE-Python-*.*
-
+  # Release
+  release:
+    needs: [build, test]
+    if: github.ref_type == 'tag'
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macos-10.15, windows-2019]
+        arch: [native]
+        include:
+          - os: macos-11
+            arch: arm64
+    # We don't actually have to use the OS that the file was built on for this
+    # step, so let's use what should hopefully be the fastest
+    runs-on: ubuntu-latest
+    steps:
+      - <<: *parse_variables
+      - name: Download artifacts
+        with:
+          name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
       - name: Release
-        if: |
-          github.ref_type == 'tag' &&
-          (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-11' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*.*"
@@ -389,7 +436,7 @@ jobs:
 
 #   add_release_hashes:
 #     if: github.ref_type == 'tag'
-#     needs: build
+#     needs: [build, test]
 #     runs-on: ubuntu-latest
 
 #     steps:
