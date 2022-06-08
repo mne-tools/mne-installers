@@ -14,17 +14,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Aliases to reuse
-_parse_variables: &parse_variables
-  name: Extract installer name from matrix variables
-  id: parse-variables
-  shell: bash -el {0}
-  # Eventually we could set other outputs here if we need them
-  run: |
-    installer_name=$(echo ${{ matrix.os }} | cut -d- -f1)-${{ matrix.arch }}
-    echo "Setting parse-variables.outputs.installer_name=$installer_name"
-    echo "::set-output name=installer_name::$installer_name"
-
 jobs:
   # Build installers
   build:
@@ -105,14 +94,16 @@ jobs:
         shell: bash -el {0}
         run: |
           source ./tools/extract_version.sh
-          echo "Version: ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          echo "Version:  ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
           test "$MNE_INSTALLER_VERSION" != ""
           test "$PYSHORT" != ""
           test -d "$SCRIPT_DIR"
           echo "Recipe:  ${RECIPE_DIR}"
           test "$RECIPE_DIR" != ""
           test -d "$RECIPE_DIR"
+          echo "Artifact: ${MNE_ARTIFACT_NAME}"
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
 
       - name: Install Micromamba
@@ -261,10 +252,8 @@ jobs:
           mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
           Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
 
-      - <<: *parse_variables
-
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
           path: |
@@ -285,11 +274,18 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - <<: *parse_variables
+      - uses: actions/checkout@v2
 
-      - name: Download artifacts
+      - name: Determine installer name
+        shell: bash -el {0}
+        run: |
+          source ./tools/extract_version.sh
+          echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
+
+      - name: Download appropriate installer
+        uses: actions/download-artifact@v3
         with:
-          name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
+          name: ${{ env.MNE_ARTIFACT_NAME }}
 
       - name: Check installation (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
@@ -409,21 +405,35 @@ jobs:
   release:
     needs: [build, test]
     if: github.ref_type == 'tag'
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, macos-10.15, windows-2019]
-        arch: [native]
-        include:
-          - os: macos-11
-            arch: arm64
-    # We don't actually have to use the OS that the file was built on for this
-    # step, so let's use what should hopefully be the fastest
     runs-on: ubuntu-latest
     steps:
-      - <<: *parse_variables
-      - name: Download artifacts
+      # These names should correspond to MNE_ARTIFACT_NAME in tools/extract_version.sh
+
+      - name: Download Linux installer
+        uses: actions/download-artifact@v3
         with:
-          name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
+          name: MNE-Python-Linux-x86_64
+
+      - name: Download Windows installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Windows-x86_64
+
+      - name: Download macOS Intel installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-x86_64
+
+      - name: Download macOS M1 installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-arm64
+
+      - name: Check contents
+        shell: bash -el {0}
+        run: |
+          ls -al ./
+
       - name: Release
         uses: ncipollo/release-action@v1
         with:

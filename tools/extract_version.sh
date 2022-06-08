@@ -19,3 +19,4 @@ if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" && "$MACHINE" != "Windows" 
 fi
 export MACHINE=$MACHINE
 export PYMACHINE=$(python -c "import platform; print(platform.machine())")
+export MNE_ARTIFACT_NAME="MNE-Python-$MACHINE-$PYMACHINE"
