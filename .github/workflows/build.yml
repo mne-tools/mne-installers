@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, macos-10.15, windows-2019]
-        arch: [native]
+        arch: [x86_64]
         include:
           - os: macos-11
             arch: arm64
@@ -105,6 +105,7 @@ jobs:
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
           echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
+          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
@@ -142,18 +143,6 @@ jobs:
         timeout-minutes: 40
         run: |
           ./tools/run_constructor.sh
-
-      - name: Prepare for running installers on different architectures (macOS)
-        if: ${{ runner.os == 'macOS' }}
-        env:
-          ARCH: ${{ matrix.arch }}
-        run: |
-          if [[ ${ARCH} == 'native' ]]; then
-            MACOS_SUFFIX="Intel"
-          else
-            MACOS_SUFFIX="M1"
-          fi
-          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
 
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
@@ -208,7 +197,7 @@ jobs:
           installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
 
       - name: Run installer (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           sudo installer \
             -verbose \
@@ -230,7 +219,7 @@ jobs:
           .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
@@ -265,7 +254,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
-        arch: [native]
+        arch: [x86_64]
         # We currently can't/don't test anything about the arm64 build
         # include:
         #   - os: macos-11
@@ -288,7 +277,7 @@ jobs:
           name: ${{ env.MNE_ARTIFACT_NAME }}
 
       - name: Check installation (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           conda info

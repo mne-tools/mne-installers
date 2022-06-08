@@ -20,3 +20,8 @@ fi
 export MACHINE=$MACHINE
 export PYMACHINE=$(python -c "import platform; print(platform.machine())")
 export MNE_ARTIFACT_NAME="MNE-Python-$MACHINE-$PYMACHINE"
+if [[ ${PYMACHINE} == 'x86_64' ]]; then
+    export MACOS_SUFFIX="Intel"
+else
+    export MACOS_SUFFIX="M1"
+fi
