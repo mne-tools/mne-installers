@@ -178,8 +178,8 @@ jobs:
           # Staple the notarization certificate onto it
           xcrun stapler staple ${MNE_INSTALLER_NAME}
 
-      - name: Calculate SHA256 hash of installer package (macOS & Linux)
-        if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
+      - name: Calculate SHA256 hash of installer package
+        shell: bash -el {0}
         run: |
           shopt -s nullglob  # Fail if the following pattern yields no results
           matches=(MNE-Python-*-*.*)
@@ -188,12 +188,6 @@ jobs:
           hash_fname="${MNE_INSTALLER_NAME}.sha256.txt"
           shasum -a 256 "$MNE_INSTALLER_NAME" > "$hash_fname"
           cat "$hash_fname"
-
-      - name: Calculate SHA256 hash of installer package (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: |
-          Get-FileHash $env:MNE_INSTALLER_NAME -Algorithm SHA256 > $env:MNE_INSTALLER_NAME.sha256.txt
-          Get-Content $env:MNE_INSTALLER_NAME.sha256.txt
 
       - name: Check installer (macOS)
         if: ${{ runner.os == 'macOS' }}
