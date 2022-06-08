@@ -90,22 +90,27 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: Extract MNE_INSTALLER_VERSION
+      - name: Extract version information
         shell: bash -el {0}
+        env:
+          MNE_macOS_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
         run: |
           source ./tools/extract_version.sh
-          echo "Version:  ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          echo "Version:   ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
           test "$MNE_INSTALLER_VERSION" != ""
           test "$PYSHORT" != ""
           test -d "$SCRIPT_DIR"
-          echo "Recipe:  ${RECIPE_DIR}"
+          echo "Recipe:    ${RECIPE_DIR}"
           test "$RECIPE_DIR" != ""
           test -d "$RECIPE_DIR"
-          echo "Artifact: ${MNE_ARTIFACT_NAME}"
+          echo "Installer: ${MNE_INSTALLER_NAME}"
+          test "$MNE_INSTALLER_NAME" != ""
+          echo "Artifact:  ${MNE_ARTIFACT_NAME}"
+          test "$MNE_ARTIFACT_NAME" != ""
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
           echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
-          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
@@ -148,10 +153,10 @@ jobs:
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
-          pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          pkgutil --check-signature ${MNE_INSTALLER_NAME}
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
-          pkgutil --expand-full MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg ./mne-extracted
+          pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
           codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
@@ -165,13 +170,13 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           # Notarize the installer
-          xcrun notarytool submit ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg \
+          xcrun notarytool submit ./${MNE_INSTALLER_NAME} \
               --wait \
               --apple-id=$APPLE_ID \
               --password=$APPLE_ID_PASSWORD \
               --team-id=$APPLE_TEAM_ID
           # Staple the notarization certificate onto it
-          xcrun stapler staple MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          xcrun stapler staple ${MNE_INSTALLER_NAME}
 
       - name: Calculate SHA256 hash of installer package (macOS & Linux)
         if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
@@ -179,29 +184,30 @@ jobs:
           shopt -s nullglob  # Fail if the following pattern yields no results
           matches=(MNE-Python-*-*.*)
           installer_fname="${matches[0]}"
-          hash_fname="${installer_fname}.sha256.txt"
-          shasum -a 256 "$installer_fname" > "$hash_fname"
+          test "$installer_fname" == "$MNE_INSTALLER_NAME"
+          hash_fname="${MNE_INSTALLER_NAME}.sha256.txt"
+          shasum -a 256 "$MNE_INSTALLER_NAME" > "$hash_fname"
           cat "$hash_fname"
 
       - name: Calculate SHA256 hash of installer package (Windows)
         if: ${{ runner.os == 'Windows' }}
         run: |
-          Get-FileHash MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe -Algorithm SHA256 > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
-          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
+          Get-FileHash $env:MNE_INSTALLER_NAME -Algorithm SHA256 > $env:MNE_INSTALLER_NAME.sha256.txt
+          Get-Content $env:MNE_INSTALLER_NAME.sha256.txt
 
       - name: Check installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
-          installer -verbose -dominfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
-          installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
+          installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
+          installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
 
       - name: Run installer (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           sudo installer \
             -verbose \
-            -pkg MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg \
+            -pkg ${MNE_INSTALLER_NAME} \
             -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
@@ -209,28 +215,28 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           echo `pwd`
-          sh ./MNE-Python-${MNE_INSTALLER_VERSION}-Linux.sh -b
+          sh ./${MNE_INSTALLER_NAME} -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
+          .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
-          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
-          cat MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
+          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
+          cat ${MNE_INSTALLER_NAME}.env.json
 
       - name: Export frozen environment definition (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
           source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
-          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
-          cat MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
+          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
+          cat ${MNE_INSTALLER_NAME}.env.json
 
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -238,13 +244,13 @@ jobs:
           $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
-          mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
-          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
+          mamba list --json > $env:MNE_INSTALLER_NAME.env.json
+          Get-Content $env:MNE_INSTALLER_NAME.env.json
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: MNE-Python-${{ steps.parse-variables.outputs.installer_name }}
+          name: ${{ env.MNE_ARTIFACT_NAME }}
           path: |
             MNE-Python-*.*
 
