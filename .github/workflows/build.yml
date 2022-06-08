@@ -288,13 +288,21 @@ jobs:
           python tests/test_notebook.py
           python tests/test_json_versions.py
 
-      - name: Check installation (Linux)
+      - name: Setup graphical support (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get install -y ibxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 libopengl0 libegl1 libosmesa6 mesa-utils  # (temporary?) resolution for https://github.com/conda-forge/qt-main-feedstock/issues/32
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
+          echo "DISPLAY=\":99\"" >> $GITHUB_ENV
+          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
+          echo "Checking whether (Py)Qt is working"
+          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
+
+      - name: Check installation (Linux)
+        if: ${{ runner.os == 'Linux' }}
+        run: |
           source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
           conda info
           mamba list
@@ -303,8 +311,6 @@ jobs:
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
 
-          echo "Checking whether (Py)Qt is working"
-          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
           echo "Checking that menu shortcuts were created …"
           pushd ~/.local/share/applications
