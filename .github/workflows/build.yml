@@ -242,8 +242,10 @@ jobs:
           $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
-          mamba list --json > $env:MNE_INSTALLER_NAME.env.json
-          Get-Content $env:MNE_INSTALLER_NAME.env.json
+          $JsonName = "$env:MNE_INSTALLER_NAME"
+          $JsonName += ".env.json"
+          mamba list --json > "$JsonName"
+          Get-Content "$JsonName"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
