@@ -48,5 +48,8 @@ ${DSTROOT}/.mne-python/bin/conda env config vars set MAMBA_NO_BANNER=1
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
 
+logger -p 'install.info' "Running mne sys_info"
+sudo -u $USER_FROM_HOMEDIR ${DSTROOT}/.mne-python/bin/conda run mne sys_info || true
+
 logger -p 'install.info' "Opening ${DSTROOT} in Finder"
 open -R "${DSTROOT}"
