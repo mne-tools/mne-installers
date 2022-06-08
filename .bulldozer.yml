@@ -1,0 +1,31 @@
+version: 1
+merge:
+  trigger:
+    labels: ["automerge"]
+    comment_substrings: []
+    comments: []
+    pr_body_substrings: []
+    branches: ["main"]
+    branch_patterns: []
+    auto_merge: true
+  ignore:
+    labels: []
+    comment_substrings: []
+  method: squash
+  merge_method:
+    - method: squash
+      trigger:
+        max_commits: 1000
+  options:
+    squash:
+      title: "github_default_title"
+      body: "summarize_commits"
+  required_statuses:
+  delete_after_merge: true
+  allow_merge_with_no_checks: false
+
+update:
+  trigger:
+    labels: []
+  ignore:
+    labels: []
