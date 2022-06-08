@@ -295,7 +295,7 @@ jobs:
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
-          echo "DISPLAY=\":99\"" >> $GITHUB_ENV
+          echo "DISPLAY=:99" >> $GITHUB_ENV
           source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
           echo "Checking whether (Py)Qt is working"
           LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
