@@ -17,3 +17,6 @@ done
 
 echo "ℹ️ Configuring Python to ignore user-installed local packages."
 echo '{"env_vars": {"PYTHONNOUSERSITE": "1"}}' >> "${PREFIX}/conda-meta/state"
+
+echo "ℹ️ Running mne sys_info."
+${PREFIX}/bin/conda run mne sys_info || true
