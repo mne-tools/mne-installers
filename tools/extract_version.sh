@@ -26,7 +26,7 @@ if [[ ${CROSSCOMPILE_ARCH} == 'arm64' ]]; then
     MACOS_SUFFIX="M1"
     ARTIFACT_SUFFIX="arm64"
 fi
-MNE_INSTALLER_NAME="MNE-Python-${MACHINE}"
+MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}"
 if [[ "$MACHINE" == "macOS" ]]; then
     MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}_${MACOS_SUFFIX}.pkg"
 elif [[ "$MACHINE" == "Linux" ]]; then
