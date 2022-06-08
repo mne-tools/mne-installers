@@ -22,7 +22,7 @@ export PYMACHINE=$(python -c "import platform; print(platform.machine())")
 ARTIFACT_SUFFIX=$PYMACHINE
 MACOS_SUFFIX="Intel"
 # This env var only really gets set on GitHub
-if [[ ${CROSSCOMPILE_ARCH} == 'arm64' ]]; then
+if [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then
     MACOS_SUFFIX="M1"
     ARTIFACT_SUFFIX="arm64"
 fi

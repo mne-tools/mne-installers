@@ -93,7 +93,7 @@ jobs:
       - name: Extract version information
         shell: bash -el {0}
         env:
-          MNE_macOS_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
+          MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
         run: |
           source ./tools/extract_version.sh
           echo "Version:   ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
