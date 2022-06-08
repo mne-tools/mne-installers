@@ -200,6 +200,40 @@ jobs:
           installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_ARTIFACT_NAME }}
+          path: MNE-Python-*.*
+
+  # Test
+  test:
+    needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        arch: [x86_64]
+        # We currently can't/don't test anything about the arm64 build
+        # include:
+        #   - os: macos-11
+        #     arch: arm64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Determine installer name
+        shell: bash -el {0}
+        run: |
+          source ./tools/extract_version.sh
+          echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
+
+      - name: Download appropriate installer
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.MNE_ARTIFACT_NAME }}
+
       - name: Run installer (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
@@ -250,37 +284,8 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.MNE_ARTIFACT_NAME }}
-          path: |
-            MNE-Python-*.*
-
-  # Test
-  test:
-    needs: build
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
-        arch: [x86_64]
-        # We currently can't/don't test anything about the arm64 build
-        # include:
-        #   - os: macos-11
-        #     arch: arm64
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Determine installer name
-        shell: bash -el {0}
-        run: |
-          source ./tools/extract_version.sh
-          echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
-
-      - name: Download appropriate installer
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.MNE_ARTIFACT_NAME }}
+          name: ${{ env.MNE_ARTIFACT_NAME }}-json
+          path: MNE-Python-*.env.json
 
       - name: Check installation (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
@@ -409,20 +414,40 @@ jobs:
         with:
           name: MNE-Python-Linux-x86_64
 
+      - name: Download Linux json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Linux-x86_64-json
+
       - name: Download Windows installer
         uses: actions/download-artifact@v3
         with:
           name: MNE-Python-Windows-x86_64
+
+      - name: Download Windows json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Windows-x86_64-json
 
       - name: Download macOS Intel installer
         uses: actions/download-artifact@v3
         with:
           name: MNE-Python-macOS-x86_64
 
+      - name: Download macOS Intel json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-x86_64-json
+
       - name: Download macOS M1 installer
         uses: actions/download-artifact@v3
         with:
           name: MNE-Python-macOS-arm64
+
+      - name: Download macOS M1 json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-arm64-json
 
       - name: Check contents
         shell: bash -el {0}
