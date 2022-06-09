@@ -13,7 +13,11 @@ sys_name = dict(
     darwin='macOS_Intel',
     win32='Windows',
 )[sys.platform]
-
+sys_ext = dict(
+    linux='.sh',
+    darwin='.pkg',
+    win32='.exe'
+)[sys.platform]
 ver = (dir_ / 'assets' / 'current_version.txt').read_text().strip()
 with open(dir_ / 'recipes' / f'mne-python_{ver}' / 'construct.yaml',
           encoding='utf-8') as fid:
@@ -42,7 +46,7 @@ for spec in specs:
         }
 
 # Extract versions from created environment
-fname = dir_ / f'MNE-Python-{installer_version}-{sys_name}.env.json'
+fname = dir_ / f'MNE-Python-{installer_version}-{sys_name}{sys_ext}.env.json'
 assert fname.is_file(), (fname, os.listdir(os.getcwd()))
 env_json = json.loads(fname.read_text(encoding='utf-8'))
 got_versions = dict()

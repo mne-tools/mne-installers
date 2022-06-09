@@ -15,19 +15,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Build installers
   build:
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
-        arch: [native]
+        os: [ubuntu-18.04, macos-10.15, windows-2019]
+        arch: [x86_64]
         include:
           - os: macos-11
             arch: arm64
 
     runs-on: ${{ matrix.os }}
-
-    continue-on-error: true
-
 
     steps:
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
@@ -92,18 +90,26 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: Extract MNE_INSTALLER_VERSION
+      - name: Extract version information
         shell: bash -el {0}
+        env:
+          MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
         run: |
           source ./tools/extract_version.sh
-          echo "Version: ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          echo "Version:   ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
           test "$MNE_INSTALLER_VERSION" != ""
           test "$PYSHORT" != ""
           test -d "$SCRIPT_DIR"
-          echo "Recipe:  ${RECIPE_DIR}"
+          echo "Recipe:    ${RECIPE_DIR}"
           test "$RECIPE_DIR" != ""
           test -d "$RECIPE_DIR"
+          echo "Installer: ${MNE_INSTALLER_NAME}"
+          test "$MNE_INSTALLER_NAME" != ""
+          echo "Artifact:  ${MNE_ARTIFACT_NAME}"
+          test "$MNE_ARTIFACT_NAME" != ""
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
+          echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
 
       - name: Install Micromamba
@@ -143,26 +149,14 @@ jobs:
         run: |
           ./tools/run_constructor.sh
 
-      - name: Prepare for running installers on different architectures (macOS)
-        if: ${{ runner.os == 'macOS' }}
-        env:
-          ARCH: ${{ matrix.arch }}
-        run: |
-          if [[ ${ARCH} == 'native' ]]; then
-            MACOS_SUFFIX="Intel"
-          else
-            MACOS_SUFFIX="M1"
-          fi
-          echo "MACOS_SUFFIX=${MACOS_SUFFIX}" >> $GITHUB_ENV
-
       - name: Check installer signature (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
-          pkgutil --check-signature MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          pkgutil --check-signature ${MNE_INSTALLER_NAME}
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
-          pkgutil --expand-full MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg ./mne-extracted
+          pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
           codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
@@ -176,43 +170,78 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           # Notarize the installer
-          xcrun notarytool submit ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg \
+          xcrun notarytool submit ./${MNE_INSTALLER_NAME} \
               --wait \
               --apple-id=$APPLE_ID \
               --password=$APPLE_ID_PASSWORD \
               --team-id=$APPLE_TEAM_ID
           # Staple the notarization certificate onto it
-          xcrun stapler staple MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          xcrun stapler staple ${MNE_INSTALLER_NAME}
 
-      - name: Calculate SHA256 hash of installer package (macOS & Linux)
-        if: ${{ runner.os == 'macOS' || runner.os == 'Linux'}}
+      - name: Calculate SHA256 hash of installer package
+        shell: bash -el {0}
         run: |
           shopt -s nullglob  # Fail if the following pattern yields no results
+          echo "Finding matches"
           matches=(MNE-Python-*-*.*)
+          echo "Extracting fname"
           installer_fname="${matches[0]}"
-          hash_fname="${installer_fname}.sha256.txt"
-          shasum -a 256 "$installer_fname" > "$hash_fname"
+          echo "Found name: ${installer_fname}"
+          echo "Want name:  ${MNE_INSTALLER_NAME}"
+          test "$installer_fname" == "$MNE_INSTALLER_NAME"
+          hash_fname="${MNE_INSTALLER_NAME}.sha256.txt"
+          shasum -a 256 "$MNE_INSTALLER_NAME" > "$hash_fname"
           cat "$hash_fname"
-
-      - name: Calculate SHA256 hash of installer package (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: |
-          Get-FileHash MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe -Algorithm SHA256 > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
-          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.exe.sha256.txt
 
       - name: Check installer (macOS)
         if: ${{ runner.os == 'macOS' }}
         run: |
-          installer -verbose -pkginfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
-          installer -verbose -dominfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
-          installer -verbose -volinfo -pkg ./MNE-Python-${MNE_INSTALLER_VERSION}-macOS_${MACOS_SUFFIX}.pkg
+          installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
+          installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
+          installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_ARTIFACT_NAME }}
+          path: MNE-Python-*.*
+
+  # Test
+  test:
+    needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        arch: [x86_64]
+        # We currently can't/don't test anything about the arm64 build
+        # include:
+        #   - os: macos-11
+        #     arch: arm64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Determine installer name
+        shell: bash -el {0}
+        run: |
+          source ./tools/extract_version.sh
+          echo "MNE_ARTIFACT_NAME=${MNE_ARTIFACT_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+
+      - name: Download appropriate installer
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.MNE_ARTIFACT_NAME }}
 
       - name: Run installer (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           sudo installer \
             -verbose \
-            -pkg MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.pkg \
+            -pkg ${MNE_INSTALLER_NAME} \
             -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
@@ -220,28 +249,28 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           echo `pwd`
-          sh ./MNE-Python-${MNE_INSTALLER_VERSION}-Linux.sh -b
+          sh ./${MNE_INSTALLER_NAME} -b
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
         shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\MNE-Python-%MNE_INSTALLER_VERSION%-Windows.exe /S /InstallationType=JustMe /AddToPath=1
+          .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
-          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
-          cat MNE-Python-${MNE_INSTALLER_VERSION}-macOS_Intel.env.json
+          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
+          cat ${MNE_INSTALLER_NAME}.env.json
 
       - name: Export frozen environment definition (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
           source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
-          mamba list --json > MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
-          cat MNE-Python-${MNE_INSTALLER_VERSION}-Linux.env.json
+          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
+          cat ${MNE_INSTALLER_NAME}.env.json
 
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -249,11 +278,19 @@ jobs:
           $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
-          mamba list --json > MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
-          Get-Content MNE-Python-$env:MNE_INSTALLER_VERSION-Windows.env.json
+          $JsonName = "$env:MNE_INSTALLER_NAME"
+          $JsonName += ".env.json"
+          mamba list --json > "$JsonName"
+          Get-Content "$JsonName"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_ARTIFACT_NAME }}-json
+          path: MNE-Python-*.env.json
 
       - name: Check installation (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'native' }}
+        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           conda info
@@ -366,18 +403,60 @@ jobs:
           python tests\test_notebook.py
           python tests/test_json_versions.py
 
-      # - name: Archive artifacts
-      #   if: ${{ matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-10.15' || matrix.os == 'windows-2016' }}
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: MNE-Python
-      #     path: |
-      #       MNE-Python-*.*
+  # Release
+  release:
+    needs: [build, test]
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      # These names should correspond to MNE_ARTIFACT_NAME in tools/extract_version.sh
+
+      - name: Download Linux installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Linux-x86_64
+
+      - name: Download Linux json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Linux-x86_64-json
+
+      - name: Download Windows installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Windows-x86_64
+
+      - name: Download Windows json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-Windows-x86_64-json
+
+      - name: Download macOS Intel installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-x86_64
+
+      - name: Download macOS Intel json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-x86_64-json
+
+      - name: Download macOS M1 installer
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-arm64
+
+      - name: Download macOS M1 json
+        uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-arm64-json
+
+      - name: Check contents
+        shell: bash -el {0}
+        run: |
+          ls -al ./
 
       - name: Release
-        if: |
-          github.ref_type == 'tag' &&
-          (matrix.os == 'ubuntu-18.04' || matrix.os == 'macOS-11' || matrix.os == 'windows-2019')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*.*"
@@ -389,7 +468,7 @@ jobs:
 
 #   add_release_hashes:
 #     if: github.ref_type == 'tag'
-#     needs: build
+#     needs: [build, test]
 #     runs-on: ubuntu-latest
 
 #     steps:
