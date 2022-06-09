@@ -34,5 +34,6 @@ import dask
 import distributed
 import openneuro
 import sleepecg
+import yasa
 import neurokit2
 import questionary
