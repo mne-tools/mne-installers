@@ -76,6 +76,11 @@ specs:
   - mne-ari ~=0.1.0
   - mne-kit-gui ~=1.0.1
   - mne-icalabel ~=0.1.0  # [not win]
+  # OpenBLAS broken on arm64 https://github.com/numpy/numpy/issues/21756
+  - libblas =*accelerate  # [osx and arm64]
+  - libcblas =*accelerate  # [osx and arm64]
+  - liblapack =*accelerate  # [osx and arm64]
+  - liblapacke =*accelerate  # [osx and arm64]
   - autoreject ~=0.3.1
   - pyprep ~=0.4.0
   # Python
