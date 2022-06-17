@@ -39,6 +39,9 @@ if [ "${PYTHON_PLATFORM}" == "x86_64" ]; then
     ${DSTROOT}/.mne-python/bin/conda env config vars set CONDA_SUBDIR=osx-64
 fi
 
+logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
+${DSTROOT}/.mne-python/bin/conda env config vars set MPLBACKEND=qtagg
+
 logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
 ${DSTROOT}/.mne-python/bin/conda env config vars set PYTHONNOUSERSITE=1
 
