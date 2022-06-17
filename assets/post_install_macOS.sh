@@ -46,7 +46,7 @@ logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
 ${DSTROOT}/.mne-python/bin/conda env config vars set MAMBA_NO_BANNER=1
 
 logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
-${DSTROOT}/.mne-python/bin/conda env config vars set MPLBACKEND=qtagg
+sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${DSTROOT}/.mne-python/lib/python3.10/site-packages/matplotlib/mpl-data/matplotlibrc
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
