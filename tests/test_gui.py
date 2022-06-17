@@ -16,8 +16,6 @@ this_path = Path(__file__).parent
 
 # Matplotlib
 logging.info('Running matplotlib tests')
-if sys.platform == 'darwin':
-    matplotlib.use('QtAgg')
 fig, _ = plt.subplots()
 want = 'QTAgg'
 assert want in repr(fig.canvas), repr(fig.canvas)

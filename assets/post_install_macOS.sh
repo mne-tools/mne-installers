@@ -33,23 +33,28 @@ osascript \
 # Use Intel packages if the Python binary is x84_64, i.e. not native Apple Silicon
 # (This also applies to an Intel binary running on Apple Silicon through Rosetta)
 # https://conda-forge.org/docs/user/tipsandtricks.html#installing-apple-intel-packages-on-apple-silicon
-export PYTHON_PLATFORM=`${DSTROOT}/.mne-python/bin/conda run python -c "import platform; print(platform.machine())"`
+DSTBIN=${DSTROOT}/.mne-python/bin
+PYTHON_PLATFORM=$(${DSTBIN}/conda run python -c "import platform; print(platform.machine())")
+PYSHORT=$($DSTBIN/conda run python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 if [ "${PYTHON_PLATFORM}" == "x86_64" ]; then
     logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages"
     ${DSTROOT}/.mne-python/bin/conda env config vars set CONDA_SUBDIR=osx-64
 fi
 
 logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
-${DSTROOT}/.mne-python/bin/conda env config vars set PYTHONNOUSERSITE=1
+${DSTBIN}/conda env config vars set PYTHONNOUSERSITE=1
 
 logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
-${DSTROOT}/.mne-python/bin/conda env config vars set MAMBA_NO_BANNER=1
+${DSTBIN}/conda env config vars set MAMBA_NO_BANNER=1
+
+logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
+sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${DSTROOT}/.mne-python/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
 
 logger -p 'install.info' "Running mne sys_info"
-sudo -u $USER_FROM_HOMEDIR ${DSTROOT}/.mne-python/bin/conda run mne sys_info || true
+sudo -u $USER_FROM_HOMEDIR ${DSTBIN}/conda run mne sys_info || true
 
 logger -p 'install.info' "Opening ${DSTROOT} in Finder"
 open -R "${DSTROOT}"

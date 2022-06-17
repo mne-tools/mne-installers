@@ -307,6 +307,7 @@ jobs:
           mamba env config vars list
           python -c "import os; assert os.getenv('CONDA_SUBDIR') == 'osx-64', ('CONDA_SUBDIR != osx-64', os.getenv('CONDA_SUBDIR'))"
           python -c "import os; assert os.getenv('PYTHONNOUSERSITE') == '1', ('PYTHONNOUSERSITE != 1', os.getenv('PYTHONNOUSERSITE'))"
+          python -c "import os; assert os.getenv('MAMBA_NO_BANNER') == '1', ('MAMBA_NO_BANNER != 1', os.getenv('MAMBA_NO_BANNER'))"
 
           echo "Checking we have all .app bundles in /Applications/MNE-Python:"
           ls -d /Applications/MNE-Python/*.app
@@ -321,7 +322,6 @@ jobs:
           echo "Trying to import MNE and all additional packages included in the installer"
           python tests/test_imports.py
           python tests/test_gui.py
-          python tests/test_gui_macosx.py
           python tests/test_notebook.py
           python tests/test_json_versions.py
 
@@ -346,7 +346,7 @@ jobs:
           echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
-
+          python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
 
           echo "Checking that menu shortcuts were created …"
           pushd ~/.local/share/applications
@@ -392,6 +392,7 @@ jobs:
           mamba list
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
+          python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
 
           echo "Running MNE's sys_info"
           . "$MneRoot\Scripts\mne.exe" sys_info
