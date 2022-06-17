@@ -348,6 +348,7 @@ jobs:
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
+          python -c "import os; assert 'MPLBACKEND' in os.environ; assert os.environ['MPLBACKEND'] == 'qtagg'"
 
           echo "Checking that menu shortcuts were created …"
           pushd ~/.local/share/applications
@@ -394,6 +395,7 @@ jobs:
           mamba env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
+          python -c "import os; assert 'MPLBACKEND' in os.environ; assert os.environ['MPLBACKEND'] == 'qtagg'"
 
           echo "Running MNE's sys_info"
           . "$MneRoot\Scripts\mne.exe" sys_info

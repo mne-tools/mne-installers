@@ -39,14 +39,14 @@ if [ "${PYTHON_PLATFORM}" == "x86_64" ]; then
     ${DSTROOT}/.mne-python/bin/conda env config vars set CONDA_SUBDIR=osx-64
 fi
 
-logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
-${DSTROOT}/.mne-python/bin/conda env config vars set MPLBACKEND=qtagg
-
 logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
 ${DSTROOT}/.mne-python/bin/conda env config vars set PYTHONNOUSERSITE=1
 
 logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
 ${DSTROOT}/.mne-python/bin/conda env config vars set MAMBA_NO_BANNER=1
+
+logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
+${DSTROOT}/.mne-python/bin/conda env config vars set MPLBACKEND=qtagg
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
