@@ -16,7 +16,10 @@ do
 done
 
 echo "ℹ️ Configuring Python to ignore user-installed local packages."
-echo '{"env_vars": {"PYTHONNOUSERSITE": "1"}}' >> "${PREFIX}/conda-meta/state"
+${PREFIX}/bin/conda env config vars set PYTHONNOUSERSITE=1
+
+echo "ℹ️ Disabling mamba package manager banner."
+${PREFIX}/bin/conda env config vars set MAMBA_NO_BANNER=1
 
 echo "ℹ️ Running mne sys_info."
 ${PREFIX}/bin/conda run mne sys_info || true
