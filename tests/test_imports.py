@@ -15,6 +15,7 @@ if platform.system() != 'Windows':
     import mne_icalabel
 import autoreject
 import pyprep
+import pycrostates
 import darkdetect
 import qdarkstyle
 import openpyxl
