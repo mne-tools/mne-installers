@@ -78,6 +78,7 @@ specs:
   - mne-icalabel ~=0.1.0  # [not win]
   - autoreject ~=0.3.1
   - pyprep ~=0.4.0
+  - pycrostates
   # Python
   - python ~=3.10.0
   - pip
