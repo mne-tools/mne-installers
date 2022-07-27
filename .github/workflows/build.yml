@@ -28,6 +28,12 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name:  Use bash from MSYS2 on Windows
+        if: ${{ runner.os == 'Windows' }}
+        shell: pwsh
+        run:   |
+          echo "{C:\msys64\usr\bin}" >> $GITHUB_PATH
+
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
