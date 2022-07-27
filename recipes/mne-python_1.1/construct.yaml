@@ -55,11 +55,12 @@ specs:
   # MNE ecosystem
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.1dev0=*_20220604
-  - mne-installer-menus =1.1dev0=*_20220604
+  - mne =1.1dev0=*_20220727
+  - mne-installer-menus =1.1dev0=*_20220727
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
+  - openblas =0.3.20=*_1  # [osx and arm64]
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
 
   # - mne =1.0.3=*_1
