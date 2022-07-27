@@ -113,7 +113,7 @@ jobs:
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
 
       - name: Install Micromamba
-        uses: mamba-org/provision-with-micromamba@v11
+        uses: mamba-org/provision-with-micromamba@main
         with:
           environment-file: environment.yml
           micromamba-version: latest
