@@ -128,14 +128,14 @@ jobs:
           micromamba activate constructor-env
 
           source ./tools/extract_version.sh
-          echo "Version:    ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+          echo "Version:     ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
           test "$MNE_INSTALLER_VERSION" != ""
           test "$PYSHORT" != ""
           test -d "$SCRIPT_DIR"
-          echo "Recipe:     ${RECIPE_DIR}"
+          echo "Recipe:      ${RECIPE_DIR}"
           test "$RECIPE_DIR" != ""
           test -d "$RECIPE_DIR"
-          echo "Installer:  ${MNE_INSTALLER_NAME}"
+          echo "Installer:   ${MNE_INSTALLER_NAME}"
           test "$MNE_INSTALLER_NAME" != ""
           echo "Artifact ID: ${MNE_INSTALLER_ARTIFACT_ID}"
           test "$MNE_INSTALLER_ARTIFACT_ID" != ""
