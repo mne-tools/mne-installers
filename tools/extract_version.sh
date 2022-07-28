@@ -26,13 +26,14 @@ else
     ARTIFACT_ID_SUFFIX=$PYMACHINE
 fi
 
-if [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
+# macOS artifact naming
+if [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then  # This env var only really gets set on GitHub Actions
+    MACOS_SUFFIX="M1"
+    ARTIFACT_ID_SUFFIX="arm64"
+elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
     MACOS_SUFFIX="Intel"
 elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "arm64" ]]; then
     MACOS_SUFFIX="M1"
-elif [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then  # This env var only really gets set on GitHub Actions
-    MACOS_SUFFIX="M1"
-    ARTIFACT_ID_SUFFIX="arm64"
 fi
 
 if [[ "$MACHINE" == "macOS" ]]; then
