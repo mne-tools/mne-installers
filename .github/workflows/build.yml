@@ -129,15 +129,6 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Print some debugging output
-        run: |
-          echo $HOME
-          echo ~
-          cat ~/.bash_profile
-          cat ~/.bashrc
-          ${MAMBA_EXE} activate ${MAMBA_ROOT_PREFIX}
-          conda list
-
       - name: Patch constructor
         run: |
           ./tools/patch_constructor.sh
