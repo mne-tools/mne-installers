@@ -22,10 +22,21 @@ jobs:
     strategy:
       matrix:
         include:
-          # - { os: macos-10.15,  arch: x86_64, shell: bash }
-          # - { os: macos-11,     arch: arm64,  shell: bash }
-          # - { os: ubuntu-18.04, arch: x86_64, shell: bash }
-          - { os: windows-2019, arch: x86_64, shell: msys2 }
+          - os: macos-10.15
+            arch: x86_64
+            shell: bash
+
+          - os: macos-11
+            arch: arm64
+            shell: bash
+
+          - os: ubuntu-18.04
+            arch: x86_64
+            shell: bash
+
+          - os: windows-2019
+            arch: x86_64
+            shell: msys2  # it's in fact a bash shell, too
 
     runs-on: ${{ matrix.os }}
 
