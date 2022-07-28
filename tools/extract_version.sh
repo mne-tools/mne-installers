@@ -22,9 +22,9 @@ export PYMACHINE=$(python -c "import platform; print(platform.machine())")  # x8
 
 ARTIFACT_ID_SUFFIX=$PYMACHINE
 
-if [[ "$MACHINE" == "macOS" && PYMACHINE == "x86_64" ]]; then
+if [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
     MACOS_SUFFIX="Intel"
-elif [[ "$MACHINE" == "macOS" && PYMACHINE == "arm64" ]]; then
+elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "arm64" ]]; then
     MACOS_SUFFIX="M1"
 elif [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then  # This env var only really gets set on GitHub Actions
     MACOS_SUFFIX="M1"
