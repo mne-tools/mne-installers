@@ -40,13 +40,6 @@ jobs:
         with:
           path-type: inherit
 
-      - name: Debugging output
-        if: ${{ runner.os == 'Windows' }}
-        shell: msys2 {0}
-        run: |
-          echo ~
-          echo $HOME
-
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
@@ -135,6 +128,14 @@ jobs:
         with:
           environment-file: environment.yml
           micromamba-version: latest
+
+      - name: Debugging output
+        if: ${{ runner.os == 'Windows' }}
+        run: |
+          echo ~
+          echo $HOME
+          env
+          conda list
 
       - name: Patch constructor
         run: |
