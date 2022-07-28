@@ -129,6 +129,11 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Print some debugging output
+        run: |
+          echo $HOME
+          cat ~/.bash_profile
+
       - name: Patch constructor
         run: |
           ./tools/patch_constructor.sh
