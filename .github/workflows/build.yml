@@ -129,18 +129,6 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Debugging output
-        if: ${{ runner.os == 'Windows' }}
-        run: |
-          echo ~
-          echo $HOME
-          # env
-          # $MAMBA_EXE shell init -p $MAMBA_ROOT_PREFIX -y
-          # source ~/.bash_profile
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-          conda list
-
       - name: Patch constructor
         run: |
           ./tools/patch_constructor.sh
@@ -166,6 +154,10 @@ jobs:
         #                    Linux
         timeout-minutes: 40
         run: |
+          # Unnecessary on macOS & Linux, but required for Windows (why?)
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate constructor-env
+
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
