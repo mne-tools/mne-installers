@@ -22,16 +22,16 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: macos-10.15,  arch: x86_64 }
-          - { os: macos-11,     arch: arm64 }
-          - { os: ubuntu-18.04, arch: x86_64 }
-          - { os: windows-2019, arch: x86_64 }
+          - { os: macos-10.15,  arch: x86_64, shell: bash }
+          - { os: macos-11,     arch: arm64,  shell: bash }
+          - { os: ubuntu-18.04, arch: x86_64, shell: bash }
+          - { os: windows-2019, arch: x86_64, shell: msys2 }
 
     runs-on: ${{ matrix.os }}
 
     defaults:
       run:
-        shell: ${{ runner.os == 'Windows' && 'msys2 -el {0}' || 'bash -el {0}' }}
+        shell: ${{ matrix.shell == 'msys2' && 'msys2 -el {0}' || 'bash -el {0}' }}
 
     steps:
       - name: Setup MSYS2 (Windows)
