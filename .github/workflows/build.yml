@@ -37,6 +37,8 @@ jobs:
       - name: Setup MSYS2 (Windows)
         if: ${{ runner.os == 'Windows' }}
         uses: msys2/setup-msys2@v2
+        with:
+          path-type: inherit
 
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
