@@ -135,6 +135,7 @@ jobs:
           echo ~
           echo $HOME
           env
+          source ~/.bash_profile
           conda list
 
       - name: Patch constructor
