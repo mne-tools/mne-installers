@@ -133,6 +133,7 @@ jobs:
         run: |
           echo $HOME
           cat ~/.bash_profile
+          cat ~/.bashrc
 
       - name: Patch constructor
         run: |
