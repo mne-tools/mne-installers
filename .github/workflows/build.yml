@@ -5,11 +5,13 @@ concurrency:
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
     tags:
     - '*'
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,15 +21,36 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-18.04, macos-10.15, windows-2019]
-        arch: [x86_64]
         include:
+          - os: macos-10.15
+            arch: x86_64
+            shell: bash
+
           - os: macos-11
             arch: arm64
+            shell: bash
+
+          - os: ubuntu-18.04
+            arch: x86_64
+            shell: bash
+
+          - os: windows-2019
+            arch: x86_64
+            shell: msys2  # it's in fact a bash shell, too
 
     runs-on: ${{ matrix.os }}
 
+    defaults:
+      run:
+        shell: ${{ matrix.shell == 'msys2' && 'msys2 -el {0}' || 'bash -el {0}' }}
+
     steps:
+      - name: Setup MSYS2 (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        uses: msys2/setup-msys2@v2
+        with:
+          path-type: inherit
+
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
@@ -91,7 +114,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Extract version information
-        shell: bash -el {0}
         env:
           MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
         run: |
@@ -119,13 +141,15 @@ jobs:
           micromamba-version: latest
 
       - name: Patch constructor
-        shell: bash -el {0}
         run: |
+          # Unnecessary on macOS & Linux, but required for Windows (why?)
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate constructor-env
+
           ./tools/patch_constructor.sh
 
       - name: Add macOS M1 support
         if: ${{ matrix.arch == 'arm64' }}
-        shell: bash -el {0}
         run: |
           source ./tools/setup_m1_crosscompile.sh
           echo "EXE_ARG=${EXE_ARG}" >> $GITHUB_ENV
@@ -133,12 +157,10 @@ jobs:
 
       - name: Patch config (macOS pull request)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
-        shell: bash -el {0}
         run: |
           sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
 
       - name: Build installer
-        shell: bash -el {0}
         # As of 2022/03/14, ~7 min on 20.04 (fastest) and ~11 min on windows-2019 (slowest).
         # So let's set this to a reasonable limit that will tell us more quickly
         # if something has gone wrong with dependency resolution.
@@ -147,6 +169,10 @@ jobs:
         #                    Linux
         timeout-minutes: 40
         run: |
+          # Unnecessary on macOS & Linux, but required for Windows (why?)
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate constructor-env
+
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
@@ -179,7 +205,6 @@ jobs:
           xcrun stapler staple ${MNE_INSTALLER_NAME}
 
       - name: Calculate SHA256 hash of installer package
-        shell: bash -el {0}
         run: |
           shopt -s nullglob  # Fail if the following pattern yields no results
           echo "Finding matches"
