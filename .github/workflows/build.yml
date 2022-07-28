@@ -132,8 +132,10 @@ jobs:
       - name: Print some debugging output
         run: |
           echo $HOME
+          echo ~
           cat ~/.bash_profile
           cat ~/.bashrc
+          mamba env list
 
       - name: Patch constructor
         run: |
