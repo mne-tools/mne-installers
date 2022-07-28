@@ -55,8 +55,8 @@ specs:
   # MNE ecosystem
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.1dev0=*_20220727
-  - mne-installer-menus =1.1dev0=*_20220727
+  - mne =1.1dev0=*_20220728
+  - mne-installer-menus =1.1dev0=*_20220728
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
