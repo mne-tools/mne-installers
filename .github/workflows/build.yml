@@ -22,9 +22,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: macos-10.15,  arch: x86_64, shell: bash }
-          - { os: macos-11,     arch: arm64,  shell: bash }
-          - { os: ubuntu-18.04, arch: x86_64, shell: bash }
+          # - { os: macos-10.15,  arch: x86_64, shell: bash }
+          # - { os: macos-11,     arch: arm64,  shell: bash }
+          # - { os: ubuntu-18.04, arch: x86_64, shell: bash }
           - { os: windows-2019, arch: x86_64, shell: msys2 }
 
     runs-on: ${{ matrix.os }}
@@ -39,6 +39,13 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           path-type: inherit
+
+      - name: Debugging output
+        if: ${{ runner.os == 'Windows' }}
+        shell: msys2 {0}
+        run: |
+          echo ~
+          echo $HOME
 
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
