@@ -131,6 +131,10 @@ jobs:
 
       - name: Patch constructor
         run: |
+          # Unnecessary on macOS & Linux, but required for Windows (why?)
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate constructor-env
+
           ./tools/patch_constructor.sh
 
       - name: Add macOS M1 support
