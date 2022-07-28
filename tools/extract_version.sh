@@ -17,22 +17,27 @@ if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" && "$MACHINE" != "Windows" 
     echo "Unknown machine: ${UNAME}"
     exit 1
 fi
-export MACHINE=$MACHINE
-export PYMACHINE=$(python -c "import platform; print(platform.machine())")
-ARTIFACT_SUFFIX=$PYMACHINE
-MACOS_SUFFIX="Intel"
-# This env var only really gets set on GitHub
-if [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then
+export MACHINE=$MACHINE  # Linux, macOS, Windows, as specified above
+export PYMACHINE=$(python -c "import platform; print(platform.machine())")  # x86_64, AMD64, arm64, etc.
+
+ARTIFACT_ID_SUFFIX=$PYMACHINE
+
+if [[ "$MACHINE" == "macOS" && PYMACHINE == "x86_64" ]]; then
+    MACOS_SUFFIX="Intel"
+elif [[ "$MACHINE" == "macOS" && PYMACHINE == "arm64" ]]; then
     MACOS_SUFFIX="M1"
-    ARTIFACT_SUFFIX="arm64"
+elif [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then  # This env var only really gets set on GitHub Actions
+    MACOS_SUFFIX="M1"
+    ARTIFACT_ID_SUFFIX="arm64"
 fi
-MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}"
+
 if [[ "$MACHINE" == "macOS" ]]; then
-    MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}_${MACOS_SUFFIX}.pkg"
+    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
 elif [[ "$MACHINE" == "Linux" ]]; then
-    MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}.sh"
+    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.sh"
 else
-    MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}.exe"
+    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.exe"
 fi
+
 export MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}"
-export MNE_ARTIFACT_NAME="MNE-Python-${MACHINE}-${ARTIFACT_SUFFIX}"
+export MNE_INSTALLER_ARTIFACT_ID="MNE-Python-${MACHINE}-${ARTIFACT_ID_SUFFIX}"
