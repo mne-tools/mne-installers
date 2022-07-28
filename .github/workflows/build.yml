@@ -135,7 +135,9 @@ jobs:
           echo ~
           echo $HOME
           env
+          $MAMBA_EXE shell init -p $MAMBA_ROOT_PREFIX -y
           source ~/.bash_profile
+          micromamba activate constructor-env
           conda list
 
       - name: Patch constructor
