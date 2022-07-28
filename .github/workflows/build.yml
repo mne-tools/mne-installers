@@ -453,12 +453,12 @@ jobs:
       - name: Download Windows installer
         uses: actions/download-artifact@v3
         with:
-          name: MNE-Python-Windows-AMD64
+          name: MNE-Python-Windows-x86_64
 
       - name: Download Windows json
         uses: actions/download-artifact@v3
         with:
-          name: MNE-Python-Windows-AMD64-json
+          name: MNE-Python-Windows-x86_64-json
 
       - name: Download macOS Intel installer
         uses: actions/download-artifact@v3

@@ -20,7 +20,11 @@ fi
 export MACHINE=$MACHINE  # Linux, macOS, Windows, as specified above
 export PYMACHINE=$(python -c "import platform; print(platform.machine())")  # x86_64, AMD64, arm64, etc.
 
-ARTIFACT_ID_SUFFIX=$PYMACHINE
+if [[ "$PYMACHINE" == "AMD64" ]]; then
+    ARTIFACT_ID_SUFFIX="x86_64"
+else
+    ARTIFACT_ID_SUFFIX=$PYMACHINE
+fi
 
 if [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
     MACOS_SUFFIX="Intel"
