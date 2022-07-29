@@ -65,21 +65,21 @@ specs:
 
   # - mne =1.0.3=*_1
   # - mne-installer-menus =1.0.3=*_1
-  - mne-qt-browser ~=0.3.0
-  - mne-bids ~=0.10.0
-  - mne-connectivity ~=0.3.0
-  - mne-faster ~=1.1.0
-  - mne-nirs ~=0.2.0
-  - mne-realtime ~=0.1.0
-  - mne-features ~=0.2.0
-  - mne-rsa ~=0.6.0
-  - mne-ari ~=0.1.0
-  - mne-kit-gui ~=1.0.1
-  - mne-icalabel ~=0.1.0  # [not win]
-  - autoreject ~=0.3.1
-  - pyprep ~=0.4.0
+  - mne-qt-browser =0.3.1
+  - mne-bids =0.10
+  - mne-connectivity =0.3
+  - mne-faster =1.1.0
+  - mne-nirs =0.2.1
+  - mne-realtime =0.1.3
+  - mne-features =0.2
+  - mne-rsa =0.6.0
+  - mne-ari =0.1.1
+  - mne-kit-gui =1.0.1
+  - mne-icalabel =0.2  # [not win]
+  - autoreject =0.3.1
+  - pyprep =0.4.2
   # Python
-  - python ~=3.10.0
+  - python =3.10.5
   - pip
   - conda
   - mamba
@@ -109,8 +109,8 @@ specs:
   - bycycle
   - fooof
   # Microstates
-  - mne-microstates ~=0.3.0
-  - pycrostates ~=0.1.2
+  - mne-microstates =0.3.0
+  - pycrostates =0.1.2
   # MNE-BIDS-Pipeline
   # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
   # note that many dependencies listed there are redundant and need not be explicitly listed here
