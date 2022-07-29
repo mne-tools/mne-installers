@@ -19,10 +19,13 @@ construct_yaml = yaml.safe_load(
 )
 specs = construct_yaml['specs']
 
-@dataclass
+print(f'Analyzing spec file: {construct_yaml_path}\n')
+
+@dataclass()
 class Package:
     name: str
-    version: str | None
+    version_spec: str | None
+    version_conda_forge: str | None = None
 
 packages: list[Package] = []
 
@@ -40,32 +43,48 @@ for spec in specs:
         version = None
 
     packages.append(
-        Package(name, version)
+        Package(name=name, version_spec=version)
     )
+    del name, version
 
 outdated = []
 not_found = []
 for package in packages:
-    if package.version is None:
+    if package.version_spec is None:
         continue
 
-    pypi_url = f'https://pypi.org/pypi/{package.name}/json'
-    r =  requests.get(pypi_url)
+    anaconda_url = f'https://api.anaconda.org/package/conda-forge/{package.name}'
+    r =  requests.get(anaconda_url)
     if r.status_code == 404:
-        print(f'{package.name} not found on PyPI')
+        print(f'{package.name} not found on conda-forge')
         not_found.append(package)
         continue
 
     json = r.json()
-    pypi_version = json['info']['version']
+    version = json['latest_version']
+    package.version_conda_forge = version
+    del json, version
+
     if (
-        packaging.version.parse(package.version) <
-        packaging.version.parse(pypi_version)
+        packaging.version.parse(package.version_spec) <
+        packaging.version.parse(package.version_conda_forge)
     ):
         print(f'{package.name} is outdated')
         outdated.append(package)
     else:
         print(f'{package.name} is up to date')
 
-print(f'\n{len(not_found)} packages not found on PyPI:\n{not_found}')
-print(f'\n{len(outdated)} packages are outdated:\n{outdated}')
+
+if not_found:
+    print(f'\n{len(not_found)} packages not found on conda-forge:\n')
+    print('\n'.join(f' * {package.name}' for package in not_found))
+
+if outdated:
+    print(f'\n{len(outdated)} packages outdated:\n')
+    print('\n'.join([
+        f' * {package.name} '
+        f'({package.version_spec} < {package.version_conda_forge})'
+        for package in outdated
+    ]))
+else:
+    print('\nEverything is up to date.')
