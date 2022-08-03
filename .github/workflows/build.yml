@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-10.15
+          - os: macos-11
             arch: x86_64
             shell: bash
 
@@ -240,7 +240,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11, windows-2019, windows-2022]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-11, macos-12, windows-2019, windows-2022]
         arch: [x86_64]
         # We currently can't/don't test anything about the arm64 build
         # include:

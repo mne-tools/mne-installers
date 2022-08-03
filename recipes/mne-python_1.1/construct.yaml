@@ -1,4 +1,4 @@
-version: 1.1.0_dev0
+version: 1.1.0_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,17 +18,17 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.1.0_dev0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.1.0_dev0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.1.0_dev0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.1.0_dev0"  # [win]
+default_prefix: ${HOME}/mne-python/1.1.0_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.1.0_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.1.0_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.1.0_0"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.1.0_dev0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.1.0_dev0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.1.0_dev0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.1.0_dev0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.1.0_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.1.0_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.1.0_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.1.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -47,7 +47,7 @@ menu_packages:
 channels:
   - conda-forge
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - conda-forge/label/mne_dev
+  # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
@@ -55,16 +55,14 @@ specs:
   # MNE ecosystem
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.1dev0=*_20220728
-  - mne-installer-menus =1.1dev0=*_20220728
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
   - openblas =0.3.20=*_1  # [osx and arm64]
   # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
 
-  # - mne =1.0.3=*_1
-  # - mne-installer-menus =1.0.3=*_1
+  - mne =1.1.0=*_0
+  - mne-installer-menus =1.1.0=*_0
   - mne-qt-browser =0.3.1
   - mne-bids =0.10
   - mne-connectivity =0.3
@@ -137,4 +135,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.1.0_dev0) "
+  env_prompt: "(mne-1.1.0_0) "
