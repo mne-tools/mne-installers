@@ -15,5 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
     - run: pip install packaging requests
     - run: python tests/test_outdated.py
