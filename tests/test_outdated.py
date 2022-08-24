@@ -1,11 +1,11 @@
 # %%
 from dataclasses import dataclass
 from pathlib import Path
-import requests
 import sys
 import yaml
 
 import packaging.version
+import requests
 
 recipes_dir = Path(__file__).parents[1] / 'recipes'
 recipies = sorted([

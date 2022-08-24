@@ -14,9 +14,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: "test"
-        python-version: "3.10"
-    - run: conda install packaging
+    - uses: actions/setup-python@v4
+    - run: pip install packaging requests
     - run: python tests/test_outdated.py
