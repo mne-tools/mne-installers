@@ -1,4 +1,4 @@
-version: 1.1.0_0
+version: 1.1.1_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,17 +18,17 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.1.0_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.1.0_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.1.0_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.1.0_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.1.1_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.1.1_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.1.1_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.1.1_0"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.1.0_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.1.0_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.1.0_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.1.0_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.1.1_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.1.1_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.1.1_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.1.1_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -57,12 +57,8 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
-  - openblas =0.3.20=*_1  # [osx and arm64]
-  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
-
-  - mne =1.1.0=*_0
-  - mne-installer-menus =1.1.0=*_0
+  - mne =1.1.1=*_0
+  - mne-installer-menus =1.1.1=*_0
   - mne-qt-browser =0.3.1
   - mne-bids =0.10
   - mne-connectivity =0.3
@@ -73,13 +69,14 @@ specs:
   - mne-rsa =0.6.0
   - mne-ari =0.1.1
   - mne-kit-gui =1.0.1
-  - mne-icalabel =0.2  # [not win]
+  - mne-icalabel =0.4  # [not win]
   - autoreject =0.3.1
   - pyprep =0.4.2
   # Python
-  - python =3.10.5
+  - python =3.10.6
   - pip
   - conda
+  - openblas =0.3.21
   - mamba
   - jupyter
   - jupyterlab
@@ -135,4 +132,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.1.0_0) "
+  env_prompt: "(mne-1.1.1_0) "
