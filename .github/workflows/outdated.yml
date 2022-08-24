@@ -4,8 +4,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push:
-    branches: "*"
+  # We only do this on PRs to avoid the (admittedly unlikely) scenario that
+  # we run, green, wait, merge, then the build on `main` could fail because conda
+  # has updated during the "green" and then the "build on `main`" steps
   pull_request:
     branches: "*"
 
