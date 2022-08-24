@@ -57,10 +57,6 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
-  - openblas =0.3.20=*_1  # [osx and arm64]
-  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
-
   - mne =1.1.1=*_0
   - mne-installer-menus =1.1.1=*_0
   - mne-qt-browser =0.3.1
@@ -77,9 +73,10 @@ specs:
   - autoreject =0.3.1
   - pyprep =0.4.2
   # Python
-  - python =3.10.5
+  - python =3.10.6
   - pip
   - conda
+  - openblas =0.3.21
   - mamba
   - jupyter
   - jupyterlab
