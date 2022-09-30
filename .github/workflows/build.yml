@@ -20,6 +20,7 @@ jobs:
   # Build installers
   build:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: macos-11
@@ -208,6 +209,7 @@ jobs:
           # Staple the notarization certificate onto it
           xcrun stapler staple ${MNE_INSTALLER_NAME}
 
+      # Note: if this changes, it needs to be changed in the Windows signing step as well
       - name: Calculate SHA256 hash of installer package
         run: |
           shopt -s nullglob  # Fail if the following pattern yields no results
@@ -235,10 +237,67 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
 
+  # The Windows signing needs to be done on Linux
+  # https://www.ssl.com/how-to/cloud-code-signing-integration-with-github-actions/
+  sign:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Determine installer name (cross-OS)
+        if: github.event_name != 'pull_request'
+        shell: bash -el {0}
+        run: |
+          source ./tools/extract_version.sh Windows
+          echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          mkdir signed
+      - name: Download appropriate installer
+        if: github.event_name != 'pull_request'
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+      - name: EV-code sign installer (Windows)
+        if: github.event_name != 'pull_request'
+        uses: sslcom/actions-codesigner@develop
+        with:
+          command: sign
+          username: ${{ secrets.ES_USERNAME }}
+          password: ${{ secrets.ES_PASSWORD }}
+          credential_id: ${{ secrets.ES_CREDENTIAL_ID }}
+          totp_secret: ${{ secrets.ES_TOTP_SECRET }}
+          file_path: ${GITHUB_WORKSPACE}/${{ env.MNE_INSTALLER_NAME }}
+          output_path: ${GITHUB_WORKSPACE}/signed
+      - name: Calculate new SHA256 hash of installer package
+        run: |
+          mv signed/${MNE_INSTALLER_NAME} .
+          shopt -s nullglob  # Fail if the following pattern yields no results
+          echo "Finding matches"
+          matches=(MNE-Python-*-*.*)
+          echo "Extracting fname"
+          installer_fname="${matches[0]}"
+          echo "Found name: ${installer_fname}"
+          echo "Want name:  ${MNE_INSTALLER_NAME}"
+          test "$installer_fname" == "$MNE_INSTALLER_NAME"
+          hash_fname="${MNE_INSTALLER_NAME}.sha256.txt"
+          echo "Old hash:"
+          cat "$hash_fname"
+          shasum -a 256 "$MNE_INSTALLER_NAME" > "$hash_fname"
+          echo "New hash:"
+          cat "$hash_fname"
+      - name: Overwrite artifacts
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          path: MNE-Python-*.*
+
   # Test
   test:
-    needs: build
+    needs: [build, sign]
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, macos-11, macos-12, windows-2019, windows-2022]
         arch: [x86_64]
@@ -279,6 +338,12 @@ jobs:
         run: |
           echo `pwd`
           sh ./${MNE_INSTALLER_NAME} -b
+
+      - name: Check installer signing (Windows)
+        if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
+        shell: cmd
+        run: |
+          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v .\%MNE_INSTALLER_NAME%
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
@@ -434,7 +499,7 @@ jobs:
 
   # Release
   release:
-    needs: [build, test]
+    needs: [build, sign, test]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     steps:
