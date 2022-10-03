@@ -7,12 +7,16 @@ export MNE_INSTALLER_VERSION=$(head -n 1 recipes/mne-python_${VER}/construct.yam
 export RECIPE_DIR=${SCRIPT_DIR}/../recipes/mne-python_$(echo $MNE_INSTALLER_VERSION | cut -d . -f-2)
 export PYSHORT=$(python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 UNAME="$(uname -s)"
-case "${UNAME}" in
-    Linux*)      MACHINE=Linux;;
-    Darwin*)     MACHINE=macOS;;
-    MINGW64_NT*) MACHINE=Windows;;
-    *)           MACHINE="UNKNOWN:${UNAME}"
-esac
+if [[ "$1" != "" ]]; then
+    MACHINE="$1"
+else
+    case "${UNAME}" in
+        Linux*)      MACHINE=Linux;;
+        Darwin*)     MACHINE=macOS;;
+        MINGW64_NT*) MACHINE=Windows;;
+        *)           MACHINE="UNKNOWN:${UNAME}"
+    esac
+fi
 if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" && "$MACHINE" != "Windows" ]]; then
     echo "Unknown machine: ${UNAME}"
     exit 1
