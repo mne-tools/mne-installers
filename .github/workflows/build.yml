@@ -270,6 +270,7 @@ jobs:
           file_path: ${GITHUB_WORKSPACE}/${{ env.MNE_INSTALLER_NAME }}
           output_path: ${GITHUB_WORKSPACE}/signed
       - name: Calculate new SHA256 hash of installer package
+        if: github.event_name != 'pull_request'
         run: |
           mv signed/${MNE_INSTALLER_NAME} .
           shopt -s nullglob  # Fail if the following pattern yields no results
