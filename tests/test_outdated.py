@@ -32,6 +32,7 @@ packages: list[Package] = []
 
 for spec in specs:
     if ' ' in spec:
+        assert spec.count(' ') == 1, f'Wrong number of spaces in spec: {spec}'
         name, version = spec.split(' ')
         version = (
             version
