@@ -62,7 +62,7 @@ specs:
 
   - mne =1.2.1=*_0
   - mne-installer-menus =1.2.1=*_0
-  - mne-bids =0.11
+  - mne-bids =0.11.1
   - mne-qt-browser =0.4.0
   - mne-connectivity =0.4.0
   - mne-faster =1.1.0
@@ -76,7 +76,7 @@ specs:
   - autoreject =0.4.0
   - pyprep =0.4.2
   # Python
-  - python =3.10.6
+  - python =3.11.0
   - pip
   - conda
   - openblas =0.3.21
