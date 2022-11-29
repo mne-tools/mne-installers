@@ -132,6 +132,9 @@ specs:
   # Viz
   - seaborn
   - plotly
+  # Temporary
+  # for Vscode compatibility: https://github.com/microsoft/vscode-jupyter/issues/8552#issuecomment-1263940999
+  - ipywidgets <=7.7.2
 
 condarc:
   channels:
