@@ -131,6 +131,7 @@ specs:
   - pqdm
   # Viz
   - seaborn
+  - plotly
 
 condarc:
   channels:
