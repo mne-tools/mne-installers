@@ -131,6 +131,8 @@ specs:
   # NeuroSpin needs the following
   - questionary
   - pqdm
+  # Viz tools
+  - seaborn
 
 condarc:
   channels:
