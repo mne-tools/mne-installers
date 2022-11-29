@@ -1,10 +1,11 @@
 # %%
-from pathlib import Path
 from dataclasses import dataclass
-
+from pathlib import Path
+import sys
 import yaml
+
+import packaging.version
 import requests
-import packaging
 
 recipes_dir = Path(__file__).parents[1] / 'recipes'
 recipies = sorted([
@@ -31,6 +32,7 @@ packages: list[Package] = []
 
 for spec in specs:
     if ' ' in spec:
+        assert spec.count(' ') == 1, f'Wrong number of spaces in spec: {spec}'
         name, version = spec.split(' ')
         version = (
             version
@@ -69,15 +71,16 @@ for package in packages:
         packaging.version.parse(package.version_spec) <
         packaging.version.parse(package.version_conda_forge)
     ):
-        print(f'{package.name} is outdated')
+        print(f'* {package.name.ljust(20)} OUTDATED')
         outdated.append(package)
     else:
-        print(f'{package.name} is up to date')
+        print(f'  {package.name.ljust(20)} up to date')
 
-
+exit_code = 0
 if not_found:
     print(f'\n{len(not_found)} packages not found on conda-forge:\n')
     print('\n'.join(f' * {package.name}' for package in not_found))
+    exit_code = 1
 
 if outdated:
     print(f'\n{len(outdated)} packages outdated:\n')
@@ -86,5 +89,8 @@ if outdated:
         f'({package.version_spec} < {package.version_conda_forge})'
         for package in outdated
     ]))
+    exit_code = 1
 else:
     print('\nEverything is up to date.')
+if __name__ == '__main__':
+    sys.exit(exit_code)
