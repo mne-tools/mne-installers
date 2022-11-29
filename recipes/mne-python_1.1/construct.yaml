@@ -110,7 +110,7 @@ specs:
   - fooof
   # Microstates
   - mne-microstates =0.3.0
-  - pycrostates =0.1.2
+  - pycrostates =0.2.0
   # MNE-BIDS-Pipeline
   # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
   # note that many dependencies listed there are redundant and need not be explicitly listed here
