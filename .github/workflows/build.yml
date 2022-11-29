@@ -172,7 +172,7 @@ jobs:
         #
         # Update 2022/06/03: Bump timeout as we're seeing sporadic issues on
         #                    Linux
-        timeout-minutes: 40
+        timeout-minutes: 50
         run: |
           # Unnecessary on macOS & Linux, but required for Windows (why?)
           eval "$(micromamba shell hook --shell=bash)"
