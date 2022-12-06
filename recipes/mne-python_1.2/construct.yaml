@@ -76,7 +76,7 @@ specs:
   - autoreject =0.4.0
   - pyprep =0.4.2
   # Python
-  - python =3.10.6
+  - python =3.10.8
   - pip
   - conda !=22.11.0  # https://github.com/conda-forge/admin-requests/pull/523
   - openblas =0.3.21
