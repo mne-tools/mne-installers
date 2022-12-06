@@ -45,6 +45,8 @@ for spec in specs:
             .lstrip('=')
             .split('=')  # build number
         )[0]
+        if version == '!':  # this is "a !=something", we can skip it
+            version = None
     else:
         name = spec
         version = None
@@ -72,6 +74,9 @@ for package in packages:
     package.version_conda_forge = version
     del json, version
 
+    comp = {
+
+    }
     if (
         packaging.version.parse(package.version_spec) <
         packaging.version.parse(package.version_conda_forge)
