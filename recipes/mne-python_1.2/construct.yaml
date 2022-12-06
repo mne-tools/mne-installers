@@ -78,7 +78,7 @@ specs:
   # Python
   - python =3.10.6
   - pip
-  - conda
+  - conda !=22.11.0  # https://github.com/conda-forge/admin-requests/pull/523
   - openblas =0.3.21
   - mamba
   - jupyter
