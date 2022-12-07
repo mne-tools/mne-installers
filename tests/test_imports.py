@@ -2,6 +2,7 @@ import platform
 
 import mne
 import mne_bids
+import mne_bids_pipeline
 import mne_connectivity
 import mne_faster
 import mne_nirs
