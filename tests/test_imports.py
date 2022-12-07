@@ -29,11 +29,6 @@ import emd
 import neurodsp
 import bycycle
 import fooof
-import coloredlogs
-import json_tricks
-import fire
-import dask
-import distributed
 import openneuro
 import sleepecg
 import yasa
