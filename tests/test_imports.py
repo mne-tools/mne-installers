@@ -39,5 +39,7 @@ import sleepecg
 import yasa
 import neurokit2
 import questionary
+import matplotlib
 import seaborn
 import plotly
+import pqdm
