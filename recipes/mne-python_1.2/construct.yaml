@@ -63,6 +63,7 @@ specs:
   - mne =1.2.3=*_0
   - mne-installer-menus =1.2.3=*_0
   - mne-bids =0.11.1
+  - mne-bids-pipeline =1.0.1
   - mne-qt-browser =0.4.0
   - mne-connectivity =0.4.0
   - mne-faster =1.1.0
@@ -78,16 +79,15 @@ specs:
   # Python
   - python =3.10.8
   - pip
-  - conda !=22.11.0  # https://github.com/conda-forge/admin-requests/pull/523
-  - openblas =0.3.21
+  - conda
   - mamba
+  - openblas =0.3.21
   - jupyter
   - jupyterlab
   - ipykernel
   - nb_conda_kernels
   - spyder-kernels
   - spyder
-  - ipympl
   - darkdetect
   - qdarkstyle
   # Excel I/O
@@ -109,14 +109,6 @@ specs:
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.2.0
-  # MNE-BIDS-Pipeline
-  # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
-  # note that many dependencies listed there are redundant and need not be explicitly listed here
-  - coloredlogs
-  - json_tricks
-  - fire
-  - dask
-  - distributed
   # OpenNeuro.org data access
   - openneuro-py
   # sleep staging
@@ -131,11 +123,12 @@ specs:
   - pqdm
   # Viz
   - matplotlib
+  - ipympl
   - seaborn
   - plotly
   - vtk =9.2.2
   # Temporary
-  # for Vscode compatibility: https://github.com/microsoft/vscode-jupyter/issues/8552#issuecomment-1263940999
+  # for VS Code compatibility: https://github.com/microsoft/vscode-jupyter/issues/8552#issuecomment-1263940999
   - ipywidgets <8
 
 condarc:
