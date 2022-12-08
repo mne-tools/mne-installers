@@ -47,6 +47,8 @@ for spec in specs:
         )[0]
         if version == '!':  # this is "a !=something", we can skip it
             version = None
+        elif version.startswith('<'):  # "a <something"
+            version = None
     else:
         name = spec
         version = None
