@@ -9,4 +9,3 @@ dependencies:
   - conda-standalone =4.12a=*_9
   - menuinst =2.0a=14_g594d642_*
   - conda =4.12a
-  - nsis =3.01  # [win]
