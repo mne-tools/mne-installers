@@ -1,7 +1,7 @@
 name: constructor-env
 
 channels:
-  - napari/label/bundle_tools_2
+  - napari/label/bundle_tools
   - conda-forge
 
 dependencies:
