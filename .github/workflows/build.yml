@@ -124,7 +124,7 @@ jobs:
         run: |
           eval "$(micromamba shell hook --shell=bash)"
           micromamba activate constructor-env
-          conda install nsis=3.01
+          conda install nsis=3.01 conda=4.12a
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
