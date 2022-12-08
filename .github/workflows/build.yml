@@ -122,6 +122,8 @@ jobs:
 
       - name: Hotfix for NSIS
         run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate constructor-env
           conda install nsis=3.01
         if: ${{ runner.os == 'Windows' }}
 
