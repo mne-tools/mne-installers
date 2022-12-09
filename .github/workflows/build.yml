@@ -343,7 +343,7 @@ jobs:
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          source "$MNE_INSTALLATION_ROOT/bin/activate"
+          source "${MNE_INSTALLATION_ROOT}/bin/activate"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
 
@@ -360,7 +360,7 @@ jobs:
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
           echo "DISPLAY=:99" >> $GITHUB_ENV
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
+          source ${MNE_INSTALLATION_ROOT}/bin/activate
           echo "Checking whether (Py)Qt is working"
           LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
