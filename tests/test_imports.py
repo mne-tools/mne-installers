@@ -2,6 +2,7 @@ import platform
 
 import mne
 import mne_bids
+import mne_bids_pipeline
 import mne_connectivity
 import mne_faster
 import mne_nirs
@@ -28,13 +29,12 @@ import emd
 import neurodsp
 import bycycle
 import fooof
-import coloredlogs
-import json_tricks
-import fire
-import dask
-import distributed
 import openneuro
 import sleepecg
 import yasa
 import neurokit2
 import questionary
+import matplotlib
+import seaborn
+import plotly
+import pqdm

@@ -1,4 +1,4 @@
-version: 1.2.1_0
+version: 1.2.3_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,17 +18,17 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.2.1_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.2.1_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.2.1_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.2.1_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.2.3_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.2.3_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.2.3_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.2.3_0"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.2.1_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.2.1_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.2.1_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.2.1_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.2.3_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.2.3_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.2.3_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.2.3_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -60,9 +60,10 @@ specs:
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  - mne =1.2.1=*_0
-  - mne-installer-menus =1.2.1=*_0
-  - mne-bids =0.11
+  - mne =1.2.3=*_0
+  - mne-installer-menus =1.2.3=*_0
+  - mne-bids =0.11.1
+  - mne-bids-pipeline =1.0.2
   - mne-qt-browser =0.4.0
   - mne-connectivity =0.4.0
   - mne-faster =1.1.0
@@ -76,18 +77,17 @@ specs:
   - autoreject =0.4.0
   - pyprep =0.4.2
   # Python
-  - python =3.10.6
+  - python =3.10.8
   - pip
   - conda
-  - openblas =0.3.21
   - mamba
+  - openblas =0.3.21
   - jupyter
   - jupyterlab
   - ipykernel
   - nb_conda_kernels
   - spyder-kernels
   - spyder
-  - ipympl
   - darkdetect
   - qdarkstyle
   # Excel I/O
@@ -109,14 +109,6 @@ specs:
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.2.0
-  # MNE-BIDS-Pipeline
-  # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
-  # note that many dependencies listed there are redundant and need not be explicitly listed here
-  - coloredlogs
-  - json_tricks
-  - fire
-  - dask
-  - distributed
   # OpenNeuro.org data access
   - openneuro-py
   # sleep staging
@@ -129,10 +121,19 @@ specs:
   # NeuroSpin needs the following
   - questionary
   - pqdm
+  # Viz
+  - matplotlib
+  - ipympl
+  - seaborn
+  - plotly
+  - vtk =9.2.2
+  # Temporary
+  # for VS Code compatibility: https://github.com/microsoft/vscode-jupyter/issues/8552#issuecomment-1263940999
+  - ipywidgets <8
 
 condarc:
   channels:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.2.1_0) "
+  env_prompt: "(mne-1.2.3_0) "

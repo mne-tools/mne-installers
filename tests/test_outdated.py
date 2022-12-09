@@ -28,6 +28,11 @@ class Package:
     version_spec: str | None
     version_conda_forge: str | None = None
 
+
+allowed_outdated: set[str] = {
+    'python',  # 3.11 is out, but we don't have all deps available yet
+    'ipywidgets',  # temporary, compatibility with VScode
+}
 packages: list[Package] = []
 
 for spec in specs:
@@ -40,6 +45,10 @@ for spec in specs:
             .lstrip('=')
             .split('=')  # build number
         )[0]
+        if version == '!':  # this is "a !=something", we can skip it
+            version = None
+        elif version.startswith('<'):  # "a <something"
+            version = None
     else:
         name = spec
         version = None
@@ -67,12 +76,19 @@ for package in packages:
     package.version_conda_forge = version
     del json, version
 
+    comp = {
+
+    }
     if (
         packaging.version.parse(package.version_spec) <
         packaging.version.parse(package.version_conda_forge)
     ):
-        print(f'* {package.name.ljust(20)} OUTDATED')
-        outdated.append(package)
+        if package.name in allowed_outdated:
+            print(f'  {package.name.ljust(20)} outdated (allowed '
+                  f'{package.version_spec} < {package.version_conda_forge})')
+        else:
+            print(f'* {package.name.ljust(20)} OUTDATED')
+            outdated.append(package)
     else:
         print(f'  {package.name.ljust(20)} up to date')
 

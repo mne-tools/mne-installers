@@ -120,6 +120,13 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Hotfix for NSIS
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate constructor-env
+          conda install nsis=3.01 conda=4.12a
+        if: ${{ runner.os == 'Windows' }}
+
       - name: Extract version information
         env:
           MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
@@ -172,7 +179,7 @@ jobs:
         #
         # Update 2022/06/03: Bump timeout as we're seeing sporadic issues on
         #                    Linux
-        timeout-minutes: 40
+        timeout-minutes: 50
         run: |
           # Unnecessary on macOS & Linux, but required for Windows (why?)
           eval "$(micromamba shell hook --shell=bash)"
@@ -369,13 +376,15 @@ jobs:
 
       - name: Export frozen environment definition (Windows)
         if: ${{ runner.os == 'Windows' }}
+        # TODO: conda rather than mamba for now here and in Check Installation below
+        # https://github.com/mne-tools/mne-installers/pull/158#issuecomment-1344147095
         run: |
           $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           $JsonName = "$env:MNE_INSTALLER_NAME"
           $JsonName += ".env.json"
-          mamba list --json > "$JsonName"
+          conda list --json > "$JsonName"
           Get-Content "$JsonName"
 
       - name: Upload artifacts
@@ -484,8 +493,8 @@ jobs:
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
-          mamba list
-          mamba env config vars list
+          conda list
+          conda env config vars list
           python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
           python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
 
