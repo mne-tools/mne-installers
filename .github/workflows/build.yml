@@ -336,8 +336,9 @@ jobs:
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
+        shell: cmd
         run: |
-          ./$MNE_INSTALLER_NAME /S /InstallationType=JustMe /AddToPath=1
+          start /wait "" .\%MNE_INSTALLER_NAME /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
