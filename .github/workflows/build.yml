@@ -226,7 +226,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Determine installer name (cross-OS)
         if: github.event_name != 'pull_request'
         run: |
@@ -282,7 +282,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-11, macos-12, windows-2019, windows-2022]
+        #os: [ubuntu-18.04, ubuntu-20.04, macos-11, macos-12, windows-2019, windows-2022]
+        # TODO: Revert
+        os: [windows-2019]
         arch: [x86_64]
         # We currently can't/don't test anything about the arm64 build
         # include:
@@ -290,6 +292,10 @@ jobs:
         #     arch: arm64
 
     runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        shell: bash -el {0}
 
     steps:
       - uses: actions/checkout@v3
@@ -333,9 +339,9 @@ jobs:
           $MNE_INSTALLER_NAME /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition
-        if: ${{ matrix.arch != 'arm64' }}
+        if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          source /Applications/MNE-Python/.mne-python/bin/activate
+          source "$MNE_INSTALLATION_ROOT/bin/activate"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
 
@@ -344,42 +350,6 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
-
-      - name: Check installation (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
-        run: |
-          source /Applications/MNE-Python/.mne-python/bin/activate
-          conda info
-          mamba list
-
-          echo "Testing that file permissions are set correctly (owned by "runner", not "root".)"
-          # https://unix.stackexchange.com/a/7733
-          [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
-
-          # Check that the installed Python is, in fact, an Intel binary
-          python -c "import platform; assert platform.machine() == 'x86_64'"
-
-          echo "Checking the deployed environment variables were set correctly upon environment activation"
-          mamba env config vars list
-          python -c "import os; assert os.getenv('CONDA_SUBDIR') == 'osx-64', ('CONDA_SUBDIR != osx-64', os.getenv('CONDA_SUBDIR'))"
-          python -c "import os; assert os.getenv('PYTHONNOUSERSITE') == '1', ('PYTHONNOUSERSITE != 1', os.getenv('PYTHONNOUSERSITE'))"
-          python -c "import os; assert os.getenv('MAMBA_NO_BANNER') == '1', ('MAMBA_NO_BANNER != 1', os.getenv('MAMBA_NO_BANNER'))"
-
-          echo "Checking we have all .app bundles in /Applications/MNE-Python:"
-          ls -d /Applications/MNE-Python/*.app
-          test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
-
-          echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
-          test -f /Applications/MNE-Python/Icon$'\r'
-
-          echo "Running MNE's sys_info"
-          mne sys_info
-
-          echo "Trying to import MNE and all additional packages included in the installer"
-          python tests/test_imports.py
-          python tests/test_gui.py
-          python tests/test_notebook.py
-          python tests/test_json_versions.py
 
       - name: Setup graphical support (Linux)
         if: ${{ runner.os == 'Linux' }}
@@ -392,39 +362,60 @@ jobs:
           echo "Checking whether (Py)Qt is working"
           LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
-      - name: Check installation (Linux)
-        if: ${{ runner.os == 'Linux' }}
+      - name: Setup graphical support (Windows)
+        if: ${{ runner.os == 'Windows' }}
         run: |
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
+          git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
+          ./gl-ci-helpers/appveyor/install_opengl.ps1
+
+      - name: Check installation
+        if: ${{ matrix.arch == 'x86_64' }}
+        run: |
+          source "$MNE_INSTALLER_ROOT/bin/activate"
           conda info
           mamba list
 
+          if [[ "${{ runner.os }}" == "macOS" ]]; then
+            echo "Testing that file permissions are set correctly (owned by "runner", not "root".)"
+            # https://unix.stackexchange.com/a/7733
+            [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
+            # Check that the installed Python is, in fact, an Intel binary
+            python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
+            echo "Checking we have all .app bundles in /Applications/MNE-Python:"
+            ls -d /Applications/MNE-Python/*.app || exit 1
+            test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5 || exit 1
+            echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
+            test -f /Applications/MNE-Python/Icon$'\r' || exit 1
+          elif [[ "${{ runner.os }}" == "Linux" ]]; then
+            echo "Checking that menu shortcuts were created …"
+            pushd ~/.local/share/applications
+            ls -l || exit 1
+            echo "Checking for existence of .desktop files:"
+            ls MNE-Python*.desktop || exit 1
+            test `ls MNE-Python*.desktop | wc -l` -eq 5 || exit 1
+            echo ""
+
+            # … and patched to work around a bug in menuinst
+            echo "Checking that incorrect Terminal entries have been removed"
+            test `grep "Terminal=True"  MNE-Python*.desktop | wc -l` -eq 0 || exit 1
+            test `grep "Terminal=False" MNE-Python*.desktop | wc -l` -eq 0 || exit 1
+            echo ""
+
+            echo "Checking that Terminal entries are correct…"
+            test `grep "Terminal=true"  MNE-Python*.desktop | wc -l` -ge 1 || exit 1
+            test `grep "Terminal=false" MNE-Python*.desktop | wc -l` -ge 1 || exit 1
+            # Display their contents
+            for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
+            popd
+          fi
+
           echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
-          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
-          python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
-
-          echo "Checking that menu shortcuts were created …"
-          pushd ~/.local/share/applications
-          ls -l
-          echo "Checking for existence of .desktop files:"
-          ls MNE-Python*.desktop
-          test `ls MNE-Python*.desktop | wc -l` -eq 5
-          echo ""
-
-          # … and patched to work around a bug in menuinst
-          echo "Checking that incorrect Terminal entries have been removed"
-          test `grep "Terminal=True"  MNE-Python*.desktop | wc -l` -eq 0
-          test `grep "Terminal=False" MNE-Python*.desktop | wc -l` -eq 0
-          echo ""
-
-          echo "Checking that Terminal entries are correct…"
-          test `grep "Terminal=true"  MNE-Python*.desktop | wc -l` -ge 1
-          test `grep "Terminal=false" MNE-Python*.desktop | wc -l` -ge 1
-
-          # Display their contents
-          for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
-          popd
+          if [[ "${{ runner.os }}" == "macOS" ]]; then
+            python -c "import os; assert os.getenv('CONDA_SUBDIR') == 'osx-64', ('CONDA_SUBDIR != osx-64', os.getenv('CONDA_SUBDIR'))" || exit 1
+          fi
+          python -c "import os; assert os.getenv('PYTHONNOUSERSITE') == '1', ('PYTHONNOUSERSITE != 1', os.getenv('PYTHONNOUSERSITE'))"
+          python -c "import os; assert os.getenv('MAMBA_NO_BANNER') == '1', ('MAMBA_NO_BANNER != 1', os.getenv('MAMBA_NO_BANNER'))"
 
           echo "Running MNE's sys_info"
           mne sys_info
@@ -433,30 +424,6 @@ jobs:
           python tests/test_imports.py
           python tests/test_gui.py
           python tests/test_notebook.py
-          python tests/test_json_versions.py
-
-      - name: Check installation (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: |
-          git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
-          ./gl-ci-helpers/appveyor/install_opengl.ps1
-
-          $MneRoot = "$UserProfile\mne-python\$MNE_INSTALLER_VERSION"
-          . "$MneRoot\shell\condabin\conda-hook.ps1"
-          conda activate $MneRoot
-          conda info
-          conda list
-          conda env config vars list
-          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
-          python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
-
-          echo "Running MNE's sys_info"
-          . "$MneRoot\Scripts\mne.exe" sys_info
-
-          echo "Trying to import MNE and all additional packages included in the installer"
-          python tests\test_imports.py
-          python tests\test_gui.py
-          python tests\test_notebook.py
           python tests/test_json_versions.py
 
   # Release
