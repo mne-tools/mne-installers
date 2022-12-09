@@ -23,27 +23,23 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-11
-            arch: x86_64
-            shell: bash
+          #- os: macos-11
+          #  arch: x86_64
 
-          - os: macos-11
-            arch: arm64
-            shell: bash
+          #- os: macos-11
+          #  arch: arm64
 
-          - os: ubuntu-18.04
-            arch: x86_64
-            shell: bash
+          #- os: ubuntu-18.04
+          #  arch: x86_64
 
           - os: windows-2019
             arch: x86_64
-            shell: msys2  # it's in fact a bash shell, too
 
     runs-on: ${{ matrix.os }}
 
     defaults:
       run:
-        shell: ${{ matrix.shell == 'msys2' && 'msys2 -el {0}' || 'bash -el {0}' }}
+        shell: bash -el {0}
 
     steps:
       - name: Setup MSYS2 (Windows)
@@ -122,8 +118,6 @@ jobs:
 
       - name: Hotfix for NSIS
         run: |
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
           conda install nsis=3.01 conda=4.12a
         if: ${{ runner.os == 'Windows' }}
 
@@ -131,10 +125,6 @@ jobs:
         env:
           MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
         run: |
-          # Unnecessary on macOS & Linux, but required for Windows (why?)
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-
           source ./tools/extract_version.sh
           echo "Version:     ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
           test "$MNE_INSTALLER_VERSION" != ""
@@ -154,10 +144,6 @@ jobs:
 
       - name: Patch constructor
         run: |
-          # Unnecessary on macOS & Linux, but required for Windows (why?)
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-
           ./tools/patch_constructor.sh
 
       - name: Add macOS M1 support
@@ -181,10 +167,6 @@ jobs:
         #                    Linux
         timeout-minutes: 50
         run: |
-          # Unnecessary on macOS & Linux, but required for Windows (why?)
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
@@ -253,7 +235,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Determine installer name (cross-OS)
         if: github.event_name != 'pull_request'
-        shell: bash -el {0}
         run: |
           source ./tools/extract_version.sh Windows
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
@@ -320,7 +301,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Determine installer name
-        shell: bash -el {0}
         run: |
           source ./tools/extract_version.sh
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
@@ -349,43 +329,21 @@ jobs:
 
       - name: Check installer signing (Windows)
         if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
-        shell: cmd
         run: |
-          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v .\%MNE_INSTALLER_NAME%
+          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v $MNE_INSTALLER_NAME
 
       # https://docs.anaconda.com/anaconda/install/silent-mode.html
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
-        shell: cmd  # Couldn't get PowerShell to properly perform install
         run: |
-          .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
+          $MNE_INSTALLER_NAME /S /InstallationType=JustMe /AddToPath=1
 
-      - name: Export frozen environment definition (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
+      - name: Export frozen environment definition
+        if: ${{ matrix.arch != 'arm64' }}
         run: |
           source /Applications/MNE-Python/.mne-python/bin/activate
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
-
-      - name: Export frozen environment definition (Linux)
-        if: ${{ runner.os == 'Linux' }}
-        run: |
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
-          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
-          cat ${MNE_INSTALLER_NAME}.env.json
-
-      - name: Export frozen environment definition (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        # TODO: conda rather than mamba for now here and in Check Installation below
-        # https://github.com/mne-tools/mne-installers/pull/158#issuecomment-1344147095
-        run: |
-          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
-          . "$MneRoot\shell\condabin\conda-hook.ps1"
-          conda activate $MneRoot
-          $JsonName = "$env:MNE_INSTALLER_NAME"
-          $JsonName += ".env.json"
-          conda list --json > "$JsonName"
-          Get-Content "$JsonName"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -560,7 +518,6 @@ jobs:
       #     name: MNE-Python-macOS-arm64-json
 
       - name: Check contents
-        shell: bash -el {0}
         run: |
           ls -al ./
 
