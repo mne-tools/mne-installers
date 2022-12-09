@@ -42,12 +42,6 @@ jobs:
         shell: bash -el {0}
 
     steps:
-      - name: Setup MSYS2 (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        uses: msys2/setup-msys2@v2
-        with:
-          path-type: inherit
-
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
@@ -108,7 +102,7 @@ jobs:
           # List available signing identities (for debugging purposes)
           security find-identity
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
@@ -118,7 +112,8 @@ jobs:
 
       - name: Hotfix for NSIS
         run: |
-          mamba install nsis=3.01 conda=4.12a
+          which conda
+          conda install nsis=3.01 conda=4.12a
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
@@ -298,7 +293,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Determine installer name
         run: |
@@ -447,7 +442,7 @@ jobs:
           git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
           ./gl-ci-helpers/appveyor/install_opengl.ps1
 
-          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
+          $MneRoot = "$UserProfile\mne-python\$MNE_INSTALLER_VERSION"
           . "$MneRoot\shell\condabin\conda-hook.ps1"
           conda activate $MneRoot
           conda info
