@@ -14,6 +14,7 @@ else
         Linux*)      MACHINE=Linux;;
         Darwin*)     MACHINE=macOS;;
         MINGW64_NT*) MACHINE=Windows;;
+        MSYS_NT*)    MACHINE=Windows;;
         *)           MACHINE="UNKNOWN:${UNAME}"
     esac
 fi
