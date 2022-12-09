@@ -118,7 +118,7 @@ jobs:
 
       - name: Hotfix for NSIS
         run: |
-          conda install nsis=3.01 conda=4.12a
+          mamba install nsis=3.01 conda=4.12a
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
