@@ -83,7 +83,7 @@ specs:
   - pip
   - conda
   - mamba
-  - openblas >=0.3.21
+  - libopenblas >=0.3.21
   - jupyter
   - jupyterlab
   - ipykernel
