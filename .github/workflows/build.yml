@@ -342,18 +342,15 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         shell: cmd
         run: |
-          start /wait "" %MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
+          chmod +x ${MNE_INSTALLER_NAME}
+          ./${MNE_INSTALLER_NAME} /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            source "$MNE_INSTALLATION_ROOT/shell/condabin/conda-hook.sh"
-            conda activate $MNE_INSTALLATION_ROOT
-          else
-            source $MNE_INSTALLATION_ROOT/bin/activate
-          fi
-          source "${MNE_INSTALLATION_ROOT}"
+          ls -al ~/
+          ls -alR ~/mne-python/$MNE_INSTALLER_VERSION"
+          source "${MNE_ACTIVATE}"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
 
@@ -382,12 +379,7 @@ jobs:
       - name: Check installation
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            source "$MNE_INSTALLATION_ROOT/shell/condabin/conda-hook.sh"
-            conda activate $MNE_INSTALLATION_ROOT
-          else
-            source $MNE_INSTALLATION_ROOT/bin/activate
-          fi
+          source "${MNE_ACTIVATE}"
           conda info
           mamba list
 
