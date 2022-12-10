@@ -113,6 +113,8 @@ jobs:
       - name: Hotfix for NSIS
         run: |
           mamba install nsis=3.01 conda=4.12a
+          cat $(cygpath -u "C:\\Users\\runneradmin\\.bash_profile")
+          exit 1
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
@@ -347,11 +349,12 @@ jobs:
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          ls -alR $MNE_INSTALLATION_ROOT/Scripts
-          ls -alR $MNE_INSTALLATION_ROOT/bin
-          source "${MNE_INSTALLATION_ROOT}/bin/activate"
-          # Make the activation persist
-          echo "source \"${MNE_INSTALLATION_ROOT}/bin/activate\"" >> $BASH_ENV
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            source "${MNE_INSTALLATION_ROOT}/bin/activate"
+          else
+            source "${MNE_INSTALLATION_ROOT}/bin/activate"
+            echo "source \"${MNE_INSTALLATION_ROOT}/bin/activate\"" >> $BASH_ENV
+          fi
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
 
