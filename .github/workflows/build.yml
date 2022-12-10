@@ -347,8 +347,13 @@ jobs:
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          ls -alR "$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION/*"
-          source "${MNE_ACTIVATE}"
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            source "$MNE_INSTALLATION_ROOT/shell/condabin/conda-hook.sh"
+            conda activate $MNE_INSTALLATION_ROOT
+          else
+            source $MNE_INSTALLATION_ROOT/bin/activate
+          fi
+          source "${MNE_INSTALLATION_ROOT}"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
 
@@ -377,7 +382,12 @@ jobs:
       - name: Check installation
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          source "${MNE_ACTIVATE}"
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            source "$MNE_INSTALLATION_ROOT/shell/condabin/conda-hook.sh"
+            conda activate $MNE_INSTALLATION_ROOT
+          else
+            source $MNE_INSTALLATION_ROOT/bin/activate
+          fi
           conda info
           mamba list
 
