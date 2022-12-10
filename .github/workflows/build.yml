@@ -346,6 +346,7 @@ jobs:
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
+          # TODO: Remove
           ls -al ~/
           ls -alR ~/mne-python/$MNE_INSTALLER_VERSION"
           source "${MNE_ACTIVATE}"
@@ -437,6 +438,8 @@ jobs:
     needs: [build, sign, test]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
+    defaults:
+      shell: bash -el {0}
     steps:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
 
