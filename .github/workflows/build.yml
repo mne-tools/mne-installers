@@ -340,7 +340,6 @@ jobs:
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
-        shell: cmd
         run: |
           chmod +x ${MNE_INSTALLER_NAME}
           ./${MNE_INSTALLER_NAME} /S /InstallationType=JustMe /AddToPath=1
