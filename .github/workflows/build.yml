@@ -304,9 +304,13 @@ jobs:
         run: |
           source ./tools/extract_version.sh
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}"
           echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}"
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
           echo "MNE_INSTALLATION_ROOT=${MNE_INSTALLATION_ROOT}" >> $GITHUB_ENV
+          echo "MNE_INSTALLATION_ROOT=${MNE_INSTALLATION_ROOT}"
 
       - name: Download appropriate installer
         uses: actions/download-artifact@v3
