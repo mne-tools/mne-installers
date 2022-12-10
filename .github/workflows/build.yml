@@ -113,8 +113,6 @@ jobs:
       - name: Hotfix for NSIS
         run: |
           mamba install nsis=3.01 conda=4.12a
-          cat $(cygpath -u "C:\\Users\\runneradmin\\.bash_profile")
-          exit 1
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
@@ -311,8 +309,8 @@ jobs:
           echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}"
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
-          echo "MNE_INSTALLATION_ROOT=${MNE_INSTALLATION_ROOT}" >> $GITHUB_ENV
-          echo "MNE_INSTALLATION_ROOT=${MNE_INSTALLATION_ROOT}"
+          echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
+          echo "MNE_ACTIVATE=${MNE_ACTIVATE}"
 
       - name: Download appropriate installer
         uses: actions/download-artifact@v3
@@ -349,12 +347,7 @@ jobs:
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            source "${MNE_INSTALLATION_ROOT}/bin/activate"
-          else
-            source "${MNE_INSTALLATION_ROOT}/bin/activate"
-            echo "source \"${MNE_INSTALLATION_ROOT}/bin/activate\"" >> $BASH_ENV
-          fi
+          source "${MNE_ACTIVATE}"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
 
@@ -383,6 +376,7 @@ jobs:
       - name: Check installation
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
+          source "${MNE_ACTIVATE}"
           conda info
           mamba list
 

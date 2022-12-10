@@ -43,15 +43,16 @@ fi
 
 if [[ "$MACHINE" == "macOS" ]]; then
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
-    MNE_INSTALLATION_ROOT="/Applications/MNE-Python/.mne-python"
+    MNE_ACTIVATE="/Applications/MNE-Python/.mne-python/bin/activate"
 elif [[ "$MACHINE" == "Linux" ]]; then
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.sh"
-    MNE_INSTALLATION_ROOT="$HOME/mne-python/${MNE_INSTALLER_VERSION}"
+    MNE_ACTIVATE="$HOME/mne-python/${MNE_INSTALLER_VERSION}/bin/activate"
 else
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.exe"
-    MNE_INSTALLATION_ROOT="$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION"
+    ls -alR "$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION/etc"
+    MNE_ACTIVATE="$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION/etc/profile.d/conda.sh"
 fi
 
 export MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}"
-export MNE_INSTALLATION_ROOT="$MNE_INSTALLATION_ROOT"
+export MNE_ACTIVATE="$MNE_ACTIVATE"
 export MNE_INSTALLER_ARTIFACT_ID="MNE-Python-${MACHINE}-${ARTIFACT_ID_SUFFIX}"
