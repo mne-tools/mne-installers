@@ -75,7 +75,6 @@ specs:
   - mne-ari =0.1.1
   - mne-kit-gui =1.0.1
   - mne-icalabel =0.4  # [not win]
-  - openmeeg =2.5.5
   - autoreject =0.4.0
   - pyprep =0.4.2
   # Python
@@ -83,7 +82,7 @@ specs:
   - pip
   - conda
   - mamba
-  - libopenblas >=0.3.21
+  - openblas =0.3.21
   - jupyter
   - jupyterlab
   - ipykernel
