@@ -23,14 +23,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- os: macos-11
-          #  arch: x86_64
+          - os: macos-11
+            arch: x86_64
 
-          #- os: macos-11
-          #  arch: arm64
+          - os: macos-11
+            arch: arm64
 
-          #- os: ubuntu-18.04
-          #  arch: x86_64
+          - os: ubuntu-18.04
+            arch: x86_64
 
           - os: windows-2019
             arch: x86_64
@@ -282,9 +282,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #os: [ubuntu-18.04, ubuntu-20.04, macos-11, macos-12, windows-2019, windows-2022]
-        # TODO: Revert
-        os: [windows-2019]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-11, macos-12, windows-2019, windows-2022]
         arch: [x86_64]
         # We currently can't/don't test anything about the arm64 build
         # include:
