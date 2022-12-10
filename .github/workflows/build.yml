@@ -317,6 +317,11 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
 
+      - name: Check installer signing (Windows)
+        if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
+        run: |
+          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v $MNE_INSTALLER_NAME
+
       - name: Run installer (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
@@ -332,17 +337,13 @@ jobs:
           echo `pwd`
           sh ./${MNE_INSTALLER_NAME} -b
 
-      - name: Check installer signing (Windows)
-        if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
-        run: |
-          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v $MNE_INSTALLER_NAME
-
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
+        timeout-minutes: 20
+        shell: cmd
         run: |
-          chmod +x ${MNE_INSTALLER_NAME}
-          ./${MNE_INSTALLER_NAME} /S /InstallationType=JustMe /AddToPath=1
+          .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
 
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
