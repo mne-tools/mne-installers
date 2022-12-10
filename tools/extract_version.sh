@@ -49,8 +49,7 @@ elif [[ "$MACHINE" == "Linux" ]]; then
     MNE_ACTIVATE="$HOME/mne-python/${MNE_INSTALLER_VERSION}/bin/activate"
 else
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.exe"
-    ls -alR "$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION/*"
-    MNE_ACTIVATE="$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION/condabin/activate"
+    MNE_ACTIVATE="$(cygpath -u $USERPROFILE)/mne-python/$MNE_INSTALLER_VERSION/etc/profile.d/conda.sh"
 fi
 
 export MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}"
