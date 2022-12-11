@@ -346,9 +346,6 @@ jobs:
       - name: Export frozen environment definition
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          # TODO: Remove
-          ls -al ~/
-          ls -alR ~/mne-python/$MNE_INSTALLER_VERSION
           source "${MNE_ACTIVATE}"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
