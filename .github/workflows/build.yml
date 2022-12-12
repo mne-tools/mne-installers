@@ -364,8 +364,6 @@ jobs:
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
           echo "DISPLAY=:99" >> $GITHUB_ENV
-          echo "Checking whether (Py)Qt is working"
-          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
       - name: Setup graphical support (Windows)
         if: ${{ runner.os == 'Windows' }}
@@ -413,6 +411,9 @@ jobs:
             for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
             popd
           fi
+
+          echo "Checking whether (Py)Qt is working"
+          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
           echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
