@@ -28,9 +28,10 @@ print('Running pyvistaqt tests')
 fname = this_path / 'test.png'
 mne.viz.set_3d_backend('pyvista')
 fig = mne.viz.create_3d_figure((400, 400), scene=False, show=True)
+fig._process_events()
 plotter = fig.figure.plotter
 plotter.add_orientation_widget(pyvista.Cube())  # Old test without color='b'
-plotter.add_mesh(pyvista.Cube())
+plotter.add_mesh(pyvista.Cube(), render=False)
 if fname.is_file():
     os.remove(fname)
 assert not fname.is_file()
