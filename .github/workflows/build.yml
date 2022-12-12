@@ -420,10 +420,11 @@ jobs:
           if [[ "${{ runner.os }}" == "macOS" ]]; then
             python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
           fi
-          if [[ "${{ runner.os }}" != "Windows" ]]; then  # broken on Windows!
+          # TODO: broken on Windows!
+          if [[ "${{ runner.os }}" != "Windows" ]]; then
             python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
+            python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
           fi
-          python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'"
 
           echo "Running MNE's sys_info"
           mne sys_info
