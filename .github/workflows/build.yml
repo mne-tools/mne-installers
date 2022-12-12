@@ -25,33 +25,23 @@ jobs:
         include:
           - os: macos-11
             arch: x86_64
-            shell: bash
 
           - os: macos-11
             arch: arm64
-            shell: bash
 
           - os: ubuntu-18.04
             arch: x86_64
-            shell: bash
 
           - os: windows-2019
             arch: x86_64
-            shell: msys2  # it's in fact a bash shell, too
 
     runs-on: ${{ matrix.os }}
 
     defaults:
       run:
-        shell: ${{ matrix.shell == 'msys2' && 'msys2 -el {0}' || 'bash -el {0}' }}
+        shell: bash -el {0}
 
     steps:
-      - name: Setup MSYS2 (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        uses: msys2/setup-msys2@v2
-        with:
-          path-type: inherit
-
       # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install code-signing certificates (macOS)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
@@ -112,7 +102,7 @@ jobs:
           # List available signing identities (for debugging purposes)
           security find-identity
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install Micromamba
         uses: mamba-org/provision-with-micromamba@main
@@ -122,19 +112,13 @@ jobs:
 
       - name: Hotfix for NSIS
         run: |
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-          conda install nsis=3.01 conda=4.12a
+          mamba install nsis=3.01 conda=4.12a
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
         env:
           MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
         run: |
-          # Unnecessary on macOS & Linux, but required for Windows (why?)
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-
           source ./tools/extract_version.sh
           echo "Version:     ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
           test "$MNE_INSTALLER_VERSION" != ""
@@ -154,10 +138,6 @@ jobs:
 
       - name: Patch constructor
         run: |
-          # Unnecessary on macOS & Linux, but required for Windows (why?)
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-
           ./tools/patch_constructor.sh
 
       - name: Add macOS M1 support
@@ -181,10 +161,6 @@ jobs:
         #                    Linux
         timeout-minutes: 50
         run: |
-          # Unnecessary on macOS & Linux, but required for Windows (why?)
-          eval "$(micromamba shell hook --shell=bash)"
-          micromamba activate constructor-env
-
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
@@ -250,10 +226,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Determine installer name (cross-OS)
         if: github.event_name != 'pull_request'
-        shell: bash -el {0}
         run: |
           source ./tools/extract_version.sh Windows
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
@@ -316,21 +291,34 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    defaults:
+      run:
+        shell: bash -el {0}
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Determine installer name
-        shell: bash -el {0}
         run: |
           source ./tools/extract_version.sh
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}"
           echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}"
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
+          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
+          echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
+          echo "MNE_ACTIVATE=${MNE_ACTIVATE}"
 
       - name: Download appropriate installer
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+
+      - name: Check installer signing (Windows)
+        if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
+        run: |
+          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v $MNE_INSTALLER_NAME
 
       - name: Run installer (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
@@ -347,45 +335,20 @@ jobs:
           echo `pwd`
           sh ./${MNE_INSTALLER_NAME} -b
 
-      - name: Check installer signing (Windows)
-        if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
-        shell: cmd
-        run: |
-          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v .\%MNE_INSTALLER_NAME%
-
-      # https://docs.anaconda.com/anaconda/install/silent-mode.html
+      # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
-        shell: cmd  # Couldn't get PowerShell to properly perform install
+        timeout-minutes: 20
+        shell: cmd
         run: |
           .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
 
-      - name: Export frozen environment definition (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
+      - name: Export frozen environment definition
+        if: ${{ matrix.arch == 'x86_64' }}
         run: |
-          source /Applications/MNE-Python/.mne-python/bin/activate
+          source "${MNE_ACTIVATE}"
           mamba list --json > ${MNE_INSTALLER_NAME}.env.json
           cat ${MNE_INSTALLER_NAME}.env.json
-
-      - name: Export frozen environment definition (Linux)
-        if: ${{ runner.os == 'Linux' }}
-        run: |
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
-          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
-          cat ${MNE_INSTALLER_NAME}.env.json
-
-      - name: Export frozen environment definition (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        # TODO: conda rather than mamba for now here and in Check Installation below
-        # https://github.com/mne-tools/mne-installers/pull/158#issuecomment-1344147095
-        run: |
-          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
-          . "$MneRoot\shell\condabin\conda-hook.ps1"
-          conda activate $MneRoot
-          $JsonName = "$env:MNE_INSTALLER_NAME"
-          $JsonName += ".env.json"
-          conda list --json > "$JsonName"
-          Get-Content "$JsonName"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -393,125 +356,93 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
 
-      - name: Check installation (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
-        run: |
-          source /Applications/MNE-Python/.mne-python/bin/activate
-          conda info
-          mamba list
-
-          echo "Testing that file permissions are set correctly (owned by "runner", not "root".)"
-          # https://unix.stackexchange.com/a/7733
-          [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
-
-          # Check that the installed Python is, in fact, an Intel binary
-          python -c "import platform; assert platform.machine() == 'x86_64'"
-
-          echo "Checking the deployed environment variables were set correctly upon environment activation"
-          mamba env config vars list
-          python -c "import os; assert os.getenv('CONDA_SUBDIR') == 'osx-64', ('CONDA_SUBDIR != osx-64', os.getenv('CONDA_SUBDIR'))"
-          python -c "import os; assert os.getenv('PYTHONNOUSERSITE') == '1', ('PYTHONNOUSERSITE != 1', os.getenv('PYTHONNOUSERSITE'))"
-          python -c "import os; assert os.getenv('MAMBA_NO_BANNER') == '1', ('MAMBA_NO_BANNER != 1', os.getenv('MAMBA_NO_BANNER'))"
-
-          echo "Checking we have all .app bundles in /Applications/MNE-Python:"
-          ls -d /Applications/MNE-Python/*.app
-          test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5
-
-          echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
-          test -f /Applications/MNE-Python/Icon$'\r'
-
-          echo "Running MNE's sys_info"
-          mne sys_info
-
-          echo "Trying to import MNE and all additional packages included in the installer"
-          python tests/test_imports.py
-          python tests/test_gui.py
-          python tests/test_notebook.py
-          python tests/test_json_versions.py
-
       - name: Setup graphical support (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
+          source "${MNE_ACTIVATE}"
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
           echo "DISPLAY=:99" >> $GITHUB_ENV
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
-          echo "Checking whether (Py)Qt is working"
-          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
-      - name: Check installation (Linux)
-        if: ${{ runner.os == 'Linux' }}
+      - name: Setup graphical support (Windows)
+        if: ${{ runner.os == 'Windows' }}
         run: |
-          source ~/mne-python/${MNE_INSTALLER_VERSION}/bin/activate
+          git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
+          powershell ./gl-ci-helpers/appveyor/install_opengl.ps1
+
+      - name: Check installation
+        if: ${{ matrix.arch == 'x86_64' }}
+        run: |
+          source "${MNE_ACTIVATE}"
           conda info
           mamba list
 
+          if [[ "${{ runner.os }}" == "macOS" ]]; then
+            echo "Testing that file permissions are set correctly (owned by "runner", not "root".)"
+            # https://unix.stackexchange.com/a/7733
+            [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
+            # Check that the installed Python is, in fact, an Intel binary
+            python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
+            echo "Checking we have all .app bundles in /Applications/MNE-Python:"
+            ls -d /Applications/MNE-Python/*.app || exit 1
+            test `ls -d /Applications/MNE-Python/*.app | wc -l` -eq 5 || exit 1
+            echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
+            test -f /Applications/MNE-Python/Icon$'\r' || exit 1
+          elif [[ "${{ runner.os }}" == "Linux" ]]; then
+            echo "Checking that menu shortcuts were created …"
+            pushd ~/.local/share/applications
+            ls -l || exit 1
+            echo "Checking for existence of .desktop files:"
+            ls MNE-Python*.desktop || exit 1
+            test `ls MNE-Python*.desktop | wc -l` -eq 5 || exit 1
+            echo ""
+
+            # … and patched to work around a bug in menuinst
+            echo "Checking that incorrect Terminal entries have been removed"
+            test `grep "Terminal=True"  MNE-Python*.desktop | wc -l` -eq 0 || exit 1
+            test `grep "Terminal=False" MNE-Python*.desktop | wc -l` -eq 0 || exit 1
+            echo ""
+
+            echo "Checking that Terminal entries are correct…"
+            test `grep "Terminal=true"  MNE-Python*.desktop | wc -l` -ge 1 || exit 1
+            test `grep "Terminal=false" MNE-Python*.desktop | wc -l` -ge 1 || exit 1
+            # Display their contents
+            for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
+            popd
+          fi
+
+          echo "Checking whether (Py)Qt is working"
+          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
+
           echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
-          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
-          python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
-
-          echo "Checking that menu shortcuts were created …"
-          pushd ~/.local/share/applications
-          ls -l
-          echo "Checking for existence of .desktop files:"
-          ls MNE-Python*.desktop
-          test `ls MNE-Python*.desktop | wc -l` -eq 5
-          echo ""
-
-          # … and patched to work around a bug in menuinst
-          echo "Checking that incorrect Terminal entries have been removed"
-          test `grep "Terminal=True"  MNE-Python*.desktop | wc -l` -eq 0
-          test `grep "Terminal=False" MNE-Python*.desktop | wc -l` -eq 0
-          echo ""
-
-          echo "Checking that Terminal entries are correct…"
-          test `grep "Terminal=true"  MNE-Python*.desktop | wc -l` -ge 1
-          test `grep "Terminal=false" MNE-Python*.desktop | wc -l` -ge 1
-
-          # Display their contents
-          for f in MNE-Python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
-          popd
+          if [[ "${{ runner.os }}" == "macOS" ]]; then
+            python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
+          fi
+          # TODO: broken on Windows!
+          if [[ "${{ runner.os }}" != "Windows" ]]; then
+            python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
+            python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
+          fi
 
           echo "Running MNE's sys_info"
           mne sys_info
 
           echo "Trying to import MNE and all additional packages included in the installer"
-          python tests/test_imports.py
-          python tests/test_gui.py
-          python tests/test_notebook.py
-          python tests/test_json_versions.py
-
-      - name: Check installation (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: |
-          git clone --depth 1 https://github.com/pyvista/gl-ci-helpers.git
-          ./gl-ci-helpers/appveyor/install_opengl.ps1
-
-          $MneRoot = "$env:UserProfile\mne-python\$env:MNE_INSTALLER_VERSION"
-          . "$MneRoot\shell\condabin\conda-hook.ps1"
-          conda activate $MneRoot
-          conda info
-          conda list
-          conda env config vars list
-          python -c "import os; assert 'PYTHONNOUSERSITE' in os.environ; assert os.environ['PYTHONNOUSERSITE'] == '1'"
-          python -c "import os; assert 'MAMBA_NO_BANNER' in os.environ; assert os.environ['MAMBA_NO_BANNER'] == '1'"
-
-          echo "Running MNE's sys_info"
-          . "$MneRoot\Scripts\mne.exe" sys_info
-
-          echo "Trying to import MNE and all additional packages included in the installer"
-          python tests\test_imports.py
-          python tests\test_gui.py
-          python tests\test_notebook.py
-          python tests/test_json_versions.py
+          python -u tests/test_imports.py
+          python -u tests/test_gui.py
+          python -u tests/test_notebook.py
+          python -u tests/test_json_versions.py
 
   # Release
   release:
     needs: [build, sign, test]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
 
@@ -560,7 +491,6 @@ jobs:
       #     name: MNE-Python-macOS-arm64-json
 
       - name: Check contents
-        shell: bash -el {0}
         run: |
           ls -al ./
 

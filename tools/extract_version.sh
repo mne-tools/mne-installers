@@ -14,6 +14,7 @@ else
         Linux*)      MACHINE=Linux;;
         Darwin*)     MACHINE=macOS;;
         MINGW64_NT*) MACHINE=Windows;;
+        MSYS_NT*)    MACHINE=Windows;;
         *)           MACHINE="UNKNOWN:${UNAME}"
     esac
 fi
@@ -42,11 +43,15 @@ fi
 
 if [[ "$MACHINE" == "macOS" ]]; then
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
+    MNE_ACTIVATE="/Applications/MNE-Python/.mne-python/bin/activate"
 elif [[ "$MACHINE" == "Linux" ]]; then
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.sh"
+    MNE_ACTIVATE="$HOME/mne-python/${MNE_INSTALLER_VERSION}/bin/activate"
 else
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.exe"
+    MNE_ACTIVATE="$HOME/mne-python/$MNE_INSTALLER_VERSION/Scripts/activate"
 fi
 
 export MNE_INSTALLER_NAME="${MNE_INSTALLER_NAME}"
+export MNE_ACTIVATE="$MNE_ACTIVATE"
 export MNE_INSTALLER_ARTIFACT_ID="MNE-Python-${MACHINE}-${ARTIFACT_ID_SUFFIX}"
