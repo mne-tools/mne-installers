@@ -76,6 +76,7 @@ specs:
   - mne-icalabel =0.4  # [not win]
   - autoreject =0.4.0
   - pyprep =0.4.2
+  - openmeeg =2.5.5
   # Python
   - python =3.10.8
   - pip
