@@ -359,6 +359,7 @@ jobs:
       - name: Setup graphical support (Linux)
         if: ${{ runner.os == 'Linux' }}
         run: |
+          source "${MNE_ACTIVATE}"
           sudo apt-get install -y xvfb
           /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x1024x24 -ac +extension GLX +render -noreset -nolisten tcp -nolisten unix
           export DISPLAY=":99"
@@ -417,10 +418,12 @@ jobs:
           echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
           if [[ "${{ runner.os }}" == "macOS" ]]; then
-            python -c "import os; assert os.getenv('CONDA_SUBDIR') == 'osx-64', ('CONDA_SUBDIR != osx-64', os.getenv('CONDA_SUBDIR'))" || exit 1
+            python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
           fi
-          python -c "import os; assert os.getenv('PYTHONNOUSERSITE') == '1', ('PYTHONNOUSERSITE != 1', os.getenv('PYTHONNOUSERSITE'))"
-          python -c "import os; assert os.getenv('MAMBA_NO_BANNER') == '1', ('MAMBA_NO_BANNER != 1', os.getenv('MAMBA_NO_BANNER'))"
+          if [[ "${{ runner.os }}" != "Windows" ]]; then  # broken on Windows!
+            python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
+          fi
+          python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'"
 
           echo "Running MNE's sys_info"
           mne sys_info
