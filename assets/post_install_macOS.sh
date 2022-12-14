@@ -44,7 +44,7 @@ fi
 logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
 ${DSTBIN}/conda env config vars set PYTHONNOUSERSITE=1
 
-echo "ℹ️ Configuring Matplotlib to use the Qt5 backend by default."
+logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt5 backend by default."
 ${DSTBIN}/conda env config vars set MPLBACKEND=qt5agg
 
 logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
