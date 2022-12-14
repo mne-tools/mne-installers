@@ -75,7 +75,7 @@ specs:
   - mne-kit-gui =1.0.1
   - mne-icalabel =0.4  # [not win]
   - mnelab =0.8.5   # [not arm64]  # https://github.com/conda-forge/pyside2-feedstock/issues/159
-  - pyside6 =6.4.1  # for MNELAB. Without this pinning, 6.4.0 might get installed (why?!)
+  - pyside6 =6.4.1  # [not arm64]  # For MNELAB. Without this pinning, 6.4.0 might get installed (why?!)
   - autoreject =0.4.0
   - pyprep =0.4.2
   - openmeeg =2.5.5
