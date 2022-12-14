@@ -412,8 +412,11 @@ jobs:
             popd
           fi
 
-          echo "Checking whether (Py)Qt is working"
+          echo "Checking whether PyQt5 is working"
           LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
+
+          echo "Checking whether PySide6 is working"
+          LD_DEBUG=libs python -c "from PySide6.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
           echo "Checking the deployed environment variables were set correctly upon environment activation"
           mamba env config vars list
