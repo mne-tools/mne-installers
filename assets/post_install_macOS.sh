@@ -44,11 +44,11 @@ fi
 logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
 ${DSTBIN}/conda env config vars set PYTHONNOUSERSITE=1
 
+echo "ℹ️ Configuring Matplotlib to use the Qt5 backend by default."
+${DSTBIN}/conda env config vars set MPLBACKEND=qt5agg
+
 logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
 ${DSTBIN}/conda env config vars set MAMBA_NO_BANNER=1
-
-logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
-sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${DSTROOT}/.mne-python/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
