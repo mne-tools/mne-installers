@@ -12,8 +12,7 @@ import mne_rsa
 import mne_microstates
 import mne_ari
 import mne_kit_gui
-if not(platform.system() == 'Darwin' and platform.processor() == 'arm'):
-    import mnelab
+import mnelab
 if platform.system() != 'Windows':
     import mne_icalabel
 import autoreject
