@@ -78,7 +78,7 @@ specs:
   - pyprep =0.4.2
   - openmeeg =2.5.5
   # Python
-  - python =3.10.9
+  - python =3.10.8
   - pip
   - conda
   - mamba
