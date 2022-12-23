@@ -317,8 +317,9 @@ jobs:
 
       - name: Check installer signing (Windows)
         if: ${{ runner.os == 'Windows' && github.event_name != 'pull_request' }}
+        shell: cmd
         run: |
-          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v $MNE_INSTALLER_NAME
+          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe" verify /pa /v .\%MNE_INSTALLER_NAME%
 
       - name: Run installer (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
