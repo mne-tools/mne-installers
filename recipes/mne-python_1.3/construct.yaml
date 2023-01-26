@@ -127,7 +127,7 @@ specs:
   - ipympl
   - seaborn
   - plotly
-  - vtk =9.2.2
+  - vtk =9.2.5
   # Temporary
   # for VS Code compatibility: https://github.com/microsoft/vscode-jupyter/issues/8552#issuecomment-1263940999
   - ipywidgets <8
