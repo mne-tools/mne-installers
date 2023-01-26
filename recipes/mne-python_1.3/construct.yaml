@@ -67,7 +67,7 @@ specs:
   - mne-bids =0.12.0
   - mne-bids-pipeline =1.1.0
   - mne-qt-browser =0.4.0
-  - mne-connectivity =0.4.0
+  - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
   - mne-realtime =0.2.0
