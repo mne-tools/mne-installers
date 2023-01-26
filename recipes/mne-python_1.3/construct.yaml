@@ -74,7 +74,7 @@ specs:
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
-  - autoreject =0.4.0
+  - autoreject =0.4.1
   - pyprep =0.4.2
   - openmeeg =2.5.5
   # Python
