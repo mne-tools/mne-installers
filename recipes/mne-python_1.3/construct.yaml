@@ -74,7 +74,7 @@ specs:
   - mne-features =0.2.1
   - mne-rsa =0.8
   - mne-ari =0.1.2
-  - mne-kit-gui =1.0.1
+  - mne-kit-gui =1.1.0
   - mne-icalabel =0.4
   - autoreject =0.4.0
   - pyprep =0.4.2
