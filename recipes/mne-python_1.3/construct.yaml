@@ -1,4 +1,4 @@
-version: 1.3.0_0
+version: 1.3.0_1
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,17 +18,17 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.3.0_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.3.0_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.3.0_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.3.0_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.3.0_1                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.3.0_1"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.3.0_1"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.3.0_1"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.3.0_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.3.0_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.3.0_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.3.0_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.3.0_1-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.3.0_1-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.3.0_1-Windows.exe      # [win]
+installer_filename: MNE-Python-1.3.0_1-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -46,6 +46,8 @@ menu_packages:
 
 channels:
   - conda-forge
+  # conda-forge doesn't provide pytorch packages for Windows
+  - pytorch  # [win]
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
@@ -73,7 +75,7 @@ specs:
   - mne-rsa =0.8
   - mne-ari =0.1.2
   - mne-kit-gui =1.0.1
-  - mne-icalabel =0.4  # [not win]
+  - mne-icalabel =0.4
   - autoreject =0.4.0
   - pyprep =0.4.2
   - openmeeg =2.5.5
@@ -135,6 +137,7 @@ specs:
 condarc:
   channels:
     - conda-forge
+    - pytorch  # [win]
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.3.0_0) "
+  env_prompt: "(mne-1.3.0_1) "
