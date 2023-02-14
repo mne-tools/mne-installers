@@ -110,6 +110,11 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
+      - name: Hotfix for NSIS
+        run: |
+          mamba install nsis=3.01 conda=4.12a
+        if: ${{ runner.os == 'Windows' }}
+
       - name: Extract version information
         env:
           MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
