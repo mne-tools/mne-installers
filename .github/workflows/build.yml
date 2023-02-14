@@ -136,6 +136,10 @@ jobs:
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
 
+      - name: Patch constructor
+        run: |
+          ./tools/patch_constructor.sh
+
       - name: Add macOS M1 support
         if: ${{ matrix.arch == 'arm64' }}
         run: |
