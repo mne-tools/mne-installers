@@ -1,7 +1,7 @@
 name: constructor-env
 
 channels:
-  - napari/label/bundle_tools
+  - napari/label/bundle_tools_2
   - conda-forge
 
 dependencies:
@@ -9,4 +9,4 @@ dependencies:
   - conda-standalone =4.12a=*_9
   - menuinst =2.0a=14_g594d642_*
   - conda =4.12a
-  - mamba =1.1.0
+  - mamba
