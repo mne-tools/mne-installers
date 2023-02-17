@@ -77,7 +77,7 @@ specs:
   - autoreject =0.4.1
   - pyprep =0.4.2
   - openmeeg =2.5.5
-  - pyriemann 0.4
+  # - pyriemann 0.4
   # Python
   - python =3.10.8
   - pip
