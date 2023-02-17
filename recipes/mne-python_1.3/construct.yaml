@@ -82,7 +82,7 @@ specs:
   - python =3.10.8
   - pip
   - conda
-  - mamba
+  - mamba =1.1.0
   - openblas =0.3.21
   - jupyter
   - jupyterlab
