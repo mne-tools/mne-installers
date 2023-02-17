@@ -5,7 +5,7 @@ channels:
   - conda-forge
 
 dependencies:
-  - constructor =4.0b9
+  - constructor
   - conda-standalone =22.11.1.post1
   - menuinst =2.0a
   - conda =22.11.1.post1
