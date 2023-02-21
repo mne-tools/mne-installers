@@ -32,7 +32,6 @@ class Package:
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
     'ipywidgets',  # temporary, compatibility with VScode
-    'vtk',  # 9.2.6 causes conflicts as of 2023/02/21
 }
 packages: list[Package] = []
 
