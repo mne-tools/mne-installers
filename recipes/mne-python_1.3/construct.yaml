@@ -45,9 +45,9 @@ menu_packages:
   - mne-installer-menus
 
 channels:
-  - conda-forge
   # conda-forge doesn't provide pytorch packages for Windows
-  # - pytorch  # [win]
+  - pytorch  # [win]
+  - conda-forge
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
@@ -84,7 +84,7 @@ specs:
   # is only a fraction of the CUDA-enabled package (which also blows up NSIS
   # for the Windows build).
   # PyTorch for Windows will be pulled from the pytorch channel
-  # (see "channels" section below).
+  # (see "channels" section above and below).
   - pytorch=*=cpu*  # [not win]
   - pytorch  # [win]
   - cpuonly  # [win]
