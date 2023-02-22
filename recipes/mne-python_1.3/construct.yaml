@@ -85,7 +85,10 @@ specs:
   # for the Windows build).
   # PyTorch for Windows will be pulled from the pytorch channel
   # (see "channels" section below).
-  - pytorch=*=*cpu*
+  - pytorch=*=cpu*  # [not win 
+]
+  - pytorch  # [win]
+  - cpuonly  # [win]
   # Python
   - python =3.10.8
   - pip
