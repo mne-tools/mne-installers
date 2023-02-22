@@ -75,10 +75,17 @@ specs:
   - mne-rsa =0.8
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
-  - mne-icalabel =0.4  # [not win]
+  - mne-icalabel =0.4
   - autoreject =0.4.1
   - pyprep =0.4.2
   - openmeeg =2.5.5
+  # Deep learning
+  # We explicitly request the CPU version of the package, as the package size
+  # is only a fraction of the CUDA-enabled package (which also blows up NSIS
+  # for the Windows build).
+  # PyTorch for Windows will be pulled from the pytorch channel
+  # (see "channels" section below).
+  - pytorch=*=cpu*
   # Python
   - python =3.10.8
   - pip
@@ -136,8 +143,8 @@ specs:
 
 condarc:
   channels:
+    - pytorch  # [win]
     - conda-forge
-    # - pytorch  # [win]
   channel_priority: strict
   allow_other_channels: False
   env_prompt: "(mne-1.3.0_1) "
