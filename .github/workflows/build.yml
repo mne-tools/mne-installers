@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - testsign
     tags:
     - '*'
   pull_request:
@@ -24,14 +23,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- os: macos-11
-          #  arch: x86_64
+          - os: macos-11
+            arch: x86_64
 
-          #- os: macos-11
-          #  arch: arm64
+          - os: macos-11
+            arch: arm64
 
-          #- os: ubuntu-20.04
-          #  arch: x86_64
+          - os: ubuntu-20.04
+            arch: x86_64
 
           - os: windows-2019
             arch: x86_64
