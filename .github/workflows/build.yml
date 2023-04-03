@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - testsign
     tags:
     - '*'
   pull_request:
@@ -242,7 +243,7 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: EV-code sign installer (Windows)
         if: github.event_name != 'pull_request'
-        uses: sslcom/actions-codesigner@develop
+        uses: sslcom/esigner-codesign@develop
         with:
           command: sign
           username: ${{ secrets.ES_USERNAME }}
@@ -250,11 +251,10 @@ jobs:
           credential_id: ${{ secrets.ES_CREDENTIAL_ID }}
           totp_secret: ${{ secrets.ES_TOTP_SECRET }}
           file_path: ${GITHUB_WORKSPACE}/${{ env.MNE_INSTALLER_NAME }}
-          output_path: ${GITHUB_WORKSPACE}/signed
+          override: true
       - name: Calculate new SHA256 hash of installer package
         if: github.event_name != 'pull_request'
         run: |
-          mv signed/${MNE_INSTALLER_NAME} .
           shopt -s nullglob  # Fail if the following pattern yields no results
           echo "Finding matches"
           matches=(MNE-Python-*-*.*)
@@ -266,9 +266,11 @@ jobs:
           hash_fname="${MNE_INSTALLER_NAME}.sha256.txt"
           echo "Old hash:"
           cat "$hash_fname"
+          OLD_HASH="$(cat $hash_fname)"
           shasum -a 256 "$MNE_INSTALLER_NAME" > "$hash_fname"
           echo "New hash:"
           cat "$hash_fname"
+          test "$(cat $hash_fname)" != "$OLD_HASH"
       - name: Overwrite artifacts
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v3
