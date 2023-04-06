@@ -102,7 +102,8 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.6.1
+  - fsleyes =1.6.1 # [not win]
+  - fsleyes =1.6.0 # [win]
   - dcm2niix =1.0.20220720
   # Time-frequency analysis
   - pactools =0.3.1
@@ -131,7 +132,8 @@ specs:
   - ipympl =0.9.3
   - seaborn =0.12.2
   - plotly =5.14.1
-  - vtk =9.2.6
+  - vtk =9.2.6  # [arm64 or not osx]
+  - vtk =9.2.5  # [osx and not arm64]
   - ipywidgets =8.0.6
 
 condarc:

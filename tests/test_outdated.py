@@ -31,6 +31,8 @@ class Package:
 
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
+    'fsleyes',  # 2023/04/05: some unknown conflict on Windows
+    'vtk',  # 2023/04/05: some unknown conflict on arm
 }
 packages: list[Package] = []
 
