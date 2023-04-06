@@ -83,56 +83,56 @@ specs:
   - openmeeg =2.5.5
   # Python
   - python =3.10.8
-  - pip
-  - conda
-  - mamba
-  - openblas
-  - jupyter
-  - jupyterlab
-  - ipykernel
-  - nb_conda_kernels
-  - spyder-kernels
-  - spyder
-  - darkdetect
-  - qdarkstyle
+  - pip =23.0.1
+  - conda =23.3.1
+  - mamba =1.4.1
+  - openblas =0.3.21
+  - jupyter =1.0.0
+  - jupyterlab =3.6.3
+  - ipykernel =6.22.0
+  - nb_conda_kernels =2.3.1
+  - spyder-kernels =2.4.3
+  - spyder =5.4.3
+  - darkdetect =0.8.0
+  - qdarkstyle =3.1
   # Excel I/O
-  - openpyxl
-  - xlrd
+  - openpyxl =3.1.1
+  - xlrd =2.0.1
   # Statistics
-  - pingouin
-  - pycircstat
+  - pingouin =0.5.3
+  - pycircstat =0.0.2
   # MRI
-  - fsleyes
-  - dcm2niix
+  - fsleyes =1.6.1
+  - dcm2niix =1.0.20220720
   # Time-frequency analysis
-  - pactools
-  - tensorpac
-  - emd
-  - neurodsp
-  - bycycle
-  - fooof
+  - pactools =0.3.1
+  - tensorpac =0.6.5
+  - emd =0.5.5
+  - neurodsp =2.2.0
+  - bycycle =1.0.0
+  - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.2.0
   # OpenNeuro.org data access
-  - openneuro-py
+  - openneuro-py =2022.4.0
   # sleep staging
-  - sleepecg
-  - yasa
+  - sleepecg =0.5.3
+  - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2
+  - neurokit2 =0.2.3
   # GitHub client, https://cli.github.com
-  - gh
+  - gh =2.25.1
   # NeuroSpin needs the following
-  - questionary
-  - pqdm
+  - questionary =1.10.0
+  - pqdm =0.1.0
   # Viz
-  - matplotlib
-  - ipympl
-  - seaborn
-  - plotly
-  - vtk
-  - ipywidgets
+  - matplotlib =3.7.1
+  - ipympl =0.9.3
+  - seaborn =0.12.2
+  - plotly =5.14.1
+  - vtk =9.2.6
+  - ipywidgets =8.0.6
 
 condarc:
   channels:
