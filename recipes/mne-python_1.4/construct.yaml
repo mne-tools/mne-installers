@@ -1,4 +1,4 @@
-version: 1.3.1_0
+version: 1.4.0_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,17 +18,17 @@ initialize_by_default: False
 register_python_default: False
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.3.1_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.3.1_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.3.1_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.3.1_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.4.0_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.4.0_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.4.0_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.4.0_0"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.3.1_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.3.1_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.3.1_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.3.1_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.4.0_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.4.0_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.4.0_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.4.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -62,11 +62,12 @@ specs:
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
+  # TODO: Once 1.4 is actually released, bump these
   - mne =1.3.1=*_0
   - mne-installer-menus =1.3.1=*_0
   - mne-bids =0.12.0
-  - mne-bids-pipeline =1.1.0
-  - mne-qt-browser =0.4.0
+  - mne-bids-pipeline =1.2.0
+  - mne-qt-browser =0.5.0
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
@@ -76,65 +77,64 @@ specs:
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
-  - mnelab =0.8.6
   - autoreject =0.4.1
   - pyriemann =0.4
   - pyprep =0.4.2
   - openmeeg =2.5.5
   # Python
   - python =3.10.8
-  - pip
-  - conda
-  - mamba
+  - pip =23.0.1
+  - conda =23.3.1
+  - mamba =1.4.1
   - openblas =0.3.21
-  - jupyter
-  - jupyterlab
-  - ipykernel
-  - nb_conda_kernels
-  - spyder-kernels
-  - spyder
-  - darkdetect
-  - qdarkstyle
+  - jupyter =1.0.0
+  - jupyterlab =3.6.3
+  - ipykernel =6.22.0
+  - nb_conda_kernels =2.3.1
+  - spyder-kernels =2.4.3
+  - spyder =5.4.3
+  - darkdetect =0.8.0
+  - qdarkstyle =3.1
   # Excel I/O
-  - openpyxl
-  - xlrd
+  - openpyxl =3.1.1
+  - xlrd =2.0.1
   # Statistics
-  - pingouin
-  - pycircstat
+  - pingouin =0.5.3
+  - pycircstat =0.0.2
   # MRI
-  - fsleyes
-  - dcm2niix
+  - fsleyes =1.6.1 # [not win]
+  - fsleyes =1.6.0 # [win]
+  - dcm2niix =1.0.20220720
   # Time-frequency analysis
-  - pactools
-  - tensorpac
-  - emd
-  - neurodsp
-  - bycycle
-  - fooof
+  - pactools =0.3.1
+  - tensorpac =0.6.5
+  - emd =0.5.5
+  - neurodsp =2.2.0
+  - bycycle =1.0.0
+  - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.2.0
   # OpenNeuro.org data access
-  - openneuro-py
+  - openneuro-py =2022.4.0
   # sleep staging
-  - sleepecg
-  - yasa
+  - sleepecg =0.5.3
+  - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2
+  - neurokit2 =0.2.3
   # GitHub client, https://cli.github.com
-  - gh
+  - gh =2.25.1
   # NeuroSpin needs the following
-  - questionary
-  - pqdm
+  - questionary =1.10.0
+  - pqdm =0.1.0
   # Viz
-  - matplotlib
-  - ipympl
-  - seaborn
-  - plotly
-  - vtk =9.2.5
-  # Temporary
-  # for VS Code compatibility: https://github.com/microsoft/vscode-jupyter/issues/8552#issuecomment-1263940999
-  - ipywidgets <8
+  - matplotlib =3.7.1
+  - ipympl =0.9.3
+  - seaborn =0.12.2
+  - plotly =5.14.1
+  - vtk =9.2.6  # [arm64 or not osx]
+  - vtk =9.2.5  # [osx and not arm64]
+  - ipywidgets =8.0.6
 
 condarc:
   channels:
@@ -142,4 +142,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: False
-  env_prompt: "(mne-1.3.1_0) "
+  env_prompt: "(mne-1.4.0_0) "
