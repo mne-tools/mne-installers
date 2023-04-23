@@ -80,12 +80,12 @@ specs:
   - autoreject =0.4.1
   - pyriemann =0.4
   - pyprep =0.4.2
-  - openmeeg =2.5.5
+  - openmeeg =2.5.6
   # Python
   - python =3.10.8
-  - pip
+  - pip =23.1.1
   - conda
-  - mamba
+  - mamba =1.4.2
   - openblas =0.3.21
   - jupyter
   - jupyterlab
@@ -117,10 +117,10 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py
   # sleep staging
-  - sleepecg
+  - sleepecg =0.5.4
   - yasa
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2
+  - neurokit2 =0.2.4
   # GitHub client, https://cli.github.com
   - gh
   # NeuroSpin needs the following
