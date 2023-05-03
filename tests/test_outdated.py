@@ -30,6 +30,7 @@ class Package:
 
 
 allowed_outdated: set[str] = {
+    'fsleyes',  # 2023/04/05: some unknown conflict on Windows
 }
 packages: list[Package] = []
 
