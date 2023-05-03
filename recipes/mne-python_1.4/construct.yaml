@@ -67,7 +67,7 @@ specs:
   # - mne-installer-menus =1.3.1=*_0
   - mne-bids =0.12.0
   - mne-bids-pipeline =1.2.0
-  # - mne-qt-browser =0.5.0  # TODO: wait for https://github.com/conda-forge/mne-qt-browser-feedstock/pull/23
+  - mne-qt-browser =0.5.0
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
@@ -104,7 +104,8 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.6.1
+  - fsleyes =1.6.1 # [not win]
+  - fsleyes =1.6.0 # [win]
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
