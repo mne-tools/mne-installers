@@ -30,7 +30,9 @@ class Package:
 
 
 allowed_outdated: set[str] = {
-    'fsleyes',  # 2023/04/05: some unknown conflict on Windows
+    'python',  # 3.11 is out, but we don't have all deps available yet
+    'fsleyes',  # 2023/04/05: Windows binaries didn't upload
+    'vtk',  # 2023/04/05: some unknown conflict on non-arm macOS
 }
 packages: list[Package] = []
 
