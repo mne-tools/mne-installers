@@ -96,7 +96,7 @@ specs:
   - spyder =5.4.3
   - darkdetect =0.8.0
   - qdarkstyle =3.1
-  - numba =0.56.4  # TODO: need https://github.com/conda-forge/numba-feedstock/pull/115 for 3.11
+  - numba =0.56.4  # TODO: for 3.11 need https://github.com/conda-forge/numba-feedstock/pull/115
   # Excel I/O
   - openpyxl =3.1.2
   - xlrd =2.0.1
