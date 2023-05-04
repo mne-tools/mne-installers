@@ -49,7 +49,7 @@ channels:
   # conda-forge doesn't provide pytorch packages for Windows
   # - pytorch  # [win]
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  # - conda-forge/label/mne_dev
+  - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
@@ -57,14 +57,14 @@ specs:
   # MNE ecosystem
 
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  # - mne =1.2dev0=*_20221007
-  # - mne-installer-menus =1.2dev0=*_20221007
+  - mne =1.4dev0=*_20230503
+  - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
   # TODO: Once 1.4 is actually released, bump these
-  - mne =1.3.1=*_0
-  - mne-installer-menus =1.3.1=*_0
+  # - mne =1.3.1=*_0
+  # - mne-installer-menus =1.3.1=*_0
   - mne-bids =0.12.0
   - mne-bids-pipeline =1.2.0
   - mne-qt-browser =0.5.0
@@ -77,12 +77,13 @@ specs:
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
+  - mne-gui-addons =0.1.0
   - autoreject =0.4.1
   - pyriemann =0.4
   - pyprep =0.4.2
   - openmeeg =2.5.6
   # Python
-  - python =3.10.8
+  - python =3.10.10
   - pip =23.1.2
   - conda =23.3.1
   - mamba =1.4.2
@@ -95,8 +96,9 @@ specs:
   - spyder =5.4.3
   - darkdetect =0.8.0
   - qdarkstyle =3.1
+  - numba =0.56.4  # TODO: for 3.11 need https://github.com/conda-forge/numba-feedstock/pull/115
   # Excel I/O
-  - openpyxl =3.1.1
+  - openpyxl =3.1.2
   - xlrd =2.0.1
   # Statistics
   - pingouin =0.5.3
@@ -108,7 +110,7 @@ specs:
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
-  - emd =0.5.5
+  - emd =0.5.5  # TODO: for 3.11 wait for a new release because https://github.com/conda-forge/emd-feedstock/pull/8 can't (easily) overcome the setup.py version pin
   - neurodsp =2.2.0
   - bycycle =1.0.0
   - fooof =1.0.0
@@ -118,8 +120,8 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2022.4.0
   # sleep staging
-  - sleepecg =0.5.4
-  - yasa =0.6.3
+  - sleepecg =0.5.4  # TODO: for 3.11 wait for numba, then restart and wait for https://github.com/conda-forge/sleepecg-feedstock/pull/20
+  - yasa =0.6.3  # TODO: for 3.11 wait for sleepecg
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.4
   # GitHub client, https://cli.github.com

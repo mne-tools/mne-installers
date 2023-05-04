@@ -19,6 +19,7 @@ import pyprep
 import pycrostates
 import darkdetect
 import qdarkstyle
+import numba
 import openpyxl
 import xlrd
 import pingouin
