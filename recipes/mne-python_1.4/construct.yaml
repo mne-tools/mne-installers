@@ -72,7 +72,7 @@ specs:
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
   - mne-realtime =0.2.0
-  - mne-features =0.2.1  # TODO: requires numba
+  - mne-features =0.2.1
   - mne-rsa =0.8
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
@@ -109,8 +109,8 @@ specs:
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
-  - tensorpac =0.6.5  # TODO: requires numba
-  - emd =0.5.5  # TODO: wait for a new release because https://github.com/conda-forge/emd-feedstock/pull/8 can't (easily) overcome the setup.py version pin
+  - tensorpac =0.6.5
+  - emd =0.5.5  # TODO: for 3.11 wait for a new release because https://github.com/conda-forge/emd-feedstock/pull/8 can't (easily) overcome the setup.py version pin
   - neurodsp =2.2.0
   - bycycle =1.0.0
   - fooof =1.0.0
@@ -120,8 +120,8 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2022.4.0
   # sleep staging
-  - sleepecg =0.5.4  # TODO: wait for numba, then restart and wait for https://github.com/conda-forge/sleepecg-feedstock/pull/20
-  - yasa =0.6.3  # TODO: wait for sleepecg and tensorpac
+  - sleepecg =0.5.4  # TODO: for 3.11 wait for numba, then restart and wait for https://github.com/conda-forge/sleepecg-feedstock/pull/20
+  - yasa =0.6.3  # TODO: for 3.11 wait for sleepecg
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.4
   # GitHub client, https://cli.github.com
