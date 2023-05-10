@@ -116,7 +116,7 @@ specs:
   - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
-  - pycrostates =0.2.0
+  - pycrostates =0.3.0
   # OpenNeuro.org data access
   - openneuro-py =2022.4.0
   # sleep staging
