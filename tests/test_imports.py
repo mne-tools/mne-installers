@@ -1,11 +1,21 @@
 import platform
 
+
+def check_min_version(package, min_version):
+    from packaging.version import parse
+    assert parse(package.__version__) >= parse(min_version), f'{package}: got {package.__version__} wanted {min_version}'
+
+
 import mne
+check_min_version(mne, '1.4')
 import mne_bids
 import mne_bids_pipeline
+check_min_version(mne_bids_pipeline, '1.2')
 import mne_connectivity
 import mne_faster
 import mne_nirs
+import mne_qt_browser
+check_min_version(mne_qt_browser, '0.5.0')
 import mne_realtime
 import mne_features
 import mne_rsa
