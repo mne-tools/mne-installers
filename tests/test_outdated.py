@@ -84,14 +84,14 @@ for package in packages:
         packaging.version.parse(package.version_spec) <
         packaging.version.parse(package.version_conda_forge)
     ):
+        mismatch = f'{package.version_spec} < {package.version_conda_forge}'
         if package.name in allowed_outdated:
-            print(f'  {package.name.ljust(20)} outdated (allowed '
-                  f'{package.version_spec} < {package.version_conda_forge})')
+            print(f'  {package.name.ljust(20)} ✓ allowed  {mismatch}')
         else:
-            print(f'* {package.name.ljust(20)} OUTDATED')
+            print(f'* {package.name.ljust(20)} ✗ OUTDATED {mismatch}')
             outdated.append(package)
     else:
-        print(f'  {package.name.ljust(20)} up to date')
+        print(f'  {package.name.ljust(20)} ✓')
 
 exit_code = 0
 if not_found:
