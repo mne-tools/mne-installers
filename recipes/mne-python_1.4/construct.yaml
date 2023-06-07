@@ -77,6 +77,7 @@ specs:
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
   - mne-gui-addons =0.1.0
+  - traitsui =7.4.3  # mayavi not 8.0 compatible
   - autoreject =0.4.2
   - pyriemann =0.4
   - pyprep =0.4.2
