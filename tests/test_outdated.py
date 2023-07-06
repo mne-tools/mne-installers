@@ -32,6 +32,10 @@ class Package:
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
     'numba',  # 2023/07/06: 0.57.1 causes problems, stick with 0.57.0
+    'ipywidgets',
+    'spyder-kernels',
+    'jupyterlab',
+    'ipykernel',
     'fsleyes',  # 2023/07/06: 1.7.0 creates HDF5 conflict, probably with VTK
     'vtk',  # 2023/04/05: some unknown conflict on non-arm macOS
     'conda',  # 203/06/07: breaks/conflicts for some unknown reason
