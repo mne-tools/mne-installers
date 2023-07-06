@@ -31,8 +31,6 @@ class Package:
 
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
-    'fsleyes',  # 2023/04/05: Windows binaries didn't upload
-    'vtk',  # 2023/04/05: some unknown conflict on non-arm macOS
     'conda',  # 203/06/07: breaks/conflicts for some unknown reason
     'traitsui',  # mayavi not 8.0 compatible
 }
