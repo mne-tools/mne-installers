@@ -10,3 +10,4 @@ dependencies:
   - menuinst =2.0a=14_g594d642_*
   - conda =4.12a
   - mamba =1.1.0
+  - pydantic <2.0a0

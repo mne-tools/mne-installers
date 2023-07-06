@@ -65,8 +65,8 @@ specs:
   - mne =1.4.2=*_0
   - mne-installer-menus =1.4.2=*_0
   - mne-bids =0.12.0
-  - mne-bids-pipeline =1.3.0
-  - mne-qt-browser =0.5.0
+  - mne-bids-pipeline =1.4.0
+  - mne-qt-browser =0.5.1
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
@@ -79,7 +79,7 @@ specs:
   - mne-gui-addons =0.1.0
   - traitsui =7.4.3  # mayavi not 8.0 compatible
   - autoreject =0.4.2
-  - pyriemann =0.4
+  - pyriemann =0.5
   - pyprep =0.4.2
   - openmeeg =2.5.6
   # Python
@@ -96,29 +96,29 @@ specs:
   - spyder =5.4.3
   - darkdetect =0.8.0
   - qdarkstyle =3.1
-  - numba =0.57.0
-  # Excel I/O
+  - numba =0.57.1
+  # I/O
+  - pyxdf =1.16.4
   - openpyxl =3.1.2
   - xlrd =2.0.1
   # Statistics
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.6.1 # [not win]
-  - fsleyes =1.6.0 # [win]
+  - fsleyes =1.7.0
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
   - emd =0.6.2
   - neurodsp =2.2.0
-  - bycycle =1.0.0
+  - bycycle =1.1.0
   - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.3.0
   # OpenNeuro.org data access
-  - openneuro-py =2022.4.0
+  - openneuro-py =2023.1.0
   # sleep staging
   - sleepecg =0.5.5  # TODO: for 3.11 wait for numba, then restart and wait for https://github.com/conda-forge/sleepecg-feedstock/pull/20
   - yasa =0.6.3  # TODO: for 3.11 wait for sleepecg
@@ -128,17 +128,17 @@ specs:
   - gh =2.25.1
   # NeuroSpin needs the following
   - questionary =1.10.0
-  - pqdm =0.1.0
+  - pqdm =0.2.0
   # Viz
   - matplotlib =3.7.1
   - ipympl =0.9.3
   - seaborn =0.12.2
-  - plotly =5.14.1
+  - plotly =5.15.0
   - vtk =9.2.6  # [arm64 or not osx]
   - vtk =9.2.5  # [osx and not arm64]
   - git =2.41.0  # [win]
   - make =4.3  # [win]
-  - ipywidgets =8.0.6
+  - ipywidgets =8.0.7
 
 condarc:
   channels:
