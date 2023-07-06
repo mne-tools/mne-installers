@@ -112,7 +112,7 @@ jobs:
 
       - name: Hotfix for NSIS
         run: |
-          mamba install nsis=3.01 conda=4.12a pydantic<2.0a0
+          mamba install nsis=3.01 conda=4.12a "pydantic<2.0a0"
         if: ${{ runner.os == 'Windows' }}
 
       - name: Extract version information
