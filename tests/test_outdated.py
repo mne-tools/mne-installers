@@ -31,7 +31,7 @@ class Package:
 
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
-    'spyder-kernels',  # 2023/07/06: this causes problems
+    'jupyterlab',  # 2023/07/06: these cause problems for some reason
     'vtk',  # 2023/04/05: some unknown conflict on non-arm macOS
     'conda',  # 203/06/07: breaks/conflicts for some unknown reason
     'mamba',  # needs newer conda

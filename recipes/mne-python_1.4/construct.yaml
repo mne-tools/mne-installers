@@ -89,10 +89,10 @@ specs:
   - mamba =1.4.2
   - openblas =0.3.23
   - jupyter =1.0.0
-  - jupyterlab =4.0.2
-  - ipykernel =6.24.0
+  - jupyterlab =4.0.1
+  - ipykernel =6.23.1
   - nb_conda_kernels =2.3.1
-  - spyder-kernels =2.4.3
+  - spyder-kernels =2.4.4
   - spyder =5.4.3
   - darkdetect =0.8.0
   - qdarkstyle =3.1
