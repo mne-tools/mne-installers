@@ -96,7 +96,7 @@ specs:
   - spyder =5.4.3
   - darkdetect =0.8.0
   - qdarkstyle =3.1
-  - numba =0.57.0
+  - numba =0.57.1
   # I/O
   - pyxdf =1.16.4
   - openpyxl =3.1.2
@@ -139,7 +139,7 @@ specs:
   - vtk =9.2.5  # [osx and not arm64]
   - git =2.41.0  # [win]
   - make =4.3  # [win]
-  - ipywidgets =8.0.6
+  - ipywidgets =8.0.7
 
 condarc:
   channels:

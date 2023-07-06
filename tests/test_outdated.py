@@ -31,8 +31,7 @@ class Package:
 
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
-    'numba',  # 2023/07/06: 0.57.1 causes problems, stick with 0.57.0
-    'ipywidgets',
+    # 2023/07/06: some of these cause problems
     'spyder-kernels',
     'jupyterlab',
     'ipykernel',
