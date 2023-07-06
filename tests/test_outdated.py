@@ -32,6 +32,7 @@ class Package:
 allowed_outdated: set[str] = {
     'python',  # 3.11 is out, but we don't have all deps available yet
     'conda',  # 203/06/07: breaks/conflicts for some unknown reason
+    'mamba',  # needs newer conda
     'traitsui',  # mayavi not 8.0 compatible
 }
 packages: list[Package] = []
