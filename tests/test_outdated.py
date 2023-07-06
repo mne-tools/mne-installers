@@ -35,7 +35,6 @@ allowed_outdated: set[str] = {
     'spyder-kernels',
     'jupyterlab',
     'ipykernel',
-    'fsleyes',  # 2023/07/06: 1.7.0 creates HDF5 conflict, probably with VTK
     'vtk',  # 2023/04/05: some unknown conflict on non-arm macOS
     'conda',  # 203/06/07: breaks/conflicts for some unknown reason
     'mamba',  # needs newer conda

@@ -105,8 +105,7 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.6.1  # [not win]
-  - fsleyes =1.6.0  # [win]
+  - fsleyes =1.7.0
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
