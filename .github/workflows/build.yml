@@ -110,11 +110,6 @@ jobs:
           environment-file: environment.yml
           micromamba-version: latest
 
-      - name: Hotfix for NSIS
-        run: |
-          mamba install nsis=3.01 conda=4.12a "pydantic<2.0a0"
-        if: ${{ runner.os == 'Windows' }}
-
       - name: Extract version information
         env:
           MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
@@ -135,10 +130,6 @@ jobs:
           echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
-
-      - name: Patch constructor
-        run: |
-          ./tools/patch_constructor.sh
 
       - name: Add macOS M1 support
         if: ${{ matrix.arch == 'arm64' }}
