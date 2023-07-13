@@ -12,7 +12,7 @@ header_image: ../../assets/header.png
 icon_image: ../../assets/icon.png
 welcome_file: ../../assets/welcome.rtf
 readme_text: ""
-conclusion_file: ../../assets/conclusion.rtf
+conclusion_file: ../../assets/conclusion.rtf  # [not win]
 
 initialize_by_default: False
 register_python_default: False
