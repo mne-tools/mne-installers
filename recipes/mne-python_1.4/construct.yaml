@@ -1,3 +1,4 @@
+# https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 version: 1.4.2_0
 name: MNE-Python
 company: MNE-Python Developers
