@@ -2,7 +2,7 @@
 
 # This script must be marked +x to work correctly with the installer!
 
-set -e
+set -eo pipefail
 
 logger -p 'install.info' "ℹ️ Running the custom MNE-Python post-install script."
 
@@ -15,30 +15,15 @@ logger -p 'install.info' "ℹ️ Running the custom MNE-Python post-install scri
 # Don't name the variable USER, as this one is already set.
 USER_FROM_HOMEDIR=`basename $HOME`
 
-logger -p 'install.info' "ℹ️ Fixing permissions of MNE .app bundles in ${HOME}/Applications: new owner will be ${USER_FROM_HOMEDIR}"
-chown -R $USER_FROM_HOMEDIR "${HOME}"/Applications/*\(MNE\).app
-
-logger -p 'install.info' "ℹ️ Moving MNE .app bundles from ${HOME}/Applications to /Applications/MNE-Python"
-mv "${HOME}"/Applications/*\(MNE\).app /Applications/MNE-Python/
-
-logger -p 'install.info' "ℹ️ Setting custom folder icon for /Applications/MNE-Python"
-osascript \
-    -e 'set DSTROOT to system attribute "DSTROOT"' \
-    -e 'set iconPath to DSTROOT & "/.mne-python/Menu/mne.png"' \
-    -e 'use framework "Foundation"' \
-    -e 'use framework "AppKit"' \
-    -e "set imageData to (current application's NSImage's alloc()'s initWithContentsOfFile:iconPath)" \
-    -e "(current application's NSWorkspace's sharedWorkspace()'s setIcon:imageData forFile:DSTROOT options: 0)"
-
 # Use Intel packages if the Python binary is x84_64, i.e. not native Apple Silicon
 # (This also applies to an Intel binary running on Apple Silicon through Rosetta)
 # https://conda-forge.org/docs/user/tipsandtricks.html#installing-apple-intel-packages-on-apple-silicon
-DSTBIN=${DSTROOT}/.mne-python/bin
+DSTBIN=${PREFIX}/bin
 PYTHON_PLATFORM=$(${DSTBIN}/conda run python -c "import platform; print(platform.machine())")
 PYSHORT=$($DSTBIN/conda run python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 if [ "${PYTHON_PLATFORM}" == "x86_64" ]; then
     logger -p 'install.info' "ℹ️ Configuring conda to only use Intel packages"
-    ${DSTROOT}/.mne-python/bin/conda env config vars set CONDA_SUBDIR=osx-64
+    ${PREFIX}/bin/conda env config vars set CONDA_SUBDIR=osx-64
 fi
 
 logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
@@ -48,10 +33,10 @@ logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
 ${DSTBIN}/conda env config vars set MAMBA_NO_BANNER=1
 
 logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
-sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${DSTROOT}/.mne-python/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
+sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${PREFIX}/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
-chown -R $USER_FROM_HOMEDIR "${DSTROOT}/.mne-python"
+chown -R $USER_FROM_HOMEDIR "${PREFIX}"
 
 logger -p 'install.info' "Running mne sys_info"
 sudo -u $USER_FROM_HOMEDIR ${DSTBIN}/conda run mne sys_info || true

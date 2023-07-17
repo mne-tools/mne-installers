@@ -9,6 +9,7 @@ set -e
 echo "ℹ️ Fixing menu shortcuts."
 
 cd "$HOME/.local/share/applications"
+ls -alt *.desktop
 for f in ./MNE-Python*.desktop
 do
     sed -i "s/Terminal=True/Terminal=true/" $f
