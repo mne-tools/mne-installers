@@ -158,10 +158,12 @@ jobs:
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           # Installer package
+          set -eo pipefail
           pkgutil --check-signature ${MNE_INSTALLER_NAME}
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
           pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
+          # TODO: This path is wrong now... no longer .mne-python
           codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
           codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
