@@ -1,10 +1,10 @@
-# https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 version: 1.4.2_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
 # many places here, and in assets/current_version.txt.
 
+# https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 license_file: ../../assets/license.txt         # [linux]
 license_file: ../../assets/license.rtf         # [not linux]
 welcome_image: ../../assets/welcome_macOS.png  # [osx]
