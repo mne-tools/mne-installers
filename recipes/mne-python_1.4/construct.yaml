@@ -21,8 +21,8 @@ default_prefix: ${HOME}/mne-python/1.4.2_0                          # [linux]
 default_prefix: "%USERPROFILE%\\mne-python\\1.4.2_0"                # [win]
 default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.4.2_0"   # [win]
 default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.4.2_0"  # [win]
-default_location_pkg: "/Applications"  # [osx]
-pkg_name: "MNE-Python"  # [osx]
+default_location_pkg: "/Applications"                               # [osx]
+pkg_name: "MNE-Python"                                              # [osx]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
