@@ -24,6 +24,7 @@ default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.4.2_0"  # [win]
 # shortcuts will be created in Appplications automatically, so use Library here
 default_location_pkg: "Library"                                     # [osx]
 pkg_name: "MNE-Python"                                              # [osx]
+progress_notifications: true                                        # [osx]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
