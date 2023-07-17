@@ -16,6 +16,6 @@ Locally, installers can be built using `tools/build_local.sh`. Steps:
    $ conda activate constructor-env
    ```
 2. If you want to build an arm64 (M1) package on a macOS Intel machine, run `source ./tools/setup_m1_crosscompile.sh`.
-3. Run `./tools/build_local.sh` (which will patch the constructor on macOS if needed).
+3. Run `./tools/build_local.sh`.
 4. Install the environment for your platform.
 5. Test it using the `tests/`.
