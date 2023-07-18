@@ -379,11 +379,11 @@ jobs:
             # [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
             echo "Check that the installed Python is, in fact, an Intel binary"
             python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
-            echo "Checking we have all .app bundles in Applications/MNE-Python:"
+            echo "Checking we have all .app bundles in /Applications:"
             ls -al /Applications/
-            ls -d /Applications/MNE-Python*.app || exit 1
+            ls -d /Applications/*MNE*.app || exit 1
             echo "Checking that there are 5 directories"
-            test `ls -d /Applications/MNE-Python*.app | wc -l` -eq 5 || exit 1
+            test `ls -d /Applications/*MNE*.app | wc -l` -eq 5 || exit 1
             # echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
             # test -f /Applications/MNE-Python/Icon$'\r' || exit 1
           elif [[ "${{ runner.os }}" == "Linux" ]]; then
