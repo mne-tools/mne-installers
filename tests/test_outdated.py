@@ -30,9 +30,6 @@ class Package:
 
 
 allowed_outdated: set[str] = {
-    'conda',  # 203/06/07: breaks/conflicts for some unknown reason
-    'mamba',  # needs newer conda
-    'traitsui',  # mayavi not 8.0 compatible
 }
 packages: list[Package] = []
 
