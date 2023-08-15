@@ -66,7 +66,7 @@ specs:
   - mne-installer-menus =1.4.2=*_0
   - mne-bids =0.12.0
   - mne-bids-pipeline =1.4.0
-  - mne-qt-browser =0.5.1
+  - mne-qt-browser =0.5.2
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
@@ -85,12 +85,12 @@ specs:
   # Python
   - python =3.11.4
   - pip =23.2.1
-  - conda =23.5.2
+  - conda =23.7.2
   - mamba =1.4.9
   - openblas =0.3.23
   - jupyter =1.0.0
-  - jupyterlab =4.0.3
-  - ipykernel =6.24.0
+  - jupyterlab =4.0.5
+  - ipykernel =6.25.1
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.4.4
   - spyder =5.4.4
@@ -128,17 +128,17 @@ specs:
   # GitHub client, https://cli.github.com
   - gh =2.32.1
   # NeuroSpin needs the following
-  - questionary =1.10.0
+  - questionary =2.0.0
   - pqdm =0.2.0
   # Viz
   - matplotlib =3.7.2
   - ipympl =0.9.3
   - seaborn =0.12.2
-  - plotly =5.15.0
+  - plotly =5.16.0
   - vtk =9.2.6
   - git =2.41.0  # [win]
   - make =4.3  # [win]
-  - ipywidgets =8.0.7
+  - ipywidgets =8.1.0
 
 condarc:
   channels:
