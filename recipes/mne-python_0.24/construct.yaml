@@ -15,8 +15,8 @@ welcome_file: ../../assets/welcome.rtf
 readme_text: ""
 conclusion_file: ../../assets/conclusion.rtf
 
-initialize_by_default: False
-register_python_default: False
+initialize_by_default: false
+register_python_default: false
 
 # default_prefix will be ignored by macOS .pkg installer!
 default_prefix: ${HOME}/mne-python/0.24.1_2                          # [unix]
@@ -83,5 +83,5 @@ condarc:
   # default_channels:
   #   - conda-forge
   channel_priority: strict
-  allow_other_channels: False
+  allow_other_channels: false
   env_prompt: (mne-0.24.1_2)

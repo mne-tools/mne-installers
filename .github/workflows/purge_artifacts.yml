@@ -1,6 +1,6 @@
 name: 'Remove all artifacts'
 
-on:
+on:  # yamllint disable-line rule:truthy
   schedule:
     - cron: '0 3 * * *'  # every night at 3 am UTC
 

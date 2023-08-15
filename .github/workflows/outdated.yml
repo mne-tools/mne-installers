@@ -3,7 +3,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
   cancel-in-progress: true
 
-on:
+on:  # yamllint disable-line rule:truthy
   # We only do this on PRs to avoid the (admittedly unlikely) scenario that
   # we run, green, wait, merge, then the build on `main` could fail because conda
   # has updated during the "green" and then the "build on `main`" steps
@@ -14,9 +14,9 @@ jobs:
   deps:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
-    - run: pip install packaging requests pyyaml
-    - run: python tests/test_outdated.py
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: pip install packaging requests pyyaml
+      - run: python tests/test_outdated.py

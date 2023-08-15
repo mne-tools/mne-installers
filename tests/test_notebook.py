@@ -7,7 +7,8 @@ from ipywidgets import Button  # noqa
 import ipyvtklink  # noqa
 
 km = AsyncKernelManager(config=None)
-nb = nbformat.reads("""
+nb = nbformat.reads(
+    """
 {
  "cells": [
   {
@@ -33,7 +34,9 @@ nb = nbformat.reads("""
  },
  "nbformat": 4,
  "nbformat_minor": 4
-}""", as_version=4)
+}""",
+    as_version=4,
+)
 _nbclient = NotebookClient(nb, km=km)
 _nbclient.reset_execution_trackers()
 code = """\
@@ -50,7 +53,7 @@ assert '.Plotter ' in repr(fig.plotter), repr(fig.plotter)
 """
 with _nbclient.setup_kernel():
     assert _nbclient.kc is not None
-    cell = Bunch(cell_type='code', metadata={}, source=code)
+    cell = Bunch(cell_type="code", metadata={}, source=code)
     _nbclient.execute_cell(cell, 0, execution_count=0)
     _nbclient.set_widgets_metadata()
 _nbclient._cleanup_kernel()
