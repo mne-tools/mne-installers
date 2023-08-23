@@ -64,7 +64,7 @@ specs:
 
   - mne =1.5.0=*_0
   - mne-installer-menus =1.5.0=*_0
-  - mne-bids =0.12.0
+  - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0
   - mne-qt-browser =0.5.2
   - mne-connectivity =0.5.0
@@ -83,7 +83,7 @@ specs:
   - pyprep =0.4.2
   - openmeeg =2.5.6
   # BLAS
-  # - openblas =0.3.23
+  - openblas =0.3.23
   - libblas =3.9.0=*openblas
   # Python
   - python =3.11.4
@@ -107,7 +107,7 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.7.0
+  - fsleyes =1.8.2
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
@@ -128,7 +128,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.5
   # GitHub client, https://cli.github.com
-  - gh =2.32.1
+  - gh =2.33.0
   # NeuroSpin needs the following
   - questionary =2.0.0
   - pqdm =0.2.0
@@ -136,9 +136,9 @@ specs:
   - matplotlib =3.7.2
   - ipympl =0.9.3
   - seaborn =0.12.2
-  - plotly =5.16.0
+  - plotly =5.16.1
   - vtk =9.2.6
-  - git =2.41.0  # [win]
+  - git =2.42.0  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.0
 
