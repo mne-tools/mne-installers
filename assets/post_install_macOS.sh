@@ -36,7 +36,7 @@ logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by
 sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${PREFIX}/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
 
 logger -p 'install.info' "ℹ️ Pinning BLAS implementation to OpenBLAS"
-echo "libblas=*=*openblas" >>${DSTROOT}/.mne-python/conda-meta/pinned
+echo "libblas=*=*openblas" >> ${PREFIX}/conda-meta/pinned
 
 logger -p 'install.info' "Fixing permissions of entire conda environment"
 chown -R $USER_FROM_HOMEDIR "${PREFIX}"
