@@ -4,7 +4,6 @@ company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
 # many places here, and in assets/current_version.txt.
 
-# https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 license_file: ../../assets/license.txt         # [linux]
 license_file: ../../assets/license.rtf         # [not linux]
 welcome_image: ../../assets/welcome_macOS.png  # [osx]
@@ -13,19 +12,16 @@ header_image: ../../assets/header.png
 icon_image: ../../assets/icon.png
 welcome_file: ../../assets/welcome.rtf
 readme_text: ""
-conclusion_file: ../../assets/conclusion.rtf  # [not win]
+conclusion_file: ../../assets/conclusion.rtf
 
 initialize_by_default: false
 register_python_default: false
 
+# default_prefix will be ignored by macOS .pkg installer!
 default_prefix: ${HOME}/mne-python/1.4.2_0                          # [linux]
 default_prefix: "%USERPROFILE%\\mne-python\\1.4.2_0"                # [win]
 default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.4.2_0"   # [win]
 default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.4.2_0"  # [win]
-# shortcuts will be created in Appplications automatically, so use Library here
-default_location_pkg: "Library"                                     # [osx]
-pkg_name: "MNE-Python"                                              # [osx]
-progress_notifications: true                                        # [osx]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 

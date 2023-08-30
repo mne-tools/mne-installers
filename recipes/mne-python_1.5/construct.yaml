@@ -13,7 +13,7 @@ header_image: ../../assets/header.png
 icon_image: ../../assets/icon.png
 welcome_file: ../../assets/welcome.rtf
 readme_text: ""
-conclusion_file: ../../assets/conclusion.rtf
+conclusion_file: ../../assets/conclusion.rtf  # [not win]
 
 initialize_by_default: false
 register_python_default: false
@@ -22,6 +22,10 @@ default_prefix: ${HOME}/mne-python/1.5.0_1                          # [linux]
 default_prefix: "%USERPROFILE%\\mne-python\\1.5.0_1"                # [win]
 default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.5.0_1"   # [win]
 default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.5.0_1"  # [win]
+# shortcuts will be created in Appplications automatically, so use Library here
+default_location_pkg: "Library"                                     # [osx]
+pkg_name: "MNE-Python"                                              # [osx]
+progress_notifications: true                                        # [osx]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
@@ -86,10 +90,10 @@ specs:
   - openblas =0.3.23
   - libblas =3.9.0=*openblas
   # Python
-  - python =3.11.4
+  - python =3.11.5
   - pip =23.2.1
-  - conda =23.5.2
-  - mamba =1.4.9
+  - conda =23.7.3
+  - mamba =1.5.0
   - jupyter =1.0.0
   - jupyterlab =4.0.5
   - ipykernel =6.25.1

@@ -25,9 +25,7 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = {
-    "conda",  # As of 2023/08/15, v 23.7.2 creates an issue when installing (with mamba)
-}
+allowed_outdated: set[str] = {}
 packages: list[Package] = []
 
 for spec in specs:
