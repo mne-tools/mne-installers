@@ -10,3 +10,4 @@ dependencies:
   - menuinst
   - conda
   - mamba
+  - conda-libmamba-solver
