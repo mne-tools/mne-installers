@@ -15,8 +15,8 @@ welcome_file: ../../assets/welcome.rtf
 readme_text: ""
 conclusion_file: ../../assets/conclusion.rtf  # [not win]
 
-initialize_by_default: False
-register_python_default: False
+initialize_by_default: false
+register_python_default: false
 
 default_prefix: ${HOME}/mne-python/1.4.2_0                          # [linux]
 default_prefix: "%USERPROFILE%\\mne-python\\1.4.2_0"                # [win]
@@ -149,5 +149,5 @@ condarc:
     # - pytorch  # [win]
     - conda-forge
   channel_priority: strict
-  allow_other_channels: False
+  allow_other_channels: false
   env_prompt: "(mne-1.4.2_0) "

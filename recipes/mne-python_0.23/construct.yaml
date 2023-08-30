@@ -5,8 +5,8 @@ company: MNE-Python Developers
 environment_file: mne-python_0.23.0_env.yml
 license_file: ../../LICENSE
 
-initialize_by_default: False
-register_python_default: False
+initialize_by_default: false
+register_python_default: false
 default_prefix: ${HOME}/mne-python/0.23.0         # [unix]
 default_prefix: ${USERPROFILE}\mne-python\0.23.0  # [win]
 uninstall_name: MNE-Python 0.23.0 (${VERSION}, Python ${PYVERSION})
@@ -17,9 +17,9 @@ installer_filename: MNE-Python-0.23.0_installer-2021.1-Windows.exe  # [win]
 installer_filename: MNE-Python-0.23.0_installer-2021.1-Linux.sh     # [linux]
 
 channels:
-- conda-forge
+  - conda-forge
 
 conda_default_channels:
-- conda-forge
+  - conda-forge
 
-write_condarc: True
+write_condarc: true
