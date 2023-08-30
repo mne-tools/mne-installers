@@ -130,6 +130,7 @@ jobs:
           echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
+          echo "CONDA_SOLVER=libmamba" >> $GITHUB_ENV
 
       - name: Add macOS M1 support
         if: ${{ matrix.arch == 'arm64' }}
