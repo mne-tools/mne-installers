@@ -38,11 +38,11 @@ sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${PREFIX}/lib/python${PYSHORT}/
 logger -p 'install.info' "ℹ️ Pinning BLAS implementation to OpenBLAS"
 echo "libblas=*=*openblas" >> ${PREFIX}/conda-meta/pinned
 
-logger -p 'install.info' "Fixing permissions of entire conda environment"
-chown -R $USER_FROM_HOMEDIR "${PREFIX}"
+logger -p 'install.info' "Fixing permissions of entire conda environment for user=${USER_FROM_HOMEDIR}"
+# chown -R $USER_FROM_HOMEDIR "${PREFIX}"
 
 logger -p 'install.info' "Running mne sys_info"
-sudo -u $USER_FROM_HOMEDIR ${DSTBIN}/conda run mne sys_info || true
+${DSTBIN}/conda run mne sys_info || true
 
-logger -p 'install.info' "Opening ${DSTROOT} in Finder"
-open -R "${DSTROOT}"
+logger -p 'install.info' "Opening in Finder ${PREFIX}"
+open -R "${PREFIX}"
