@@ -161,12 +161,12 @@ jobs:
           # Installer package
           set -eo pipefail
           pkgutil --check-signature ${MNE_INSTALLER_NAME}
-          # Now extract the package and check that the _conde.exe binary is
+          # Now extract the package and check that the conda.exe binary is
           # properly signed as well
           pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
-          codesign -vd ./mne-extracted/main.pkg/Payload/Library/mne-python*/_conda.exe
-          # Check entitlements of _conda.exe binary
-          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/Library/mne-python*/_conda.exe
+          codesign -vd ./mne-extracted/main.pkg/Payload/Library/mne-python*/conda.exe
+          # Check entitlements of conda.exe binary
+          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/Library/mne-python*/conda.exe
           rm -rf ./mne-extracted
 
       - name: Notarize installer (macOS)
