@@ -68,7 +68,7 @@ specs:
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  - mne-base =1.5.0=*_0
+  - mne =1.5.0=*_0
   - mne-installer-menus =1.5.0=*_0
   - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0

@@ -25,7 +25,7 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = {}
+allowed_outdated: set[str] = set()
 packages: list[Package] = []
 
 for spec in specs:
