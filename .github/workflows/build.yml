@@ -111,6 +111,7 @@ jobs:
             channels:
               - conda-forge
             channel_priority: strict
+          environment-file: environment.yml
 
       - name: Extract version information
         env:
