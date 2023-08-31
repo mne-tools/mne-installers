@@ -70,83 +70,83 @@ specs:
 
   - mne-base =1.5.0=*_0
   - mne-installer-menus =1.5.0=*_0
-  #- mne-bids =0.13.0
-  #- mne-bids-pipeline =1.4.0
-  #- mne-qt-browser =0.5.2
-  #- mne-connectivity =0.5.0
-  #- mne-faster =1.1.0
-  #- mne-nirs =0.5.0
-  #- mne-realtime =0.2.0
-  #- mne-features =0.2.1
-  #- mne-rsa =0.8
-  #- mne-ari =0.1.2
-  #- mne-kit-gui =1.1.0
-  #- mne-icalabel =0.4  # [not win]
-  #- mne-gui-addons =0.1.0
-  #- traitsui =8.0.0
-  #- autoreject =0.4.2
-  #- pyriemann =0.5
-  #- pyprep =0.4.2
-  #- openmeeg =2.5.6
-  ## BLAS
-  #- openblas =0.3.23
-  #- libblas =3.9.0=*openblas
-  ## Python
+  - mne-bids =0.13.0
+  - mne-bids-pipeline =1.4.0
+  - mne-qt-browser =0.5.2
+  - mne-connectivity =0.5.0
+  - mne-faster =1.1.0
+  - mne-nirs =0.5.0
+  - mne-realtime =0.2.0
+  - mne-features =0.2.1
+  - mne-rsa =0.8
+  - mne-ari =0.1.2
+  - mne-kit-gui =1.1.0
+  - mne-icalabel =0.4  # [not win]
+  - mne-gui-addons =0.1.0
+  - traitsui =8.0.0
+  - autoreject =0.4.2
+  - pyriemann =0.5
+  - pyprep =0.4.2
+  - openmeeg =2.5.6
+  # BLAS
+  - openblas =0.3.23
+  - libblas =3.9.0=*openblas
+  # Python
   - python =3.11.5
   - pip =23.2.1
   - conda =23.7.3
   - mamba =1.5.0
-  #- jupyter =1.0.0
-  #- jupyterlab =4.0.5
-  #- ipykernel =6.25.1
-  #- nb_conda_kernels =2.3.1
-  #- spyder-kernels =2.4.4
-  #- spyder =5.4.5
-  #- darkdetect =0.8.0
-  #- qdarkstyle =3.1
-  #- numba =0.57.1
-  ## I/O
-  #- pyxdf =1.16.4
-  #- openpyxl =3.1.2
-  #- xlrd =2.0.1
-  ## Statistics
-  #- pingouin =0.5.3
-  #- pycircstat =0.0.2
-  ## MRI
-  #- fsleyes =1.8.2
-  #- dcm2niix =1.0.20230411
-  ## Time-frequency analysis
-  #- pactools =0.3.1
-  #- tensorpac =0.6.5
-  #- emd =0.6.2
-  #- neurodsp =2.2.0
-  #- bycycle =1.1.0
-  #- fooof =1.0.0
-  ## Microstates
-  #- mne-microstates =0.3.0
-  #- pycrostates =0.3.0
-  ## OpenNeuro.org data access
-  #- openneuro-py =2023.1.0
-  ## sleep staging
-  #- sleepecg =0.5.5
-  #- tensorflow ==2.12.1=cpu_py311*  # [not win]
-  #- yasa =0.6.3
-  ## various biological signals (ECG, EOG, EMG, …)
-  #- neurokit2 =0.2.5
-  ## GitHub client, https://cli.github.com
-  #- gh =2.33.0
-  ## NeuroSpin needs the following
-  #- questionary =2.0.0
-  #- pqdm =0.2.0
-  ## Viz
-  #- matplotlib =3.7.2
-  #- ipympl =0.9.3
-  #- seaborn =0.12.2
-  #- plotly =5.16.1
-  #- vtk =9.2.6
-  #- git =2.42.0  # [win]
-  #- make =4.3  # [win]
-  #- ipywidgets =8.1.0
+  - jupyter =1.0.0
+  - jupyterlab =4.0.5
+  - ipykernel =6.25.1
+  - nb_conda_kernels =2.3.1
+  - spyder-kernels =2.4.4
+  - spyder =5.4.5
+  - darkdetect =0.8.0
+  - qdarkstyle =3.1
+  - numba =0.57.1
+  # I/O
+  - pyxdf =1.16.4
+  - openpyxl =3.1.2
+  - xlrd =2.0.1
+  # Statistics
+  - pingouin =0.5.3
+  - pycircstat =0.0.2
+  # MRI
+  - fsleyes =1.8.2
+  - dcm2niix =1.0.20230411
+  # Time-frequency analysis
+  - pactools =0.3.1
+  - tensorpac =0.6.5
+  - emd =0.6.2
+  - neurodsp =2.2.0
+  - bycycle =1.1.0
+  - fooof =1.0.0
+  # Microstates
+  - mne-microstates =0.3.0
+  - pycrostates =0.3.0
+  # OpenNeuro.org data access
+  - openneuro-py =2023.1.0
+  # sleep staging
+  - sleepecg =0.5.5
+  - tensorflow ==2.12.1=cpu_py311*  # [not win]
+  - yasa =0.6.3
+  # various biological signals (ECG, EOG, EMG, …)
+  - neurokit2 =0.2.5
+  # GitHub client, https://cli.github.com
+  - gh =2.33.0
+  # NeuroSpin needs the following
+  - questionary =2.0.0
+  - pqdm =0.2.0
+  # Viz
+  - matplotlib =3.7.2
+  - ipympl =0.9.3
+  - seaborn =0.12.2
+  - plotly =5.16.1
+  - vtk =9.2.6
+  - git =2.42.0  # [win]
+  - make =4.3  # [win]
+  - ipywidgets =8.1.0
 
 condarc:
   channels:
