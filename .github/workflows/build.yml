@@ -134,26 +134,21 @@ jobs:
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
           echo "CONDA_SOLVER=libmamba" >> $GITHUB_ENV
+          if [[ "$MNE_CROSSCOMPILE_ARCH" == "arm64" ]]; then
+            echo "PLATFORM_ARG=--platform=osx-arm64" >> $GITHUB_ENV
+            echo "EXE_ARG=--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe" >> $GITHUB_ENV
+          fi
 
-      - name: Add macOS M1 support
-        if: ${{ matrix.arch == 'arm64' }}
-        run: |
-          echo "PLATFORM_ARG=--platform=osx-arm64" >> $GITHUB_ENV
-          echo "EXE_ARG=--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe" >> $GITHUB_ENV
-
-      - name: Patch config (macOS pull request)
+      - name: Patch config (macOS non-PR)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
         run: |
           sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
 
       - name: Build installer
-        # As of 2022/03/14, ~7 min on 20.04 (fastest) and ~11 min on windows-2019 (slowest).
+        # As of 2022/08/31, < 10 min on all platforms thanks to libmamba solver.
         # So let's set this to a reasonable limit that will tell us more quickly
         # if something has gone wrong with dependency resolution.
-        #
-        # Update 2022/06/03: Bump timeout as we're seeing sporadic issues on
-        #                    Linux
-        timeout-minutes: 50
+        timeout-minutes: 20
         run: |
           ./tools/run_constructor.sh
 
