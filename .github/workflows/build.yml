@@ -164,10 +164,9 @@ jobs:
           # Now extract the package and check that the _conde.exe binary is
           # properly signed as well
           pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
-          # TODO: This path is wrong now... no longer .mne-python
-          codesign -vd ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
+          codesign -vd ./mne-extracted/main.pkg/Payload/Library/mne-python/_conda.exe
           # Check entitlements of _conda.exe binary
-          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/.mne-python/_conda.exe
+          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/Library/mne-python/_conda.exe
           rm -rf ./mne-extracted
 
       - name: Notarize installer (macOS)
@@ -319,10 +318,7 @@ jobs:
       - name: Run installer (macOS Intel)
         if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
         run: |
-          sudo installer \
-            -verbose \
-            -pkg ${MNE_INSTALLER_NAME} \
-            -target / \
+          sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
 
       - name: Run installer (Linux)
@@ -370,23 +366,25 @@ jobs:
       - name: Check installation
         if: ${{ matrix.arch == 'x86_64' }}
         run: |
+          set -eo pipefail
           source "${MNE_ACTIVATE}"
           conda info
           mamba list
 
           if [[ "${{ runner.os }}" == "macOS" ]]; then
-            # echo "Testing that file permissions are set correctly (owned by "runner", not "root".)"
+            echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
             # https://unix.stackexchange.com/a/7733
-            # [ `ls -ld /Applications/MNE-Python/.mne-python | awk 'NR==1 {print $3}'` == "runner" ] || exit 1
+            [ `ls -ld /Applications/MNE-Python*/ | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
+            [ `ls -ld /Library/mne-python*/ | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
             echo "Check that the installed Python is, in fact, an Intel binary"
             python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
             echo "Checking we have all .app bundles in /Applications:"
             ls -al /Applications/
             ls -d /Applications/*MNE*.app || exit 1
             echo "Checking that there are 5 directories"
-            test `ls -d /Applications/*MNE*.app | wc -l` -eq 5 || exit 1
-            # echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
-            # test -f /Applications/MNE-Python/Icon$'\r' || exit 1
+            test `ls -d /Applications/MNE-Python*/*.app | wc -l` -eq 5 || exit 1
+            echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
+            test -f /Applications/MNE-Python*/Icon$'\r' || exit 1
           elif [[ "${{ runner.os }}" == "Linux" ]]; then
             echo "Checking that menu shortcuts were created …"
             pushd ~/.local/share/applications
@@ -409,6 +407,10 @@ jobs:
             for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
             popd
           fi
+          echo "Checking permissions..."
+          OWNER=`ls -ld "$(which python)" | awk '{print $3}'`
+          echo "Got OWNER=$OWNER, should be $USER"
+          test "$OWNER" == "$USER"
 
           echo "Checking whether (Py)Qt is working"
           LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"

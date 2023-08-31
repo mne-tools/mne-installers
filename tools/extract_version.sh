@@ -43,7 +43,7 @@ fi
 
 if [[ "$MACHINE" == "macOS" ]]; then
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
-    MNE_ACTIVATE="/Library/MNE-Python/bin/activate"
+    MNE_ACTIVATE="/Library/mne-python_${MNE_INSTALLER_VERSION}/bin/activate"
 elif [[ "$MACHINE" == "Linux" ]]; then
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}.sh"
     MNE_ACTIVATE="$HOME/mne-python/${MNE_INSTALLER_VERSION}/bin/activate"
