@@ -138,9 +138,8 @@ jobs:
       - name: Add macOS M1 support
         if: ${{ matrix.arch == 'arm64' }}
         run: |
-          source ./tools/setup_m1_crosscompile.sh
-          echo "EXE_ARG=${EXE_ARG}" >> $GITHUB_ENV
-          echo "PLATFORM_ARG=${PLATFORM_ARG}" >> $GITHUB_ENV
+          echo "PLATFORM_ARG=--platform=osx-arm64" >> $GITHUB_ENV
+          echo "EXE_ARG=--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe" >> $GITHUB_ENV
 
       - name: Patch config (macOS pull request)
         if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
