@@ -1,5 +1,5 @@
 echo ℹSetting permissions on the Python installation.
-takeown /f "%PREFIX%" /r
+takeown /f %PREFIX% /r
 
 echo ℹConfiguring Python to ignore user-installed local packages.
 "%PREFIX%\bin\conda" env config vars set PYTHONNOUSERSITE=1
