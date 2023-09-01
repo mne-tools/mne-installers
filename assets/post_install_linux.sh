@@ -14,7 +14,10 @@ echo "ℹ️ Setting libmama as the conda solver."
 ${PREFIX}/bin/conda config --set solver libmamba
 
 echo "ℹ️ Pinning BLAS implementation to OpenBLAS."
-echo "libblas=*=*openblas" >>${PREFIX}/conda-meta/pinned
+echo "libblas=*=*openblas" >> ${PREFIX}/conda-meta/pinned
+
+echo "ℹ️ Installing menus."
+python -c "from menuinst.api import install; install('${PREFIX}/Menu/mne.json')"
 
 echo "ℹ️ Running mne sys_info."
 ${PREFIX}/bin/conda run mne sys_info || true

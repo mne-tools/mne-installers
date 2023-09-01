@@ -1,0 +1,4 @@
+tell application "Terminal"
+    do script "source /home/conda/feedstock_root/build_artifacts/mne-python_1692127656949/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/Menu/mne_open_prompt.sh"
+    activate
+end tell

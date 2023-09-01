@@ -31,6 +31,9 @@ fi
 MNE_APP_DIR="$APP_DIR/MNE-Python $MNE_VERSION"
 logger -p 'install.info' "📓 MNE_APP_DIR=$MNE_APP_DIR"
 
+logger -p 'install.info' "ℹ️ Installing menus."
+python -c "from menuinst.api import install; install('${PREFIX}/Menu/mne.json')"
+
 logger -p 'install.info' "ℹ️ Moving root MNE .app bundles from $APP_DIR to $MNE_APP_DIR."
 $PERMS mkdir -p "$MNE_APP_DIR"
 $PERMS mv "$APP_DIR"/*\(MNE\).app "$MNE_APP_DIR"/

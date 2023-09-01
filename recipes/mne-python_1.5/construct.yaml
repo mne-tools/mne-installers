@@ -46,9 +46,30 @@ signing_identity_name:                  # [osx]  Used for productsign
 notarization_identity_name:             # [osx]  Used for codesign
 reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identifier $reverse_domain_identifier.$name
 
-# Only create menus for mne-installer-menus
+# We will create our own menus
 menu_packages:
-  - mne-installer-menus
+extra_files:
+  - ../../assets/Menu/mne.json: Menu/mne.json
+  - ../../assets/Menu/mne.png: Menu/mne.png
+  - ../../assets/Menu/mne_console.icns: Menu/mne_console.icns
+  - ../../assets/Menu/mne_console.ico: Menu/mne_console.ico
+  - ../../assets/Menu/mne_console.png: Menu/mne_console.png
+  - ../../assets/Menu/mne_forum.ico: Menu/mne_forum.ico
+  - ../../assets/Menu/mne_forum.icns: Menu/mne_forum.icns
+  - ../../assets/Menu/mne_forum.png: Menu/mne_forum.png
+  - ../../assets/Menu/mne_info.icns: Menu/mne_info.icns
+  - ../../assets/Menu/mne_info.ico: Menu/mne_info.ico
+  - ../../assets/Menu/mne_info.png: Menu/mne_info.png
+  - ../../assets/Menu/mne_open_prompt.applescript: Menu/mne_open_prompt.applescript
+  - ../../assets/Menu/mne_open_prompt.bat: Menu/mne_open_prompt.bat
+  - ../../assets/Menu/mne_open_prompt.sh: Menu/mne_open_prompt.sh
+  - ../../assets/Menu/mne_spyder.icns: Menu/mne_spyder.icns
+  - ../../assets/Menu/mne_spyder.ico: Menu/mne_spyder.ico
+  - ../../assets/Menu/mne_spyder.png: Menu/mne_spyder.png
+  - ../../assets/Menu/mne_sys_info.py: Menu/mne_sys_info.py
+  - ../../assets/Menu/mne_web.icns: Menu/mne_web.icns
+  - ../../assets/Menu/mne_web.ico: Menu/mne_web.ico
+  - ../../assets/Menu/mne_web.png: Menu/mne_web.png
 
 channels:
   - conda-forge
@@ -60,16 +81,19 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
 specs:
-  # MNE ecosystem
+  # Python
+  - python =3.11.5
+  - pip =23.2.1
+  - conda =23.7.3
+  - mamba =1.5.0
+  - conda-libmamba-solver =23.7.0
 
+  # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
-  # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-
   - mne =1.5.0=*_0
-  - mne-installer-menus =1.5.0=*_0
   - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0
   - mne-qt-browser =0.5.2
@@ -94,12 +118,6 @@ specs:
   # BLAS
   - openblas =0.3.23
   - libblas =3.9.0=*openblas
-  # Python
-  - python =3.11.5
-  - pip =23.2.1
-  - conda =23.7.3
-  - mamba =1.5.0
-  - conda-libmamba-solver =23.7.0
   - jupyter =1.0.0
   - jupyterlab =4.0.5
   - ipykernel =6.25.1
