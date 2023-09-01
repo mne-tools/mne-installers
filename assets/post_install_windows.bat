@@ -15,8 +15,5 @@ echo Setting libmama as the conda solver.
 echo Pinning BLAS implementation to OpenBLAS.
 echo libblas=*=*openblas >> "%PREFIX%\conda-meta\pinned"
 
-echo Installing menus.
-python -c "from menuinst.api import install; install('%PREFIX%\Menu\mne.json')"
-
 echo Running mne sys_info.
 "%PREFIX%\Scripts\conda" run mne sys_info
