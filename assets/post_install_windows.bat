@@ -1,6 +1,6 @@
 @ECHO OFF
 
-echo Setting read/write permissions on the Python installation to %USERNAME%.
+echo Setting read/write permissions on the Python installation to %USERNAME% (this can take a few minutes!).
 icacls %PREFIX% /grant %USERNAME%:(OI)(CI)M /c /t /q
 
 echo Configuring Python to ignore user-installed local packages.
