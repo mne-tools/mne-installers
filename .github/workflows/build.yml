@@ -407,8 +407,8 @@ jobs:
           fi
           echo "Checking permissions..."
           OWNER=`ls -ld "$(which python)" | awk '{print $3}'`
-          echo "Got OWNER=$OWNER, should be $USER"
-          test "$OWNER" == "$USER"
+          echo "Got OWNER=$OWNER, should be $(whoami)"
+          test "$OWNER" == "$(whoami)"
 
           echo "Checking whether (Py)Qt is working"
           LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
