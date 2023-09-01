@@ -83,6 +83,9 @@ specs:
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
   - mne-gui-addons =0.1.0
+  # include setuptools_scm in case people want to do an editable install
+  # instead of using the released version
+  - setuptools_scm =7.1.0
   - traitsui =8.0.0
   - autoreject =0.4.2
   - pyriemann =0.5
