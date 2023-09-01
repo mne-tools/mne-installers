@@ -13,9 +13,7 @@ echo Setting libmama as the conda solver.
 "%PREFIX%\Scripts\conda" config --set solver libmamba
 
 echo Pinning BLAS implementation to OpenBLAS.
-echo "libblas=*=*openblas" >> "%PREFIX%\conda-meta\pinned"
+echo libblas=*=*openblas >> "%PREFIX%\conda-meta\pinned"
 
 echo Running mne sys_info.
 "%PREFIX%\Scripts\conda" run mne sys_info
-
-timeout /t 5
