@@ -300,6 +300,7 @@ jobs:
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
           echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
           echo "MNE_ACTIVATE=${MNE_ACTIVATE}"
+          echo "MNE_INSTALL_PREFIX=$MNE_INSTALL_PREFIX" >> $GITHUB_ENV
           echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
 
       - name: Download appropriate installer
@@ -405,6 +406,10 @@ jobs:
             for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
             popd
           fi
+          echo "Checking for pinned file..."
+          test -e "$MNE_INSTALL_PREFIX/conda-meta/pinned"
+          grep "openblas" "$MNE_INSTALL_PREFIX/conda-meta/pinned"
+
           echo "Checking permissions..."
           OWNER=`ls -ld "$(which python)" | awk '{print $3}'`
           echo "Got OWNER=$OWNER, should be $(whoami)"

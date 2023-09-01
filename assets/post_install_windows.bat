@@ -1,17 +1,21 @@
-echo ℹSetting permissions on the Python installation to %USERNAME%.
-takeown /u %USERNAME% /f %PREFIX% /r /d y
+@ECHO OFF
 
-echo ℹConfiguring Python to ignore user-installed local packages.
-"%PREFIX%\bin\conda" env config vars set PYTHONNOUSERSITE=1
+echo Setting read/write permissions on the Python installation to %USERNAME%.
+icacls %PREFIX% /grant %USERNAME%:(OI)(CI)M /c /t /q
 
-echo ℹDisabling mamba package manager banner.
-"%PREFIX%\bin\conda" env config vars set MAMBA_NO_BANNER=1
+echo Configuring Python to ignore user-installed local packages.
+"%PREFIX%\Scripts\conda" env config vars set PYTHONNOUSERSITE=1
 
-echo ℹSetting libmama as the conda solver.
-"%PREFIX%\bin\conda" config --set solver libmamba
+echo Disabling mamba package manager banner.
+"%PREFIX%\Scripts\conda" env config vars set MAMBA_NO_BANNER=1
 
-echo ℹPinning BLAS implementation to OpenBLAS
-echo "libblas=*=*openblas" >> "%PREFIX%\bin\conda\conda-meta\pinned"
+echo Setting libmama as the conda solver.
+"%PREFIX%\Scripts\conda" config --set solver libmamba
 
-echo ℹRunning mne sys_info.
-"%PREFIX%\bin\conda" run mne sys_info
+echo Pinning BLAS implementation to OpenBLAS.
+echo "libblas=*=*openblas" >> "%PREFIX%\conda-meta\pinned"
+
+echo Running mne sys_info.
+"%PREFIX%\Scripts\conda" run mne sys_info
+
+timeout /t 5

@@ -13,7 +13,7 @@ ${PREFIX}/bin/conda env config vars set MAMBA_NO_BANNER=1
 echo "ℹ️ Setting libmama as the conda solver."
 ${PREFIX}/bin/conda config --set solver libmamba
 
-echo "ℹ️ Pinning BLAS implementation to OpenBLAS"
+echo "ℹ️ Pinning BLAS implementation to OpenBLAS."
 echo "libblas=*=*openblas" >>${PREFIX}/conda-meta/pinned
 
 echo "ℹ️ Running mne sys_info."

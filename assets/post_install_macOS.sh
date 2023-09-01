@@ -31,15 +31,15 @@ fi
 MNE_APP_DIR="$APP_DIR/MNE-Python $MNE_VERSION"
 logger -p 'install.info' "📓 MNE_APP_DIR=$MNE_APP_DIR"
 
-logger -p 'install.info' "ℹ️ Moving root MNE .app bundles from $APP_DIR to $MNE_APP_DIR"
+logger -p 'install.info' "ℹ️ Moving root MNE .app bundles from $APP_DIR to $MNE_APP_DIR."
 $PERMS mkdir -p "$MNE_APP_DIR"
 $PERMS mv "$APP_DIR"/*\(MNE\).app "$MNE_APP_DIR"/
 
-logger -p 'install.info' "ℹ️ Fixing permissions of MNE .app bundles in $MNE_APP_DIR: new owner will be ${USER_FROM_HOMEDIR}"
+logger -p 'install.info' "ℹ️ Fixing permissions of MNE .app bundles in $MNE_APP_DIR: new owner will be ${USER_FROM_HOMEDIR}."
 $PERMS chown -R "$USER_FROM_HOMEDIR" "$MNE_APP_DIR"
 
 MNE_ICON_PATH="$PREFIX/Menu/mne.png"
-logger -p 'install.info' "ℹ️ Setting custom folder icon for $MNE_APP_DIR to $MNE_ICON_PATH"
+logger -p 'install.info' "ℹ️ Setting custom folder icon for $MNE_APP_DIR to $MNE_ICON_PATH."
 osascript \
     -e 'set destPath to "'"${MNE_APP_DIR}"'"' \
     -e 'set iconPath to "'"${MNE_ICON_PATH}"'"' \
@@ -59,26 +59,26 @@ if [ "${PYTHON_PLATFORM}" == "x86_64" ]; then
     ${PREFIX}/bin/conda env config vars set CONDA_SUBDIR=osx-64
 fi
 
-logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages"
+logger -p 'install.info' "ℹ️ Configuring Python to ignore user-installed local packages."
 ${DSTBIN}/conda env config vars set PYTHONNOUSERSITE=1
 
-logger -p 'install.info' "ℹ️ Disabling mamba package manager banner"
+logger -p 'install.info' "ℹ️ Disabling mamba package manager banner."
 ${DSTBIN}/conda env config vars set MAMBA_NO_BANNER=1
 
-logger -p 'install.info' "ℹ️ Setting libmama as the conda solver."
+logger -p 'install.info' "ℹ️ Setting libmama as the conda solve.r"
 ${DSTBIN}/conda config --set solver libmamba
 
-logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default"
+logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default."
 sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${PREFIX}/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
 
-logger -p 'install.info' "ℹ️ Pinning BLAS implementation to OpenBLAS"
+logger -p 'install.info' "ℹ️ Pinning BLAS implementation to OpenBLAS."
 echo "libblas=*=*openblas" >> ${PREFIX}/conda-meta/pinned
 
-logger -p 'install.info' "ℹ️ Fixing permissions of entire conda environment for user=${USER_FROM_HOMEDIR}"
+logger -p 'install.info' "ℹ️ Fixing permissions of entire conda environment for user=${USER_FROM_HOMEDIR}."
 chown -R "$USER_FROM_HOMEDIR" "${PREFIX}"
 
-logger -p 'install.info' "ℹ️ Running mne sys_info"
+logger -p 'install.info' "ℹ️ Running mne sys_info."
 ${DSTBIN}/conda run mne sys_info || true
 
-logger -p 'install.info' "ℹ️ Opening in Finder ${MNE_APP_DIR}"
-open -R "${MNE_APP_DIR}"
+logger -p 'install.info' "ℹ️ Opening in Finder ${MNE_APP_DIR}/."
+open -R "${MNE_APP_DIR}/"
