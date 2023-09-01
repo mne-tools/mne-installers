@@ -300,6 +300,7 @@ jobs:
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
           echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
           echo "MNE_ACTIVATE=${MNE_ACTIVATE}"
+          echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
 
       - name: Download appropriate installer
         uses: actions/download-artifact@v3
@@ -327,7 +328,7 @@ jobs:
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - name: Run installer (Windows)
         if: ${{ runner.os == 'Windows' }}
-        timeout-minutes: 20
+        timeout-minutes: 30
         shell: cmd
         run: |
           .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
