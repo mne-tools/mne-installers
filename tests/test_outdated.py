@@ -25,7 +25,9 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = set()
+allowed_outdated: set[str] = set(
+    "fsleyes",  # some unknown bug where 1.8.3 can't be downloaded on 2023/09/01
+)
 packages: list[Package] = []
 
 for spec in specs:
