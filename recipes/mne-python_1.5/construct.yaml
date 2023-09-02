@@ -22,9 +22,8 @@ default_prefix: ${HOME}/mne-python/1.5.0_1                          # [linux]
 default_prefix: "%USERPROFILE%\\mne-python\\1.5.0_1"                # [win]
 default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.5.0_1"   # [win]
 default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.5.0_1"  # [win]
-pkg_name: "MNE-Python_1.5.0_1"                                      # [osx]
-# shortcuts will be created in Appplications automatically, so use Library here
-default_location_pkg: "Library"                                     # [osx]
+default_location_pkg: "Applications/MNE-Python/1.5.0_1"             # [osx]
+pkg_name: ".mne-python"                                             # [osx]
 progress_notifications: true                                        # [osx]
 install_path_exists_error_text: |
     {CHOSEN_PATH} already exists. Relaunch the installer and choose another location in the Destination Select step, or remove the existing directory and try again.
@@ -60,16 +59,22 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
 specs:
+  # Python
+  - python =3.11.5
+  - pip =23.2.1
+  - conda =23.7.3
+  - mamba =1.5.0
+  - conda-libmamba-solver =23.7.0
   # MNE ecosystem
-
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-
-  - mne =1.5.0=*_0
+  - mne-base =1.5.0=*_0
   - mne-installer-menus =1.5.0=*_0
+  # For testing purposes with build_local.sh, you can comment out all deps
+  # below for speed
   - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0
   - mne-qt-browser =0.5.2
@@ -94,12 +99,6 @@ specs:
   # BLAS
   - openblas =0.3.23
   - libblas =3.9.0=*openblas
-  # Python
-  - python =3.11.5
-  - pip =23.2.1
-  - conda =23.7.3
-  - mamba =1.5.0
-  - conda-libmamba-solver =23.7.0
   - jupyter =1.0.0
   - jupyterlab =4.0.5
   - ipykernel =6.25.1

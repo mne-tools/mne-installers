@@ -42,7 +42,7 @@ elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "arm64" ]]; then
 fi
 
 if [[ "$MACHINE" == "macOS" ]]; then
-    MNE_INSTALL_PREFIX="/Library/mne-python_${MNE_INSTALLER_VERSION}"
+    MNE_INSTALL_PREFIX="/Applications/MNE-Python/${MNE_INSTALLER_VERSION}/.mne-python"
     MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
     MNE_ACTIVATE="$MNE_INSTALL_PREFIX/bin/activate"
 elif [[ "$MACHINE" == "Linux" ]]; then

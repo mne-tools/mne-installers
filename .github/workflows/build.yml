@@ -161,9 +161,13 @@ jobs:
           # Now extract the package and check that the conda.exe binary is
           # properly signed as well
           pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
-          codesign -vd ./mne-extracted/main.pkg/Payload/Library/mne-python*/conda.exe
-          # Check entitlements of conda.exe binary
-          codesign --display --entitlements - ./mne-extracted/main.pkg/Payload/Library/mne-python*/conda.exe
+          BINARY="./mne-extracted/main.pkg/Payload${MNE_INSTALL_PREFIX}/conda.exe"
+          echo "Checking ${BINARY} exists"
+          test -e "${BINARY}"
+          echo "Checking ${BINARY} is signed"
+          codesign -vd "${BINARY}"
+          echo "Checking entitlements of ${BINARY}"
+          codesign --display --entitlements - "${BINARY}"
           rm -rf ./mne-extracted
 
       - name: Notarize installer (macOS)
@@ -373,17 +377,18 @@ jobs:
           if [[ "${{ runner.os }}" == "macOS" ]]; then
             echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
             # https://unix.stackexchange.com/a/7733
-            [ `ls -ld /Applications/MNE-Python*/ | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
-            [ `ls -ld /Library/mne-python*/ | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
+            APP_DIR=/Applications/MNE-Python/${MNE_INSTALLER_VERSION}
+            [ `ls -ld ${APP_DIR} | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
             echo "Check that the installed Python is, in fact, an Intel binary"
             python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
-            echo "Checking we have all .app bundles in /Applications:"
+            echo "Checking we have all .app bundles in ${APP_DIR}:"
             ls -al /Applications/
-            ls -d /Applications/MNE-Python*/*.app || exit 1
+            ls -al /Applications/MNE-Python
+            ls -al ${APP_DIR}
             echo "Checking that there are 5 directories"
-            test `ls -d /Applications/MNE-Python*/*.app | wc -l` -eq 5 || exit 1
-            echo "Checking that the custom icon was set on the MNE folder in /Applications/MNE-Python"
-            test -f /Applications/MNE-Python*/Icon$'\r' || exit 1
+            test `ls -d ${APP_DIR}/*.app | wc -l` -eq 5 || exit 1
+            echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
+            test -f /Applications/MNE-Python/Icon$'\r' || exit 1
           elif [[ "${{ runner.os }}" == "Linux" ]]; then
             echo "Checking that menu shortcuts were created …"
             pushd ~/.local/share/applications
