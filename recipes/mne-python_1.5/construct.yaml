@@ -63,7 +63,7 @@ specs:
   - python =3.11.5
   - pip =23.2.1
   - conda =23.7.3
-  - mamba =1.5.0
+  - mamba =1.5.1
   - conda-libmamba-solver =23.7.0
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -88,20 +88,17 @@ specs:
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
   - mne-gui-addons =0.1.0
-  # include setuptools_scm in case people want to do an editable install
-  # instead of using the released version
-  - setuptools_scm =7.1.0
   - traitsui =8.0.0
   - autoreject =0.4.2
   - pyriemann =0.5
   - pyprep =0.4.2
   - openmeeg =2.5.6
   # BLAS
-  - openblas =0.3.23
+  - openblas =0.3.24
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
   - jupyterlab =4.0.5
-  - ipykernel =6.25.1
+  - ipykernel =6.25.2
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.4.4
   - spyder =5.4.5
@@ -150,6 +147,18 @@ specs:
   - git =2.42.0  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.0
+  - trame =3.2.4
+  - trame-vtk =2.5.8
+  - trame-vuetify =2.3.1
+  # Development
+  - setuptools_scm =7.1.0
+  - pytest =7.4.1
+  - pytest-cov =4.1.0
+  - pytest-qt =4.2.0
+  - pytest-harvest =1.10.4
+  - pre-commit =3.4.0
+  - ruff =0.0.287
+  - black =23.7.0
 
 condarc:
   channels:
