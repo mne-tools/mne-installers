@@ -1,4 +1,4 @@
-version: 1.5.0_1
+version: 1.5.1_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,11 +18,11 @@ conclusion_file: ../../assets/conclusion.rtf   # [not win]
 initialize_by_default: false
 register_python_default: false
 
-default_prefix: ${HOME}/mne-python/1.5.0_1                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.5.0_1"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.5.0_1"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.5.0_1"  # [win]
-default_location_pkg: "Applications/MNE-Python/1.5.0_1"             # [osx]
+default_prefix: ${HOME}/mne-python/1.5.1_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.5.1_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.5.1_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.5.1_0"  # [win]
+default_location_pkg: "Applications/MNE-Python/1.5.1_0"             # [osx]
 pkg_name: ".mne-python"                                             # [osx]
 progress_notifications: true                                        # [osx]
 install_path_exists_error_text: |
@@ -30,10 +30,10 @@ install_path_exists_error_text: |
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.5.0_1-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.5.0_1-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.5.0_1-Windows.exe      # [win]
-installer_filename: MNE-Python-1.5.0_1-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.5.1_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.5.1_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.5.1_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.5.1_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -71,8 +71,8 @@ specs:
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.5.0=*_0
-  - mne-installer-menus =1.5.0=*_0
+  - mne =1.5.1=*_0
+  - mne-installer-menus =1.5.1=*_0
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
   - mne-bids =0.13.0
@@ -167,4 +167,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.5.0_1) "
+  env_prompt: "(mne-1.5.1_0) "

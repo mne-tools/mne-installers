@@ -14,7 +14,7 @@ construct_yaml_path = latest_recipe_dir / "construct.yaml"
 
 construct_yaml = yaml.safe_load(construct_yaml_path.read_text(encoding="utf-8"))
 specs = construct_yaml["specs"]
-LJUST = 20
+LJUST = 25
 
 print(f"Analyzing spec file: {construct_yaml_path}\n")
 
