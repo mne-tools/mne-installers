@@ -167,8 +167,8 @@ jobs:
           BINARY="./mne-extracted/main.pkg/Payload${MNE_INSTALL_PREFIX}/conda.exe"
           echo "Checking ${BINARY} exists"
           test -e "${BINARY}"
-          echo "Checking ${BINARY} is signed"
           if [[ "${{ github.event_name }}" != "pull_request" ]]; then
+            echo "Checking ${BINARY} is signed"
             codesign -vd "${BINARY}" || exit 1
           fi
           echo "Checking entitlements of ${BINARY}"
