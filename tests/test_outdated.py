@@ -14,6 +14,7 @@ construct_yaml_path = latest_recipe_dir / "construct.yaml"
 
 construct_yaml = yaml.safe_load(construct_yaml_path.read_text(encoding="utf-8"))
 specs = construct_yaml["specs"]
+LJUST = 20
 
 print(f"Analyzing spec file: {construct_yaml_path}\n")
 
@@ -25,7 +26,9 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = set()
+allowed_outdated: set[str] = {
+    "pyvista",  # 0.42.0 has a broken notebook backend
+}
 packages: list[Package] = []
 
 for spec in specs:
@@ -68,12 +71,12 @@ for package in packages:
     ):
         mismatch = f"{package.version_spec} < {package.version_conda_forge}"
         if package.name in allowed_outdated:
-            print(f"  {package.name.ljust(20)} ✓ allowed  {mismatch}")
+            print(f"  {package.name.ljust(LJUST)} ✓ allowed  {mismatch}")
         else:
-            print(f"* {package.name.ljust(20)} ✗ OUTDATED {mismatch}")
+            print(f"* {package.name.ljust(LJUST)} ✗ OUTDATED {mismatch}")
             outdated.append(package)
     else:
-        print(f"  {package.name.ljust(20)} ✓")
+        print(f"  {package.name.ljust(LJUST)} ✓")
 
 exit_code = 0
 if not_found:
