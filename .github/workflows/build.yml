@@ -129,9 +129,12 @@ jobs:
           test "$MNE_INSTALLER_NAME" != ""
           echo "Artifact ID: ${MNE_INSTALLER_ARTIFACT_ID}"
           test "$MNE_INSTALLER_ARTIFACT_ID" != ""
+          echo "Prefix:      ${MNE_INSTALL_PREFIX}"
+          test "$MNE_INSTALL_PREFIX" != ""
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
           echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
           echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
+          echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}" >> $GITHUB_ENV
           echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
           echo "CONDA_SOLVER=libmamba" >> $GITHUB_ENV
           if [[ "$MNE_CROSSCOMPILE_ARCH" == "arm64" ]]; then
@@ -153,7 +156,7 @@ jobs:
           ./tools/run_constructor.sh
 
       - name: Check installer signature (macOS)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
+        if: ${{ runner.os == 'macOS' }}
         run: |
           # Installer package
           set -eo pipefail
@@ -165,7 +168,9 @@ jobs:
           echo "Checking ${BINARY} exists"
           test -e "${BINARY}"
           echo "Checking ${BINARY} is signed"
-          codesign -vd "${BINARY}"
+          if [[ "${{ github.event_name }}" != "pull_request" ]]; then
+            codesign -vd "${BINARY}" || exit 1
+          fi
           echo "Checking entitlements of ${BINARY}"
           codesign --display --entitlements - "${BINARY}"
           rm -rf ./mne-extracted
@@ -304,7 +309,8 @@ jobs:
           echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
           echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
           echo "MNE_ACTIVATE=${MNE_ACTIVATE}"
-          echo "MNE_INSTALL_PREFIX=$MNE_INSTALL_PREFIX" >> $GITHUB_ENV
+          echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}" >> $GITHUB_ENV
+          echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}"
           echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
 
       - name: Download appropriate installer
