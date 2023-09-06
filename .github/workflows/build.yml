@@ -160,7 +160,9 @@ jobs:
         run: |
           # Installer package
           set -eo pipefail
-          pkgutil --check-signature ${MNE_INSTALLER_NAME}
+          if [[ "${{ github.event_name }}" != "pull_request" ]]; then
+            pkgutil --check-signature ${MNE_INSTALLER_NAME} || exit 1
+          fi
           # Now extract the package and check that the conda.exe binary is
           # properly signed as well
           pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
