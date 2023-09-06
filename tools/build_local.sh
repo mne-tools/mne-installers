@@ -8,7 +8,5 @@ echo "Version:      ${MNE_INSTALLER_VERSION}"
 echo "Recipe:       ${RECIPE_DIR}"
 echo "OS:           ${MACHINE}"
 echo "Machine:      ${PYMACHINE}"
-echo "PLATFORM_ARG: ${PLATFORM_ARG}"
-echo "EXE_ARG:      ${EXE_ARG}"
-${SCRIPT_DIR}/patch_constructor.sh
+export CONDA_SOLVER=libmamba
 ${SCRIPT_DIR}/run_constructor.sh

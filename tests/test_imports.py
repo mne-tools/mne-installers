@@ -33,6 +33,7 @@ import mne_kit_gui
 if platform.system() != "Windows":
     import mne_icalabel
 import autoreject
+import pyriemann
 import pyprep
 import pycrostates
 import darkdetect
