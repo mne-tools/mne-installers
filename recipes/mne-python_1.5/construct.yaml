@@ -62,7 +62,7 @@ specs:
   # Python
   - python =3.11.5
   - pip =23.2.1
-  - conda =23.7.3
+  - conda =23.7.4
   - mamba =1.5.1
   - conda-libmamba-solver =23.7.0
   # MNE ecosystem
@@ -97,7 +97,7 @@ specs:
   - openblas =0.3.24
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
-  - jupyterlab =4.0.5
+  - jupyterlab =4.0.6
   - ipykernel =6.25.2
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.4.4
@@ -113,7 +113,7 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.8.3
+  - fsleyes =1.9.0
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
@@ -132,34 +132,34 @@ specs:
   - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2 =0.2.5
+  - neurokit2 =0.2.6
   # GitHub client, https://cli.github.com
-  - gh =2.34.0
+  - gh =2.35.0
   # NeuroSpin needs the following
-  - questionary =2.0.0
+  - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
-  - matplotlib =3.7.2
+  - matplotlib =3.8.0
   - ipympl =0.9.3
   - seaborn =0.12.2
-  - plotly =5.16.1
+  - plotly =5.17.0
   - vtk =9.2.6
   - git =2.42.0  # [win]
   - make =4.3  # [win]
-  - ipywidgets =8.1.0
-  - pyvista =0.41.1
-  - trame =3.2.4
+  - ipywidgets =8.1.1
+  - pyvista =0.42.2
+  - trame =3.2.6
   - trame-vtk =2.5.8
   - trame-vuetify =2.3.1
   # Development
-  - setuptools_scm =7.1.0
-  - pytest =7.4.1
+  - setuptools_scm =8.0.3
+  - pytest =7.4.2
   - pytest-cov =4.1.0
   - pytest-qt =4.2.0
   - pytest-harvest =1.10.4
   - pre-commit =3.4.0
-  - ruff =0.0.287
-  - black =23.7.0
+  - ruff =0.0.291
+  - black =23.9.1
   - py-spy =0.3.14
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
