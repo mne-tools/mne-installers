@@ -27,7 +27,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
-    "python", # ignore 3.12.0rc3
+    "python",  # ignore 3.12.0rc3
 }
 packages: list[Package] = []
 
