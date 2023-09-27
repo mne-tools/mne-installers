@@ -1,4 +1,4 @@
-version: 1.0.3_1
+version: 1.1.1_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,17 +18,17 @@ initialize_by_default: false
 register_python_default: false
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.0.3_1                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.0.3_1"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.3_1"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.3_1"  # [win]
+default_prefix: ${HOME}/mne-python/1.1.1_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.1.1_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.1.1_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.1.1_0"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.0.3_1-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.0.3_1-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.0.3_1-Windows.exe      # [win]
-installer_filename: MNE-Python-1.0.3_1-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.1.1_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.1.1_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.1.1_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.1.1_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -46,8 +46,10 @@ menu_packages:
 
 channels:
   - conda-forge
+  # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
+  # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
 specs:
   # MNE ecosystem
@@ -55,29 +57,26 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
-  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
-
-  - mne =1.0.3=*_1
-  - mne-installer-menus =1.0.3=*_1
-  - mne-qt-browser ~=0.3.0
-  - mne-bids ~=0.10.0
-  - mne-connectivity ~=0.3.0
-  - mne-faster ~=1.1.0
-  - mne-nirs ~=0.2.0
-  - mne-realtime ~=0.1.0
-  - mne-features ~=0.2.0
-  - mne-rsa ~=0.6.0
-  - mne-microstates ~=0.3.0
-  - mne-ari ~=0.1.0
-  - mne-kit-gui ~=1.0.1
-  - mne-icalabel ~=0.1.0  # [not win]
-  - autoreject ~=0.3.1
-  - pyprep ~=0.4.0
+  - mne =1.1.1=*_0
+  - mne-installer-menus =1.1.1=*_0
+  - mne-qt-browser =0.3.1
+  - mne-bids =0.10
+  - mne-connectivity =0.3
+  - mne-faster =1.1.0
+  - mne-nirs =0.2.1
+  - mne-realtime =0.1.3
+  - mne-features =0.2
+  - mne-rsa =0.6.0
+  - mne-ari =0.1.1
+  - mne-kit-gui =1.0.1
+  - mne-icalabel =0.4  # [not win]
+  - autoreject =0.3.1
+  - pyprep =0.4.2
   # Python
-  - python ~=3.10.0
+  - python =3.10.6
   - pip
   - conda
+  - openblas =0.3.21
   - mamba
   - jupyter
   - jupyterlab
@@ -104,6 +103,9 @@ specs:
   - neurodsp
   - bycycle
   - fooof
+  # Microstates
+  - mne-microstates =0.3.0
+  - pycrostates =0.1.2
   # MNE-BIDS-Pipeline
   # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
   # note that many dependencies listed there are redundant and need not be explicitly listed here
@@ -116,6 +118,7 @@ specs:
   - openneuro-py
   # sleep staging
   - sleepecg
+  - yasa
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2
   # GitHub client, https://cli.github.com
@@ -129,4 +132,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.0.3_1) "
+  env_prompt: "(mne-1.1.1_0) "
