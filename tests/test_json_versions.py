@@ -14,11 +14,9 @@ sys_name = dict(
     win32="Windows",
 )[sys.platform]
 sys_ext = dict(linux=".sh", darwin=".pkg", win32=".exe")[sys.platform]
-ver = (dir_ / "assets" / "current_version.txt").read_text().strip()
-with open(
-    dir_ / "recipes" / f"mne-python_{ver}" / "construct.yaml", encoding="utf-8"
-) as fid:
-    params = yaml.safe_load(fid)
+recipe_dir = pathlib.Path(__file__).parents[1] / "recipes" / "mne-python"
+construct_yaml_path = recipe_dir / "construct.yaml"
+params = yaml.safe_load(construct_yaml_path.read_text(encoding="utf-8"))
 installer_version = params["version"]
 specs = params["specs"]
 del params
