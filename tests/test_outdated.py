@@ -27,7 +27,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
-    "pyvista",  # 0.42.0 has a broken notebook backend
+    "python",  # ignore 3.12.0rc3
 }
 packages: list[Package] = []
 
