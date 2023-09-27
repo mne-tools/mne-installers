@@ -2,7 +2,7 @@ version: 1.5.1_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
-# many places here, and in assets/current_version.txt.
+# many places here
 
 # https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 license_file: ../../assets/license.txt         # [linux]

@@ -1,8 +1,5 @@
 extends: default
 
-ignore: |
-  recipes/mne-python_0.23/mne-python_0.23.0_env.yml
-
 rules:
   line-length: disable
   document-start: disable

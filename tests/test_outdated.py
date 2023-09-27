@@ -7,11 +7,8 @@ import yaml
 import packaging.version
 import requests
 
-recipes_dir = Path(__file__).parents[1] / "recipes"
-recipies = sorted([str(recipe) for recipe in recipes_dir.iterdir() if recipe.is_dir()])
-latest_recipe_dir = Path(recipies[-1])
-construct_yaml_path = latest_recipe_dir / "construct.yaml"
-
+recipe_dir = Path(__file__).parents[1] / "recipes" / "mne-python"
+construct_yaml_path = recipe_dir / "construct.yaml"
 construct_yaml = yaml.safe_load(construct_yaml_path.read_text(encoding="utf-8"))
 specs = construct_yaml["specs"]
 LJUST = 25
