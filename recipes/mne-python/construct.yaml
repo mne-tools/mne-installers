@@ -1,12 +1,11 @@
-version: 0.24.1_2
-name: MNE-Python           # [not osx]
-# macOS .pkg installer defaults to ~/$NAME, so let's include the version number
-# in this path
-name: MNE-Python_0.24.1_2  # [osx]
-
+version: 1.0.3_1
+name: MNE-Python
 company: MNE-Python Developers
+# When the version above changes to a new major/minor, it needs to be updated
+# many places here, and in assets/current_version.txt.
 
-license_file: ../../assets/license.rtf
+license_file: ../../assets/license.txt         # [linux]
+license_file: ../../assets/license.rtf         # [not linux]
 welcome_image: ../../assets/welcome_macOS.png  # [osx]
 welcome_image: ../../assets/welcome.png        # [not osx]
 header_image: ../../assets/header.png
@@ -19,43 +18,74 @@ initialize_by_default: false
 register_python_default: false
 
 # default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/0.24.1_2                          # [unix]
-default_prefix: "%USERPROFILE%\\mne-python\\0.24.1_2"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\0.24.1_2"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\0.24.1_2"  # [win]
+default_prefix: ${HOME}/mne-python/1.0.3_1                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.0.3_1"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.0.3_1"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.0.3_1"  # [win]
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_type: pkg  # [osx]
-installer_filename: MNE-Python-0.24.1_2-macOS_Intel.pkg  # [osx]
-installer_filename: MNE-Python-0.24.1_2-Windows.exe      # [win]
-installer_filename: MNE-Python-0.24.1_2-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.0.3_1-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.0.3_1-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.0.3_1-Windows.exe      # [win]
+installer_filename: MNE-Python-1.0.3_1-Linux.sh         # [linux]
+
+post_install: ../../assets/post_install_macOS.sh        # [osx]
+post_install: ../../assets/post_install_linux.sh        # [linux]
+post_install: ../../assets/post_install_windows.bat     # [win]
+
+# Create signed macOS .pkg installer
+installer_type: pkg                     # [osx]
+signing_identity_name:                  # [osx]  Used for productsign
+notarization_identity_name:             # [osx]  Used for codesign
+reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identifier $reverse_domain_identifier.$name
+
+# Only create menus for mne-installer-menus
+menu_packages:
+  - mne-installer-menus
 
 channels:
   - conda-forge
+  # - conda-forge/label/mne_dev
+  # - conda-forge/label/mne-bids_dev
 
 specs:
-  - mne ==0.24.1
-  - mne-bids =0.9
-  - mne-connectivity =0.2
-  - mne-faster =1.0
-  - mne-nirs =0.1
-  - mne-realtime =0.1
-  - autoreject =0.3
-  - python =3.9
+  # MNE ecosystem
+
+  # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
+  # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
+
+  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP START ⛔️ ⛔️ ⛔️
+  # TODO: ⛔️ ⛔️ ⛔️ REMOVE ASAP STOP ⛔️ ⛔️ ⛔️
+
+  - mne =1.0.3=*_1
+  - mne-installer-menus =1.0.3=*_1
+  - mne-qt-browser ~=0.3.0
+  - mne-bids ~=0.10.0
+  - mne-connectivity ~=0.3.0
+  - mne-faster ~=1.1.0
+  - mne-nirs ~=0.2.0
+  - mne-realtime ~=0.1.0
+  - mne-features ~=0.2.0
+  - mne-rsa ~=0.6.0
+  - mne-microstates ~=0.3.0
+  - mne-ari ~=0.1.0
+  - mne-kit-gui ~=1.0.1
+  - mne-icalabel ~=0.1.0  # [not win]
+  - autoreject ~=0.3.1
+  - pyprep ~=0.4.0
+  # Python
+  - python ~=3.10.0
   - pip
   - conda
   - mamba
-  - miniforge_console_shortcut  # [win]
   - jupyter
   - jupyterlab
   - ipykernel
   - nb_conda_kernels
-  - spyder-kernels >=1.10.0
+  - spyder-kernels
   - spyder
   - ipympl
-  - ipywidgets
-  - ipyvtklink
   - darkdetect
   - qdarkstyle
   # Excel I/O
@@ -74,14 +104,29 @@ specs:
   - neurodsp
   - bycycle
   - fooof
+  # MNE-BIDS-Pipeline
+  # try to keep this in sync with https://github.com/mne-tools/mne-bids-pipeline/blob/main/requirements.txt
+  # note that many dependencies listed there are redundant and need not be explicitly listed here
+  - coloredlogs
+  - json_tricks
+  - fire
+  - dask
+  - distributed
+  # OpenNeuro.org data access
+  - openneuro-py
+  # sleep staging
+  - sleepecg
+  # various biological signals (ECG, EOG, EMG, …)
+  - neurokit2
+  # GitHub client, https://cli.github.com
+  - gh
   # NeuroSpin needs the following
   - questionary
+  - pqdm
 
 condarc:
   channels:
     - conda-forge
-  # default_channels:
-  #   - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: (mne-0.24.1_2)
+  env_prompt: "(mne-1.0.3_1) "
