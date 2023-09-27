@@ -1,9 +1,10 @@
-version: 1.4.2_0
+version: 1.5.1_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
 # many places here, and in assets/current_version.txt.
 
+# https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 license_file: ../../assets/license.txt         # [linux]
 license_file: ../../assets/license.rtf         # [not linux]
 welcome_image: ../../assets/welcome_macOS.png  # [osx]
@@ -12,23 +13,27 @@ header_image: ../../assets/header.png
 icon_image: ../../assets/icon.png
 welcome_file: ../../assets/welcome.rtf
 readme_text: ""
-conclusion_file: ../../assets/conclusion.rtf
+conclusion_file: ../../assets/conclusion.rtf   # [not win]
 
 initialize_by_default: false
 register_python_default: false
 
-# default_prefix will be ignored by macOS .pkg installer!
-default_prefix: ${HOME}/mne-python/1.4.2_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.4.2_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.4.2_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.4.2_0"  # [win]
+default_prefix: ${HOME}/mne-python/1.5.1_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.5.1_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.5.1_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.5.1_0"  # [win]
+default_location_pkg: "Applications/MNE-Python/1.5.1_0"             # [osx]
+pkg_name: ".mne-python"                                             # [osx]
+progress_notifications: true                                        # [osx]
+install_path_exists_error_text: |
+    {CHOSEN_PATH} already exists. Relaunch the installer and choose another location in the Destination Select step, or remove the existing directory and try again.
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.4.2_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.4.2_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.4.2_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.4.2_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.5.1_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.5.1_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.5.1_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.5.1_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -54,46 +59,49 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
 specs:
+  # Python
+  - python =3.11.5
+  - pip =23.2.1
+  - conda =23.7.4
+  - mamba =1.5.1
+  - conda-libmamba-solver =23.7.0
   # MNE ecosystem
-
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-
-  - mne =1.4.2=*_0
-  - mne-installer-menus =1.4.2=*_0
-  - mne-bids =0.12.0
+  - mne =1.5.1=*_0
+  - mne-installer-menus =1.5.1=*_0
+  # For testing purposes with build_local.sh, you can comment out all deps
+  # below for speed, and change mne to mne-base above
+  - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0
-  - mne-qt-browser =0.5.1
+  - mne-qt-browser =0.5.2
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
   - mne-realtime =0.2.0
-  - mne-features =0.2.1
+  - mne-features =0.3
   - mne-rsa =0.8
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
   - mne-gui-addons =0.1.0
-  - traitsui =7.4.3  # mayavi not 8.0 compatible
+  - traitsui =8.0.0
   - autoreject =0.4.2
   - pyriemann =0.5
   - pyprep =0.4.2
   - openmeeg =2.5.6
-  # Python
-  - python =3.10.10
-  - pip =23.1.2
-  - conda =23.3.1
-  - mamba =1.4.2
-  - openblas =0.3.23
+  # BLAS
+  - openblas =0.3.24
+  - libblas =3.9.0=*openblas
   - jupyter =1.0.0
-  - jupyterlab =4.0.1
-  - ipykernel =6.23.1
+  - jupyterlab =4.0.6
+  - ipykernel =6.25.2
   - nb_conda_kernels =2.3.1
-  - spyder-kernels =2.4.3
-  - spyder =5.4.3
+  - spyder-kernels =2.4.4
+  - spyder =5.4.5
   - darkdetect =0.8.0
   - qdarkstyle =3.1
   - numba =0.57.1
@@ -105,7 +113,7 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.7.0
+  - fsleyes =1.9.0
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
@@ -120,25 +128,41 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2023.1.0
   # sleep staging
-  - sleepecg =0.5.5  # TODO: for 3.11 wait for numba, then restart and wait for https://github.com/conda-forge/sleepecg-feedstock/pull/20
-  - yasa =0.6.3  # TODO: for 3.11 wait for sleepecg
+  - sleepecg =0.5.5
+  - tensorflow ==2.12.1=cpu_py311*  # [not win]
+  - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2 =0.2.4
+  - neurokit2 =0.2.6
   # GitHub client, https://cli.github.com
-  - gh =2.25.1
+  - gh =2.35.0
   # NeuroSpin needs the following
-  - questionary =1.10.0
+  - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
-  - matplotlib =3.7.1
+  - matplotlib =3.8.0
   - ipympl =0.9.3
   - seaborn =0.12.2
-  - plotly =5.15.0
-  - vtk =9.2.6  # [arm64 or not osx]
-  - vtk =9.2.5  # [osx and not arm64]
-  - git =2.41.0  # [win]
+  - plotly =5.17.0
+  - vtk =9.2.6
+  - git =2.42.0  # [win]
   - make =4.3  # [win]
-  - ipywidgets =8.0.7
+  - ipywidgets =8.1.1
+  - pyvista =0.42.2
+  - trame =3.2.6
+  - trame-vtk =2.5.8
+  - trame-vuetify =2.3.1
+  # Development
+  - setuptools_scm =8.0.3
+  - pytest =7.4.2
+  - pytest-cov =4.1.0
+  - pytest-qt =4.2.0
+  - pytest-harvest =1.10.4
+  - pre-commit =3.4.0
+  - ruff =0.0.291
+  - black =23.9.1
+  - py-spy =0.3.14
+  - line_profiler =4.1.1
+  - memory_profiler =0.61.0
 
 condarc:
   channels:
@@ -146,4 +170,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.4.2_0) "
+  env_prompt: "(mne-1.5.1_0) "
