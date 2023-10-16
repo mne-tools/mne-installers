@@ -88,6 +88,7 @@ specs:
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
   - mne-gui-addons =0.1.0
+  - mne-lsl =1.0.0
   - traitsui =8.0.0
   - autoreject =0.4.2
   - pyriemann =0.5
