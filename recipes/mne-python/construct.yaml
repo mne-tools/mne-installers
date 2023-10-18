@@ -63,7 +63,7 @@ specs:
   - python =3.11.5
   - pip =23.3
   - conda =23.9.0
-  - mamba =1.5.1
+  - mamba =1.5.2
   - conda-libmamba-solver =23.9.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -81,7 +81,7 @@ specs:
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
-  - mne-realtime =0.2.0
+  - mne-realtime =0.3.0
   - mne-features =0.3
   - mne-rsa =0.9
   - mne-ari =0.1.2
@@ -135,7 +135,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.6
   # GitHub client, https://cli.github.com
-  - gh =2.36.0
+  - gh =2.37.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
@@ -159,7 +159,7 @@ specs:
   - pytest-qt =4.2.0
   - pytest-harvest =1.10.4
   - pre-commit =3.5.0
-  - ruff =0.0.292
+  - ruff =0.1.0
   - black =23.9.1
   - py-spy =0.3.14
   - line_profiler =4.1.1
