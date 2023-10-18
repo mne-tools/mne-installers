@@ -29,6 +29,7 @@ import mne_rsa
 import mne_microstates
 import mne_ari
 import mne_kit_gui
+import mne_lsl
 
 if platform.system() != "Windows":
     import mne_icalabel

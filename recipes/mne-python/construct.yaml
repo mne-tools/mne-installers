@@ -61,10 +61,10 @@ channels:
 specs:
   # Python
   - python =3.11.5
-  - pip =23.2.1
-  - conda =23.7.4
-  - mamba =1.5.1
-  - conda-libmamba-solver =23.7.0
+  - pip =23.3
+  - conda =23.9.0
+  - mamba =1.5.2
+  - conda-libmamba-solver =23.9.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
@@ -77,17 +77,18 @@ specs:
   # below for speed, and change mne to mne-base above
   - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0
-  - mne-qt-browser =0.5.2
+  - mne-qt-browser =0.6.0
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
-  - mne-realtime =0.2.0
+  - mne-realtime =0.3.0
   - mne-features =0.3
-  - mne-rsa =0.8
+  - mne-rsa =0.9
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
   - mne-icalabel =0.4  # [not win]
   - mne-gui-addons =0.1.0
+  - mne-lsl =1.0.0
   - traitsui =8.0.0
   - autoreject =0.4.2
   - pyriemann =0.5
@@ -97,7 +98,7 @@ specs:
   - openblas =0.3.24
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
-  - jupyterlab =4.0.6
+  - jupyterlab =4.0.7
   - ipykernel =6.25.2
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.4.4
@@ -134,31 +135,31 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.6
   # GitHub client, https://cli.github.com
-  - gh =2.35.0
+  - gh =2.37.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
   - matplotlib =3.8.0
   - ipympl =0.9.3
-  - seaborn =0.12.2
+  - seaborn =0.13.0
   - plotly =5.17.0
   - vtk =9.2.6
   - git =2.42.0  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.1
-  - pyvista =0.42.2
-  - trame =3.2.6
-  - trame-vtk =2.5.8
+  - pyvista =0.42.3
+  - trame =3.2.7
+  - trame-vtk =2.5.9
   - trame-vuetify =2.3.1
   # Development
-  - setuptools_scm =8.0.3
+  - setuptools_scm =8.0.4
   - pytest =7.4.2
   - pytest-cov =4.1.0
   - pytest-qt =4.2.0
   - pytest-harvest =1.10.4
-  - pre-commit =3.4.0
-  - ruff =0.0.291
+  - pre-commit =3.5.0
+  - ruff =0.1.0
   - black =23.9.1
   - py-spy =0.3.14
   - line_profiler =4.1.1
