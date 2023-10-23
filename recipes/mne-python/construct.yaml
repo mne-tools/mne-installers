@@ -130,7 +130,7 @@ specs:
   - openneuro-py =2023.1.0
   # sleep staging
   - sleepecg =0.5.5
-  - tensorflow ==2.13.1=cpu_py311*  # [not win]
+  - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.6
