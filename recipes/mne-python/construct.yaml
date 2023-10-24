@@ -160,7 +160,7 @@ specs:
   - pytest-harvest =1.10.4
   - pre-commit =3.5.0
   - ruff =0.1.1
-  - black =23.10.1
+  - black =23.10.0
   - py-spy =0.3.14
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
