@@ -25,6 +25,7 @@ class Package:  # noqa: D101
 
 allowed_outdated: set[str] = {
     "python",  # ignore 3.12.0rc3
+    "tensorflow",  # 3.13.1 conflicts with VTK
 }
 packages: list[Package] = []
 

@@ -61,10 +61,10 @@ channels:
 specs:
   # Python
   - python =3.11.5
-  - pip =23.3
+  - pip =23.3.1
   - conda =23.9.0
   - mamba =1.5.2
-  - conda-libmamba-solver =23.9.1
+  - conda-libmamba-solver =23.9.2
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
@@ -159,8 +159,8 @@ specs:
   - pytest-qt =4.2.0
   - pytest-harvest =1.10.4
   - pre-commit =3.5.0
-  - ruff =0.1.0
-  - black =23.9.1
+  - ruff =0.1.1
+  - black =23.10.0
   - py-spy =0.3.14
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
