@@ -86,7 +86,7 @@ specs:
   - mne-rsa =0.9
   - mne-ari =0.1.2
   - mne-kit-gui =1.1.0
-  - mne-icalabel =0.4  # [not win]
+  - mne-icalabel =0.5.1
   - mne-gui-addons =0.1.0
   - mne-lsl =1.0.0
   - traitsui =8.0.0
