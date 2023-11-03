@@ -104,7 +104,7 @@ specs:
   - spyder-kernels =2.4.4
   - spyder =5.4.5
   - darkdetect =0.8.0
-  - qdarkstyle =3.2
+  - qdarkstyle =3.1
   - numba =0.57.1
   # I/O
   - pyxdf =1.16.4
@@ -130,7 +130,7 @@ specs:
   - openneuro-py =2023.1.0
   # sleep staging
   - sleepecg =0.5.5
-  - tensorflow ==2.13.1=cpu_py311*  # [not win]
+  - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.6

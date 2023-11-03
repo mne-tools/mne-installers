@@ -25,7 +25,8 @@ class Package:  # noqa: D101
 
 allowed_outdated: set[str] = {
     "python",  # ignore 3.12.0rc3
-    "tensorflow",  # 3.13.1 conflicts with VTK
+    "tensorflow",  # 2.13.1 conflicts with VTK
+    "qdarkstyle",  # 3.2 conflicts with Spyder 5.4.5
 }
 packages: list[Package] = []
 
