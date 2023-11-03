@@ -63,8 +63,8 @@ specs:
   - python =3.11.5
   - pip =23.3.1
   - conda =23.9.0
-  - mamba =1.5.2
-  - conda-libmamba-solver =23.9.3
+  - mamba =1.5.3
+  - conda-libmamba-solver =23.11.0
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
@@ -98,7 +98,7 @@ specs:
   - openblas =0.3.24
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
-  - jupyterlab =4.0.7
+  - jupyterlab =4.0.8
   - ipykernel =6.26.0
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.4.4
@@ -135,12 +135,12 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.6
   # GitHub client, https://cli.github.com
-  - gh =2.37.0
+  - gh =2.38.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
-  - matplotlib =3.8.0
+  - matplotlib =3.8.1
   - ipympl =0.9.3
   - seaborn =0.13.0
   - plotly =5.18.0
@@ -149,7 +149,7 @@ specs:
   - make =4.3  # [win]
   - ipywidgets =8.1.1
   - pyvista =0.42.3
-  - trame =3.2.8
+  - trame =3.3.0
   - trame-vtk =2.5.9
   - trame-vuetify =2.3.1
   # Development
