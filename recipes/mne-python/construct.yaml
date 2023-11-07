@@ -62,7 +62,7 @@ specs:
   # Python
   - python =3.11.5
   - pip =23.3.1
-  - conda =23.9.0
+  - conda =23.10.0
   - mamba =1.5.3
   - conda-libmamba-solver =23.11.0
   # MNE ecosystem
@@ -133,7 +133,7 @@ specs:
   - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2 =0.2.6
+  - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
   - gh =2.38.0
   # NeuroSpin needs the following
@@ -159,7 +159,7 @@ specs:
   - pytest-qt =4.2.0
   - pytest-harvest =1.10.4
   - pre-commit =3.5.0
-  - ruff =0.1.3
+  - ruff =0.1.4
   - black =23.10.1
   - py-spy =0.3.14
   - line_profiler =4.1.1
