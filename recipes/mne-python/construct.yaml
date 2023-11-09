@@ -105,7 +105,7 @@ specs:
   - spyder =5.4.5
   - darkdetect =0.8.0
   - qdarkstyle =3.1
-  - numba =0.57.1
+  - numba =0.58.1
   # I/O
   - pyxdf =1.16.4
   - openpyxl =3.1.2
