@@ -104,7 +104,7 @@ specs:
   - spyder-kernels =2.5.0
   - spyder =5.5.0
   - darkdetect =0.8.0
-  - qdarkstyle =3.1
+  - qdarkstyle =3.2
   - numba =0.58.1
   # I/O
   - pyxdf =1.16.4
