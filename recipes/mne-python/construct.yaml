@@ -135,7 +135,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
-  - gh =2.39.0
+  - gh =2.39.1
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
