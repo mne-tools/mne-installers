@@ -77,7 +77,7 @@ specs:
   # below for speed, and change mne to mne-base above
   - mne-bids =0.13.0
   - mne-bids-pipeline =1.4.0
-  - mne-qt-browser =0.6.0
+  - mne-qt-browser =0.6.1
   - mne-connectivity =0.5.0
   - mne-faster =1.1.0
   - mne-nirs =0.5.0
@@ -90,7 +90,7 @@ specs:
   - mne-gui-addons =0.1.0
   - mne-lsl =1.0.0
   - traitsui =8.0.0
-  - autoreject =0.4.2
+  - autoreject =0.4.3
   - pyriemann =0.5
   - pyprep =0.4.3
   - openmeeg =2.5.6
@@ -114,7 +114,7 @@ specs:
   - pingouin =0.5.3
   - pycircstat =0.0.2
   # MRI
-  - fsleyes =1.9.0
+  - fsleyes =1.10.0
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
@@ -135,7 +135,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
-  - gh =2.38.0
+  - gh =2.39.1
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
@@ -150,7 +150,7 @@ specs:
   - ipywidgets =8.1.1
   - pyvista =0.42.3
   - trame =3.3.0
-  - trame-vtk =2.6.0
+  - trame-vtk =2.6.1
   - trame-vuetify =2.3.1
   # Development
   - setuptools_scm =8.0.4
