@@ -41,7 +41,6 @@ import numba
 import openpyxl
 import xlrd
 import pingouin
-import pycircstat
 import pactools
 import tensorpac
 import emd
