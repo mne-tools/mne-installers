@@ -30,7 +30,6 @@ deps = [
             "openmeeg",  # unclear why pip doesn't see this (it's importable)
             "graphviz",  # also unclear why this isn't found
             "snirf",  # https://github.com/conda-forge/staged-recipes/pull/24501
-            "pyvistaqt",  # https://github.com/conda-forge/pyvistaqt-feedstock/pull/18
         ),
     )
 ]

@@ -163,8 +163,8 @@ jobs:
       - run: ./tools/check_installation.sh
 
   test_linux:
-    needs: [build_linux]
     name: Test (${{ matrix.os }})
+    needs: [build_linux]
     strategy:
       fail-fast: false
       matrix:
