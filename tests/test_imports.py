@@ -57,5 +57,6 @@ import seaborn
 import plotly
 import pqdm
 import pyvistaqt
+import vtk
 
 check_min_version(pyvistaqt, "0.11.0")

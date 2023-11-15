@@ -30,6 +30,7 @@ deps = [
             "openmeeg",  # unclear why pip doesn't see this (it's importable)
             "graphviz",  # also unclear why this isn't found
             "snirf",  # https://github.com/conda-forge/staged-recipes/pull/24501
+            "vtk",  # for some reason not detected properly on Windows
         ),
     )
 ]

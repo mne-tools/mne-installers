@@ -153,6 +153,7 @@ specs:
   - trame =3.3.0
   - trame-vtk =2.6.1
   - trame-vuetify =2.3.1
+  - termcolor =2.3.0
   # Development
   - setuptools_scm =8.0.4
   - pytest =7.4.3
