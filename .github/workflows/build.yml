@@ -1,4 +1,4 @@
-name: Build & test
+name: Construct
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
   cancel-in-progress: true
@@ -19,7 +19,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   # Build installers
   build_macos:
-    name: build macOS ${{ matrix.arch }}
+    name: Build (macOS ${{ matrix.arch }})
     strategy:
       fail-fast: false
       matrix:
@@ -43,7 +43,7 @@ jobs:
             channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
-      - name: Install code-signing certificates
+      - run: ./tools/macos_install_certificates.sh
         if: ${{ github.event_name != 'pull_request' }}
         env:
           APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
@@ -51,7 +51,6 @@ jobs:
           INSTALLER_CERT_BASE64: ${{ secrets.APPLE_INSTALLER_CERT_BASE64 }}
           INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_INSTALLER_CERT_PASSWORD }}
           KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
-        run: ./tools/macos_install_certificates.sh
       - name: Patch config (non-PR)
         if: ${{ github.event_name != 'pull_request' }}
         run: |
@@ -76,7 +75,7 @@ jobs:
           path: MNE-Python-*.*
 
   build_linux:
-    name: build Linux
+    name: Build (Linux)
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -100,7 +99,7 @@ jobs:
           path: MNE-Python-*.*
 
   build_windows:
-    name: build Windows
+    name: Build (Windows)
     strategy:
       fail-fast: false
     runs-on: windows-2019
@@ -127,8 +126,8 @@ jobs:
 
   # Test
   test_macos:
+    name: Test (${{ matrix.os }} ${{ matrix.arch }})
     needs: [build_macos]
-    name: test ${{ matrix.os }} ${{ matrix.arch }}
     strategy:
       fail-fast: false
       matrix:
@@ -157,8 +156,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
-      - name: Setup graphical support
-        uses: pyvista/setup-headless-display-action@main
+      - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
           pyvista: false
@@ -166,7 +164,7 @@ jobs:
 
   test_linux:
     needs: [build_linux]
-    name: test ${{ matrix.os }}
+    name: Test (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -181,15 +179,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-      - name: Run installer
-        run: sh ./${MNE_INSTALLER_NAME} -b
+      - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
-      - name: Setup graphical support
-        uses: pyvista/setup-headless-display-action@main
+      - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
           pyvista: false
@@ -197,7 +193,7 @@ jobs:
 
   test_windows:
     needs: [build_windows]
-    name: test ${{ matrix.os }}
+    name: Test (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -213,17 +209,15 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
-      - name: Run installer
+      - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
         timeout-minutes: 30
         shell: cmd
-        run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
-      - name: Setup graphical support
-        uses: pyvista/setup-headless-display-action@main
+      - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
           pyvista: false
@@ -231,6 +225,7 @@ jobs:
 
   # Release
   release:
+    name: Release
     needs: [build_macos, build_linux, build_windows, test_macos, test_linux, test_windows]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest

@@ -1,9 +1,15 @@
 #!/bin/bash
 
 set -eo pipefail
+echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
 source "${MNE_ACTIVATE}"
+echo
+echo "conda info:"
 conda info
+echo
+echo "mamba list:"
 mamba list
+echo
 
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
@@ -20,7 +26,7 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     test `ls -d ${APP_DIR}/*.app | wc -l` -eq 5 || exit 1
     echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
     test -f /Applications/MNE-Python/Icon$'\r' || exit 1
-elif [[ "${{ runner.os }}" == "Linux" ]]; then
+elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
     ls -l || exit 1
@@ -51,8 +57,9 @@ OWNER=`ls -ld "$(which python)" | awk '{print $3}'`
 echo "Got OWNER=$OWNER, should be $(whoami)"
 test "$OWNER" == "$(whoami)"
 
-echo "Checking whether (Py)Qt is working"
-LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
+echo "Checking whether Qt is working"
+# LD_DEBUG=libs
+python -c "from qtpy.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
 echo "Checking the deployed environment variables were set correctly upon environment activation"
 mamba env config vars list
