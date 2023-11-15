@@ -23,7 +23,15 @@ deps = deps[len(would) :]
 deps = [
     dep
     for dep in deps.split()
-    if not re.match("mne-[0-9]+", dep) and not dep.startswith(("PyQt6",))
+    if not re.match("mne-[0-9]+", dep)
+    and not dep.startswith(
+        (
+            "PyQt6",  # conda on PyQt5
+            "openmeeg",  # unclear why pip doesn't see this (it's importable)
+            "graphviz",  # also unclear why this isn't found
+            "snirf",  # adding to conda-forge now
+        ),
+    )
 ]
 deps = "\n".join(deps)
 assert deps == "", f"Unexpected unmet dependencies:\n{deps}"

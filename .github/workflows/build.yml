@@ -18,374 +18,220 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   # Build installers
-  build:
+  build_macos:
+    name: build macOS ${{ matrix.arch }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: macos-11
-            arch: x86_64
-
-          - os: macos-11
-            arch: arm64
-
-          - os: ubuntu-20.04
-            arch: x86_64
-
-          - os: windows-2019
-            arch: x86_64
-
-    runs-on: ${{ matrix.os }}
-
+          - arch: x86_64
+          - arch: arm64
+    runs-on: macos-11
+    env:
+      MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
+      GITHUB_EVENT_NAME: ${{ github.event_name }}
     defaults:
       run:
         shell: bash -el {0}
-
     steps:
-      # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
-      - name: Install code-signing certificates (macOS)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
-        env:
-          APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
-          APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
-          INSTALLER_CERT_BASE64: ${{ secrets.APPLE_INSTALLER_CERT_BASE64 }}
-          INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_INSTALLER_CERT_PASSWORD }}
-          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
-        run: |
-          # create variables
-          APPLICATION_CERT_PATH=$RUNNER_TEMP/application_cert.p12
-          INSTALLER_CERT_PATH=$RUNNER_TEMP/installer_cert.p12
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-
-          # import certificatefrom secrets
-          echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_PATH
-          echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
-
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-          # download Apple certificates
-          curl https://www.apple.com/appleca/AppleIncRootCertificate.cer -L --output AppleIncRootCertificate.cer
-          curl https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer -L --output AppleComputerRootCertificate.cer
-          curl http://developer.apple.com/certificationauthority/AppleWWDRCA.cer -L --output AppleWWDRCA.cer
-
-          # install Apple certificates
-          # the following line is required for macOS 11+, see
-          # https://developer.apple.com/forums/thread/671582?answerId=693632022#693632022
-          sudo security authorizationdb write com.apple.trust-settings.admin allow
-          sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
-          sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
-          security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
-
-          # ensure we're going to import the correct developer certificates into keychain
-          openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
-          openssl pkcs12 -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
-
-          # import developer certificates
-          security import $APPLICATION_CERT_PATH -P "$APPLICATION_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security import $INSTALLER_CERT_PATH -P "$INSTALLER_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-
-          # ensure the imported certificates are valid
-          security find-identity -v $KEYCHAIN_PATH
-
-          # Avoid a password prompt; what this actually does is not properly
-          # documented; see https://github.com/fastlane/fastlane/issues/13564#issue-372273249
-          # and https://stackoverflow.com/a/40039594
-          # FIXME: Really needed?
-          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-          # Make the keychain the default
-          security default-keychain -s $KEYCHAIN_PATH
-
-          # List available signing identities (for debugging purposes)
-          security find-identity
-
       - uses: actions/checkout@v3
-
-      - name: Install Micromamba
-        uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v1
         with:
           condarc: |
             channels:
               - conda-forge
             channel_priority: strict
           environment-file: environment.yml
-
-      - name: Extract version information
+      - run: ./tools/extract_version.sh
+      - name: Install code-signing certificates
+        if: ${{ github.event_name != 'pull_request' }}
         env:
-          MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
-        run: |
-          source ./tools/extract_version.sh
-          echo "Version:     ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
-          test "$MNE_INSTALLER_VERSION" != ""
-          test "$PYSHORT" != ""
-          test -d "$SCRIPT_DIR"
-          echo "Recipe:      ${RECIPE_DIR}"
-          test "$RECIPE_DIR" != ""
-          test -d "$RECIPE_DIR"
-          echo "Installer:   ${MNE_INSTALLER_NAME}"
-          test "$MNE_INSTALLER_NAME" != ""
-          echo "Artifact ID: ${MNE_INSTALLER_ARTIFACT_ID}"
-          test "$MNE_INSTALLER_ARTIFACT_ID" != ""
-          echo "Prefix:      ${MNE_INSTALL_PREFIX}"
-          test "$MNE_INSTALL_PREFIX" != ""
-          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
-          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
-          echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
-          echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}" >> $GITHUB_ENV
-          echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
-          echo "CONDA_SOLVER=libmamba" >> $GITHUB_ENV
-          if [[ "$MNE_CROSSCOMPILE_ARCH" == "arm64" ]]; then
-            echo "PLATFORM_ARG=--platform=osx-arm64" >> $GITHUB_ENV
-            echo "EXE_ARG=--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe" >> $GITHUB_ENV
-          fi
-
-      - name: Patch config (macOS non-PR)
-        if: ${{ runner.os == 'macOS' && github.event_name != 'pull_request' }}
+          APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
+          APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
+          INSTALLER_CERT_BASE64: ${{ secrets.APPLE_INSTALLER_CERT_BASE64 }}
+          INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_INSTALLER_CERT_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        run: ./tools/macos_install_certificates.sh
+      - name: Patch config (non-PR)
+        if: ${{ github.event_name != 'pull_request' }}
         run: |
           sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
-
-      - name: Build installer
-        # As of 2022/08/31, < 10 min on all platforms thanks to libmamba solver.
-        # So let's set this to a reasonable limit that will tell us more quickly
-        # if something has gone wrong with dependency resolution.
+      - run: ./tools/run_constructor.sh
         timeout-minutes: 20
-        run: |
-          ./tools/run_constructor.sh
-
-      - name: Check installer signature (macOS)
-        if: ${{ runner.os == 'macOS' }}
-        run: |
-          # Installer package
-          set -eo pipefail
-          if [[ "${{ github.event_name }}" != "pull_request" ]]; then
-            pkgutil --check-signature ${MNE_INSTALLER_NAME} || exit 1
-          fi
-          # Now extract the package and check that the conda.exe binary is
-          # properly signed as well
-          pkgutil --expand-full ${MNE_INSTALLER_NAME} ./mne-extracted
-          DIR="./mne-extracted/prepare_installation.pkg/Payload/.mne-python"
-          echo "Checking ${DIR} exists"
-          test -d "$DIR"
-          ls -al "$DIR"
-          BINARY="${DIR}/conda.exe"
-          echo "Checking ${BINARY} exists"
-          test -e "${BINARY}"
-          echo "Checking ${BINARY} is signed"
-          codesign -vd "${BINARY}"
-          echo "Checking entitlements of ${BINARY}"
-          codesign --display --entitlements - "${BINARY}"
-          rm -rf ./mne-extracted
-
-      - name: Notarize installer (macOS)
-        if: ${{ matrix.os == 'macOS-11' && github.event_name != 'pull_request' }}
+      - run: ./tools/macos_check_installer_signature.sh
+      - run: ./tools/macos_notarize_installer.sh
+        if: ${{ github.event_name != 'pull_request' }}
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: |
-          # Notarize the installer
-          xcrun notarytool submit ./${MNE_INSTALLER_NAME} \
-              --wait \
-              --apple-id=$APPLE_ID \
-              --password=$APPLE_ID_PASSWORD \
-              --team-id=$APPLE_TEAM_ID
-          # Staple the notarization certificate onto it
-          xcrun stapler staple ${MNE_INSTALLER_NAME}
-
-      - name: Calculate SHA256 hash of installer package
-        run: |
-          shopt -s nullglob  # Fail if the following pattern yields no results
-          echo "Finding matches"
-          matches=(MNE-Python-*-*.*)
-          echo "Extracting fname"
-          installer_fname="${matches[0]}"
-          echo "Found name: ${installer_fname}"
-          echo "Want name:  ${MNE_INSTALLER_NAME}"
-          test "$installer_fname" == "$MNE_INSTALLER_NAME"
-          hash_fname="${MNE_INSTALLER_NAME}.sha256.txt"
-          shasum -a 256 "$MNE_INSTALLER_NAME" > "$hash_fname"
-          cat "$hash_fname"
-
-      - name: Check installer (macOS)
-        if: ${{ runner.os == 'macOS' }}
-        run: |
+      - run: ./tools/calculate_installer_hash.sh
+      - run: |
           installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          path: MNE-Python-*.*
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+  build_linux:
+    name: build Linux
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          condarc: |
+            channels:
+              - conda-forge
+            channel_priority: strict
+          environment-file: environment.yml
+      - run: ./tools/extract_version.sh
+      - run: ./tools/run_constructor.sh
+        timeout-minutes: 20
+      - run: ./tools/calculate_installer_hash.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          path: MNE-Python-*.*
+
+  build_windows:
+    name: build Windows
+    strategy:
+      fail-fast: false
+    runs-on: windows-2019
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          condarc: |
+            channels:
+              - conda-forge
+            channel_priority: strict
+          environment-file: environment.yml
+      - run: ./tools/extract_version.sh
+      - run: ./tools/run_constructor.sh
+        timeout-minutes: 20
+      - run: ./tools/calculate_installer_hash.sh
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
 
   # Test
-  test:
-    needs: [build]
+  test_macos:
+    needs: [build_macos]
+    name: test ${{ matrix.os }} ${{ matrix.arch }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04, macos-11, macos-12, windows-2019, windows-2022]
+        os: [macos-11, macos-12]
         arch: [x86_64]
         # We currently can't/don't test anything about the arm64 build
         # include:
         #   - os: macos-11
         #     arch: arm64
-
     runs-on: ${{ matrix.os }}
-
     defaults:
       run:
         shell: bash -el {0}
-
     steps:
       - uses: actions/checkout@v3
-
-      - name: Determine installer name
-        run: |
-          source ./tools/extract_version.sh
-          echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
-          echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}"
-          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}" >> $GITHUB_ENV
-          echo "MNE_INSTALLER_NAME=${MNE_INSTALLER_NAME}"
-          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}" >> $GITHUB_ENV
-          echo "MNE_INSTALLER_VERSION=${MNE_INSTALLER_VERSION}"
-          echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
-          echo "MNE_ACTIVATE=${MNE_ACTIVATE}"
-          echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}" >> $GITHUB_ENV
-          echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}"
-          echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
-
-      - name: Download appropriate installer
-        uses: actions/download-artifact@v3
+      - run: ./tools/extract_version.sh
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-
-      - name: Run installer (macOS Intel)
-        if: ${{ runner.os == 'macOS' && matrix.arch == 'x86_64' }}
+      - name: Run installer
         run: |
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
-
-      - name: Run installer (Linux)
-        if: ${{ runner.os == 'Linux' }}
-        run: |
-          echo `pwd`
-          sh ./${MNE_INSTALLER_NAME} -b
-
-      # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
-      - name: Run installer (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        timeout-minutes: 30
-        shell: cmd
-        run: |
-          .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
-
-      - name: Export frozen environment definition
-        if: ${{ matrix.arch == 'x86_64' }}
-        run: |
-          source "${MNE_ACTIVATE}"
-          mamba list --json > ${MNE_INSTALLER_NAME}.env.json
-          cat ${MNE_INSTALLER_NAME}.env.json
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+      - run: ./tools/export_frozen_env_def.sh
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
-
       - name: Setup graphical support
         uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
           pyvista: false
+      - run: ./tools/check_installation.sh
 
-      - name: Check installation
-        if: ${{ matrix.arch == 'x86_64' }}
-        run: |
-          set -eo pipefail
-          source "${MNE_ACTIVATE}"
-          conda info
-          mamba list
+  test_linux:
+    needs: [build_linux]
+    name: test ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./tools/extract_version.sh
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+      - name: Run installer
+        run: sh ./${MNE_INSTALLER_NAME} -b
+      - run: ./tools/export_frozen_env_def.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
+          path: MNE-Python-*.env.json
+      - name: Setup graphical support
+        uses: pyvista/setup-headless-display-action@main
+        with:
+          qt: true
+          pyvista: false
+      - run: ./tools/check_installation.sh
 
-          if [[ "${{ runner.os }}" == "macOS" ]]; then
-            echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
-            # https://unix.stackexchange.com/a/7733
-            APP_DIR=/Applications/MNE-Python/${MNE_INSTALLER_VERSION}
-            [ `ls -ld ${APP_DIR} | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
-            echo "Check that the installed Python is, in fact, an Intel binary"
-            python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
-            echo "Checking we have all .app bundles in ${APP_DIR}:"
-            ls -al /Applications/
-            ls -al /Applications/MNE-Python
-            ls -al ${APP_DIR}
-            echo "Checking that there are 5 directories"
-            test `ls -d ${APP_DIR}/*.app | wc -l` -eq 5 || exit 1
-            echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
-            test -f /Applications/MNE-Python/Icon$'\r' || exit 1
-          elif [[ "${{ runner.os }}" == "Linux" ]]; then
-            echo "Checking that menu shortcuts were created …"
-            pushd ~/.local/share/applications
-            ls -l || exit 1
-            echo "Checking for existence of .desktop files:"
-            ls mne-python*.desktop || exit 1
-            test `ls mne-python*.desktop | wc -l` -eq 5 || exit 1
-            echo ""
-
-            # … and patched to work around a bug in menuinst
-            echo "Checking that incorrect Terminal entries have been removed"
-            test `grep "Terminal=True"  mne-python*.desktop | wc -l` -eq 0 || exit 1
-            test `grep "Terminal=False" mne-python*.desktop | wc -l` -eq 0 || exit 1
-            echo ""
-
-            echo "Checking that Terminal entries are correct…"
-            test `grep "Terminal=true"  mne-python*.desktop | wc -l` -ge 1 || exit 1
-            test `grep "Terminal=false" mne-python*.desktop | wc -l` -ge 1 || exit 1
-            # Display their contents
-            for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
-            popd
-          fi
-          echo "Checking for pinned file..."
-          test -e "$MNE_INSTALL_PREFIX/conda-meta/pinned"
-          grep "openblas" "$MNE_INSTALL_PREFIX/conda-meta/pinned"
-
-          echo "Checking permissions..."
-          OWNER=`ls -ld "$(which python)" | awk '{print $3}'`
-          echo "Got OWNER=$OWNER, should be $(whoami)"
-          test "$OWNER" == "$(whoami)"
-
-          echo "Checking whether (Py)Qt is working"
-          LD_DEBUG=libs python -c "from PyQt5.QtWidgets import QApplication, QWidget; app = QApplication([])"
-
-          echo "Checking the deployed environment variables were set correctly upon environment activation"
-          mamba env config vars list
-          if [[ "${{ runner.os }}" == "macOS" ]]; then
-            python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
-          fi
-          # TODO: broken on Windows!
-          if [[ "${{ runner.os }}" != "Windows" ]]; then
-            python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
-            python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
-          fi
-
-          echo "Running MNE's sys_info"
-          mne sys_info
-
-          echo "Trying to import MNE and all additional packages included in the installer"
-          python -u tests/test_imports.py
-          python -u tests/test_gui.py
-          python -u tests/test_notebook.py
-          python -u tests/test_json_versions.py
-
-          echo "Checking that all packages are installed that MNE-Python devs would need"
-          python -u tests/test_dev_installed.py
+  test_windows:
+    needs: [build_windows]
+    name: test ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2019, windows-2022]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./tools/extract_version.sh
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+      # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
+      - name: Run installer
+        timeout-minutes: 30
+        shell: cmd
+        run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
+      - run: ./tools/export_frozen_env_def.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
+          path: MNE-Python-*.env.json
+      - name: Setup graphical support
+        uses: pyvista/setup-headless-display-action@main
+        with:
+          qt: true
+          pyvista: false
+      - run: ./tools/check_installation.sh
 
   # Release
   release:
-    needs: [build, test]
+    needs: [build_macos, build_linux, build_windows, test_macos, test_linux, test_windows]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     defaults:
@@ -393,57 +239,35 @@ jobs:
         shell: bash -el {0}
     steps:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
-
-      - name: Download Linux installer
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-Linux-x86_64
-
-      - name: Download Linux json
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-Linux-x86_64-json
-
-      - name: Download Windows installer
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-Windows-x86_64
-
-      - name: Download Windows json
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-Windows-x86_64-json
-
-      - name: Download macOS Intel installer
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-macOS-x86_64
-
-      - name: Download macOS Intel json
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-macOS-x86_64-json
-
-      - name: Download macOS M1 installer
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-macOS-arm64
-
       # We don't have a JSON, as this is only produced upon successful
       # installation. Since we don't have an Apple Silicon runner on GHA,
       # disable this for now.
-      #
-      # - name: Download macOS M1 json
-      #   uses: actions/download-artifact@v3
+      # - uses: actions/download-artifact@v3
       #   with:
       #     name: MNE-Python-macOS-arm64-json
-
-      - name: Check contents
-        run: |
-          ls -al ./
-
-      - name: Release
-        uses: ncipollo/release-action@v1
+      - run: ls -al ./
+      - uses: ncipollo/release-action@v1
         with:
           artifacts: "MNE-Python-*.*"
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -451,25 +275,3 @@ jobs:
           prerelease: true
           allowUpdates: true
           generateReleaseNotes: true
-
-#   add_release_hashes:
-#     if: github.ref_type == 'tag'
-#     needs: [build, test]
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Generate hashes of release artifacts
-#         uses: MCJack123/ghaction-generate-release-hashes@v1
-#         with:
-#           hash-type: sha256
-#           file-name: hashes.txt
-
-#       - name: Add hashes to release
-#         uses: ncipollo/release-action@v1
-#         with:
-#           artifacts: hashes.txt
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           draft: true
-#           prerelease: true
-#           allowUpdates: true
-#           generateReleaseNotes: true
