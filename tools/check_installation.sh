@@ -72,14 +72,17 @@ if [[ "$MNE_MACHINE" != "Windows" ]]; then
     python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
 fi
 
+echo
 echo "Running MNE's sys_info"
 mne sys_info
 
+echo
 echo "Trying to import MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
 python -u tests/test_gui.py
 python -u tests/test_notebook.py
 python -u tests/test_json_versions.py
 
+echo
 echo "Checking that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py

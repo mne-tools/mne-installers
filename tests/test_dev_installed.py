@@ -29,7 +29,8 @@ deps = [
             "PyQt6",  # conda on PyQt5
             "openmeeg",  # unclear why pip doesn't see this (it's importable)
             "graphviz",  # also unclear why this isn't found
-            "snirf",  # adding to conda-forge now
+            "snirf",  # https://github.com/conda-forge/staged-recipes/pull/24501
+            "pyvistaqt",  # https://github.com/conda-forge/pyvistaqt-feedstock/pull/18
         ),
     )
 ]
