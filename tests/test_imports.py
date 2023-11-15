@@ -30,9 +30,7 @@ import mne_microstates
 import mne_ari
 import mne_kit_gui
 import mne_lsl
-
-if platform.system() != "Windows":
-    import mne_icalabel
+import mne_icalabel
 import autoreject
 import pyriemann
 import pyprep
@@ -43,7 +41,6 @@ import numba
 import openpyxl
 import xlrd
 import pingouin
-import pycircstat
 import pactools
 import tensorpac
 import emd
@@ -55,7 +52,11 @@ import sleepecg
 import yasa
 import neurokit2
 import questionary
-import matplotlib
+import matplotlib.pyplot
 import seaborn
 import plotly
 import pqdm
+import pyvistaqt
+import vtk
+
+check_min_version(pyvistaqt, "0.11.0")
