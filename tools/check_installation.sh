@@ -10,6 +10,9 @@ echo
 echo "mamba list:"
 mamba list
 echo
+echo "pip list:"
+pip list
+echo
 
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
