@@ -113,7 +113,6 @@ specs:
   - xlrd =2.0.1
   # Statistics
   - pingouin =0.5.3
-  - pycircstat =0.0.2
   # MRI
   - fsleyes =1.10.0
   - dcm2niix =1.0.20230411
