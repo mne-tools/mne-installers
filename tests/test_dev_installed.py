@@ -1,3 +1,4 @@
+import platform
 import re
 import subprocess
 
@@ -24,15 +25,10 @@ deps = [
     dep
     for dep in deps.split()
     if not re.match("mne-[0-9]+", dep)
-    and not dep.startswith(
-        (
-            "PyQt6",  # conda on PyQt5
-            "openmeeg",  # unclear why pip doesn't see this (it's importable)
-            "graphviz",  # also unclear why this isn't found
-            "snirf",  # https://github.com/conda-forge/staged-recipes/pull/24501
-            "vtk",  # for some reason not detected properly on Windows
-        ),
-    )
+    # conda still on PyQt5
+    and not dep.startswith("PyQt6")
+    # for some reason vtk is not detected properly on Windows even though it imports
+    and not (platform.system() == "Windows" and dep.startswith("vtk"))
 ]
 deps = "\n".join(deps)
 assert deps == "", f"Unexpected unmet dependencies:\n{deps}"
