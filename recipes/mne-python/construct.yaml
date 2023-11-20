@@ -174,7 +174,7 @@ specs:
   - twine =4.0.2
   # Doc building
   - numpydoc =1.5.0
-  - pydata-sphinx-theme =0.14.3
+  - pydata-sphinx-theme =0.13.3
   - graphviz =8.1.0
   - python-graphviz =0.20.1
   - selenium =4.15.2
