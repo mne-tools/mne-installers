@@ -141,7 +141,7 @@ specs:
   - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
-  - matplotlib =3.8.1
+  - matplotlib =3.8.2
   - ipympl =0.9.3
   - seaborn =0.13.0
   - plotly =5.18.0
