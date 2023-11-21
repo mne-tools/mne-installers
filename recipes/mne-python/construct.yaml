@@ -179,7 +179,7 @@ specs:
   - python-graphviz =0.20.1
   - selenium =4.15.2
   - sphinx-design =0.5.0
-  - sphinx-gallery =0.14.0
+  - sphinx-gallery =0.15.0
   - sphinxcontrib-bibtex =2.6.1
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
