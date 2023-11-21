@@ -15,6 +15,11 @@ echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_
 echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
 echo "✅ Done retrieving our Developer certificates from GH secrets."
 
+echo "🏃 Displaying information on our Developer certificates …"
+/usr/bin/openssl pkcs12 -info -noout -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH
+/usr/bin/openssl pkcs12 -info -noout -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH
+echo "✅ Done displaying information on our Developer certificates."
+
 # create temporary keychain
 echo "🏃 Creating temporary keychain …"
 security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
