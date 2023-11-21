@@ -16,6 +16,8 @@ echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
 echo "✅ Done retrieving our Developer certificates from GH secrets."
 
 echo "🏃 Displaying information on our Developer certificates …"
+echo "⛔️ WARNING: USING OPENSSL LEGACY MODE. PLEASE FIX THIS."
+echo "Using OpenSSL:" `openssl version`
 openssl pkcs12 -legacy -info -noout -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH
 openssl pkcs12 -legacy -info -noout -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH
 echo "✅ Done displaying information on our Developer certificates."
@@ -47,9 +49,9 @@ echo "✅ Done installing Apple certificates."
 # ensure we're going to import the correct developer certificates into keychain
 echo "🏃 Running sanity check on our Developer certificates before importing …"
 echo "⛔️ WARNING: USING OPENSSL LEGACY MODE. PLEASE FIX THIS."
-echo "Using OpenSSL:" `/usr/bin/openssl version`
-/usr/bin/openssl pkcs12 -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
-/usr/bin/openssl pkcs12 -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
+echo "Using OpenSSL:" `openssl version`
+openssl pkcs12 -legacy -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
+openssl pkcs12 -legacy -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
 echo "✅ Done running sanity check on our Developer certificates before importing."
 
 # import developer certificates
