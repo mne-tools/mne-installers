@@ -9,10 +9,10 @@ INSTALLER_CERT_PATH=$RUNNER_TEMP/installer_cert.p12
 KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
 # import certificates from secrets
-echo "🏃 Retrieving Developer certificates from GH secrets …"
+echo "🏃 Retrieving our Developer certificates from GH secrets …"
 echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_PATH
 echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
-echo "✅ Done retrieving Developer certificates from GH secrets."
+echo "✅ Done retrieving our Developer certificates from GH secrets."
 
 # create temporary keychain
 echo "🏃 Creating temporary keychain …"
