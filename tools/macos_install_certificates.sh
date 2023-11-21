@@ -18,7 +18,7 @@ echo "✅ Done retrieving our Developer certificates from GH secrets."
 echo "🏃 Displaying information on our Developer certificates …"
 echo "Using OpenSSL:" `$OPENSSL version`
 $OPENSSL pkcs12 -info -noout -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH
-$OPENSSL pkcs12 -legacy -info -noout -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH
+$OPENSSL pkcs12 -info -noout -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH
 echo "✅ Done displaying information on our Developer certificates."
 
 # create temporary keychain
