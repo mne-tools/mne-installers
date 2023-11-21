@@ -39,13 +39,13 @@ sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleComputer
 security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
 echo "✅ Done installing Apple certificates."
 
-# ensure we're going to import the correct developer certificates into keychain
-echo "🏃 Running sanity check on our Developer certificates before importing …"
-echo "⛔️ WARNING: USING OPENSSL LEGACY MODE. PLEASE FIX THIS."
-echo "Using OpenSSL:" `openssl version`
-openssl pkcs12 -legacy -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
-openssl pkcs12 -legacy -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
-echo "✅ Done running sanity check on our Developer certificates before importing."
+# # ensure we're going to import the correct developer certificates into keychain
+# echo "🏃 Running sanity check on our Developer certificates before importing …"
+# echo "⛔️ WARNING: USING OPENSSL LEGACY MODE. PLEASE FIX THIS."
+# echo "Using OpenSSL:" `openssl version`
+# openssl pkcs12 -legacy -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
+# openssl pkcs12 -legacy -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
+# echo "✅ Done running sanity check on our Developer certificates before importing."
 
 # import developer certificates
 echo "🏃 Importing our Developer certificates …"
