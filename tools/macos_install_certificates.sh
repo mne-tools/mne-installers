@@ -13,7 +13,7 @@ echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_
 echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
 
 # create temporary keychain
-echo "🏃 Creating temporary keychains …"
+echo "🏃 Creating temporary keychain …"
 security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
 security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
