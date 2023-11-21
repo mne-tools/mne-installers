@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -eo pipefail
+exec 2>&1  # redirect stderr to stdout, so error messages show up in GH Actions logs
 
 # Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
 # create variables
@@ -42,8 +43,8 @@ echo "✅ Done installing Apple certificates."
 echo "🏃 Running sanity check on our Developer certificates before importing …"
 echo "⛔️ WARNING: USING OPENSSL LEGACY MODE. PLEASE FIX THIS."
 echo "Using OpenSSL:" `openssl version`
-openssl pkcs12 -legacy -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH  #| grep friendlyName
-openssl pkcs12 -legacy -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH  #| grep friendlyName
+openssl pkcs12 -legacy -nokeys -passin pass:"$APPLICATION_CERT_PASSWORD" -in $APPLICATION_CERT_PATH | grep friendlyName
+openssl pkcs12 -legacy -nokeys -passin pass:"$INSTALLER_CERT_PASSWORD" -in $INSTALLER_CERT_PATH | grep friendlyName
 echo "✅ Done running sanity check on our Developer certificates before importing."
 
 # import developer certificates
