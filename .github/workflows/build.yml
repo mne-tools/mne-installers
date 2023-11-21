@@ -44,7 +44,7 @@ jobs:
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/macos_install_certificates.sh
-        # if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ github.event_name != 'pull_request' }}
         env:
           APPLICATION_CERT_BASE64: ${{ secrets.APPLE_APPLICATION_CERT_BASE64 }}
           APPLICATION_CERT_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
