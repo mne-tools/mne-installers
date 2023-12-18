@@ -28,7 +28,7 @@ allowed_outdated: set[str] = {
     "tensorflow",  # 2.13.1 conflicts with VTK
     "graphviz",  # conflicts with VTK
     "mamba",  # conflicts with pinned tensorflow
-    "openblas",  # not going to mess with it right at release time
+    "conda",  # pinned by mamba
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
 }
 packages: list[Package] = []
