@@ -11,3 +11,4 @@ dependencies:
   - conda <23.11.0
   - mamba
   - conda-libmamba-solver
+  - fmt !=10.2.0
