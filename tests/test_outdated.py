@@ -31,6 +31,7 @@ allowed_outdated: set[str] = {
     "tensorflow",  # 2.13.1 conflicts with VTK
     "graphviz",  # conflicts with VTK
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
+    "pyvista",  # incompatible with 1.6.0
 }
 packages: list[Package] = []
 
