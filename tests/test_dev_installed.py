@@ -27,6 +27,8 @@ deps = [
     if not re.match("mne-[0-9]+", dep)
     # conda still on PyQt5
     and not dep.startswith("PyQt6")
+    # and not on conda-forge yet
+    and not dep.startswith("sphinxcontrib-towncrier")
     # for some reason vtk is not detected properly on Windows even though it imports
     and not (platform.system() == "Windows" and dep.startswith("vtk"))
 ]

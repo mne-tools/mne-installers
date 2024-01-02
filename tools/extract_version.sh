@@ -5,7 +5,7 @@ export RECIPE_DIR=${SCRIPT_DIR}/../recipes/mne-python
 export MNE_INSTALLER_VERSION=$(grep "^version: .*$" ${RECIPE_DIR}/construct.yaml | cut -d' ' -f2)
 export PYSHORT=$(python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 UNAME="$(uname -s)"
-if [[ "$1" != "" ]]; then
+if [[ "$1" != "" ]] && [[ "$1" != "--dry-run" ]]; then
     MACHINE="$1"
 else
     case "${UNAME}" in
@@ -17,7 +17,7 @@ else
     esac
 fi
 if [[ "$MACHINE" != "macOS" && "$MACHINE" != "Linux" && "$MACHINE" != "Windows" ]]; then
-    echo "Unknown machine: ${UNAME}"
+    echo "Unknown machine: ${MACHINE}"
     exit 1
 fi
 export MACHINE=$MACHINE  # Linux, macOS, Windows, as specified above

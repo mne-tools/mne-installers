@@ -61,9 +61,10 @@ channels:
 specs:
   # Python
   - python =3.11.5
-  - pip =23.3.1
+  - pip =23.3.2
   - conda =23.10.0
   - mamba =1.5.3
+  - fmt =10.1.1
   - conda-libmamba-solver =23.11.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -76,9 +77,9 @@ specs:
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
   - mne-bids =0.14
-  - mne-bids-pipeline =1.4.0
+  - mne-bids-pipeline =1.5.0
   - mne-qt-browser =0.6.1
-  - mne-connectivity =0.5.0
+  - mne-connectivity =0.6.0
   - mne-faster =1.1.0
   - mne-nirs =0.6.0
   - mne-realtime =0.3.0
@@ -96,16 +97,16 @@ specs:
   - openmeeg =2.5.7
   - python-neo =0.12.0
   # BLAS
-  - openblas =0.3.24
+  - openblas =0.3.25
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
-  - jupyterlab =4.0.9
-  - ipykernel =6.26.0
+  - jupyterlab =4.0.10
+  - ipykernel =6.28.0
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.5.0
   - spyder =5.5.0
   - darkdetect =0.8.0
-  - qdarkstyle =3.2
+  - qdarkstyle =3.2.3
   - numba =0.58.1
   # I/O
   - pyxdf =1.16.4
@@ -130,13 +131,13 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2023.1.0
   # sleep staging
-  - sleepecg =0.5.5
+  - sleepecg =0.5.6
   - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
-  - gh =2.39.1
+  - gh =2.40.1
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
@@ -146,25 +147,24 @@ specs:
   - seaborn =0.13.0
   - plotly =5.18.0
   - vtk =9.2.6
-  - git =2.42.0  # [win]
+  - git =2.43.0  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.1
   - pyvista =0.42.3
   - pyvistaqt =0.11.0
-  - trame =3.3.0
-  - trame-vtk =2.6.2
+  - trame =3.5.0
+  - trame-vtk =2.6.3
   - trame-vuetify =2.3.1
   - termcolor =2.3.0
   # Development
   - setuptools_scm =8.0.4
-  - pytest =7.4.3
+  - pytest =7.4.4
   - pytest-cov =4.1.0
-  - pytest-qt =4.2.0
+  - pytest-qt =4.3.1
   - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
-  - pre-commit =3.5.0
-  - ruff =0.1.6
-  - black =23.10.1
+  - pre-commit =3.6.0
+  - ruff =0.1.9
   - check-manifest =0.49.0
   - codespell =2.2.6
   - nitime =0.10.2
@@ -172,12 +172,16 @@ specs:
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
   - twine =4.0.2
+  - hatchling =1.21.0
+  - hatch-vcs =0.4.0
+  - mypy =1.8.0
+  - towncrier =23.11.0
   # Doc building
-  - numpydoc =1.5.0
+  - numpydoc =1.6.0
   - pydata-sphinx-theme =0.13.3
   - graphviz =8.1.0
   - python-graphviz =0.20.1
-  - selenium =4.15.2
+  - selenium =4.16.0
   - sphinx-design =0.5.0
   - sphinx-gallery =0.15.0
   - sphinxcontrib-bibtex =2.6.1

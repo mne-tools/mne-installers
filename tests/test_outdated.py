@@ -25,10 +25,14 @@ class Package:  # noqa: D101
 
 allowed_outdated: set[str] = {
     "python",  # ignore 3.12.0rc3
+    "conda",
+    "conda-libmamba-solver",
+    "mamba",  # conda/mamba conflict with tensorflow and VTK
+    "fmt",  # 10.2.0 broken metadata/Windows DLL problem
     "tensorflow",  # 2.13.1 conflicts with VTK
     "graphviz",  # conflicts with VTK
-    "openblas",  # not going to mess with it right at release time
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
+    "pyvista",  # incompatible with 1.6.0
 }
 packages: list[Package] = []
 
