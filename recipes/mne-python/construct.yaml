@@ -173,11 +173,14 @@ specs:
   - twine =4.0.2
   - hatchling =1.21.0
   - hatch-vcs =0.4.0
+  - mypy =1.8.0
+  - towncrier =23.11.0
   # Doc building
   - numpydoc =1.6.0
   - pydata-sphinx-theme =0.13.3
   - graphviz =8.1.0
   - python-graphviz =0.20.1
+  - selenium =4.16.0
   - sphinx-design =0.5.0
   - sphinx-gallery =0.15.0
   - sphinxcontrib-bibtex =2.6.1
