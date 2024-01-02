@@ -9,4 +9,4 @@ echo "Recipe:       ${RECIPE_DIR}"
 echo "OS:           ${MACHINE}"
 echo "Machine:      ${PYMACHINE}"
 export CONDA_SOLVER=libmamba
-${SCRIPT_DIR}/run_constructor.sh
+${SCRIPT_DIR}/run_constructor.sh "$@"
