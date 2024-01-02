@@ -8,6 +8,4 @@ dependencies:
   - constructor
   - conda-standalone
   - menuinst
-  - conda
-  - mamba
-  - conda-libmamba-solver
+  - conda >=23.11.0
