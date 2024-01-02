@@ -172,6 +172,7 @@ specs:
   - memory_profiler =0.61.0
   - twine =4.0.2
   - hatchling =1.21.0
+  - hatch-vcs =0.4.0
   # Doc building
   - numpydoc =1.6.0
   - pydata-sphinx-theme =0.13.3
