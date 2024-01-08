@@ -137,14 +137,14 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
-  - gh =2.40.1
+  - gh =2.41.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
   - matplotlib =3.8.2
   - ipympl =0.9.3
-  - seaborn =0.13.0
+  - seaborn =0.13.1
   - plotly =5.18.0
   - vtk =9.2.6
   - git =2.43.0  # [win]
@@ -155,7 +155,7 @@ specs:
   - trame =3.5.0
   - trame-vtk =2.6.3
   - trame-vuetify =2.3.1
-  - termcolor =2.3.0
+  - termcolor =2.4.0
   # Development
   - setuptools_scm =8.0.4
   - pytest =7.4.4
@@ -164,7 +164,7 @@ specs:
   - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
   - pre-commit =3.6.0
-  - ruff =0.1.9
+  - ruff =0.1.11
   - check-manifest =0.49.0
   - codespell =2.2.6
   - nitime =0.10.2
