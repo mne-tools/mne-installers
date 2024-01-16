@@ -98,10 +98,10 @@ specs:
   - python-neo =0.12.0
   # BLAS
   - openblas =0.3.26
-  - libblas =3.9.0=*openblas
+  - libblas =*=*openblas
   - jupyter =1.0.0
   - jupyterlab =4.0.10
-  - ipykernel =6.28.0
+  - ipykernel =6.29.0
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.5.0
   - spyder =5.5.0
