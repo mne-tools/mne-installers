@@ -97,8 +97,8 @@ specs:
   - openmeeg =2.5.7
   - python-neo =0.12.0
   # BLAS
-  - openblas =0.3.26
-  - libblas =*=*openblas
+  - openblas =0.3.25
+  - libblas =3.9.0=*openblas
   - jupyter =1.0.0
   - jupyterlab =4.0.10
   - ipykernel =6.29.0
