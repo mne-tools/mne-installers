@@ -72,8 +72,8 @@ specs:
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.6.0=*_0
-  - mne-installer-menus =1.6.0=*_0
+  - mne =1.6.1=*_0
+  - mne-installer-menus =1.6.1=*_0
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
   - mne-bids =0.14
@@ -87,7 +87,7 @@ specs:
   - mne-rsa =0.9
   - mne-ari =0.1.2
   - mne-kit-gui =1.2.0
-  - mne-icalabel =0.5.1
+  - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
   - mne-lsl =1.1.1
   - traitsui =8.0.0
@@ -150,7 +150,7 @@ specs:
   - git =2.43.0  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.1
-  - pyvista =0.42.3
+  - pyvista =0.43.2
   - pyvistaqt =0.11.0
   - trame =3.5.1
   - trame-vtk =2.7.0

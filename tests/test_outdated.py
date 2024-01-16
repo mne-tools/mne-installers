@@ -32,7 +32,6 @@ allowed_outdated: set[str] = {
     "tensorflow",  # 2.13.1 conflicts with VTK
     "graphviz",  # conflicts with VTK
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
-    "pyvista",  # incompatible with 1.6.0
     "openblas",  # Needs https://github.com/conda-forge/blas-feedstock/pull/113
 }
 packages: list[Package] = []
