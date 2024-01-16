@@ -64,7 +64,7 @@ specs:
   - pip =23.3.2
   - conda =23.10.0
   - mamba =1.5.3
-  - fmt =10.1.1
+  - fmt =10.2.1
   - conda-libmamba-solver =23.11.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -87,7 +87,7 @@ specs:
   - mne-rsa =0.9
   - mne-ari =0.1.2
   - mne-kit-gui =1.2.0
-  - mne-icalabel =0.5.1
+  - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
   - mne-lsl =1.1.1
   - traitsui =8.0.0
