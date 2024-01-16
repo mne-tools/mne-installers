@@ -114,7 +114,7 @@ specs:
   - xlrd =2.0.1
   - snirf =0.7.4
   # Statistics
-  - pingouin =0.5.\4
+  - pingouin =0.5.4
   # MRI
   - fsleyes =1.10.1
   - dcm2niix =1.0.20230411
