@@ -28,6 +28,7 @@ allowed_outdated: set[str] = {
     "conda",
     "conda-libmamba-solver",
     "mamba",  # conda/mamba conflict with tensorflow and VTK
+    "fmt",  # 10.2.0 broken metadata/Windows DLL problem
     "tensorflow",  # 2.13.1 conflicts with VTK
     "graphviz",  # conflicts with VTK
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
