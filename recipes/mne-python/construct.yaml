@@ -116,7 +116,7 @@ specs:
   # Statistics
   - pingouin =0.5.4
   # MRI
-  - fsleyes =1.10.1
+  - fsleyes =1.10.2
   - dcm2niix =1.0.20230411
   # Time-frequency analysis
   - pactools =0.3.1
@@ -154,7 +154,7 @@ specs:
   - pyvistaqt =0.11.0
   - trame =3.5.1
   - trame-vtk =2.7.0
-  - trame-vuetify =2.3.1
+  - trame-vuetify =2.4.1
   - termcolor =2.4.0
   # Development
   - setuptools_scm =8.0.4
