@@ -1,14 +1,13 @@
 name: constructor-env
 
 channels:
-  - napari/label/bundle_tools_3
   - conda-forge
 
 dependencies:
-  - constructor
-  - conda-standalone
+  - constructor >=3.6.0
+  - conda-standalone >=23.11.0
   - menuinst
-  - conda <23.11.0
+  - conda >=23.11.0
   - mamba
   - conda-libmamba-solver
   - fmt !=10.2.0
