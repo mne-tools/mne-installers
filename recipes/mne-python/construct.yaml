@@ -181,7 +181,7 @@ specs:
   - pydata-sphinx-theme =0.13.3
   - graphviz =8.1.0
   - python-graphviz =0.20.1
-  - selenium =4.17.2
+  - selenium =4.16.0
   - sphinx-design =0.5.0
   - sphinx-gallery =0.15.0
   - sphinxcontrib-bibtex =2.6.2
