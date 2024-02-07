@@ -31,6 +31,7 @@ allowed_outdated: set[str] = {
     "fmt",  # 10.2.0 broken metadata/Windows DLL problem
     "tensorflow",  # 2.13.1 conflicts with VTK
     "graphviz",  # conflicts with VTK
+    "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
     "openblas",  # Needs https://github.com/conda-forge/blas-feedstock/pull/113
 }
