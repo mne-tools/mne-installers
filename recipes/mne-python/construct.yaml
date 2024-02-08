@@ -60,12 +60,12 @@ channels:
 
 specs:
   # Python
-  - python =3.11.5
+  - python =3.12.1
   - pip =24.0
-  - conda =23.10.0
-  - mamba =1.5.3
-  - fmt =10.1.1
-  - conda-libmamba-solver =23.11.1
+  - conda =23.11.0
+  - mamba =1.5.6
+  - fmt =10.2.1
+  - conda-libmamba-solver =24.1.0
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
@@ -86,7 +86,7 @@ specs:
   - mne-features =0.3
   - mne-rsa =0.9
   - mne-ari =0.1.2
-  - mne-kit-gui =1.2.0
+  # - mne-kit-gui =1.2.0
   - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
   - mne-lsl =1.1.1
@@ -95,15 +95,16 @@ specs:
   - pyriemann =0.5
   - pyprep =0.4.3
   - openmeeg =2.5.7
-  - python-neo =0.12.0
+  - python-neo =0.13.0
   - pandas =2.2.0
   # BLAS
-  - openblas =0.3.25
+  - openblas =0.3.26
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
   - jupyterlab =4.1.0
   - ipykernel =6.29.2
-  - nb_conda_kernels =2.3.1
+  # https://github.com/Anaconda-Platform/nb_conda_kernels/issues/230
+  # - nb_conda_kernels =2.3.1
   - spyder-kernels =2.5.0
   - spyder =5.5.1
   - darkdetect =0.8.0
@@ -119,6 +120,7 @@ specs:
   # MRI
   - fsleyes =1.10.2
   - dcm2niix =1.0.20230411
+  - dipy =1.8.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -132,9 +134,10 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2023.1.0
   # sleep staging
-  - sleepecg =0.5.6
-  - tensorflow ==2.12.1=cpu_py311*  # [not win]
-  - yasa =0.6.3
+  # Tensorflow does not yet support 3.12
+  # - sleepecg =0.5.7
+  # - tensorflow ==2.15.0  # [not win]
+  # - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
@@ -161,7 +164,7 @@ specs:
   - setuptools_scm =8.0.4
   - pytest =7.4.4
   - pytest-cov =4.1.0
-  - pytest-qt =4.3.1
+  - pytest-qt =4.4.0
   - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
   - pre-commit =3.6.0
