@@ -28,7 +28,8 @@ import mne_features
 import mne_rsa
 import mne_microstates
 import mne_ari
-import mne_kit_gui
+
+# import mne_kit_gui
 import mne_lsl
 import mne_icalabel
 import autoreject
@@ -48,8 +49,9 @@ import neurodsp
 import bycycle
 import fooof
 import openneuro
-import sleepecg
-import yasa
+
+# import sleepecg
+# import yasa
 import neurokit2
 import questionary
 import matplotlib.pyplot
