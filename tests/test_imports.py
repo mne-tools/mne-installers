@@ -50,8 +50,8 @@ import bycycle
 import fooof
 import openneuro
 
-# import sleepecg
-# import yasa
+import sleepecg
+import yasa
 import neurokit2
 import questionary
 import matplotlib.pyplot

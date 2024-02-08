@@ -86,6 +86,7 @@ specs:
   - mne-features =0.3
   - mne-rsa =0.9
   - mne-ari =0.1.2
+  # https://github.com/conda-forge/mayavi-feedstock/pull/77
   # - mne-kit-gui =1.2.0
   - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
@@ -134,10 +135,8 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2023.1.0
   # sleep staging
-  # Tensorflow does not yet support 3.12
-  # - sleepecg =0.5.7
-  # - tensorflow ==2.15.0  # [not win]
-  # - yasa =0.6.3
+  - sleepecg =0.5.7
+  - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
