@@ -95,7 +95,7 @@ specs:
   - pyriemann =0.5
   - pyprep =0.4.3
   - openmeeg =2.5.7
-  - python-neo =0.12.0
+  - python-neo =0.13.0
   - pandas =2.2.0
   # BLAS
   - openblas =0.3.25
@@ -109,6 +109,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.59.0
+  - cython =3.0.8
   # I/O
   - pyxdf =1.16.5
   - openpyxl =3.1.2
@@ -132,7 +133,7 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2023.1.0
   # sleep staging
-  - sleepecg =0.5.6
+  - sleepecg =0.5.7
   - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.3
   # various biological signals (ECG, EOG, EMG, …)
@@ -150,21 +151,21 @@ specs:
   - vtk =9.2.6
   - git =2.43.0  # [win]
   - make =4.3  # [win]
-  - ipywidgets =8.1.1
+  - ipywidgets =8.1.2
   - pyvista =0.43.3
   - pyvistaqt =0.11.0
   - trame =3.5.2
-  - trame-vtk =2.8.0
+  - trame-vtk =2.8.2
   - trame-vuetify =2.4.2
   - termcolor =2.4.0
   # Development
   - setuptools_scm =8.0.4
   - pytest =7.4.4
   - pytest-cov =4.1.0
-  - pytest-qt =4.3.1
+  - pytest-qt =4.4.0
   - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
-  - pre-commit =3.6.0
+  - pre-commit =3.6.1
   - ruff =0.2.1
   - check-manifest =0.49.0
   - codespell =2.2.6
@@ -172,7 +173,7 @@ specs:
   - py-spy =0.3.14
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
-  - twine =4.0.2
+  - twine =5.0.0
   - hatchling =1.21.1
   - hatch-vcs =0.4.0
   - mypy =1.8.0
