@@ -9,17 +9,19 @@ import yaml
 
 dir_ = pathlib.Path(__file__).parent.parent
 
-if sys.platform == "linux":
-    sys_name = "Linux"
-elif sys.platform == "win32":
-    sys_name = "Windows"
-else:
-    assert sys.platform == "darwin"
-    if platform.machine() == "x86_64":
-        sys_name = "macOS_Intel"
-    else:
-        assert platform.machine() == "arm64"
-        sys_name = "macOS_M1"
+match sys.platform:
+    case "linux":
+        sys_name = "Linux"
+    case "win32":
+        sys_name = "Windows"
+    case "darwin":
+        if platform.machine() == "x86_64":
+            sys_name = "macOS_Intel"
+        else:
+            assert platform.machine() == "arm64"
+            sys_name = "macOS_M1"
+    case _:
+        raise ValueError(f"Platform not recognized: {sys.platform}")
 
 sys_ext = dict(linux=".sh", darwin=".pkg", win32=".exe")[sys.platform]
 recipe_dir = pathlib.Path(__file__).parents[1] / "recipes" / "mne-python"
