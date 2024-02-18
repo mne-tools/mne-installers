@@ -133,7 +133,7 @@ specs:
   # sleep staging
   - sleepecg =0.5.7
   - tensorflow ==2.12.1=cpu_py311*  # [not win]
-  - yasa =0.6.3
+  - yasa =0.6.4
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
