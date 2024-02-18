@@ -84,10 +84,6 @@ if [[ "$GITHUB_ACTIONS" == "true" ]]; then
     echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}" >> $GITHUB_ENV
     echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
     echo "CONDA_SOLVER=libmamba" >> $GITHUB_ENV
-    if [[ "$MNE_CROSSCOMPILE_ARCH" == "arm64" ]]; then
-        echo "PLATFORM_ARG=--platform=osx-arm64" >> $GITHUB_ENV
-        echo "EXE_ARG=--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe" >> $GITHUB_ENV
-    fi
     echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
     echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
     echo "MNE_MACHINE=${MNE_MACHINE}" >> $GITHUB_ENV
