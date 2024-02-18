@@ -9,9 +9,6 @@ echo Configuring Python to ignore user-installed local packages.
 echo Disabling mamba package manager banner.
 "%PREFIX%\Scripts\conda" env config vars set MAMBA_NO_BANNER=1
 
-echo Setting libmama as the conda solver.
-"%PREFIX%\Scripts\conda" config --set solver libmamba
-
 echo Pinning BLAS implementation to OpenBLAS.
 echo libblas=*=*openblas >> "%PREFIX%\conda-meta\pinned"
 
