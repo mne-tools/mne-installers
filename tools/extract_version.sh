@@ -31,14 +31,15 @@ fi
 
 # macOS artifact naming
 if [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
-    MACOS_SUFFIX="Intel"
+    MACOS_ARCH="Intel"
 elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "arm64" ]]; then
-    MACOS_SUFFIX="M1"
+    MACOS_ARCH="M1"
 fi
+export MACOS_ARCH=$MACOS_ARCH
 
 if [[ "$MACHINE" == "macOS" ]]; then
     MNE_INSTALL_PREFIX="/Applications/MNE-Python/${MNE_INSTALLER_VERSION}/.mne-python"
-    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
+    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_ARCH}.pkg"
     MNE_ACTIVATE="$MNE_INSTALL_PREFIX/bin/activate"
 elif [[ "$MACHINE" == "Linux" ]]; then
     MNE_INSTALL_PREFIX="$HOME/mne-python/${MNE_INSTALLER_VERSION}"
