@@ -3,16 +3,24 @@
 import json
 import os
 import pathlib
+import platform
 import sys
 import yaml
 
 dir_ = pathlib.Path(__file__).parent.parent
 
-sys_name = dict(
-    linux="Linux",
-    darwin="macOS_Intel",
-    win32="Windows",
-)[sys.platform]
+if sys.platform == "linux":
+    sys_name = "Linux"
+elif sys.platform == "win32":
+    sys_name = "Windows"
+else:
+    assert sys.platform == "darwin"
+    if platform.machine() == "x86_64":
+        sys_name = "macOS_Intel"
+    else:
+        assert platform.machine() == "arm64"
+        sys_name = "macOS_M1"
+
 sys_ext = dict(linux=".sh", darwin=".pkg", win32=".exe")[sys.platform]
 recipe_dir = pathlib.Path(__file__).parents[1] / "recipes" / "mne-python"
 construct_yaml_path = recipe_dir / "construct.yaml"
