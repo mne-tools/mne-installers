@@ -7,8 +7,8 @@ echo
 echo "conda info:"
 conda info
 echo
-echo "mamba list:"
-mamba list
+echo "conda list:"
+conda list
 echo
 echo "pip list:"
 pip list
@@ -71,7 +71,7 @@ echo "Checking whether Qt is working"
 python -c "from qtpy.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
 echo "Checking the deployed environment variables were set correctly upon environment activation"
-mamba env config vars list
+conda env config vars list
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
 fi
