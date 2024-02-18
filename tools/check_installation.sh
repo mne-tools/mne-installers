@@ -72,7 +72,7 @@ python -c "from qtpy.QtWidgets import QApplication, QWidget; app = QApplication(
 
 echo "Checking the deployed environment variables were set correctly upon environment activation"
 conda env config vars list
-if [[ "$MNE_MACHINE" == "macOS" ]]; then
+if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
 fi
 # TODO: broken on Windows!

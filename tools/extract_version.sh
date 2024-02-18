@@ -34,6 +34,8 @@ if [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
     MACOS_ARCH="Intel"
 elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "arm64" ]]; then
     MACOS_ARCH="M1"
+else
+    MACOS_ARCH=""
 fi
 export MACOS_ARCH=$MACOS_ARCH
 
@@ -85,4 +87,5 @@ if [[ "$GITHUB_ACTIONS" == "true" ]]; then
     echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
     echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
     echo "MNE_MACHINE=${MNE_MACHINE}" >> $GITHUB_ENV
+    echo "MACOS_ARCH=${MACOS_ARCH}" >> $GITHUB_ENV
 fi
