@@ -81,7 +81,6 @@ specs:
   - mne-connectivity =0.6.0
   - mne-faster =1.1.0
   - mne-nirs =0.6.0
-  - mne-realtime =0.3.0
   - mne-features =0.3
   - mne-rsa =0.9
   - mne-ari =0.1.2
