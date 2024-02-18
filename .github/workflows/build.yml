@@ -22,7 +22,9 @@ jobs:
     name: Build (macOS)
     strategy:
       fail-fast: false
-    runs-on: macos-11
+    matrix:
+        os: [macos-11, macos-14]
+    runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
     defaults:
