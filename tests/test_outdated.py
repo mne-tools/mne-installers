@@ -24,7 +24,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
-    "python",  # ignore 3.12.0rc3
+    "python",  # ignore 3.12
     "conda",
     "conda-libmamba-solver",
     "mamba",  # conda/mamba conflict with tensorflow and VTK
