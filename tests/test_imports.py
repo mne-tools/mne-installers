@@ -23,7 +23,6 @@ import mne_nirs
 import mne_qt_browser
 
 check_min_version(mne_qt_browser, "0.5.0")
-import mne_realtime
 import mne_features
 import mne_rsa
 import mne_microstates

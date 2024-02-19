@@ -1,4 +1,4 @@
-version: 1.6.1_0
+version: 1.6.1_1
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,11 +18,11 @@ conclusion_file: ../../assets/conclusion.rtf   # [not win]
 initialize_by_default: false
 register_python_default: false
 
-default_prefix: ${HOME}/mne-python/1.6.1_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.6.1_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.6.1_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.6.1_0"  # [win]
-default_location_pkg: "Applications/MNE-Python/1.6.1_0"             # [osx]
+default_prefix: ${HOME}/mne-python/1.6.1_1                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.6.1_1"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.6.1_1"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.6.1_1"  # [win]
+default_location_pkg: "Applications/MNE-Python/1.6.1_1"             # [osx]
 pkg_name: ".mne-python"                                             # [osx]
 progress_notifications: true                                        # [osx]
 install_path_exists_error_text: |
@@ -30,10 +30,10 @@ install_path_exists_error_text: |
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.6.1_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.6.1_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.6.1_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.6.1_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.6.1_1-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.6.1_1-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.6.1_1-Windows.exe      # [win]
+installer_filename: MNE-Python-1.6.1_1-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -60,12 +60,11 @@ channels:
 
 specs:
   # Python
-  - python =3.11.5
+  - python =3.11.8
   - pip =24.0
   - conda =23.10.0
   - mamba =1.5.3
   - fmt =10.1.1
-  - conda-libmamba-solver =23.11.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
@@ -82,14 +81,13 @@ specs:
   - mne-connectivity =0.6.0
   - mne-faster =1.1.0
   - mne-nirs =0.6.0
-  - mne-realtime =0.3.0
   - mne-features =0.3
   - mne-rsa =0.9
   - mne-ari =0.1.2
   - mne-kit-gui =1.2.0
   - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
-  - mne-lsl =1.1.1
+  - mne-lsl =1.2.0
   - traitsui =8.0.0
   - autoreject =0.4.3
   - pyriemann =0.5
@@ -101,7 +99,7 @@ specs:
   - openblas =0.3.25
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
-  - jupyterlab =4.1.0
+  - jupyterlab =4.1.1
   - ipykernel =6.29.2
   - nb_conda_kernels =2.3.1
   - spyder-kernels =2.5.0
@@ -119,7 +117,7 @@ specs:
   - pingouin =0.5.4
   # MRI
   - fsleyes =1.10.2
-  - dcm2niix =1.0.20230411
+  - dcm2niix =1.0.20240202
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -129,13 +127,13 @@ specs:
   - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
-  - pycrostates =0.4.1
+  - pycrostates =0.5.0
   # OpenNeuro.org data access
   - openneuro-py =2023.1.0
   # sleep staging
   - sleepecg =0.5.7
   - tensorflow ==2.12.1=cpu_py311*  # [not win]
-  - yasa =0.6.3
+  - yasa =0.6.4
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
@@ -144,10 +142,10 @@ specs:
   - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
-  - matplotlib =3.8.2
+  - matplotlib =3.8.3
   - ipympl =0.9.3
   - seaborn =0.13.2
-  - plotly =5.18.0
+  - plotly =5.19.0
   - vtk =9.2.6
   - git =2.43.0  # [win]
   - make =4.3  # [win]
@@ -155,7 +153,7 @@ specs:
   - pyvista =0.43.3
   - pyvistaqt =0.11.0
   - trame =3.5.2
-  - trame-vtk =2.8.2
+  - trame-vtk =2.8.5
   - trame-vuetify =2.4.2
   - termcolor =2.4.0
   # Development
@@ -165,8 +163,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
-  - pre-commit =3.6.1
-  - ruff =0.2.1
+  - pre-commit =3.6.2
+  - ruff =0.2.2
   - check-manifest =0.49.0
   - codespell =2.2.6
   - nitime =0.10.2
@@ -196,4 +194,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.6.1_0) "
+  env_prompt: "(mne-1.6.1_1) "

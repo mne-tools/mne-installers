@@ -30,18 +30,18 @@ else
 fi
 
 # macOS artifact naming
-if [[ ${MNE_CROSSCOMPILE_ARCH} == 'arm64' ]]; then  # This env var only really gets set on GitHub Actions
-    MACOS_SUFFIX="M1"
-    ARTIFACT_ID_SUFFIX="arm64"
-elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
-    MACOS_SUFFIX="Intel"
+if [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "x86_64" ]]; then
+    MACOS_ARCH="Intel"
 elif [[ "$MACHINE" == "macOS" && "$PYMACHINE" == "arm64" ]]; then
-    MACOS_SUFFIX="M1"
+    MACOS_ARCH="M1"
+else
+    MACOS_ARCH=""
 fi
+export MACOS_ARCH=$MACOS_ARCH
 
 if [[ "$MACHINE" == "macOS" ]]; then
     MNE_INSTALL_PREFIX="/Applications/MNE-Python/${MNE_INSTALLER_VERSION}/.mne-python"
-    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_SUFFIX}.pkg"
+    MNE_INSTALLER_NAME="MNE-Python-${MNE_INSTALLER_VERSION}-${MACHINE}_${MACOS_ARCH}.pkg"
     MNE_ACTIVATE="$MNE_INSTALL_PREFIX/bin/activate"
 elif [[ "$MACHINE" == "Linux" ]]; then
     MNE_INSTALL_PREFIX="$HOME/mne-python/${MNE_INSTALLER_VERSION}"
@@ -59,22 +59,23 @@ export MNE_ACTIVATE="$MNE_ACTIVATE"
 export MNE_INSTALLER_ARTIFACT_ID="MNE-Python-${MACHINE}-${ARTIFACT_ID_SUFFIX}"
 export MNE_MACHINE="$MACHINE"
 
-echo "Version:     ${MNE_INSTALLER_VERSION} (Python=${PYSHORT})"
+echo "Version:       ${MNE_INSTALLER_VERSION}"
 test "$MNE_INSTALLER_VERSION" != ""
+echo "System Python: ${PYSHORT}"
 test "$PYSHORT" != ""
 test -d "$SCRIPT_DIR"
-echo "Recipe:      ${RECIPE_DIR}"
+echo "Recipe:        ${RECIPE_DIR}"
 test "$RECIPE_DIR" != ""
 test -d "$RECIPE_DIR"
-echo "Installer:   ${MNE_INSTALLER_NAME}"
+echo "Installer:     ${MNE_INSTALLER_NAME}"
 test "$MNE_INSTALLER_NAME" != ""
-echo "Artifact ID: ${MNE_INSTALLER_ARTIFACT_ID}"
+echo "Artifact ID:   ${MNE_INSTALLER_ARTIFACT_ID}"
 test "$MNE_INSTALLER_ARTIFACT_ID" != ""
-echo "Prefix:      ${MNE_INSTALL_PREFIX}"
+echo "Prefix:        ${MNE_INSTALL_PREFIX}"
 test "$MNE_INSTALL_PREFIX" != ""
-echo "Activate:    ${MNE_ACTIVATE}"
+echo "Activate:      ${MNE_ACTIVATE}"
 test "$MNE_ACTIVATE" != ""
-echo "Machine:     ${MNE_MACHINE}"
+echo "Machine:       ${MNE_MACHINE}"
 test "$MNE_MACHINE" != ""
 
 if [[ "$GITHUB_ACTIONS" == "true" ]]; then
@@ -83,12 +84,8 @@ if [[ "$GITHUB_ACTIONS" == "true" ]]; then
     echo "MNE_INSTALLER_ARTIFACT_ID=${MNE_INSTALLER_ARTIFACT_ID}" >> $GITHUB_ENV
     echo "MNE_INSTALL_PREFIX=${MNE_INSTALL_PREFIX}" >> $GITHUB_ENV
     echo "RECIPE_DIR=${RECIPE_DIR}" >> $GITHUB_ENV
-    echo "CONDA_SOLVER=libmamba" >> $GITHUB_ENV
-    if [[ "$MNE_CROSSCOMPILE_ARCH" == "arm64" ]]; then
-        echo "PLATFORM_ARG=--platform=osx-arm64" >> $GITHUB_ENV
-        echo "EXE_ARG=--conda-exe=${CONDA_PREFIX}/standalone_conda/conda.exe" >> $GITHUB_ENV
-    fi
     echo "MNE_ACTIVATE=${MNE_ACTIVATE}" >> $GITHUB_ENV
     echo "NSIS_SCRIPTS_RAISE_ERRORS=1" >> $GITHUB_ENV
     echo "MNE_MACHINE=${MNE_MACHINE}" >> $GITHUB_ENV
+    echo "MACOS_ARCH=${MACOS_ARCH}" >> $GITHUB_ENV
 fi
