@@ -163,7 +163,6 @@ specs:
   - pytest =7.4.4
   - pytest-cov =4.1.0
   - pytest-qt =4.4.0
-  - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
   - pre-commit =3.6.2
   - ruff =0.2.2
