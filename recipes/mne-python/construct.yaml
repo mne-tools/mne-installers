@@ -60,7 +60,7 @@ channels:
 
 specs:
   # Python
-  - python =3.11.8
+  - python =3.12.2
   - pip =24.0
   - conda =23.10.0
   - mamba =1.5.3
@@ -85,6 +85,7 @@ specs:
   - mne-rsa =0.9
   - mne-ari =0.1.2
   - mne-kit-gui =1.2.0
+  - mayavi =4.8.1=*_8
   - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
   - mne-lsl =1.2.0
@@ -96,12 +97,11 @@ specs:
   - python-neo =0.13.0
   - pandas =2.2.0
   # BLAS
-  - openblas =0.3.25
+  - openblas =0.3.26
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0
   - jupyterlab =4.1.2
   - ipykernel =6.29.2
-  - nb_conda_kernels =2.3.1
   - spyder-kernels =2.5.0
   - spyder =5.5.1
   - darkdetect =0.8.0
@@ -118,6 +118,7 @@ specs:
   # MRI
   - fsleyes =1.10.2
   - dcm2niix =1.0.20240202
+  - dipy =1.8.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -132,7 +133,6 @@ specs:
   - openneuro-py =2023.1.0
   # sleep staging
   - sleepecg =0.5.7
-  - tensorflow ==2.12.1=cpu_py311*  # [not win]
   - yasa =0.6.4
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
@@ -161,7 +161,6 @@ specs:
   - pytest =7.4.4
   - pytest-cov =4.1.0
   - pytest-qt =4.4.0
-  - pytest-harvest =1.10.4
   - pytest-timeout =2.2.0
   - pre-commit =3.6.2
   - ruff =0.2.2
