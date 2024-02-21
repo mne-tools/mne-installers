@@ -60,7 +60,7 @@ channels:
 
 specs:
   # Python
-  - python =3.12.1
+  - python =3.12.2
   - pip =24.0
   - conda =23.10.0
   - mamba =1.5.3
@@ -102,8 +102,6 @@ specs:
   - jupyter =1.0.0
   - jupyterlab =4.1.2
   - ipykernel =6.29.2
-  # https://github.com/Anaconda-Platform/nb_conda_kernels/issues/230
-  # - nb_conda_kernels =2.3.1
   - spyder-kernels =2.5.0
   - spyder =5.5.1
   - darkdetect =0.8.0
