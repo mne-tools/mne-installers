@@ -84,8 +84,8 @@ specs:
   - mne-features =0.3
   - mne-rsa =0.9
   - mne-ari =0.1.2
-  # https://github.com/conda-forge/mayavi-feedstock/pull/77
-  # - mne-kit-gui =1.2.0
+  - mne-kit-gui =1.2.0
+  - mayavi =4.8.1
   - mne-icalabel =0.6.0
   - mne-gui-addons =0.1.0
   - mne-lsl =1.2.0
