@@ -19,16 +19,13 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   # Build installers
   build_macos:
-    name: Build (macOS ${{ matrix.arch }})
+    name: Build (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - arch: x86_64
-          - arch: arm64
-    runs-on: macos-11
+        os: [macos-11, macos-14]  # Intel and Apple Silicon, respectively
+    runs-on: ${{ matrix.os }}
     env:
-      MNE_CROSSCOMPILE_ARCH: ${{ matrix.arch }}
       GITHUB_EVENT_NAME: ${{ github.event_name }}
     defaults:
       run:
@@ -126,23 +123,24 @@ jobs:
 
   # Test
   test_macos:
-    name: Test (${{ matrix.os }} ${{ matrix.arch }})
+    name: Test (${{ matrix.os }})
     needs: [build_macos]
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-11, macos-12]
-        arch: [x86_64]
-        # We currently can't/don't test anything about the arm64 build
-        # include:
-        #   - os: macos-11
-        #     arch: arm64
+        os: [macos-11, macos-12, macos-13, macos-14]  # macos-14 is Apple Silicon; older versions are Intel
     runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v3
+      # The macos-14 runner doesn't come equipped with Python, so we need to install it
+      # there.
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+        if: ${{ matrix.os == 'macos-14' }}
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v3
         with:
@@ -255,12 +253,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: MNE-Python-macOS-arm64
-      # We don't have a JSON, as this is only produced upon successful
-      # installation. Since we don't have an Apple Silicon runner on GHA,
-      # disable this for now.
-      # - uses: actions/download-artifact@v3
-      #   with:
-      #     name: MNE-Python-macOS-arm64-json
+      - uses: actions/download-artifact@v3
+        with:
+          name: MNE-Python-macOS-arm64-json
       - run: ls -al ./
       - uses: ncipollo/release-action@v1
         with:

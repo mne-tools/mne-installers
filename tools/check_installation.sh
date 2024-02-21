@@ -7,8 +7,8 @@ echo
 echo "conda info:"
 conda info
 echo
-echo "mamba list:"
-mamba list
+echo "conda list:"
+conda list
 echo
 echo "pip list:"
 pip list
@@ -19,8 +19,14 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     # https://unix.stackexchange.com/a/7733
     APP_DIR=/Applications/MNE-Python/${MNE_INSTALLER_VERSION}
     [ `ls -ld ${APP_DIR} | awk 'NR==1 {print $3}'` == "$USER" ] || exit 1
-    echo "Check that the installed Python is, in fact, an Intel binary"
-    python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
+
+    echo "Checking that the installed Python is a binary for the correct CPU architecture"
+    if [[ "$MACOS_ARCH" == "Intel" ]]; then
+        python -c "import platform; assert platform.machine() == 'x86_64'" || exit 1
+    elif [[ "$MACOS_ARCH" == "M1" ]]; then
+        python -c "import platform; assert platform.machine() == 'arm64'" || exit 1
+    fi
+
     echo "Checking we have all .app bundles in ${APP_DIR}:"
     ls -al /Applications/
     ls -al /Applications/MNE-Python
@@ -65,8 +71,8 @@ echo "Checking whether Qt is working"
 python -c "from qtpy.QtWidgets import QApplication, QWidget; app = QApplication([])"
 
 echo "Checking the deployed environment variables were set correctly upon environment activation"
-mamba env config vars list
-if [[ "$MNE_MACHINE" == "macOS" ]]; then
+conda env config vars list
+if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
 fi
 # TODO: broken on Windows!
