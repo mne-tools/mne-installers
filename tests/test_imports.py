@@ -23,13 +23,11 @@ import mne_nirs
 import mne_qt_browser
 
 check_min_version(mne_qt_browser, "0.5.0")
-import mne_realtime
 import mne_features
 import mne_rsa
 import mne_microstates
 import mne_ari
-
-# import mne_kit_gui
+import mne_kit_gui
 import mne_lsl
 import mne_icalabel
 import autoreject
@@ -49,7 +47,6 @@ import neurodsp
 import bycycle
 import fooof
 import openneuro
-
 import sleepecg
 import yasa
 import neurokit2

@@ -52,13 +52,13 @@ fig.close()
 assert "MNEQtBrowser" in repr(fig), repr(fig)
 
 # mne-kit-gui
-# print("Running mne-kit-gui tests")
-# from pyface.api import GUI  # noqa
-# import mne_kit_gui  # noqa
-#
-# os.environ["_MNE_GUI_TESTING_MODE"] = "true"
-# gui = GUI()
-# gui.process_events()
-# ui, frame = mne_kit_gui.kit2fiff()
-# assert not frame.model.can_save
-# ui.dispose()
+print("Running mne-kit-gui tests")
+from pyface.api import GUI  # noqa
+import mne_kit_gui  # noqa
+
+os.environ["_MNE_GUI_TESTING_MODE"] = "true"
+gui = GUI()
+gui.process_events()
+ui, frame = mne_kit_gui.kit2fiff()
+assert not frame.model.can_save
+ui.dispose()
