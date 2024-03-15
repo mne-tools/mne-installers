@@ -59,3 +59,6 @@ import pyvistaqt
 import vtk
 
 check_min_version(pyvistaqt, "0.11.0")
+
+if platform.system() == "Darwin":
+    import Foundation  # pyobjc
