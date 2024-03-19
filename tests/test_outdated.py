@@ -31,6 +31,7 @@ allowed_outdated: set[str] = {
     "graphviz",  # conflicts with VTK
     "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
+    "hatchling",  # 1.21.2 broken or pulled (?)
 }
 packages: list[Package] = []
 
