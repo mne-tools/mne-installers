@@ -58,7 +58,7 @@ channels:
 
 specs:
   # Python
-  - python =3.12.2
+  - python =3.12.3
   - pip =24.0
   - conda =24.3.0
   - mamba =1.5.8
