@@ -27,12 +27,9 @@ allowed_outdated: set[str] = {
     "conda",
     "mamba",  # conda/mamba conflict with tensorflow and VTK
     "selenium",  # conflicts with tensorflow via typing_extensions
-    "fmt",  # 10.2.0 broken metadata/Windows DLL problem
     "graphviz",  # conflicts with VTK
     "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
-    "hatchling",  # 1.21.2 broken or pulled (?)
-    "gh",  # 2.46.0 only exists for aarch64 for some reason
 }
 packages: list[Package] = []
 
