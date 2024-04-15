@@ -25,7 +25,7 @@ class Package:  # noqa: D101
 
 allowed_outdated: set[str] = {
     "pytest",  # stable not 8.0 compatible
-    "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
+    "pydata-sphinx-theme",  # pinned to version at release time
 }
 packages: list[Package] = []
 
