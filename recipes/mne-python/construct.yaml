@@ -51,8 +51,6 @@ menu_packages:
 
 channels:
   - conda-forge
-  # conda-forge doesn't provide pytorch packages for Windows
-  # - pytorch  # [win]
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
@@ -62,9 +60,9 @@ specs:
   # Python
   - python =3.12.2
   - pip =24.0
-  - conda =23.10.0
-  - mamba =1.5.3
-  - fmt =10.1.1
+  - conda =24.3.0
+  - mamba =1.5.8
+  - fmt =10.2.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne =1.4dev0=*_20230503
@@ -137,7 +135,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
-  - gh =2.45.0
+  - gh =2.47.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
@@ -172,14 +170,14 @@ specs:
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
   - twine =5.0.0
-  - hatchling =1.21.1
+  - hatchling =1.23.0
   - hatch-vcs =0.4.0
   - mypy =1.9.0
   - towncrier =23.11.0
   # Doc building
   - numpydoc =1.7.0
   - pydata-sphinx-theme =0.13.3
-  - graphviz =8.1.0
+  - graphviz =9.0.0
   - python-graphviz =0.20.3
   - selenium =4.16.0
   - sphinx-design =0.5.0
@@ -190,7 +188,6 @@ specs:
 
 condarc:
   channels:
-    # - pytorch  # [win]
     - conda-forge
   channel_priority: strict
   allow_other_channels: false

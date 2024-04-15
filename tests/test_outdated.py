@@ -24,10 +24,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
-    "conda",
-    "mamba",  # conda/mamba conflict with tensorflow and VTK
     "selenium",  # conflicts with tensorflow via typing_extensions
-    "graphviz",  # conflicts with VTK
     "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
 }
