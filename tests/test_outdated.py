@@ -24,7 +24,6 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
-    "selenium",  # conflicts with tensorflow via typing_extensions
     "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # haven't updated to latest version in our conf.py
 }
