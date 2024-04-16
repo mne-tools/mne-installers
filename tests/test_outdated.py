@@ -24,6 +24,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
+    "python",  # 3.12.3 needs libexpat >2.6 but VTK not happy about it
     "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # pinned to version at release time
 }
