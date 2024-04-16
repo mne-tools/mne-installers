@@ -141,7 +141,7 @@ specs:
   - pqdm =0.2.0
   # Viz
   - matplotlib =3.8.4
-  - ipympl =0.9.3
+  - ipympl =0.9.4
   - seaborn =0.13.2
   - plotly =5.19.0
   - vtk =9.2.6
@@ -170,7 +170,7 @@ specs:
   - line_profiler =4.1.1
   - memory_profiler =0.61.0
   - twine =5.0.0
-  - hatchling =1.23.0
+  - hatchling =1.24.0
   - hatch-vcs =0.4.0
   - mypy =1.9.0
   - towncrier =23.11.0
