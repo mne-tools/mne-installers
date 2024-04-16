@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 import sys
+import time
 import yaml
 
 import packaging.version
@@ -24,6 +25,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
+    "python",  # 3.12.3 needs libexpat >2.6 but VTK not happy about it
     "pytest",  # stable not 8.0 compatible
     "pydata-sphinx-theme",  # pinned to version at release time
 }
@@ -52,13 +54,24 @@ for package in packages:
         continue
 
     anaconda_url = f"https://api.anaconda.org/package/conda-forge/{package.name}"
-    r = requests.get(anaconda_url)
-    if r.status_code == 404:
-        print(f"{package.name} not found on conda-forge")
+    for _ in range(5):  # retries
+        r = requests.get(anaconda_url)
+        if r.status_code == 404:
+            print(f"{package.name} not found on conda-forge")
+            not_found.append(package)
+            continue
+
+        try:
+            json = r.json()
+        except requests.exceptions.JSONDecodeError:
+            time.sleep(0.1)
+        else:
+            break
+    else:
+        print(f"{package.name} failed to get JSON from conda-forge")
         not_found.append(package)
         continue
 
-    json = r.json()
     version = json["latest_version"]
     package.version_conda_forge = version
     del json, version
