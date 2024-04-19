@@ -181,6 +181,7 @@ specs:
   - graphviz =9.0.0
   - python-graphviz =0.20.3
   - selenium =4.19.0
+  - sphinx =7.2.6
   - sphinx-design =0.5.0
   - sphinx-gallery =0.15.0
   - sphinxcontrib-bibtex =2.6.2

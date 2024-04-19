@@ -26,6 +26,7 @@ class Package:  # noqa: D101
 
 allowed_outdated: set[str] = {
     "python",  # 3.12.3 needs libexpat >2.6 but VTK not happy about it
+    "sphinx",  # 7.3 compat in progress
 }
 packages: list[Package] = []
 
