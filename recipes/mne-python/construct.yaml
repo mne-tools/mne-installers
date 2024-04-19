@@ -77,7 +77,7 @@ specs:
   - mne-bids-pipeline =1.8.0
   - mne-qt-browser =0.6.2
   - mne-connectivity =0.6.0
-  - mne-faster =1.1.0
+  # - mne-faster =1.1.0  # Not 1.7.0-compatible
   - mne-nirs =0.6.0
   - mne-features =0.3
   - mne-rsa =0.9
