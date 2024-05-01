@@ -133,11 +133,10 @@ if outdated:
     exit_code = 1
 else:
     print("\nEverything is up to date.")
-
 if __name__ == "__main__":
     if exit_code == 1:  # stuff needs updating
         print("Updating .yaml file.")
-        orig_recipe = recipe
+        orig_recipe = recipe  # keep a copy for comparison in testing
         for package in outdated:
             use_spec = package.version_spec.replace(".", r"\.")
             recipe = re.sub(
