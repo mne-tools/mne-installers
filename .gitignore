@@ -2,6 +2,7 @@
 *.pkg
 /scripts
 tests/test.png
+tests/.joblib_cache
 .vscode
 .pytest_cache
 .DS_Store
