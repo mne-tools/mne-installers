@@ -1,6 +1,9 @@
+"""Look for outdated packages and suggest updates."""
+
 # %%
 from dataclasses import dataclass
 from pathlib import Path
+import re
 import sys
 import time
 import yaml
@@ -8,9 +11,20 @@ import yaml
 import packaging.version
 import requests
 
+try:
+    from joblib import expires_after, Memory
+except ImportError:
+
+    def _cache(fun):
+        return fun
+else:
+    memory = Memory(Path(__file__).parent / ".joblib_cache", verbose=0)
+    _cache = memory.cache(cache_validation_callback=expires_after(minutes=60))
+
 recipe_dir = Path(__file__).parents[1] / "recipes" / "mne-python"
 construct_yaml_path = recipe_dir / "construct.yaml"
-construct_yaml = yaml.safe_load(construct_yaml_path.read_text(encoding="utf-8"))
+recipe = construct_yaml_path.read_text(encoding="utf-8")
+construct_yaml = yaml.safe_load(recipe)
 specs = construct_yaml["specs"]
 LJUST = 25
 
@@ -46,12 +60,10 @@ for spec in specs:
     packages.append(Package(name=name, version_spec=version))
     del name, version
 
-outdated = []
-not_found = []
-for package in packages:
-    if package.version_spec is None:
-        continue
 
+@_cache
+def get_conda_json(package):
+    """Get conda json for a package."""
     anaconda_url = f"https://api.anaconda.org/package/conda-forge/{package.name}"
     for _ in range(5):  # retries
         r = requests.get(anaconda_url)
@@ -67,7 +79,20 @@ for package in packages:
         else:
             break
     else:
-        print(f"{package.name} failed to get JSON from conda-forge")
+        raise RuntimeError(f"{package.name} failed to get JSON from conda-forge")
+    return json
+
+
+outdated = []
+not_found = []
+for package in packages:
+    if package.version_spec is None:
+        continue
+
+    try:
+        json = get_conda_json(package)
+    except RuntimeError as exc:
+        print(str(exc))
         not_found.append(package)
         continue
 
@@ -108,5 +133,21 @@ if outdated:
     exit_code = 1
 else:
     print("\nEverything is up to date.")
+
 if __name__ == "__main__":
+    if exit_code == 1:  # stuff needs updating
+        print("Updating .yaml file.")
+        orig_recipe = recipe
+        for package in outdated:
+            use_spec = package.version_spec.replace(".", r"\.")
+            recipe = re.sub(
+                # Three groups: 1: package name, 2: version spec, 3: rest of line
+                f"^( +- {package.name} =)({use_spec})(.*)$",
+                # Put back the first and third group, replace the second
+                rf"\g<1>{package.version_conda_forge}\g<3>",
+                recipe,
+                flags=re.MULTILINE,
+            )
+        construct_yaml_path.write_text(recipe, encoding="utf-8")
+
     sys.exit(exit_code)

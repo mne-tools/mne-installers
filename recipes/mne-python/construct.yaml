@@ -135,7 +135,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.7
   # GitHub client, https://cli.github.com
-  - gh =2.48.0
+  - gh =2.49.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
@@ -145,7 +145,7 @@ specs:
   - seaborn =0.13.2
   - plotly =5.21.0
   - vtk =9.2.6
-  - git =2.44.0  # [win]
+  - git =2.45.0  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.2
   - pyvista =0.43.6
@@ -175,15 +175,15 @@ specs:
   - hatch-vcs =0.4.0
   - mypy =1.10.0
   - towncrier =23.11.0
-  - vulture =0.10
+  - vulture =2.7
   # Doc building
   - numpydoc =1.7.0
   - pydata-sphinx-theme =0.15.2
   - graphviz =9.0.0
   - python-graphviz =0.20.3
-  - sphinx =7.3.7
+  - sphinx =7.2.6
   - sphinx-design =0.5.0
-  - sphinx-gallery =0.15.0
+  - sphinx-gallery =0.16.0
   - sphinxcontrib-bibtex =2.6.2
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
