@@ -1,4 +1,4 @@
-name: Outdated
+name: autofix.ci
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
   cancel-in-progress: true
@@ -19,4 +19,6 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install packaging requests pyyaml
-      - run: python tests/test_outdated.py
+      - run: python tests/test_outdated.py  # can update the file in place
+      - uses: autofix-ci/action@d3e591514b99d0fca6779455ff8338516663f7cc
+        if: failure()
