@@ -1,18 +1,18 @@
 """Look for outdated packages and suggest updates."""
 
 # %%
-from dataclasses import dataclass
-from pathlib import Path
 import re
 import sys
 import time
-import yaml
+from dataclasses import dataclass
+from pathlib import Path
 
 import packaging.version
 import requests
+import yaml
 
 try:
-    from joblib import expires_after, Memory
+    from joblib import Memory, expires_after
 except ImportError:
 
     def _cache(fun):
@@ -41,6 +41,9 @@ class Package:  # noqa: D101
 allowed_outdated: set[str] = {
     "python",  # 3.12.3 needs libexpat >2.6 but VTK not happy about it
     "sphinx",  # 7.3 compat in progress
+    "graphviz",  # conflicts with VTK 9.2.6 via libexpat
+    "mne-rsa",  # 0.91 appeared on conda-forge and was yanked
+    "pyobjc-core",  # 10.3 conflicted with pyobjc-framework-cocoa on 2024/05/28
 }
 packages: list[Package] = []
 
@@ -96,7 +99,21 @@ for package in packages:
         not_found.append(package)
         continue
 
-    version = json["latest_version"]
+    # Iterate in reverse chronological order, omitting versions marked as broken and
+    # those that are not in the main channel
+    # TODO We may want to make exceptions here for MNE testing versions if we need them
+    version = None
+    for file in json["files"][::-1]:
+        if "broken" in file["labels"]:
+            continue
+        elif "main" not in file["labels"]:
+            continue
+        else:
+            version = file["version"]
+            break
+
+    assert version is not None
+
     package.version_conda_forge = version
     del json, version
 
