@@ -154,7 +154,7 @@ specs:
   - trame-vtk =2.8.8
   - trame-vuetify =2.5.0
   - termcolor =2.4.0
-  - pyobjc-core =10.3  # [osx]
+  - pyobjc-core =10.2  # [osx]
   - defusedxml =0.7.1
   # Development
   - setuptools_scm =8.1.0
