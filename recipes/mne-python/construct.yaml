@@ -61,7 +61,7 @@ specs:
   - python =3.12.2
   - pip =24.0
   - conda =24.5.0
-  - mamba =2.0.0beta1
+  - mamba =1.5.8
   - fmt =10.2.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -100,8 +100,8 @@ specs:
   - jupyter =1.0.0
   - jupyterlab =4.2.1
   - ipykernel =6.29.3
-  - spyder-kernels =3.0.0b6
-  - spyder =6.0.0b1
+  - spyder-kernels =2.5.1
+  - spyder =5.5.4
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.59.1
