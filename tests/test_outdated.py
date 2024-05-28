@@ -1,18 +1,18 @@
 """Look for outdated packages and suggest updates."""
 
 # %%
-from dataclasses import dataclass
-from pathlib import Path
 import re
 import sys
 import time
-import yaml
+from dataclasses import dataclass
+from pathlib import Path
 
 import packaging.version
 import requests
+import yaml
 
 try:
-    from joblib import expires_after, Memory
+    from joblib import Memory, expires_after
 except ImportError:
 
     def _cache(fun):
@@ -99,7 +99,17 @@ for package in packages:
         not_found.append(package)
         continue
 
-    version = json["latest_version"]
+    # Iterate in reverse chronological order, omitting versions marked as broken
+    version = None
+    for file in json["files"][::-1]:
+        if "broken" in file["labels"]:
+            continue
+        else:
+            version = file["version"]
+            break
+
+    assert version is not None
+
     package.version_conda_forge = version
     del json, version
 
