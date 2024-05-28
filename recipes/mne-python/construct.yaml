@@ -188,6 +188,7 @@ specs:
   - sphinxcontrib-bibtex =2.6.2
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
+  - intersphinx-registry =0.2405.27
 
 condarc:
   channels:
