@@ -144,7 +144,7 @@ specs:
   - ipympl =0.9.4
   - seaborn =0.13.2
   - plotly =5.22.0
-  - vtk =9.3.0
+  - vtk =9.2.6
   - git =2.45.2  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.3
