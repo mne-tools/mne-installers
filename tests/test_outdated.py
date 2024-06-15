@@ -44,6 +44,7 @@ allowed_outdated: set[str] = {
     "graphviz",  # conflicts with VTK 9.2.6 via libexpat
     "mne-rsa",  # 0.91 appeared on conda-forge and was yanked
     "pyobjc-core",  # 10.3 conflicted with pyobjc-framework-cocoa on 2024/05/28
+    "vtk",  # 9.3.0 is out but mayavi (at least) hasn't been migrated
 }
 packages: list[Package] = []
 
