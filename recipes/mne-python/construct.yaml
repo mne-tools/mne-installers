@@ -163,7 +163,7 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =3.7.1
-  - ruff =0.4.8
+  - ruff =0.4.9
   - check-manifest =0.49.0
   - codespell =2.3.0
   - nitime =0.10.2
