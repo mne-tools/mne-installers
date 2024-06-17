@@ -19,7 +19,7 @@ import mne_bids_pipeline
 check_min_version(mne_bids_pipeline, "1.2")
 import mne_connectivity
 
-# import mne_faster
+import mne_faster
 import mne_nirs
 import mne_qt_browser
 
