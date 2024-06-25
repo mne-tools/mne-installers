@@ -41,6 +41,8 @@ class Package:  # noqa: D101
 allowed_outdated: set[str] = {
     "sphinx",  # 7.3 compat in progress
     "mne-rsa",  # 0.91 appeared on conda-forge and was yanked
+    # https://github.com/raphaelvallat/yasa/pull/171
+    "scipy",  # 1.14 drops a function used by yasa
 }
 packages: list[Package] = []
 
