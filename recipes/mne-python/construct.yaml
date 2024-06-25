@@ -135,7 +135,7 @@ specs:
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.9
   # GitHub client, https://cli.github.com
-  - gh =2.51.0
+  - gh =2.52.0
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
@@ -173,7 +173,7 @@ specs:
   - twine =5.1.0
   - hatchling =1.25.0
   - hatch-vcs =0.4.0
-  - mypy =1.10.0
+  - mypy =1.10.1
   - towncrier =23.11.0
   - vulture =2.7
   # Doc building
