@@ -42,7 +42,6 @@ allowed_outdated: set[str] = {
     "python",  # 3.12.3 needs libexpat >2.6 but VTK not happy about it
     "sphinx",  # 7.3 compat in progress
     "graphviz",  # conflicts with VTK 9.2.6 via libexpat
-    "mne-rsa",  # 0.91 appeared on conda-forge and was yanked
     "vtk",  # 9.3.0 is out but mayavi (at least) hasn't been migrated
     "numba",  # conflicts with VTK 9.2.6
     # https://github.com/raphaelvallat/yasa/pull/171
