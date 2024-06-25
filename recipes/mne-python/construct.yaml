@@ -95,6 +95,7 @@ specs:
   - python-neo =0.13.1
   - pandas =2.2.2
   # BLAS
+  - scipy =1.13.1
   - openblas =0.3.27
   - libblas =3.9.0=*openblas
   - jupyter =1.0.0

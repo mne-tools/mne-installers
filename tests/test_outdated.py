@@ -46,6 +46,8 @@ allowed_outdated: set[str] = {
     "pyobjc-core",  # 10.3 conflicted with pyobjc-framework-cocoa on 2024/05/28
     "vtk",  # 9.3.0 is out but mayavi (at least) hasn't been migrated
     "numba",  # conflicts with VTK 9.2.6
+    # https://github.com/raphaelvallat/yasa/pull/171
+    "scipy",  # 1.14 drops a function used by yasa
 }
 packages: list[Package] = []
 
