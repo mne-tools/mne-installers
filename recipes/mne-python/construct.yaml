@@ -142,6 +142,9 @@ specs:
   # Viz
   - matplotlib =3.8.4
   - ipympl =0.9.4
+  - pyside6 =6.7.2
+  - qt6-main =6.7.2
+  - qtpy =2.4.1
   - seaborn =0.13.2
   - plotly =5.22.0
   - vtk =9.3.0

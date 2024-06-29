@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, macos-14]  # Intel and Apple Silicon, respectively
+        os: [macos-12, macos-14]
     runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -73,7 +73,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]  # Intel and Apple Silicon, respectively
+        os: [ubuntu-20.04]
     defaults:
       run:
         shell: bash -el {0}
