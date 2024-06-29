@@ -69,7 +69,11 @@ jobs:
 
   build_linux:
     name: Build (${{ matrix.os }})
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04]  # Intel and Apple Silicon, respectively
     defaults:
       run:
         shell: bash -el {0}
@@ -91,7 +95,9 @@ jobs:
     name: Build (${{ matrix.os }})
     strategy:
       fail-fast: false
-    runs-on: windows-2019
+      matrix:
+        os: [windows-2019]
+    runs-on: ${{ matrix.os}}
     defaults:
       run:
         shell: bash -el {0}
