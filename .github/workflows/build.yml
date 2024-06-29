@@ -34,10 +34,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: mamba-org/setup-micromamba@v1
         with:
-          condarc: |
-            channels:
-              - conda-forge
-            channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/macos_install_certificates.sh
@@ -81,10 +77,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: mamba-org/setup-micromamba@v1
         with:
-          condarc: |
-            channels:
-              - conda-forge
-            channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
@@ -107,10 +99,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: mamba-org/setup-micromamba@v1
         with:
-          condarc: |
-            channels:
-              - conda-forge
-            channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
