@@ -38,15 +38,7 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = {
-    "python",  # 3.12.3 needs libexpat >2.6 but VTK not happy about it
-    "sphinx",  # 7.3 compat in progress
-    "graphviz",  # conflicts with VTK 9.2.6 via libexpat
-    "vtk",  # 9.3.0 is out but mayavi (at least) hasn't been migrated
-    "numba",  # conflicts with VTK 9.2.6
-    # https://github.com/raphaelvallat/yasa/pull/171
-    "scipy",  # 1.14 drops a function used by yasa
-}
+allowed_outdated: set[str] = set()
 packages: list[Package] = []
 
 for spec in specs:
