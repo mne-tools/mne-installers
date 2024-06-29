@@ -72,7 +72,7 @@ jobs:
           path: MNE-Python-*.*
 
   build_linux:
-    name: Build (Linux)
+    name: Build (${{ matrix.os }})
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -96,7 +96,7 @@ jobs:
           path: MNE-Python-*.*
 
   build_windows:
-    name: Build (Windows)
+    name: Build (${{ matrix.os }})
     strategy:
       fail-fast: false
     runs-on: windows-2019
