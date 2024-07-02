@@ -245,7 +245,7 @@ jobs:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
       - uses: actions/download-artifact@v4
         with:
-          name: MNE-Python-*
+          pattern: MNE-Python-*
           merge-multiple: true
       - run: ls -al ./
       - uses: ncipollo/release-action@v1
