@@ -31,7 +31,7 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
           condarc: |
@@ -66,7 +66,7 @@ jobs:
           installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -82,7 +82,7 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
           condarc: |
@@ -94,7 +94,7 @@ jobs:
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -110,7 +110,7 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
           condarc: |
@@ -122,7 +122,7 @@ jobs:
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -140,15 +140,15 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # The macos-14 runner doesn't come equipped with Python, so we need to install it
       # there.
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
         if: ${{ matrix.os == 'macos-14' }}
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
@@ -156,7 +156,7 @@ jobs:
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
@@ -178,14 +178,14 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
@@ -207,9 +207,9 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
@@ -217,7 +217,7 @@ jobs:
         timeout-minutes: 30
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
