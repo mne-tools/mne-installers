@@ -160,6 +160,8 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
+        # upload just one for each installer version
+        if: matrix.os == 'macos-13' || matrix.os == 'macos-14'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
@@ -189,6 +191,8 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
+        # upload just one for each installer version
+        if: matrix.os == 'ubuntu-24.04'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
@@ -221,6 +225,8 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
+        # upload just one for each installer version
+        if: matrix.os == 'windows-2022'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
