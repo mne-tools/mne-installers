@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-11, macos-14]  # Intel and Apple Silicon, respectively
+        os: [macos-12, macos-14]  # Intel and Apple Silicon, respectively
     runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -72,8 +72,12 @@ jobs:
           path: MNE-Python-*.*
 
   build_linux:
-    name: Build (Linux)
-    runs-on: ubuntu-20.04
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04]
     defaults:
       run:
         shell: bash -el {0}
@@ -96,10 +100,12 @@ jobs:
           path: MNE-Python-*.*
 
   build_windows:
-    name: Build (Windows)
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
-    runs-on: windows-2019
+      matrix:
+        os: [windows-2019]
     defaults:
       run:
         shell: bash -el {0}
@@ -128,7 +134,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-11, macos-12, macos-13, macos-14]  # macos-14 is Apple Silicon; older versions are Intel
+        os: [macos-12, macos-13, macos-14]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -166,7 +172,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04]
+        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -225,37 +231,16 @@ jobs:
   release:
     name: Release
     needs: [build_macos, build_linux, build_windows, test_macos, test_linux, test_windows]
-    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -el {0}
     steps:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: MNE-Python-Linux-x86_64
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-Linux-x86_64-json
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-Windows-x86_64
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-Windows-x86_64-json
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-macOS-x86_64
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-macOS-x86_64-json
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-macOS-arm64
-      - uses: actions/download-artifact@v3
-        with:
-          name: MNE-Python-macOS-arm64-json
+          name: MNE-Python-*
+          merge-multiple: true
       - run: ls -al ./
       - uses: ncipollo/release-action@v1
         with:
@@ -265,3 +250,4 @@ jobs:
           prerelease: true
           allowUpdates: true
           generateReleaseNotes: true
+        if: github.ref_type == 'tag'
