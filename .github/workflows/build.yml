@@ -105,7 +105,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2010]
+        os: [windows-2019]
     defaults:
       run:
         shell: bash -el {0}
