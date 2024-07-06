@@ -58,7 +58,7 @@ import plotly
 import pqdm
 import pyvistaqt
 import vtk
-import pyside6
+import PySide6.QtCore
 
 import matplotlib.pyplot as plt
 
