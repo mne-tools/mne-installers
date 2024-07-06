@@ -49,10 +49,7 @@ import bycycle
 import fooof
 import openneuro
 import sleepecg
-
-# Doesn't work with SciPy 1.14 and PR to fix it has not been merged:
-# https://github.com/raphaelvallat/yasa/pull/171
-# import yasa
+import yasa
 import neurokit2
 import questionary
 import matplotlib.pyplot

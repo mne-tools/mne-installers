@@ -132,6 +132,7 @@ specs:
   - openneuro-py =2024.2.0
   # sleep staging
   - sleepecg =0.5.8
+  - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.9
   # GitHub client, https://cli.github.com
