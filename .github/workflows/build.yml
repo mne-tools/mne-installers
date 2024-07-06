@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, macos-14]
+        os: [macos-12, macos-14]  # Intel and Apple Silicon, respectively
     runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -31,9 +31,13 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
+          condarc: |
+            channels:
+              - conda-forge
+            channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/macos_install_certificates.sh
@@ -62,7 +66,7 @@ jobs:
           installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -78,39 +82,47 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
+          condarc: |
+            channels:
+              - conda-forge
+            channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
 
   build_windows:
     name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [windows-2019]
-    runs-on: ${{ matrix.os}}
     defaults:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
+          condarc: |
+            channels:
+              - conda-forge
+            channel_priority: strict
           environment-file: environment.yml
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -122,21 +134,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, macos-13, macos-14]  # macos-14 is Apple Silicon; older versions are Intel
+        os: [macos-12, macos-13, macos-14]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # The macos-14 runner doesn't come equipped with Python, so we need to install it
       # there.
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
         if: ${{ matrix.os == 'macos-14' }}
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
@@ -144,10 +156,12 @@ jobs:
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
+        # upload just one for each installer version
+        if: matrix.os == 'macos-13' || matrix.os == 'macos-14'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
@@ -166,17 +180,19 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
+        # upload just one for each installer version
+        if: matrix.os == 'ubuntu-24.04'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
@@ -195,9 +211,9 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
@@ -205,10 +221,12 @@ jobs:
         timeout-minutes: 30
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
+        # upload just one for each installer version
+        if: matrix.os == 'windows-2022'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
@@ -227,7 +245,7 @@ jobs:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
       - uses: actions/download-artifact@v4
         with:
-          name: MNE-Python-*
+          pattern: MNE-Python-*
           merge-multiple: true
       - run: ls -al ./
       - uses: ncipollo/release-action@v1
