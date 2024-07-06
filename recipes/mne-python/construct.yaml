@@ -83,7 +83,6 @@ specs:
   - mne-rsa =0.9.1
   - mne-ari =0.1.2
   - mne-icalabel =0.6.0
-  # TODO: Needs to not require pyqt
   - mne-gui-addons =0.1.0=*_1
   - mne-lsl =1.4.0
   - autoreject =0.4.3
