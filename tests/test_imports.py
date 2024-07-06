@@ -61,6 +61,12 @@ import plotly
 import pqdm
 import pyvistaqt
 import vtk
+import pyside6
+
+import matplotlib.pyplot as plt
+
+backend = plt.get_backend()
+assert backend == "QtAgg", backend
 
 check_min_version(pyvistaqt, "0.11.0")
 
