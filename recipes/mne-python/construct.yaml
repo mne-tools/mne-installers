@@ -92,6 +92,10 @@ specs:
   - pyface =8.0.0=*_1
   - pyriemann =0.6
   - pyprep =0.4.3=*_1
+  - pybv =0.7.5
+  - eeglabio =0.0.2.post4
+  - imageio-ffmpeg =0.5.1
+  - mffpy =0.9.0
   - openmeeg =2.5.11
   - python-neo =0.13.1
   - pandas =2.2.2
