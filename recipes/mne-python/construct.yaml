@@ -141,7 +141,8 @@ specs:
   - questionary =2.0.1
   - pqdm =0.2.0
   # Viz
-  - matplotlib =3.9.0
+  # TODO: unknown why 3.9.0 isn't working as of 2024/07/06
+  - matplotlib =3.8.4
   - ipympl =0.9.4
   - pyside6 =6.7.2
   - qt6-main =6.7.2

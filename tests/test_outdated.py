@@ -38,7 +38,9 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = set()
+allowed_outdated: set[str] = {
+    "matplotlib",  # 3.9.0 won't download for some reason
+}
 packages: list[Package] = []
 
 for spec in specs:
