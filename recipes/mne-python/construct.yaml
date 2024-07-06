@@ -94,6 +94,7 @@ specs:
   - openmeeg =2.5.11
   - python-neo =0.13.1
   - pandas =2.2.2
+  - polars =1.0.0
   # BLAS
   - scipy =1.14.0
   - openblas =0.3.27
