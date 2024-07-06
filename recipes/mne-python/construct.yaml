@@ -86,11 +86,10 @@ specs:
   - mne-gui-addons =0.1.0=*_1
   - mne-lsl =1.4.0
   - autoreject =0.4.3
-  # TODO: Needs mayavi not to require qt-main
-  # mne-kit-gui =1.2.0
-  # mayavi =4.8.2=*_3
-  # traitsui =8.0.0=*_1
-  # pyface =8.0.0=*_1
+  - mne-kit-gui =1.2.0
+  - mayavi =4.8.2=*_3
+  - traitsui =8.0.0
+  - pyface =8.0.0=*_1
   - pyriemann =0.6
   - pyprep =0.4.3=*_1
   - openmeeg =2.5.11
@@ -105,7 +104,7 @@ specs:
   - ipykernel =6.29.5
   - spyder-kernels =2.5.2
   # TODO: Needs to not require pyqt
-  # https://github.com/conda-forge/spyder-feedstock/issues/178
+  # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =5.5.5
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
