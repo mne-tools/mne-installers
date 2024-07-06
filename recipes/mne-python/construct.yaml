@@ -65,11 +65,11 @@ specs:
   - fmt =10.2.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  # - mne =1.4dev0=*_20230503
+  # - mne-base =1.4dev0=*_20230503
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.7.1=*_0
+  - mne-base =1.7.1=*_0
   - mne-installer-menus =1.7.1=*_0
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
@@ -142,10 +142,13 @@ specs:
   - pqdm =0.2.0
   # Viz
   # TODO: unknown why 3.9.0 isn't working as of 2024/07/06
-  - matplotlib =3.8.4
-  - ipympl =0.9.4
+  # matplotilb is just matplotlib-base, tornado, and pyqt
+  # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
+  - matplotlib-base =3.8.4
+  - tornado =6.4.1
   - pyside6 =6.7.2
   - qt6-main =6.7.2
+  - ipympl =0.9.4
   - qtpy =2.4.1
   - seaborn =0.13.2
   - plotly =5.22.0
