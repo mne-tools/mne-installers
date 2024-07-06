@@ -40,8 +40,8 @@ if not sys.platform.startswith("win"):
     plotter.screenshot(fname)
     assert fname.is_file()
     os.remove(fname)
-    mne.viz.close_3d_figure(fig)
     assert "BackgroundPlotter" in repr(plotter), repr(plotter)
+    mne.viz.close_3d_figure(fig)
 
 # mne-qt-browser
 print("Running mne-qt-browser tests")
