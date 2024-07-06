@@ -92,7 +92,6 @@ specs:
   # traitsui =8.0.0=*_1
   # pyface =8.0.0=*_1
   - pyriemann =0.6
-  # TODO: Needs to not require pyqt
   - pyprep =0.4.3=*_1
   - openmeeg =2.5.11
   - python-neo =0.13.1
