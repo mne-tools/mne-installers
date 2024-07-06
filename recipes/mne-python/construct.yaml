@@ -76,26 +76,29 @@ specs:
   - mne-bids =0.15.0
   - mne-bids-pipeline =1.9.0
   - mne-qt-browser =0.6.3
-  - mne-connectivity =0.7.0
+  - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2
   - mne-nirs =0.6.0
   - mne-features =0.3
   - mne-rsa =0.9.1
   - mne-ari =0.1.2
-  - mne-kit-gui =1.2.0
-  - mayavi =4.8.2
   - mne-icalabel =0.6.0
-  - mne-gui-addons =0.1.0
+  # TODO: Needs to not require pyqt
+  - mne-gui-addons =0.1.0=*_1
   - mne-lsl =1.4.0
-  - traitsui =8.0.0
   - autoreject =0.4.3
+  # TODO: Needs mayavi not to require qt-main
+  # mne-kit-gui =1.2.0
+  # mayavi =4.8.2=*_3
+  # traitsui =8.0.0=*_1
+  # pyface =8.0.0=*_1
   - pyriemann =0.6
-  - pyprep =0.4.3
+  # TODO: Needs to not require pyqt
+  - pyprep =0.4.3=*_1
   - openmeeg =2.5.11
   - python-neo =0.13.1
   - pandas =2.2.2
   - polars =1.0.0
-  # BLAS
   - scipy =1.14.0
   - openblas =0.3.27
   - libblas =3.9.0=*openblas
@@ -103,7 +106,9 @@ specs:
   - jupyterlab =4.2.3
   - ipykernel =6.29.5
   - spyder-kernels =2.5.2
-  - spyder =5.5.5
+  # TODO: Needs to not require pyqt
+  # https://github.com/conda-forge/spyder-feedstock/issues/178
+  # spyder =5.5.5
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.60.0
@@ -202,7 +207,6 @@ specs:
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2406.4
-
 condarc:
   channels:
     - conda-forge
