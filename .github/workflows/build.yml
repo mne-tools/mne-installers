@@ -154,7 +154,7 @@ jobs:
         with:
           qt: true
           pyvista: false
-      - run: conda list && conda remove -y qt-main
+      - run: source "${MNE_ACTIVATE}" && conda list && conda remove -y qt-main
       - run: ./tools/check_installation.sh
 
   test_linux:
