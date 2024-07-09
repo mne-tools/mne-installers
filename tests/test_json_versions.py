@@ -34,7 +34,7 @@ specs = params["specs"]
 del params
 
 # Extract versions from construct.yaml
-mne_package_names = ("mne-base", "mne-installer-menus")  # the most important ones!
+mne_package_names = ("mne", "mne-installer-menus")  # the most important ones!
 want_versions = {}
 
 for spec in specs:

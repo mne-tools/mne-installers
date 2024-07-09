@@ -62,14 +62,14 @@ specs:
   - pip =24.0
   - conda =24.5.0
   - mamba =1.5.8
-  - fmt =10.2.1
+  - fmt =11.0.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne-base =1.7.1=*_0
+  - mne =1.7.1=pyside6_*_102
   - mne-installer-menus =1.7.1=*_0
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
@@ -99,7 +99,7 @@ specs:
   - openmeeg =2.5.11
   - python-neo =0.13.1
   - pandas =2.2.2
-  - polars =1.0.0
+  - polars =1.1.0
   - scipy =1.14.0
   - openblas =0.3.27
   - libblas =3.9.0=*openblas
@@ -152,7 +152,7 @@ specs:
   # TODO: unknown why 3.9.0 isn't working as of 2024/07/06
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.8.4
+  - matplotlib-base =3.9.1
   - tornado =6.4.1
   - pyside6 =6.7.2=*_1
   - qt6-main =6.7.2
@@ -160,11 +160,11 @@ specs:
   - qtpy =2.4.1
   - seaborn =0.13.2
   - plotly =5.22.0
-  - vtk =9.3.0
+  - vtk =9.3.1
   - git =2.45.2  # [win]
   - make =4.3  # [win]
   - ipywidgets =8.1.3
-  - pyvista =0.43.10
+  - pyvista =0.44.0
   - pyvistaqt =0.11.1
   - trame =3.6.3
   - trame-vtk =2.8.9
@@ -181,8 +181,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =3.7.1
-  - ruff =0.5.0
-  - uv =0.2.21
+  - ruff =0.5.1
+  - uv =0.2.23
   - check-manifest =0.49.0
   - codespell =2.3.0
   - nitime =0.10.2
