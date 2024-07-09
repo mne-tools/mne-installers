@@ -150,7 +150,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.9.0
+  - matplotlib-base =3.8.4
   - tornado =6.4.1
   - pyside6 =6.7.2=*_1
   - qt6-main =6.7.2
