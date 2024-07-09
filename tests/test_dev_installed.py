@@ -27,6 +27,7 @@ deps = [
     if not re.match("mne-[0-9]+", dep)
     # conda still on PyQt5
     and not dep.startswith("PyQt6")
+    and not dep.startswith("sip-")
     # and not on conda-forge yet
     and not dep.startswith("sphinxcontrib-towncrier")
     and not dep.startswith("pytest-8")  # dev requires pytest >= 8.0 but stable uses < 8

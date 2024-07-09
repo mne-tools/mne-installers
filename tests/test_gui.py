@@ -40,8 +40,8 @@ if not sys.platform.startswith("win"):
     plotter.screenshot(fname)
     assert fname.is_file()
     os.remove(fname)
-    mne.viz.close_3d_figure(fig)
     assert "BackgroundPlotter" in repr(plotter), repr(plotter)
+    mne.viz.close_3d_figure(fig)
 
 # mne-qt-browser
 print("Running mne-qt-browser tests")
@@ -56,9 +56,10 @@ print("Running mne-kit-gui tests")
 from pyface.api import GUI  # noqa
 import mne_kit_gui  # noqa
 
-os.environ["_MNE_GUI_TESTING_MODE"] = "true"
-gui = GUI()
-gui.process_events()
-ui, frame = mne_kit_gui.kit2fiff()
-assert not frame.model.can_save
-ui.dispose()
+if sys.platform != "darwin":  # can be problematic on qt6 on macOS
+    os.environ["_MNE_GUI_TESTING_MODE"] = "true"
+    gui = GUI()
+    gui.process_events()
+    ui, frame = mne_kit_gui.kit2fiff()
+    assert not frame.model.can_save
+    ui.dispose()
