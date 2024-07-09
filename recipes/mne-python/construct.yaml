@@ -62,7 +62,6 @@ specs:
   - pip =24.0
   - conda =24.5.0
   - mamba =1.5.8
-  - fmt =11.0.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -87,7 +86,7 @@ specs:
   - mne-lsl =1.4.0
   - autoreject =0.4.3
   - mne-kit-gui =1.2.0
-  - mayavi =4.8.2=*_3
+  - mayavi =4.8.2=pyside6_*_204
   - traitsui =8.0.0
   - pyface =8.0.0=*_1
   - pyriemann =0.6
