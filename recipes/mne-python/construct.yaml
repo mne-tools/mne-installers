@@ -95,7 +95,7 @@ specs:
   - eeglabio =0.0.2.post4
   - imageio-ffmpeg =0.5.1
   - mffpy =0.9.0
-  - openmeeg =2.5.11
+  - openmeeg =2.5.12
   - python-neo =0.13.1
   - pandas =2.2.2
   - polars =1.1.0
@@ -148,7 +148,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.8.4
+  - matplotlib-base =3.9.1
   - tornado =6.4.1
   - pyside6 =6.7.2=*_1
   - qt6-main =6.7.2
@@ -173,8 +173,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =3.7.1
-  - ruff =0.5.1
-  - uv =0.2.23
+  - ruff =0.5.2
+  - uv =0.2.25
   - check-manifest =0.49.0
   - codespell =2.3.0
   - nitime =0.10.2
@@ -193,7 +193,7 @@ specs:
   - graphviz =11.0.0
   - python-graphviz =0.20.3
   - selenium =4.22.0
-  - sphinx =7.3.7
+  - sphinx =7.4.4
   - sphinx-design =0.6.0
   - sphinx-gallery =0.16.0
   - sphinxcontrib-bibtex =2.6.2

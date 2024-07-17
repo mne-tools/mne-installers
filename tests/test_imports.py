@@ -63,7 +63,7 @@ import PySide6.QtCore
 import matplotlib.pyplot as plt
 
 backend = plt.get_backend()
-assert backend == "QtAgg", backend
+assert backend.lower() == "qtagg", backend
 
 check_min_version(pyvistaqt, "0.11.0")
 
