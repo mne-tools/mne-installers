@@ -91,6 +91,7 @@ specs:
   - pyface =8.0.0=*_1
   - pyriemann =0.6
   - pyprep =0.4.3=*_1
+  - python-picard =0.7
   - pybv =0.7.5
   - eeglabio =0.0.2.post4
   - imageio-ffmpeg =0.5.1
