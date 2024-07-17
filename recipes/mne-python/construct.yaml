@@ -91,6 +91,7 @@ specs:
   - pyface =8.0.0=*_1
   - pyriemann =0.6
   - pyprep =0.4.3=*_1
+  - python-picard =0.7
   - pybv =0.7.5
   - eeglabio =0.0.2.post4
   - imageio-ffmpeg =0.5.1
@@ -193,7 +194,7 @@ specs:
   - graphviz =11.0.0
   - python-graphviz =0.20.3
   - selenium =4.22.0
-  - sphinx =7.4.4
+  - sphinx =7.4.5
   - sphinx-design =0.6.0
   - sphinx-gallery =0.16.0
   - sphinxcontrib-bibtex =2.6.2
