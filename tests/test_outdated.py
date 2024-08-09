@@ -39,8 +39,7 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
-    "matplotlib",  # 3.9.0 is just in RC
-    "vtk",  # 9.3.1 is out but mayavi needs to be updated
+    "sphinx",  # sphinx-design not compatible
 }
 packages: list[Package] = []
 
