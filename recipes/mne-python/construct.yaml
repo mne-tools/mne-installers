@@ -57,7 +57,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.12.4
+  - python =3.12.5
   - pip =24.2
   - conda =24.7.1
   - mamba =1.5.8
@@ -85,7 +85,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.7.0
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.4.0
+  - mne-lsl =1.5.0
   - autoreject =0.4.3
   - mne-kit-gui =1.2.0=*_2
   # MRI
@@ -169,7 +169,7 @@ specs:
   - pyvista =0.44.1
   - pyvistaqt =0.11.1
   - trame =3.6.3
-  - trame-vtk =2.8.9
+  - trame-vtk =2.8.10
   - trame-vuetify =2.6.2
   - termcolor =2.4.0
   - defusedxml =0.7.1
@@ -181,8 +181,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =3.8.0
-  - ruff =0.5.6
-  - uv =0.2.33
+  - ruff =0.5.7
+  - uv =0.2.34
   - check-manifest =0.49.0
   - codespell =2.3.0
   - py-spy =0.3.14
@@ -202,7 +202,7 @@ specs:
   - selenium =4.23.1
   - sphinx =8.0.2
   - sphinx-design =0.6.1
-  - sphinx-gallery =0.17.0
+  - sphinx-gallery =0.17.1
   - sphinxcontrib-bibtex =2.6.2
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
