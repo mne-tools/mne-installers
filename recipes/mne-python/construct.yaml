@@ -85,7 +85,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.6.0
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.4.0
+  - mne-lsl =1.5.0
   - autoreject =0.4.3
   - mne-kit-gui =1.2.0=*_2
   # MRI
@@ -101,7 +101,7 @@ specs:
   - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
-  - pycrostates =0.6.0
+  - pycrostates =0.6.1
   # OpenNeuro.org data access
   - openneuro-py =2024.2.0
   # sleep staging
