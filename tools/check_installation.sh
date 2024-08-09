@@ -1,19 +1,24 @@
 #!/bin/bash
 
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#grouping-log-lines
+
 set -eo pipefail
 echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
 source "${MNE_ACTIVATE}"
-echo
-echo "conda info:"
-conda info
-echo
-echo "conda list:"
-conda list
-echo
-echo "pip list:"
-pip list
-echo
 
+echo "::group::conda info"
+conda info
+echo "::endgroup::"
+
+echo "::group::conda list"
+conda list
+echo "::endgroup::"
+
+echo "::group::pip list"
+pip list
+echo "::endgroup::"
+
+echo "::group::Platform specific tests"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
     # https://unix.stackexchange.com/a/7733
@@ -57,6 +62,8 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
     popd
 fi
+echo "::endgroup::"
+
 echo "Checking for pinned file..."
 test -e "$MNE_INSTALL_PREFIX/conda-meta/pinned"
 grep "openblas" "$MNE_INSTALL_PREFIX/conda-meta/pinned"
@@ -81,11 +88,10 @@ if [[ "$MNE_MACHINE" != "Windows" ]]; then
     python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
 fi
 
-echo
-echo "Running MNE's sys_info"
+echo "::group::mne sys_info"
 mne sys_info
+echo "::endgroup::"
 
-echo
 echo "Trying to import MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
 python -u tests/test_gui.py
