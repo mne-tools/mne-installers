@@ -192,7 +192,7 @@ specs:
   - hatchling =1.25.0
   - hatch-vcs =0.4.0
   - mypy =1.11.1
-  - towncrier =23.11.0
+  - towncrier =24.7.1
   - vulture =2.7
   # Doc building
   - numpydoc =1.7.0
