@@ -40,6 +40,7 @@ class Package:  # noqa: D101
 
 allowed_outdated: set[str] = {
     "sphinx",  # sphinx-design not compatible
+    "towncrier",  # doesn't work with
 }
 packages: list[Package] = []
 
