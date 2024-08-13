@@ -8,4 +8,4 @@ dependencies:
   - conda-standalone =24.4.0
   - menuinst =2.1.1
   - conda =24.5.0
-  - nsis =3.08
+  - nsis !=3.10
