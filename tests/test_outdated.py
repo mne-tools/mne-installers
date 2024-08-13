@@ -39,6 +39,8 @@ class Package:  # noqa: D101
 
 
 allowed_outdated: set[str] = {
+    "python",  # 3.12.5 breaks things maybe?
+    "conda",  # 24.7.1 breaks things maybe?
     "sphinx",  # sphinx-design not compatible
     "towncrier",  # doesn't work with
 }
