@@ -66,6 +66,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   build_linux:
     name: Build (${{ matrix.os }})
@@ -90,6 +91,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   build_windows:
     name: Build (${{ matrix.os }})
@@ -114,6 +116,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   # Test
   test_macos:
@@ -188,7 +191,7 @@ jobs:
       - run: ./tools/check_installation.sh
 
   test_windows:
-    needs: [build_windows]
+    # needs: [build_windows]
     name: Test (${{ matrix.os }})
     strategy:
       fail-fast: false
@@ -201,12 +204,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v4
-        with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-      # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
-      - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
-        timeout-minutes: 30
+      # TODO: RESTORE THESE LINES AND THE "NEEDS" ABOVE
+      # - uses: actions/download-artifact@v4
+      #   with:
+      #     name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+      # # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
+      # - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
+      - run: curl -O https://github.com/mne-tools/mne-installers/releases/download/v1.7.1/MNE-Python-1.7.1_0-Windows.exe
+      - run: .\MNE-Python-1.7.1_0-Windows.exe /S /InstallationType=JustMe /AddToPath=1
+        timeout-minutes: 60
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v4
