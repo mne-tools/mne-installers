@@ -1,19 +1,24 @@
 #!/bin/bash
 
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#grouping-log-lines
+
 set -eo pipefail
 echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
 source "${MNE_ACTIVATE}"
-echo
-echo "conda info:"
-conda info
-echo
-echo "conda list:"
-conda list
-echo
-echo "pip list:"
-pip list
-echo
 
+echo "::group::conda info"
+conda info
+echo "::endgroup::"
+
+echo "::group::conda list"
+conda list
+echo "::endgroup::"
+
+echo "::group::pip list"
+pip list
+echo "::endgroup::"
+
+echo "::group::Platform specific tests"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
     # https://unix.stackexchange.com/a/7733
@@ -57,20 +62,25 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
     popd
 fi
-echo "Checking for pinned file..."
+echo "::endgroup::"
+
+echo "::group::Checking for pinned file..."
 test -e "$MNE_INSTALL_PREFIX/conda-meta/pinned"
 grep "openblas" "$MNE_INSTALL_PREFIX/conda-meta/pinned"
+echo "::endgroup::"
 
-echo "Checking permissions..."
+echo "::group::Checking permissions"
 OWNER=`ls -ld "$(which python)" | awk '{print $3}'`
 echo "Got OWNER=$OWNER, should be $(whoami)"
 test "$OWNER" == "$(whoami)"
+echo "::endgroup::"
 
-echo "Checking whether Qt is working"
+echo "::group:Checking whether Qt is working"
 # LD_DEBUG=libs
 python -c "from qtpy.QtWidgets import QApplication, QWidget; app = QApplication([])"
+echo "::endgroup::"
 
-echo "Checking the deployed environment variables were set correctly upon environment activation"
+echo "::group:Checking the deployed environment variables were set correctly upon environment activation"
 conda env config vars list
 if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
@@ -80,18 +90,19 @@ if [[ "$MNE_MACHINE" != "Windows" ]]; then
     python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
     python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
 fi
+echo "::endgroup::"
 
-echo
-echo "Running MNE's sys_info"
+echo "::group::mne sys_info"
 mne sys_info
+echo "::endgroup::"
 
-echo
-echo "Trying to import MNE and all additional packages included in the installer"
+echo "::group:Trying to import MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
 python -u tests/test_gui.py
 python -u tests/test_notebook.py
 python -u tests/test_json_versions.py
+echo "::endgroup::"
 
-echo
-echo "Checking that all packages are installed that MNE-Python devs would need"
+echo "::group:Checking that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
+echo "::endgroup::"

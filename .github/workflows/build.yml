@@ -66,6 +66,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   build_linux:
     name: Build (${{ matrix.os }})
@@ -90,6 +91,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   build_windows:
     name: Build (${{ matrix.os }})
@@ -106,6 +108,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yml
+      - run: conda install -c conda-forge -y "nsis==3.08"
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
@@ -114,6 +117,7 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   # Test
   test_macos:
