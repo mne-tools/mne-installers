@@ -23,12 +23,21 @@ else:
 
 recipe_dir = Path(__file__).parents[1] / "recipes" / "mne-python"
 construct_yaml_path = recipe_dir / "construct.yaml"
-recipe = construct_yaml_path.read_text(encoding="utf-8")
-construct_yaml = yaml.safe_load(recipe)
-specs = construct_yaml["specs"]
-LJUST = 25
-
 print(f"Analyzing spec file: {construct_yaml_path}\n")
+
+recipe = construct_yaml_path.read_text(encoding="utf-8")
+lines = [line.strip() for line in recipe.splitlines()]
+lines = [
+    line
+    for line in lines[lines.index("specs:") + 1 : lines.index("condarc:")]
+    if line and not line.startswith("#")
+]
+for line in lines:
+    assert line.startswith("- "), f"Line does not start with '- ': {line=}"
+lines = [line[2:] for line in lines]
+specs = yaml.safe_load(recipe)["specs"]
+assert len(specs) == len(lines), f"{len(specs)=} != {len(lines)=}"
+LJUST = 25
 
 
 @dataclass()
@@ -38,13 +47,18 @@ class Package:  # noqa: D101
     version_conda_forge: str | None = None
 
 
-allowed_outdated: set[str] = {
-    "sphinx",  # sphinx-design not compatible
-    "towncrier",  # doesn't work with
-}
+allowed_outdated: set[str] = set()
 packages: list[Package] = []
 
-for spec in specs:
+for line, spec in zip(lines, specs):
+    if "#" in line:
+        line_spec, comment = line.split("#", maxsplit=1)
+        line_spec = line_spec.strip()
+    else:
+        line_spec, comment = line, ""
+    assert line_spec == spec, f"{line_spec=} != {spec=}"
+    del line_spec
+
     if " " in spec:
         assert spec.count(" ") == 1, f"Wrong number of spaces in spec: {spec}"
         name, version = spec.split(" ")
@@ -56,6 +70,9 @@ for spec in specs:
     else:
         name = spec
         version = None
+
+    if "allow_outdated" in comment:
+        allowed_outdated.add(name)
 
     packages.append(Package(name=name, version_spec=version))
     del name, version
