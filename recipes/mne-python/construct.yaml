@@ -67,8 +67,8 @@ specs:
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.8.0=pyside6_*_102
-  - mne-installer-menus =1.8.0=*_0
+  - mne =1.8.0=pyside6_*_100
+  - mne-installer-menus =1.8.0=*_100
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
