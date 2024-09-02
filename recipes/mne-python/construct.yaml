@@ -153,6 +153,7 @@ specs:
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
+  - astropy =6.1.3
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
