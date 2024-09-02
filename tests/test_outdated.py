@@ -132,8 +132,11 @@ for package in packages:
     del json, version
 
     comp = {}
-    if packaging.version.parse(package.version_spec) < packaging.version.parse(
-        package.version_conda_forge
+    this_version = packaging.version.parse(package.version_spec)
+    if (
+        this_version < packaging.version.parse(package.version_conda_forge)
+        and package.version_conda_forge
+        and not re.match(".*[0-9.]rc[0-9].*", package.version_conda_forge)
     ):
         mismatch = f"{package.version_spec} < {package.version_conda_forge}"
         if package.name in allowed_outdated:

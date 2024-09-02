@@ -57,7 +57,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.0rc1
+  - python =3.12.5  # allow_outdated
   - pip =24.2
   - conda =24.7.1
   - mamba =1.5.9
