@@ -57,10 +57,10 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.12.5
+  - python =3.13.0rc1
   - pip =24.2
   - conda =24.7.1
-  - mamba =1.5.8
+  - mamba =1.5.9
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -118,8 +118,8 @@ specs:
   - eeglabio =0.0.2.post4
   - mffpy =0.9.0
   - openmeeg =2.5.12
-  - python-neo =0.13.2
-  - nitime =0.10.2
+  - python-neo =0.13.3
+  - nitime =0.11
   - snirf =0.8.0
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
@@ -129,14 +129,14 @@ specs:
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.2
-  - polars =1.4.0
-  - scipy =1.14.0
+  - polars =1.6.0
+  - scipy =1.14.1
   - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
   - libblas =3.9.0=*openblas
-  - jupyter =1.0.0
+  - jupyter =1.1.1
   - jupyterlab =4.2.4
   - ipykernel =6.29.5
-  - spyder-kernels =2.5.2
+  - spyder-kernels =3.0.0
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =5.5.5
@@ -164,35 +164,35 @@ specs:
   - ipympl =0.9.4
   - qtpy =2.4.1
   - seaborn =0.13.2
-  - plotly =5.23.0
+  - plotly =5.24.0
   - vtk =9.3.1=qt*
-  - ipywidgets =8.1.3
+  - ipywidgets =8.1.5
   - pyvista =0.44.1
   - pyvistaqt =0.11.1
   - trame =3.6.3
   - trame-vtk =2.8.10
-  - trame-vuetify =2.6.2
+  - trame-vuetify =2.7.0
   - termcolor =2.4.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.54.0
+  - gh =2.55.0
   - setuptools_scm =8.1.0
   - pytest =8.3.2
   - pytest-cov =5.0.0
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =3.8.0
-  - ruff =0.6.1
-  - uv =0.2.37
+  - ruff =0.6.2
+  - uv =0.4.2
   - check-manifest =0.49.0
   - codespell =2.3.0
   - py-spy =0.3.14
-  - line_profiler =4.1.1
+  - line_profiler =4.1.3
   - memory_profiler =0.61.0
   - twine =5.1.1
   - hatchling =1.25.0
   - hatch-vcs =0.4.0
-  - mypy =1.11.1
+  - mypy =1.11.2
   - towncrier =23.11.0  # allow_outdated, 24.7.1 doesn't work with sphinxcontrib-towncrier
   - vulture =2.11
   # Doc building
@@ -200,7 +200,7 @@ specs:
   - pydata-sphinx-theme =0.15.4
   - graphviz =12.0.0
   - python-graphviz =0.20.3
-  - selenium =4.23.1
+  - selenium =4.24.0
   - sphinx =7.4.7  # allow_outdated, sphinx-design not 8.0 compatible
   - sphinx-design =0.6.1
   - sphinx-gallery =0.17.1
@@ -210,7 +210,7 @@ specs:
   - intersphinx-registry =0.2408.13
   # OS-specific
   - git =2.46.0  # [win]
-  - make =4.3  # [win]
+  - make =4.4.1  # [win]
   - pyobjc-core =10.3.1  # [osx]
   - pyobjc-framework-Cocoa =10.3.1  # [osx]
   - pyobjc-framework-FSEvents =10.3.1  # [osx]
