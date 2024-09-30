@@ -60,7 +60,7 @@ specs:
   - python =3.12.5  # allow_outdated
   - pip =24.2
   - conda =24.7.1
-  - mamba =1.5.10
+  - mamba =2.0.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -117,7 +117,7 @@ specs:
   - python-picard =0.7
   - pybv =0.7.5
   - eeglabio =0.0.2.post4
-  - mffpy =0.9.0
+  - mffpy =0.10.0
   - openmeeg =2.5.12
   - python-neo =0.13.3
   - nitime =0.11
@@ -130,7 +130,7 @@ specs:
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.3
-  - polars =1.7.1
+  - polars =1.8.2
   - scipy =1.14.1
   - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
   - libblas =3.9.0=*openblas
@@ -154,14 +154,14 @@ specs:
   # NeuroSpin needs the following
   - questionary =2.0.1
   - pqdm =0.2.0
-  - astropy =6.1.3
+  - astropy =6.1.4
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.9.2
   - tornado =6.4.1
   - pyside6 =6.7.2=*_1
-  - qt6-main =6.7.2
+  - qt6-main =6.7.3
   - ipympl =0.9.4
   - qtpy =2.4.1
   - seaborn =0.13.2
@@ -183,8 +183,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =3.8.0
-  - ruff =0.6.7
-  - uv =0.4.15
+  - ruff =0.6.8
+  - uv =0.4.17
   - check-manifest =0.49.0
   - codespell =2.3.0
   - py-spy =0.3.14
@@ -210,7 +210,7 @@ specs:
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2408.13
   # OS-specific
-  - git =2.46.1  # [win]
+  - git =2.46.2  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =10.3.1  # [osx]
   - pyobjc-framework-Cocoa =10.3.1  # [osx]
