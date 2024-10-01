@@ -59,7 +59,7 @@ specs:
   # Python
   - python =3.12.5  # allow_outdated
   - pip =24.2
-  - conda =24.7.1
+  - conda =24.9.0
   - mamba =2.0.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -90,7 +90,7 @@ specs:
   - autoreject =0.4.3
   - antio =0.4.0
   # MRI
-  - fsleyes =1.12.4
+  - fsleyes =1.12.5
   - dcm2niix =1.0.20240202
   - dipy =1.9.0
   # Time-frequency analysis
