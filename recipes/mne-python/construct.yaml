@@ -132,7 +132,7 @@ specs:
   - pandas =2.2.3
   - polars =1.8.2
   - scipy =1.14.1
-  - openblas =0.3.28
+  - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
   - jupyterlab =4.2.4
