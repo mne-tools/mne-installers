@@ -132,7 +132,7 @@ specs:
   - pandas =2.2.3
   - polars =1.8.2
   - scipy =1.14.1
-  - openblas =0.3.27
+  - openblas =0.3.28
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
   - jupyterlab =4.2.4
@@ -208,7 +208,7 @@ specs:
   - sphinxcontrib-bibtex =2.6.3
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
-  - intersphinx-registry =0.2408.13
+  - intersphinx-registry =0.2410.1
   # OS-specific
   - git =2.46.2  # [win]
   - make =4.4.1  # [win]
