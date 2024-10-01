@@ -60,7 +60,7 @@ specs:
   - python =3.12.5  # allow_outdated
   - pip =24.2
   - conda =24.9.0
-  - mamba =2.0.1
+  - mamba =1.5.10  # allow_outdated, 2.0 has issues needing a libmamba that is missing
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -132,7 +132,7 @@ specs:
   - pandas =2.2.3
   - polars =1.8.2
   - scipy =1.14.1
-  - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
+  - openblas =0.3.27
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
   - jupyterlab =4.2.4
@@ -161,7 +161,7 @@ specs:
   - matplotlib-base =3.9.2
   - tornado =6.4.1
   - pyside6 =6.7.2=*_1
-  - qt6-main =6.7.2  # allow_outdated
+  - qt6-main =6.7.2  # allow_outdated, pyside6 not updated yet
   - ipympl =0.9.4
   - qtpy =2.4.1
   - seaborn =0.13.2
