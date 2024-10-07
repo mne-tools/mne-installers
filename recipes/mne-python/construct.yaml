@@ -161,7 +161,7 @@ specs:
   - matplotlib-base =3.9.2
   - tornado =6.4.1
   - pyside6 =6.7.3=*_1
-  - qt6-main =6.7.2  # allow_outdated, pyside6 not updated yet
+  - qt6-main =6.7.3
   - ipympl =0.9.4
   - qtpy =2.4.1
   - seaborn =0.13.2
