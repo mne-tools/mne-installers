@@ -160,8 +160,8 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.9.2
   - tornado =6.4.1
-  - pyside6 =6.8.0=*_1
-  - qt6-main =6.8.0
+  - pyside6 =6.7.3=*_1  # allow_outdated, 6.8.0.1 has a star-import bug
+  - qt6-main =6.7.3  # allow_outdated
   - ipympl =0.9.4
   - qtpy =2.4.1
   - seaborn =0.13.2
