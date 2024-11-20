@@ -89,6 +89,7 @@ specs:
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.4.0
+  - meegkit =0.1.7
   # MRI
   - fsleyes =1.13.0
   - dcm2niix =1.0.20240202
@@ -184,7 +185,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.0.1
   - ruff =0.7.4
-  - uv =0.5.2
+  - uv =0.5.3
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0

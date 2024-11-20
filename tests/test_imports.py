@@ -32,6 +32,7 @@ import mne_kit_gui
 import mne_lsl
 import mne_icalabel
 import autoreject
+import meegkit
 import pyriemann
 import pyprep
 import pycrostates
