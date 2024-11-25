@@ -57,7 +57,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.12.5  # allow_outdated
+  - python =3.12.7  # allow_outdated
   - pip =24.3.1
   - conda =24.11.0
   - mamba =1.5.10  # allow_outdated, 2.0 has issues needing a libmamba that is missing
