@@ -59,7 +59,7 @@ specs:
   # Python
   - python =3.12.7  # allow_outdated
   - pip =24.3.1
-  - conda =24.9.0  # allow_outdated, https://github.com/conda-forge/conda-feedstock/pull/243#issuecomment-2499270117
+  - conda =24.9.2  # allow_outdated, https://github.com/conda-forge/conda-feedstock/pull/243#issuecomment-2499270117
   - mamba =1.5.10  # allow_outdated, 2.0 has issues needing a libmamba that is missing
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
