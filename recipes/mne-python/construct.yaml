@@ -57,9 +57,9 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.12.5  # allow_outdated
+  - python =3.12.7  # allow_outdated
   - pip =24.3.1
-  - conda =24.9.2
+  - conda =24.9.2  # allow_outdated, https://github.com/conda-forge/conda-feedstock/pull/243#issuecomment-2499270117
   - mamba =1.5.10  # allow_outdated, 2.0 has issues needing a libmamba that is missing
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -85,7 +85,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.7.0
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.6.1
+  - mne-lsl =1.7.1
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.4.0
@@ -116,7 +116,7 @@ specs:
   - pyriemann =0.7
   - pyprep =0.4.3=*_1
   - python-picard =0.8
-  - pybv =0.7.5
+  - pybv =0.7.6
   - eeglabio =0.0.3
   - mffpy =0.10.0
   - openmeeg =2.5.12
@@ -131,7 +131,7 @@ specs:
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.3
-  - polars =1.12.0
+  - polars =1.14.0
   - scipy =1.14.1
   - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
   - libblas =3.9.0=*openblas
@@ -184,8 +184,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.0.1
-  - ruff =0.7.4
-  - uv =0.5.3
+  - ruff =0.8.0
+  - uv =0.5.4
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0
@@ -209,7 +209,7 @@ specs:
   - sphinxcontrib-bibtex =2.6.3
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
-  - intersphinx-registry =0.2411.17
+  - intersphinx-registry =0.2411.25
   # OS-specific
   - git =2.47.0  # [win]
   - make =4.4.1  # [win]
