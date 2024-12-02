@@ -202,7 +202,7 @@ specs:
   - pydata-sphinx-theme =0.16.0
   - graphviz =12.0.0
   - python-graphviz =0.20.3
-  - selenium =4.27.0
+  - selenium =4.27.1
   - sphinx =7.4.7  # allow_outdated, sphinx-design not 8.0 compatible
   - sphinx-design =0.6.1
   - sphinx-gallery =0.18.0
@@ -214,7 +214,7 @@ specs:
   - git =2.47.1  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =10.3.1  # allow_outdated  # [osx]
-  - pyobjc-framework-Cocoa =10.3.1  # [osx]
+  - pyobjc-framework-Cocoa =10.3.2  # [osx]
   - pyobjc-framework-FSEvents =10.3.1  # [osx]
 condarc:
   channels:
