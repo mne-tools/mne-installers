@@ -213,7 +213,7 @@ specs:
   # OS-specific
   - git =2.47.1  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =10.3.2  # [osx]
+  - pyobjc-core =10.3.1  # allow_outdated  # [osx]
   - pyobjc-framework-Cocoa =10.3.1  # [osx]
   - pyobjc-framework-FSEvents =10.3.1  # [osx]
 condarc:
