@@ -90,6 +90,7 @@ specs:
   - autoreject =0.4.3
   - antio =0.4.0
   - meegkit =0.1.7
+  - eeg_positions =2.1.1
   # MRI
   - fsleyes =1.13.0
   - dcm2niix =1.0.20240202
