@@ -33,6 +33,7 @@ import mne_lsl
 import mne_icalabel
 import autoreject
 import meegkit
+import eeg_positions
 import pyriemann
 import pyprep
 import pycrostates

@@ -4,8 +4,8 @@ channels:
   - conda-forge
 
 dependencies:
-  - constructor >=3.6.0
-  - conda-libmamba-solver <=24.9
+  - constructor >=3.6.0,!=3.11.0
+  - conda-libmamba-solver
   - conda-standalone >=23.11.0
   - menuinst
   - conda >=23.11.0
