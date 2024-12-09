@@ -196,7 +196,7 @@ specs:
   - hatchling =1.26.3
   - hatch-vcs =0.4.0
   - mypy =1.13.0
-  - towncrier =24.8.0
+  - towncrier =23.11.0  # allow_outdated, 24.7.1 doesn't work with sphinxcontrib-towncrier
   - vulture =2.14
   # Doc building
   - numpydoc =1.8.0
