@@ -92,7 +92,7 @@ specs:
   - meegkit =0.1.7
   # MRI
   - fsleyes =1.13.0
-  - dcm2niix =1.0.20240202
+  - dcm2niix =1.0.20241208
   - dipy =1.9.0
   # Time-frequency analysis
   - pactools =0.3.1
@@ -131,12 +131,12 @@ specs:
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.3
-  - polars =1.17.0
+  - polars =1.17.1
   - scipy =1.14.1
   - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.3.2
+  - jupyterlab =4.3.3
   - ipykernel =6.29.5
   - spyder-kernels =3.0.2
   # TODO: Needs to not require pyqt
