@@ -92,7 +92,7 @@ specs:
   - meegkit =0.1.7
   # MRI
   - fsleyes =1.13.0
-  - dcm2niix =1.0.20240202
+  - dcm2niix =1.0.20241208
   - dipy =1.9.0
   # Time-frequency analysis
   - pactools =0.3.1
@@ -131,14 +131,14 @@ specs:
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.3
-  - polars =1.16.0
+  - polars =1.17.1
   - scipy =1.14.1
   - openblas =0.3.27  # allow_outdated, scipy / numpy not updated yet
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.3.0
+  - jupyterlab =4.3.3
   - ipykernel =6.29.5
-  - spyder-kernels =3.0.1
+  - spyder-kernels =3.0.2
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =5.5.5
@@ -171,21 +171,21 @@ specs:
   - ipywidgets =8.1.5
   - pyvista =0.44.2
   - pyvistaqt =0.11.1
-  - trame =3.7.0
+  - trame =3.7.1
   - trame-vtk =2.8.12
   - trame-vuetify =2.7.2
   - termcolor =2.5.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.63.0
+  - gh =2.63.2
   - setuptools_scm =8.1.0
   - pytest =8.3.4
   - pytest-cov =6.0.0
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.0.1
-  - ruff =0.8.1
-  - uv =0.5.5
+  - ruff =0.8.2
+  - uv =0.5.7
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0
@@ -196,7 +196,7 @@ specs:
   - hatch-vcs =0.4.0
   - mypy =1.13.0
   - towncrier =23.11.0  # allow_outdated, 24.7.1 doesn't work with sphinxcontrib-towncrier
-  - vulture =2.13
+  - vulture =2.14
   # Doc building
   - numpydoc =1.8.0
   - pydata-sphinx-theme =0.16.0
@@ -209,7 +209,7 @@ specs:
   - sphinxcontrib-bibtex =2.6.3
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
-  - intersphinx-registry =0.2411.25
+  - intersphinx-registry =0.2412.7
   # OS-specific
   - git =2.47.1  # [win]
   - make =4.4.1  # [win]
