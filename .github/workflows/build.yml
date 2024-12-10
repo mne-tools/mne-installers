@@ -146,6 +146,9 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
+        env:
+          CONDA_QUIET: 0
+          CONDA_VERBOSITY: 3
         run: |
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
@@ -179,7 +182,11 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-      - run: sh ./${MNE_INSTALLER_NAME} -b
+      - name: Run installer
+        env:
+          CONDA_QUIET: 0
+          CONDA_VERBOSITY: 3
+        run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v4
         with:
@@ -199,7 +206,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2019, windows-2022]
+        os: [windows-2022]  # [windows-2019, windows-2022]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -211,9 +218,13 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
-      - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
+      - name: Run installer
         timeout-minutes: 30
         shell: cmd
+        env:
+          CONDA_QUIET: 0
+          CONDA_VERBOSITY: 3
+        run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v4
         with:
