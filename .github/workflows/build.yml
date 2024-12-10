@@ -20,6 +20,7 @@ jobs:
   # Build installers
   build_macos:
     name: Build (${{ matrix.os }})
+    if: false
     strategy:
       fail-fast: false
       matrix:
@@ -71,6 +72,7 @@ jobs:
   build_linux:
     name: Build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    if: false
     strategy:
       fail-fast: false
       matrix:
@@ -108,7 +110,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - run: conda install -c conda-forge -y "nsis==3.08"
+          create-args: nsis=3.08
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
