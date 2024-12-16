@@ -11,7 +11,7 @@ out = subprocess.check_output(
         "--dry-run",
         # This can be used to speed up local testing
         # "../mne-python[full,test,test_extra,doc]",
-        "mne[full,test,test_extra,doc] @ git+https://github.com/mne-tools/mne-python.git@main",
+        "mne[full-no-qt,test,test_extra,doc] @ git+https://github.com/mne-tools/mne-python.git@main",
     ]
 )
 out = out.decode("utf-8")
@@ -25,9 +25,6 @@ deps = [
     dep
     for dep in deps.split()
     if not re.match("mne-[0-9]+", dep)
-    # conda still on PyQt5
-    and not dep.startswith("PyQt6")
-    and not dep.startswith("sip-")
     # and not on conda-forge yet
     and not dep.startswith("sphinxcontrib-towncrier")
     and not dep.startswith("antio")
