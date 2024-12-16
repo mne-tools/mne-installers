@@ -25,6 +25,8 @@ deps = [
     dep
     for dep in deps.split()
     if not re.match("mne-[0-9]+", dep)
+    # Qt-related stuff
+    and not dep.startswith("sip-")
     # and not on conda-forge yet
     and not dep.startswith("sphinxcontrib-towncrier")
     and not dep.startswith("antio")
