@@ -59,7 +59,7 @@ specs:
   # Python
   - python =3.12.7  # allow_outdated
   - pip =24.3.1
-  - conda =24.11.0
+  - conda =24.11.1
   - mamba =2.0.5
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -160,7 +160,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.9.4
+  - matplotlib-base =3.10.0
   - tornado =6.4.2
   - pyside6 =6.7.3=*_1  # allow_outdated, vtk needs rebuild against 6.8.0
   - qt6-main =6.7.3  # allow_outdated
