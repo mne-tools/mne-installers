@@ -121,7 +121,7 @@ specs:
   - pybv =0.7.6
   - eeglabio =0.0.3
   - mffpy =0.10.0
-  - openmeeg =2.5.13
+  - openmeeg =2.5.14
   - python-neo =0.13.4
   - nitime =0.11
   - snirf =0.8.0
