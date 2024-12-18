@@ -11,7 +11,9 @@ KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 OPENSSL=/usr/bin/openssl  # could also just use "openssl" to use the conda-forge one
 # import certificates from secrets
 echo "🏃 Retrieving our Developer certificates from GH secrets …"
+test ! -z "$APPLICATION_CERT_BASE64" || (echo "❌ APPLICATION_CERT_BASE64 is empty" && exit 1)
 echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_PATH
+test ! -z "$INSTALLER_CERT_BASE64" || (echo "❌ INSTALLER_CERT_BASE64 is empty" && exit 1)
 echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
 echo "✅ Done retrieving our Developer certificates from GH secrets."
 
