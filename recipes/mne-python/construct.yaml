@@ -138,7 +138,7 @@ specs:
   - openblas =0.3.28
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.3.3
+  - jupyterlab =4.3.4
   - ipykernel =6.29.5
   - spyder-kernels =3.0.2
   # TODO: Needs to not require pyqt
@@ -165,7 +165,7 @@ specs:
   - tornado =6.4.2
   - pyside6 =6.7.3=*_1  # allow_outdated, vtk needs rebuild against 6.8.0 https://github.com/conda-forge/vtk-feedstock/pull/357
   - qt6-main =6.7.3  # allow_outdated
-  - ipympl =0.9.4
+  - ipympl =0.9.5
   - qtpy =2.4.2
   - seaborn =0.13.2
   - plotly =5.24.1
@@ -187,7 +187,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.0.1
   - ruff =0.8.3
-  - uv =0.5.9
+  - uv =0.5.10
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0
