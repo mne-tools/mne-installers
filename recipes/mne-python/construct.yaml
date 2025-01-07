@@ -101,7 +101,7 @@ specs:
   - tensorpac =0.6.5
   - emd =0.7.0
   - neurodsp =2.2.0
-  - bycycle =1.1.0
+  # - bycycle =1.1.0  # TODO: broken with latest SciPy
   - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
@@ -134,7 +134,7 @@ specs:
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.3
   - polars =1.17.1
-  - scipy =1.14.1
+  - scipy =1.15.0
   - openblas =0.3.28
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
@@ -155,7 +155,7 @@ specs:
   # Statistics
   - pingouin =0.5.5
   # NeuroSpin needs the following
-  - questionary =2.0.1
+  - questionary =2.1.0
   - pqdm =0.2.0
   - astropy =7.0.0
   # Viz
@@ -165,7 +165,7 @@ specs:
   - tornado =6.4.2
   - pyside6 =6.7.3=*_1  # allow_outdated, vtk needs rebuild against 6.8.0 https://github.com/conda-forge/vtk-feedstock/pull/357
   - qt6-main =6.7.3  # allow_outdated
-  - ipympl =0.9.5
+  - ipympl =0.9.6
   - qtpy =2.4.2
   - seaborn =0.13.2
   - plotly =5.24.1
@@ -173,21 +173,21 @@ specs:
   - ipywidgets =8.1.5
   - pyvista =0.44.2
   - pyvistaqt =0.11.1
-  - trame =3.7.1
+  - trame =3.7.6
   - trame-vtk =2.8.12
-  - trame-vuetify =2.7.2
+  - trame-vuetify =2.8.0
   - termcolor =2.5.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.64.0
+  - gh =2.65.0
   - setuptools_scm =8.1.0
   - pytest =8.3.4
   - pytest-cov =6.0.0
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.0.1
-  - ruff =0.8.4
-  - uv =0.5.11
+  - ruff =0.8.6
+  - uv =0.5.15
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0
@@ -196,7 +196,7 @@ specs:
   - twine =6.0.1
   - hatchling =1.27.0
   - hatch-vcs =0.4.0
-  - mypy =1.14.0
+  - mypy =1.14.1
   - towncrier =23.11.0  # allow_outdated, 24.7.1 doesn't work with sphinxcontrib-towncrier
   - vulture =2.14
   # Doc building
