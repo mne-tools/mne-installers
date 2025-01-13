@@ -5,9 +5,9 @@ def check_min_version(package, min_version):
     """Check a minimum version."""
     from packaging.version import parse
 
-    assert parse(package.__version__) >= parse(
-        min_version
-    ), f"{package}: got {package.__version__} wanted {min_version}"
+    assert parse(package.__version__) >= parse(min_version), (
+        f"{package}: got {package.__version__} wanted {min_version}"
+    )
 
 
 import mne
