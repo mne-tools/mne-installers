@@ -99,7 +99,7 @@ specs:
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
-  - emd =0.7.0
+  - emd =0.8.0
   - neurodsp =2.2.0
   # - bycycle =1.1.0  # TODO: broken with latest SciPy
   - fooof =1.0.0
@@ -121,7 +121,7 @@ specs:
   - pybv =0.7.6
   - eeglabio =0.0.3
   - mffpy =0.10.0
-  - openmeeg =2.5.14
+  - openmeeg =2.5.15
   - python-neo =0.13.4
   - nitime =0.11
   - snirf =0.8.0
@@ -134,7 +134,7 @@ specs:
   - imageio-ffmpeg =0.5.1
   - pandas =2.2.3
   - polars =1.17.1
-  - scipy =1.15.0
+  - scipy =1.15.1
   - openblas =0.3.28
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
@@ -149,7 +149,7 @@ specs:
   - numba =0.60.0
   - cython =3.0.11
   # I/O
-  - pyxdf =1.16.8
+  - pyxdf =1.17.0
   - openpyxl =3.1.5
   - xlrd =2.0.1
   # Statistics
@@ -174,7 +174,7 @@ specs:
   - pyvista =0.44.2
   - pyvistaqt =0.11.1
   - trame =3.7.6
-  - trame-vtk =2.8.12
+  - trame-vtk =2.8.14
   - trame-vuetify =2.8.0
   - termcolor =2.5.0
   - defusedxml =0.7.1
@@ -186,8 +186,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.0.1
-  - ruff =0.8.6
-  - uv =0.5.15
+  - ruff =0.9.1
+  - uv =0.5.18
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0
