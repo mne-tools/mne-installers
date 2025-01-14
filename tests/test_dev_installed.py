@@ -25,6 +25,11 @@ deps = [
     dep
     for dep in deps.split()
     if not re.match("mne-[0-9]+", dep)
+    # TODO because we don't install neo
+    and not dep.startswith("neo-")
+    and not dep.startswith("numpy-")
+    and not dep.startswith("pyxdf-")
+    and not dep.startswith("quantities-")
     # Qt-related stuff
     and not dep.startswith("sip-")
     # and not on conda-forge yet
