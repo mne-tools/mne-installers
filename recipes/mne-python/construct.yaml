@@ -109,7 +109,7 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2024.2.0
   # sleep staging
-  - sleepecg =0.5.8
+  # - sleepecg =0.5.8  # TODO: not NumPy 2.0 compatible yet
   - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
