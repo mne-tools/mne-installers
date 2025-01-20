@@ -131,9 +131,9 @@ specs:
   - mayavi =4.8.2=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0=*_1
-  - imageio-ffmpeg =0.5.1
+  - imageio-ffmpeg =0.6.0
   - pandas =2.2.3
-  - polars =1.17.1
+  - polars =1.20.0
   - scipy =1.15.1
   - openblas =0.3.28
   - libblas =3.9.0=*openblas
@@ -185,9 +185,9 @@ specs:
   - pytest-cov =6.0.0
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
-  - pre-commit =4.0.1
-  - ruff =0.9.1
-  - uv =0.5.18
+  - pre-commit =4.1.0
+  - ruff =0.9.2
+  - uv =0.5.21
   - check-manifest =0.50
   - codespell =2.3.0
   - py-spy =0.4.0
@@ -215,9 +215,9 @@ specs:
   # OS-specific
   - git =2.47.1  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =10.3.2  # [osx]
-  - pyobjc-framework-Cocoa =10.3.2  # [osx]
-  - pyobjc-framework-FSEvents =10.3.2  # [osx]
+  - pyobjc-core =11.0  # [osx]
+  - pyobjc-framework-Cocoa =11.0  # [osx]
+  - pyobjc-framework-FSEvents =11.0  # [osx]
 condarc:
   channels:
     - conda-forge
