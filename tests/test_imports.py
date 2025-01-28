@@ -53,9 +53,9 @@ import neurodsp
 import fooof
 import openneuro
 
-# import sleepecg  # TODO
-# import yasa  # TODO
-# import neo  # TODO
+import sleepecg
+import yasa
+import neo
 import neurokit2
 import questionary
 import matplotlib.pyplot
