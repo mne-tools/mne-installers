@@ -60,7 +60,7 @@ specs:
   - python =3.12.7  # allow_outdated
   - pip =25.0
   - wheel =0.45.1
-  - conda =24.11.0  # allow_outdated, https://github.com/conda-forge/conda-feedstock/pull/247#issuecomment-2549103813
+  - conda =25.1.0
   - mamba =2.0.5
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -190,7 +190,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
   - ruff =0.9.3
-  - uv =0.5.21  # allow_outdated, windows bild problems
+  - uv =0.5.24
   - check-manifest =0.50
   - codespell =2.4.0
   - py-spy =0.4.0
