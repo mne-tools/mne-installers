@@ -32,7 +32,8 @@ import mne_kit_gui
 import mne_lsl
 import mne_icalabel
 import autoreject
-import wfdb
+
+# import wfdb  # TODO
 import meegkit
 import eeg_positions
 import pyriemann
