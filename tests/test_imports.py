@@ -32,7 +32,8 @@ import mne_kit_gui
 import mne_lsl
 import mne_icalabel
 import autoreject
-import wfdb
+
+# import wfdb  # TODO
 import meegkit
 import eeg_positions
 import pyriemann
@@ -55,7 +56,7 @@ import openneuro
 
 # import sleepecg  # TODO
 # import yasa  # TODO
-# import neo  # TODO
+import neo
 import neurokit2
 import questionary
 import matplotlib.pyplot
