@@ -57,7 +57,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.1
+  - python =3.12.7  # allow_outdated, vtk
   - pip =25.0
   - wheel =0.45.1
   - conda =25.1.0
