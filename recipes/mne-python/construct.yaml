@@ -140,7 +140,7 @@ specs:
   - openblas =0.3.28
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.2.7
+  - jupyterlab =4.3.5
   - ipykernel =6.29.5
   - spyder-kernels =3.0.2
   # TODO: Needs to not require pyqt
