@@ -60,7 +60,7 @@ specs:
   - python =3.12.7  # allow_outdated, vtk
   - pip =25.0
   - wheel =0.45.1
-  - conda =25.1.0
+  - conda =25.1.1
   - mamba =2.0.5
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -170,7 +170,7 @@ specs:
   - ipympl =0.9.6
   - qtpy =2.4.2
   - seaborn =0.13.2
-  - plotly =5.24.1
+  - plotly =6.0.0
   - vtk =9.3.1=qt*
   - ipywidgets =8.1.5
   - pyvista =0.44.2
@@ -181,15 +181,15 @@ specs:
   - termcolor =2.5.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.65.0
+  - gh =2.66.1
   - setuptools_scm =8.1.0
   - pytest =8.3.4
   - pytest-cov =6.0.0
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
-  - ruff =0.9.3
-  - uv =0.5.25
+  - ruff =0.9.4
+  - uv =0.5.26
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -204,7 +204,7 @@ specs:
   # Doc building
   - numpydoc =1.8.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =12.0.0
+  - graphviz =12.2.1
   - python-graphviz =0.20.3
   - selenium =4.28.1
   - sphinx =8.1.3
