@@ -110,7 +110,7 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2024.2.0
   # sleep staging
-  - sleepecg =0.5.9=*_2
+  - sleepecg =0.5.9=*_1
   # - yasa =0.6.5  # TODO: Needs antropy which needs stochastic which is pinned to NP<2 https://github.com/crflynn/stochastic/issues/79, https://github.com/raphaelvallat/antropy/issues/40
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
