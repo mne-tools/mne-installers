@@ -110,8 +110,8 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2024.2.0
   # sleep staging
-  # - sleepecg =0.5.9  # TODO: TensorFlow conflicts
-  # - yasa =0.6.5  # TODO: Requires sleepecg
+  - sleepecg =0.5.9
+  - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
   - mnelab =0.9.2
@@ -130,6 +130,7 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - tensorflow =2.17.0  # needed by sleepecg
   - mayavi =4.8.2=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0=*_1
@@ -205,7 +206,7 @@ specs:
   # Doc building
   - numpydoc =1.8.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =12.2.1
+  - graphviz =12.0.0  # allow_outdated, conflicts with PySide6 6.7.3
   - python-graphviz =0.20.3
   - selenium =4.28.1
   - sphinx =8.1.3
