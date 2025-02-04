@@ -47,6 +47,7 @@ sidx = lines.index("# <<< BEGIN RELATED SOFTWARE LIST >>>")
 eidx = lines.index("# <<< END RELATED SOFTWARE LIST >>>")
 lines = [line for line in lines[sidx : eidx + 1] if not line.startswith("#")]
 assert lines
+# NB: next line assumes that there are no "less-than" pins
 mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in lines]
 
 # Plus some custom ones
