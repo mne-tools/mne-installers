@@ -1,10 +1,16 @@
 # Create one nbclient and reuse it
+import os
 from mne.utils import Bunch
 import nbformat
 from jupyter_client import AsyncKernelManager
 from nbclient import NotebookClient
 from ipywidgets import Button  # noqa
-import ipyvtklink  # noqa
+
+if os.getenv("SKIP_NOTEBOOK_TESTS", "").lower() in ("1", "true"):
+    print("Skipping notebook tests")
+    exit(0)
+
+print("Running notebook tests")
 
 km = AsyncKernelManager(config=None)
 nb = nbformat.reads(
