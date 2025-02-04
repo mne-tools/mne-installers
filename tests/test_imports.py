@@ -63,16 +63,14 @@ bad_ver = {
     "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
     "pactools",  # https://github.com/pactools/pactools/pull/37
-    "matplotlib.pyplot",
-    "PySide6.QtCore",
 }
-mod_map = {
+mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
     "python-picard": "picard",
     "openneuro-py": "openneuro",
     "pyobjc": "Foundation",
 }
-ver_map = {
+ver_map = {  # for __version__, need map from importable name to conda-forge line/name
     "matplotlib": "matplotlib-base",
 }
 ignore = list(parsed.ignore) + ["dcm2niix"]
@@ -80,7 +78,7 @@ for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
         continue
     py_mod = _import(mod_map.get(mod, mod))
-    if mod not in bad_ver:
+    if mod not in bad_ver and "." not in mod:
         ver_lines = [
             line
             for line in all_lines
