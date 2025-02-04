@@ -64,7 +64,7 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     popd
     if [[ `grep "24.04" /etc/lsb-release` ]]; then
         export SKIP_PYVISTAQT_TESTS=1
-        export SKIP_MNE_KIT_GUI_TESTS=1
+        export SKIP_NOTEBOOK_TESTS=1
     fi
 else
     export SKIP_PYVISTAQT_TESTS=1
