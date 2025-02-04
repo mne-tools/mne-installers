@@ -53,7 +53,7 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 # Plus some custom ones
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
-seaborn plotly pqdm pyvistaqt vtk PySide6.QtCore matplotlib.pyplot
+seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
@@ -63,23 +63,31 @@ bad_ver = {
     "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
     "pactools",  # https://github.com/pactools/pactools/pull/37
-    "Foundation",  # pyobjc
+    "matplotlib.pyplot",
+    "PySide6.QtCore",
+}
+mod_map = {
+    "python-neo": "neo",
+    "python-picard": "picard",
+    "openneuro-py": "openneuro",
+    "pyobjc": "Foundation",
+}
+ver_map = {
+    "matplotlib": "matplotlib-base",
 }
 ignore = list(parsed.ignore) + ["dcm2niix"]
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
         continue
-    use_mod = mod
-    if use_mod.startswith("python-"):  # python-neo
-        use_mod = use_mod[7:]
-    if use_mod.endswith("-py"):  # openneuro-py
-        use_mod = use_mod[:-3]
-    py_mod = _import(use_mod)
-    if "." not in mod:  # don't check PySide6.QtCore etc.
-        ver_lines = [line for line in all_lines if line.startswith(f"- {mod} =")]
+    py_mod = _import(mod_map.get(mod, mod))
+    if mod not in bad_ver:
+        ver_lines = [
+            line
+            for line in all_lines
+            if line.startswith(f"- {ver_map.get(mod, mod).lower()} =")
+        ]
         assert len(ver_lines) == 1, f"{mod}: {ver_lines}"
-        if mod not in bad_ver:
-            check_version_eq(py_mod, ver_lines[0].split("=")[1])
+        check_version_eq(py_mod, ver_lines[0].split("=")[1])
     if mod == "matplotlib.pyplot":
         backend = py_mod.get_backend()
         assert backend.lower() == "qtagg", backend
