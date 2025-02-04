@@ -62,6 +62,7 @@ if platform.system() == "Darwin":
 bad_ver = {
     "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
+    "pactools",  # https://github.com/pactools/pactools/pull/37
 }
 ignore = list(parsed.ignore) + ["dcm2niix"]
 for mod in tqdm(mods, desc="Imports", unit="module"):
