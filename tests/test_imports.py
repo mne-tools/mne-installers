@@ -64,7 +64,7 @@ bad_ver = {
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
 }
 for mod in tqdm(mods, desc="Imports", unit="module"):
-    if mod in parsed.ignore:
+    if mod in (parsed.ignore or []):
         continue
     use_mod = mod
     if use_mod.startswith("python-"):  # python-neo
