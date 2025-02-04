@@ -4,7 +4,6 @@ import faulthandler
 faulthandler.enable()
 
 import os
-import sys
 from pathlib import Path
 
 import numpy as np
@@ -54,11 +53,13 @@ fig.close()
 assert "MNEQtBrowser" in repr(fig), repr(fig)
 
 # mne-kit-gui
-print("Running mne-kit-gui tests")
-from pyface.api import GUI  # noqa
-import mne_kit_gui  # noqa
+if os.getenv("SKIP_MNE_KIT_GUI_TESTS", "").lower() in ("1", "true"):
+    print("Skipping MNE-KIT-GUI tests")
+else:
+    print("Running MNE-KIT-GUI tests")
+    from pyface.api import GUI  # noqa
+    import mne_kit_gui  # noqa
 
-if sys.platform != "darwin":  # can be problematic on qt6 on macOS
     os.environ["_MNE_GUI_TESTING_MODE"] = "true"
     gui = GUI()
     gui.process_events()
