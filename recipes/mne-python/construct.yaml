@@ -111,7 +111,7 @@ specs:
   - openneuro-py =2024.2.0
   # sleep staging
   - sleepecg =0.5.9
-  - yasa =0.6.5
+  # - yasa =0.6.5  # TODO: Needs stochastic which is errantly pinned to NP<2
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
   - mnelab =0.9.2
