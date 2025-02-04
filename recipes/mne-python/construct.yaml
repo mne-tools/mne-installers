@@ -110,11 +110,11 @@ specs:
   # OpenNeuro.org data access
   - openneuro-py =2024.2.0
   # sleep staging
-  # - sleepecg =0.5.9=*_1  # TODO: Needs CDN update
+  - sleepecg =0.5.9=*_1
   # - yasa =0.6.5  # TODO: Needs antropy which needs stochastic which is pinned to NP<2 https://github.com/crflynn/stochastic/issues/79, https://github.com/raphaelvallat/antropy/issues/40
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
-  - mnelab =0.9.2
+  - mnelab =1.0.0
   # other
   - pyriemann =0.7
   - pyprep =0.4.3=*_1
