@@ -6,7 +6,7 @@ import platform
 
 
 parser = argparse.ArgumentParser(prog="test_imports")
-parser.add_argument("--ignore", nargs="*", help="Modules to ignore")
+parser.add_argument("--ignore", nargs="*", help="Modules to ignore", default=[])
 parsed = parser.parse_args()
 
 
@@ -63,8 +63,9 @@ bad_ver = {
     "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
 }
+ignore = list(parsed.ignore) + ["dcm2niix"]
 for mod in tqdm(mods, desc="Imports", unit="module"):
-    if mod in (parsed.ignore or []):
+    if mod in ignore:
         continue
     use_mod = mod
     if use_mod.startswith("python-"):  # python-neo
