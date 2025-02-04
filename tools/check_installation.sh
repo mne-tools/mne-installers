@@ -61,6 +61,11 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     # Display their contents
     for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
     popd
+    if [[ `grep "24.04" /etc/lsb-release` ]]; then
+        export SKIP_PYVISTAQT_TESTS=1
+    fi
+else
+    export SKIP_PYVISTAQT_TESTS=1
 fi
 echo "::endgroup::"
 

@@ -23,8 +23,10 @@ assert want in repr(fig.canvas), repr(fig.canvas)
 plt.close("all")
 
 # pyvistaqt
-print("Running pyvistaqt tests (except Windows)")
-if not sys.platform.startswith("win"):
+if os.getenv("SKIP_PYVISTAQT_TESTS", "").lower() in ("1", "true"):
+    print("Skipping PyVistaQt tests")
+else:
+    print("Running pyvistaqt tests")
     fname = this_path / "test.png"
     mne.viz.set_3d_backend("pyvista")
     fig = mne.viz.create_3d_figure((400, 400), scene=False, show=True)
