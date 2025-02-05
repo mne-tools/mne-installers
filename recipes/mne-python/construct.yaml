@@ -177,7 +177,7 @@ specs:
   - ipywidgets =8.1.5
   - pyvista =0.44.2
   - pyvistaqt =0.11.1
-  - trame =3.7.6
+  - trame =3.8.0
   - trame-vtk =2.8.14
   - trame-vuetify =2.8.1
   - termcolor =2.5.0
@@ -191,7 +191,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
   - ruff =0.9.4
-  - uv =0.5.27
+  - uv =0.5.28
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -200,7 +200,7 @@ specs:
   - twine =6.1.0
   - hatchling =1.27.0
   - hatch-vcs =0.4.0
-  - mypy =1.14.1
+  - mypy =1.15.0
   - towncrier =23.11.0  # allow_outdated, 24.7.1 doesn't work with sphinxcontrib-towncrier
   - vulture =2.14
   # Doc building
