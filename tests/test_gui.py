@@ -4,7 +4,6 @@ import faulthandler
 faulthandler.enable()
 
 import os
-import sys
 from pathlib import Path
 
 import numpy as np
@@ -23,8 +22,10 @@ assert want in repr(fig.canvas), repr(fig.canvas)
 plt.close("all")
 
 # pyvistaqt
-print("Running pyvistaqt tests (except Windows)")
-if not sys.platform.startswith("win"):
+if os.getenv("SKIP_PYVISTAQT_TESTS", "").lower() in ("1", "true"):
+    print("Skipping PyVistaQt tests")
+else:
+    print("Running pyvistaqt tests")
     fname = this_path / "test.png"
     mne.viz.set_3d_backend("pyvista")
     fig = mne.viz.create_3d_figure((400, 400), scene=False, show=True)
@@ -52,11 +53,13 @@ fig.close()
 assert "MNEQtBrowser" in repr(fig), repr(fig)
 
 # mne-kit-gui
-print("Running mne-kit-gui tests")
-from pyface.api import GUI  # noqa
-import mne_kit_gui  # noqa
+if os.getenv("SKIP_MNE_KIT_GUI_TESTS", "").lower() in ("1", "true"):
+    print("Skipping MNE-KIT-GUI tests")
+else:
+    print("Running MNE-KIT-GUI tests")
+    from pyface.api import GUI  # noqa
+    import mne_kit_gui  # noqa
 
-if sys.platform != "darwin":  # can be problematic on qt6 on macOS
     os.environ["_MNE_GUI_TESTING_MODE"] = "true"
     gui = GUI()
     gui.process_events()
