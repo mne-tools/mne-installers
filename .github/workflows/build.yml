@@ -159,6 +159,8 @@ jobs:
           qt: true
           pyvista: false
           wm: false
+      - run: HOMEBREW_NO_AUTO_UPDATE=1 brew install coreutils
+        name: Get timeout utility
       - run: ./tools/check_installation.sh
 
   test_linux:
