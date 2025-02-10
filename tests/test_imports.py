@@ -65,6 +65,7 @@ bad_ver = {
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "Foundation",
+    "spyder",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
