@@ -58,7 +58,7 @@ channels:
 specs:
   # Python
   - python =3.12.7  # allow_outdated, vtk
-  - pip =25.0
+  - pip =25.0.1
   - wheel =0.45.1
   - conda =25.1.1
   - mamba =2.0.6
@@ -79,7 +79,7 @@ specs:
   - mne-bids-pipeline =1.9.0
   - mne-qt-browser =0.6.3
   - mne-connectivity =0.7.0=*_1
-  - mne-faster =1.2
+  - mne-faster =1.2.1
   - mne-nirs =0.7.1
   - mne-features =0.3
   - mne-rsa =0.9.1
@@ -130,13 +130,14 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - spyder-base =6.0.4
   - antropy =0.1.9
   - mayavi =4.8.2=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.6.0
   - pandas =2.2.3
-  - polars =1.21.0
+  - polars =1.22.0
   - scipy =1.15.1
   - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
   - openblas =0.3.28
@@ -144,7 +145,7 @@ specs:
   - jupyter =1.1.1
   - jupyterlab =4.3.5
   - ipykernel =6.29.5
-  - spyder-kernels =3.0.2
+  - spyder-kernels =3.0.3
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =6.1.0
@@ -161,7 +162,7 @@ specs:
   # NeuroSpin needs the following
   - questionary =2.1.0
   - pqdm =0.2.0
-  - astropy =7.0.0
+  - astropy =7.0.1
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
@@ -178,7 +179,7 @@ specs:
   - pyvista =0.44.2
   - pyvistaqt =0.11.1
   - trame =3.8.0
-  - trame-vtk =2.8.14
+  - trame-vtk =2.8.15
   - trame-vuetify =2.8.1
   - termcolor =2.5.0
   - defusedxml =0.7.1
@@ -190,8 +191,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
-  - ruff =0.9.4
-  - uv =0.5.28
+  - ruff =0.9.6
+  - uv =0.5.29
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
