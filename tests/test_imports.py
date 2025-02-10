@@ -66,6 +66,7 @@ bad_ver = {
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "Foundation",
     "spyder",
+    "spyder-kernels",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
