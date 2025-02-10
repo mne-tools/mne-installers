@@ -122,6 +122,8 @@ for package in packages:
             continue
         elif "main" not in file["labels"]:
             continue
+        elif ".rc" in file["version"]:
+            continue
         else:
             version = file["version"]
             break
