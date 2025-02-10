@@ -54,7 +54,7 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
-spyder spyder_kernels
+spyder spyder-kernels
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
