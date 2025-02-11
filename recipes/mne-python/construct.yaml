@@ -61,7 +61,7 @@ specs:
   - pip =25.0.1
   - wheel =0.45.1
   - conda =25.1.1
-  - mamba =2.0.6
+  - mamba =2.0.5
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -151,7 +151,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.61.0
-  - cython =3.0.11
+  - cython =3.0.12
   # I/O
   - pyxdf =1.17.0
   - openpyxl =3.1.5
@@ -191,7 +191,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
   - ruff =0.9.6
-  - uv =0.5.29
+  - uv =0.5.30
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
