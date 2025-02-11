@@ -60,8 +60,9 @@ specs:
   - python =3.13.1
   - pip =25.0.1
   - wheel =0.45.1
-  - conda =25.1.1
-  - mamba =2.0.5
+  # TODO: RESTORE
+  # - conda =25.1.1
+  # - mamba =2.0.5
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
