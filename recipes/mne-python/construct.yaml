@@ -224,6 +224,8 @@ specs:
   - libffi =3.4.2  # [osx and arm64]  # allow_outdated
   - pyobjc-framework-Cocoa =11.0  # [osx]
   - pyobjc-framework-FSEvents =11.0  # [osx]
+  # https://github.com/conda-forge/libiconv-feedstock/issues/48
+  - libiconv =1.17  # [win]  # allow_outdated
 condarc:
   channels:
     - conda-forge
