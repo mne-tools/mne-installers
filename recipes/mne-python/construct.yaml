@@ -101,8 +101,8 @@ specs:
   - pactools =0.3.1
   - tensorpac =0.6.5
   - emd =0.8.0
-  # - neurodsp =2.2.0  # TODO: broken with latest SciPy
-  # - bycycle =1.1.0  # TODO: broken with latest SciPy
+  - neurodsp =2.3.0
+  - bycycle =1.1.0
   - fooof =1.0.0
   # Microstates
   - mne-microstates =0.3.0
@@ -220,11 +220,10 @@ specs:
   - git =2.48.1  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =11.0  # [osx]
+  # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.2  # [osx and arm64]  # allow_outdated
   - pyobjc-framework-Cocoa =11.0  # [osx]
   - pyobjc-framework-FSEvents =11.0  # [osx]
-  # https://github.com/conda-forge/libiconv-feedstock/issues/48
-  - libiconv =1.17  # [win]  # allow_outdated
 condarc:
   channels:
     - conda-forge
