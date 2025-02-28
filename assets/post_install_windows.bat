@@ -1,7 +1,7 @@
 @ECHO OFF
 
-:: echo Setting read/write permissions on the Python installation to %USERNAME% (this can take a few minutes!).
-:: icacls %PREFIX% /grant %USERNAME%:(OI)(CI)M /c /t /q
+echo Setting read/write permissions on the Python installation to %USERNAME% (this can take a few minutes!).
+icacls %PREFIX% /grant %USERNAME%:(OI)(CI)M /c /t /q
 
 :: echo Configuring Python to ignore user-installed local packages.
 :: "%PREFIX%\Scripts\conda" env config vars set PYTHONNOUSERSITE=1
