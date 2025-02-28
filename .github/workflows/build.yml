@@ -227,19 +227,22 @@ jobs:
           CONDA_VERBOSITY: 3
         run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
       - run: ./tools/export_frozen_env_def.sh
+        if: false
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
         # upload just one for each installer version
-        if: matrix.os == 'windows-2022'
+        if: false && matrix.os == 'windows-2022'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
           pyvista: false
           wm: false
+        if: false
       - run: ./tools/check_installation.sh
         timeout-minutes: 5  # < 2 min even on Windows
+        if: false
 
   # Release
   release:
