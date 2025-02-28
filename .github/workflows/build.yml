@@ -110,7 +110,6 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-          create-args: nsis=3.08
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
