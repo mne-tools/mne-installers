@@ -94,7 +94,7 @@ specs:
   - meegkit =0.1.9
   - eeg_positions =2.1.2
   # MRI
-  - fsleyes =1.14.1
+  - fsleyes =1.14.2
   - dcm2niix =1.0.20241211
   - dipy =1.10.0
   # Time-frequency analysis
@@ -120,7 +120,7 @@ specs:
   - pyprep =0.4.3=*_1
   - python-picard =0.8
   - pybv =0.7.6
-  - edfio =0.4.5
+  - edfio =0.4.6
   - eeglabio =0.0.3
   - mffpy =0.10.0
   - openmeeg =2.5.15
@@ -191,7 +191,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
   - ruff =0.9.7
-  - uv =0.6.2
+  - uv =0.6.3
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -201,7 +201,7 @@ specs:
   - hatchling =1.27.0
   - hatch-vcs =0.4.0
   - mypy =1.15.0
-  - towncrier =23.11.0
+  - towncrier =24.8.0
   - vulture =2.14
   # Doc building
   - numpydoc =1.8.0
