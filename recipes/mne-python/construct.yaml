@@ -68,11 +68,6 @@ specs:
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  # - mne =1.9.0=pyside6_*_100
-  # - mne-base =1.9.0
-  # - mne-installer-menus =1.9.0=*_100
-  # # For testing purposes with build_local.sh, you can comment out all deps
-  # # below for speed, and change mne to mne-base above
   - antropy =0.1.9
   - mayavi =4.8.2=pyside6_*
   - traitsui =8.0.0
@@ -108,7 +103,6 @@ specs:
   - seaborn =0.13.2
   - plotly =6.0.0
   - vtk =9.3.1=qt*
-
 condarc:
   channels:
     - conda-forge
