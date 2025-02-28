@@ -94,7 +94,7 @@ specs:
   - questionary =2.1.0
   - pqdm =0.2.0
   - astropy =7.0.1
-  - matplotlib-base =3.10.1
+  - matplotlib-base =3.10.0  # allow_outdated
   - tornado =6.4.2
   - ipympl =0.9.6
   # - qtpy =2.4.3
