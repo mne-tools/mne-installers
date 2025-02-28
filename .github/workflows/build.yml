@@ -162,6 +162,7 @@ jobs:
         with:
           qt: true
           pyvista: false
+          wm: false
       - run: ./tools/check_installation.sh
 
   test_linux:
@@ -197,6 +198,7 @@ jobs:
         with:
           qt: true
           pyvista: false
+          wm: false
       - run: ./tools/check_installation.sh
 
   test_windows:
@@ -235,6 +237,7 @@ jobs:
         with:
           qt: true
           pyvista: false
+          wm: false
       - run: ./tools/check_installation.sh
         timeout-minutes: 5  # < 2 min even on Windows
 

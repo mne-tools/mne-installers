@@ -3,7 +3,9 @@
 set -eo pipefail
 exec 2>&1  # redirect stderr to stdout, so error messages show up in GH Actions logs
 
-# Based on https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+# Based on
+# https://docs.github.com/en/actions/use-cases-and-examples/deploying/installing-an-apple-certificate-on-macos-runners-for-xcode-development#add-a-step-to-your-workflow
+
 # create variables
 APPLICATION_CERT_PATH=$RUNNER_TEMP/application_cert.p12
 INSTALLER_CERT_PATH=$RUNNER_TEMP/installer_cert.p12
@@ -11,8 +13,10 @@ KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 OPENSSL=/usr/bin/openssl  # could also just use "openssl" to use the conda-forge one
 # import certificates from secrets
 echo "🏃 Retrieving our Developer certificates from GH secrets …"
-echo -n "$APPLICATION_CERT_BASE64" | base64 --decode --output $APPLICATION_CERT_PATH
-echo -n "$INSTALLER_CERT_BASE64" | base64 --decode --output $INSTALLER_CERT_PATH
+test ! -z "$APPLICATION_CERT_BASE64" || (echo "❌ APPLICATION_CERT_BASE64 is empty" && exit 1)
+echo -n "$APPLICATION_CERT_BASE64" | base64 --decode -o $APPLICATION_CERT_PATH
+test ! -z "$INSTALLER_CERT_BASE64" || (echo "❌ INSTALLER_CERT_BASE64 is empty" && exit 1)
+echo -n "$INSTALLER_CERT_BASE64" | base64 --decode -o $INSTALLER_CERT_PATH
 echo "✅ Done retrieving our Developer certificates from GH secrets."
 
 echo "🏃 Displaying information on our Developer certificates …"
