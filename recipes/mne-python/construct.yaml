@@ -97,8 +97,8 @@ specs:
   - matplotlib-base =3.10.0  # allow_outdated
   - tornado =6.4.2
   - ipympl =0.9.6
-  # - qtpy =2.4.3
-  # - seaborn =0.13.2
+  - qtpy =2.4.3
+  - seaborn =0.13.2
   # - plotly =6.0.0
 
   - numba =0.61.0
