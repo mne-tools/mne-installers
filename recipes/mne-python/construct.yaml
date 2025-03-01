@@ -99,7 +99,7 @@ specs:
   - ipympl =0.9.6
   - qtpy =2.4.3
   - seaborn =0.13.2
-  # - plotly =6.0.0
+  - plotly =6.0.0
 
   - numba =0.61.0
   - vtk =9.3.1=qt*
