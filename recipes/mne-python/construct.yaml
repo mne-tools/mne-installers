@@ -69,42 +69,42 @@ specs:
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 
-  - antropy =0.1.9
-  - mayavi =4.8.2=pyside6_*
-  - traitsui =8.0.0
-  - pyface =8.0.0=*_1
-  - imageio-ffmpeg =0.6.0
-  - pandas =2.2.3
-  - polars =1.22.0
-  - scipy =1.15.2
-  - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
-  - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
-  - libblas =3.9.0=*openblas
+  # - antropy =0.1.9
+  # - mayavi =4.8.2=pyside6_*
+  # - traitsui =8.0.0
+  # - pyface =8.0.0=*_1
+  # - imageio-ffmpeg =0.6.0
+  # - pandas =2.2.3
+  # - polars =1.22.0
+  # - scipy =1.15.2
+  # - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
+  # - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
+  # - libblas =3.9.0=*openblas
   - jupyter =1.1.1
   - jupyterlab =4.3.5
   - ipykernel =6.29.5
   - spyder-kernels =3.0.3
   - darkdetect =0.8.0
-  - qdarkstyle =3.2.3
-  - cython =3.0.12
-  - pyxdf =1.17.0
-  - openpyxl =3.1.5
-  - xlrd =2.0.1
-  - pingouin =0.5.5
-  - questionary =2.1.0
-  - pqdm =0.2.0
-  - astropy =7.0.1
-  - matplotlib-base =3.10.0  # allow_outdated
-  - tornado =6.4.2
-  - ipympl =0.9.6
-  - qtpy =2.4.3
-  - seaborn =0.13.2
+  # - qdarkstyle =3.2.3
+  # - cython =3.0.12
+  # - pyxdf =1.17.0
+  # - openpyxl =3.1.5
+  # - xlrd =2.0.1
+  # - pingouin =0.5.5
+  # - questionary =2.1.0
+  # - pqdm =0.2.0
+  # - astropy =7.0.1
+  # - matplotlib-base =3.10.0  # allow_outdated
+  # - tornado =6.4.2
+  # - ipympl =0.9.6
+  # - qtpy =2.4.3
+  # - seaborn =0.13.2
   - plotly =6.0.0
 
-  - numba =0.61.0
-  - vtk =9.3.1=qt*
-  - qt6-main =6.8.2
-  - pyside6 =6.8.2
+  # - numba =0.61.0
+  # - vtk =9.3.1=qt*
+  # - qt6-main =6.8.2
+  # - pyside6 =6.8.2
 condarc:
   channels:
     - conda-forge
