@@ -232,7 +232,7 @@ jobs:
           CONDA_VERBOSITY: 4
           CONDA_DEBUG: 1
         run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
-      - run: tail -n 30 $MNE_INSTALL_PREFIX/install.log && exit 1
+      - run: tail -n 30 $MNE_INSTALL_PREFIX/install.log
         shell: bash
         if: github.event_name == 'pull_request' && (success() || failure())
       - run: ./tools/export_frozen_env_def.sh
