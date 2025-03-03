@@ -111,7 +111,7 @@ jobs:
         with:
           environment-file: environment.yml
           create-args: |
-            nsis=*=*log
+            nsis=*=*log*
       - run: echo "NSIS_USING_LOG_BUILD=1" >> $GITHUB_EVN
         shell: bash
         if: github.event_name == 'pull_request'
