@@ -110,6 +110,11 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
+          create-args: |
+            nsis=*=*log
+      - run: echo "NSIS_USING_LOG_BUILD=1" >> $GITHUB_EVN
+        shell: bash
+        if: github.event_name == 'pull_request'
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
@@ -224,8 +229,12 @@ jobs:
         shell: cmd
         env:
           CONDA_QUIET: 0
-          CONDA_VERBOSITY: 3
+          CONDA_VERBOSITY: 4
+          CONDA_DEBUG: 1
         run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
+      - run: tail -n 30 $MNE_INSTALL_PREFIX/install.log && exit 1
+        shell: bash
+        if: github.event_name == 'pull_request'
       - run: ./tools/export_frozen_env_def.sh
         if: false
       - uses: actions/upload-artifact@v4
