@@ -54,7 +54,7 @@ specs:
   - python =3.13.2
   - mne-installer-menus =1.9.0
   - mne-base =1.9.0
-  # - plotly =6.0.0
+  - plotly =6.0.0
 condarc:
   channels:
     - conda-forge
