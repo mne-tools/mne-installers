@@ -190,8 +190,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
-  - ruff =0.9.7
-  - uv =0.6.3
+  - ruff =0.9.9
+  - uv =0.6.4
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
