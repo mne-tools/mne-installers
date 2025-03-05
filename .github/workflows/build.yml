@@ -150,9 +150,6 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
-        env:
-          CONDA_QUIET: 0
-          CONDA_VERBOSITY: 3
         run: |
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
@@ -188,9 +185,6 @@ jobs:
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
-        env:
-          CONDA_QUIET: 0
-          CONDA_VERBOSITY: 3
         run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v4
@@ -228,9 +222,7 @@ jobs:
         timeout-minutes: 30
         shell: cmd
         env:
-          CONDA_QUIET: 0
-          CONDA_VERBOSITY: 4
-          CONDA_DEBUG: 1
+          CONDA_QUIET: 1  # https://github.com/conda/constructor/pull/950
         run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
       - run: tail -n 30 $MNE_INSTALL_PREFIX/install.log
         shell: bash
