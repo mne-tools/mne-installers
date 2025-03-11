@@ -173,7 +173,8 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.0.0
-  - vtk =9.4.1=qt*
+  # PyVista doesn't yet support VTK 9.4
+  - vtk =9.3.1=qt*  # allow_outdated
   - ipywidgets =8.1.5
   - pyvista =0.44.2
   - pyvistaqt =0.11.2
