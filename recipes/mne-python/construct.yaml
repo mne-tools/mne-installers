@@ -142,7 +142,7 @@ specs:
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.3.5
+  - jupyterlab =4.3.6
   - ipykernel =6.29.5
   - spyder-kernels =3.0.3
   # TODO: Needs to not require pyqt
@@ -172,7 +172,7 @@ specs:
   - ipympl =0.9.6
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.0.0
+  - plotly =6.0.1
   # PyVista doesn't yet support VTK 9.4
   - vtk =9.3.1=qt*  # allow_outdated
   - ipywidgets =8.1.5
@@ -191,8 +191,8 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.1.0
-  - ruff =0.9.10
-  - uv =0.6.5
+  - ruff =0.11.0
+  - uv =0.6.6
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
