@@ -61,7 +61,7 @@ specs:
   - pip =25.0.1
   - wheel =0.45.1
   - conda =25.1.1
-  - mamba =2.0.7
+  - mamba =2.0.8
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -120,7 +120,7 @@ specs:
   - pyprep =0.4.3=*_1
   - python-picard =0.8
   - pybv =0.7.6
-  - edfio =0.4.6
+  - edfio =0.4.7
   - eeglabio =0.0.3
   - mffpy =0.10.0
   - openmeeg =2.5.15
@@ -142,7 +142,7 @@ specs:
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.3.5
+  - jupyterlab =4.3.6
   - ipykernel =6.29.5
   - spyder-kernels =3.0.3
   # TODO: Needs to not require pyqt
@@ -172,7 +172,7 @@ specs:
   - ipympl =0.9.6
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.0.0
+  - plotly =6.0.1
   # PyVista doesn't yet support VTK 9.4
   - vtk =9.3.1=qt*  # allow_outdated
   - ipywidgets =8.1.5
@@ -184,15 +184,15 @@ specs:
   - termcolor =2.5.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.68.1
-  - setuptools_scm =8.2.0
+  - gh =2.69.0
+  - setuptools_scm =8.2.1
   - pytest =8.3.5
   - pytest-cov =6.0.0
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
-  - pre-commit =4.1.0
-  - ruff =0.9.10
-  - uv =0.6.5
+  - pre-commit =4.2.0
+  - ruff =0.11.2
+  - uv =0.6.9
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -209,7 +209,7 @@ specs:
   - pydata-sphinx-theme =0.16.1
   - graphviz =12.2.1
   - python-graphviz =0.20.3
-  - selenium =4.29.0
+  - selenium =4.30.0
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
@@ -218,7 +218,7 @@ specs:
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2501.23
   # OS-specific
-  - git =2.48.1  # [win]
+  - git =2.49.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =11.0  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
