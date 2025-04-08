@@ -57,7 +57,9 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.2
+  # https://github.com/conda-forge/spyder-feedstock/pull/228
+  - python =3.12.9  # [win] # allow_outdated, Windows doesn't have a 3.13 spyder-base
+  - python =3.13.2  # [not win]
   - pip =25.0.1
   - wheel =0.45.1
   - conda =25.3.1
@@ -146,7 +148,7 @@ specs:
   - ipykernel =6.29.5
   - spyder-kernels =3.0.3
   - spyder-base =6.0.5
-  - qtconsole =5.6.1
+  - qtconsole-base =5.6.1
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.61.0
