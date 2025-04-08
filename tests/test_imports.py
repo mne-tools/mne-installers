@@ -83,7 +83,7 @@ for mod in tqdm(mods, desc="Imports", unit="module"):
     py_mod = _import(mod_map.get(mod, mod))
     if mod not in bad_ver and "." not in mod:
         ver_lines = [
-            line
+            line.split("#")[0].strip()
             for line in all_lines
             if line.startswith(f"- {ver_map.get(mod, mod).lower()} =")
         ]
