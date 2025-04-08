@@ -60,7 +60,7 @@ specs:
   - python =3.13.2
   - pip =25.0.1
   - wheel =0.45.1
-  - conda =25.1.1
+  - conda =25.3.1
   - mamba =2.0.8
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -90,7 +90,7 @@ specs:
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.5.0
-  - wfdb =4.2.0
+  - wfdb =4.3.0
   - meegkit =0.1.9
   - eeg_positions =2.1.2
   # MRI
@@ -120,7 +120,7 @@ specs:
   - pyprep =0.4.3=*_1
   - python-picard =0.8
   - pybv =0.7.6
-  - edfio =0.4.7
+  - edfio =0.4.7  # allow_outdated, for some reason 0.4.8 won't download
   - eeglabio =0.0.3
   - mffpy =0.10.0
   - openmeeg =2.5.15
@@ -142,7 +142,7 @@ specs:
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.3.6
+  - jupyterlab =4.4.0
   - ipykernel =6.29.5
   - spyder-kernels =3.0.3
   # TODO: Needs to not require pyqt
@@ -167,8 +167,8 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.1
   - tornado =6.4.2
-  - pyside6 =6.8.2
-  - qt6-main =6.8.2
+  - pyside6 =6.8.2  # allow_outdated, PyVista (VTK 9.3.1) and Mayavi
+  - qt6-main =6.8.2  # allow_outdated
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
@@ -180,19 +180,19 @@ specs:
   - pyvistaqt =0.11.2
   - trame =3.8.1
   - trame-vtk =2.8.15
-  - trame-vuetify =2.8.1
-  - termcolor =2.5.0
+  - trame-vuetify =3.0.0
+  - termcolor =3.0.1
   - defusedxml =0.7.1
   # Development
   - gh =2.69.0
   - setuptools_scm =8.2.1
   - pytest =8.3.5
-  - pytest-cov =6.0.0
+  - pytest-cov =6.1.1
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.2.0
-  - ruff =0.11.2
-  - uv =0.6.9
+  - ruff =0.11.4
+  - uv =0.6.13
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -209,7 +209,7 @@ specs:
   - pydata-sphinx-theme =0.16.1
   - graphviz =12.2.1
   - python-graphviz =0.20.3
-  - selenium =4.30.0
+  - selenium =4.31.0
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
