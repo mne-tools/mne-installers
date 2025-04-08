@@ -77,7 +77,7 @@ specs:
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.16.0
   - mne-bids-pipeline =1.9.0
-  - mne-qt-browser =0.6.3
+  - mne-qt-browser =0.7.0
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
   - mne-nirs =0.7.1
