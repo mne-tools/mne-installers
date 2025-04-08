@@ -167,8 +167,8 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.1
   - tornado =6.4.2
-  - pyside6 =6.9.0
-  - qt6-main =6.9.0
+  - pyside6 =6.9.0  # allow_autdated, PyVista (VTK 9.3.1) and Mayavi
+  - qt6-main =6.8.2  # allow_outdated
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
