@@ -127,6 +127,17 @@ specs:
   - python-neo =0.14.0
   - nitime =0.11
   - snirf =0.8.0
+  - alphacsc =0.3
+  # Not on PyPI or no wheels on PyPI
+  # conpy: https://aaltoimaginglanguage.github.io/conpy/
+  # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
+  # eelbrain: https://eelbrain.readthedocs.io/en/stable/index.html
+  # Not on conda-forge
+  # niseq: https://github.com/john-veillette/niseq
+  # sesameeg: https://pybees.github.io/sesameeg
+  # invertmeeg: https://github.com/LukeTheHecker/invert
+  # Meggie: https://github.com/cibr-jyu/meggie
+  # MEM: https://github.com/multifunkim/best-python
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
