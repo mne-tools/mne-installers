@@ -61,7 +61,7 @@ specs:
   - pip =25.0.1
   - wheel =0.45.1
   - conda =25.3.1
-  - mamba =2.0.8
+  - mamba =2.1.0
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -77,7 +77,7 @@ specs:
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.16.0
   - mne-bids-pipeline =1.9.0
-  - mne-qt-browser =0.6.3
+  - mne-qt-browser =0.7.1
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
   - mne-nirs =0.7.1
@@ -147,7 +147,7 @@ specs:
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.6.0
   - pandas =2.2.3
-  - polars =1.26.0
+  - polars =1.27.0
   - scipy =1.15.2
   - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
@@ -161,7 +161,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.61.0
+  - numba =0.61.2
   - cython =3.0.12
   # I/O
   - pyxdf =1.17.0
@@ -186,7 +186,7 @@ specs:
   - plotly =6.0.1
   # PyVista doesn't yet support VTK 9.4
   - vtk =9.3.1=qt*  # allow_outdated
-  - ipywidgets =8.1.5
+  - ipywidgets =8.1.6
   - pyvista =0.44.2
   - pyvistaqt =0.11.2
   - trame =3.8.1
@@ -203,7 +203,7 @@ specs:
   - pytest-timeout =2.3.1
   - pre-commit =4.2.0
   - ruff =0.11.4
-  - uv =0.6.13
+  - uv =0.6.14
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
