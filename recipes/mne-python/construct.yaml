@@ -57,7 +57,8 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.3
+  - python =3.13.3  # [not (osx and arm64)]
+  - python =3.13.2  # [osx and arm64]  # allow_outdated
   - pip =25.0.1
   - wheel =0.45.1
   - conda =25.3.1
@@ -233,7 +234,7 @@ specs:
   - make =4.4.1  # [win]
   - pyobjc-core =11.0  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
-  - libffi =3.4.2  # [osx and arm64]  # allow_outdated
+  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
   - pyobjc-framework-Cocoa =11.0  # [osx]
   - pyobjc-framework-FSEvents =11.0  # [osx]
 condarc:
