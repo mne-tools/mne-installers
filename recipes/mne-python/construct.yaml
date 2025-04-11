@@ -57,7 +57,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.2
+  - python =3.13.3
   - pip =25.0.1
   - wheel =0.45.1
   - conda =25.3.1
@@ -96,7 +96,7 @@ specs:
   # MRI
   - fsleyes =1.14.2
   - dcm2niix =1.0.20241211
-  - dipy =1.10.0
+  - dipy =1.11.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -127,7 +127,7 @@ specs:
   - python-neo =0.14.0
   - nitime =0.11
   - snirf =0.8.0
-  - alphacsc =0.3
+  - alphacsc =0.4.1
   # Not on PyPI or no wheels on PyPI
   # conpy: https://aaltoimaginglanguage.github.io/conpy/
   # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
@@ -189,7 +189,7 @@ specs:
   - ipywidgets =8.1.6
   - pyvista =0.44.2
   - pyvistaqt =0.11.2
-  - trame =3.8.1
+  - trame =3.8.2
   - trame-vtk =2.8.15
   - trame-vuetify =3.0.0
   - termcolor =3.0.1
@@ -202,7 +202,7 @@ specs:
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.2.0
-  - ruff =0.11.4
+  - ruff =0.11.5
   - uv =0.6.14
   - check-manifest =0.50
   - codespell =2.4.1
