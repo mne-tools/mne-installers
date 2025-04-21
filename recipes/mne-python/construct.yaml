@@ -188,7 +188,7 @@ specs:
   # PyVista doesn't yet support VTK 9.4
   - vtk =9.3.1=qt*  # allow_outdated
   - ipywidgets =8.1.6
-  - pyvista =0.44.2
+  - pyvista =0.45.0
   - pyvistaqt =0.11.2
   - trame =3.8.2
   - trame-vtk =2.8.15
@@ -196,14 +196,14 @@ specs:
   - termcolor =3.0.1
   - defusedxml =0.7.1
   # Development
-  - gh =2.69.0
+  - gh =2.70.0
   - setuptools_scm =8.2.1
   - pytest =8.3.5
   - pytest-cov =6.1.1
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.2.0
-  - ruff =0.11.5
+  - ruff =0.11.6
   - uv =0.6.14
   - check-manifest =0.50
   - codespell =2.4.1
