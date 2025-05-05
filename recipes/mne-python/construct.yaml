@@ -104,7 +104,7 @@ specs:
   - emd =0.8.1
   - neurodsp =2.3.0
   - bycycle =1.1.0
-  - fooof =1.0.0
+  - fooof =1.1.1
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
