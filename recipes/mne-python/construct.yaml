@@ -59,7 +59,7 @@ specs:
   # Python
   - python =3.13.3  # [not (osx and arm64)]
   - python =3.13.2  # [osx and arm64]  # allow_outdated
-  - pip =25.1
+  - pip =25.1.1
   - wheel =0.45.1
   - conda =25.3.1
   - mamba =2.1.0
@@ -121,7 +121,7 @@ specs:
   - pyprep =0.4.3=*_1
   - python-picard =0.8
   - pybv =0.7.6
-  - edfio =0.4.7  # allow_outdated, for some reason 0.4.8 won't download
+  - edfio =0.4.8
   - eeglabio =0.0.3
   - mffpy =0.10.0
   - openmeeg =2.5.15
@@ -143,7 +143,7 @@ specs:
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
   - antropy =0.1.9
-  - mayavi =4.8.2=pyside6_*
+  - mayavi =4.8.2=*_310
   - traitsui =8.0.0
   - pyface =8.0.0=*_1
   - imageio-ffmpeg =0.6.0
@@ -179,32 +179,31 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.1
   - tornado =6.4.2
-  - pyside6 =6.8.2  # allow_outdated, PyVista (VTK 9.3.1) and Mayavi
-  - qt6-main =6.8.2  # allow_outdated
+  - pyside6 =6.9.0
+  - qt6-main =6.9.0
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.0.1
-  # PyVista doesn't yet support VTK 9.4
-  - vtk =9.3.1=qt*  # allow_outdated
-  - ipywidgets =8.1.6
+  - vtk =9.4.2
+  - ipywidgets =8.1.7
   - pyvista =0.45.0
   - pyvistaqt =0.11.2
   - trame =3.9.0
   - trame-vtk =2.8.15
   - trame-vuetify =3.0.1
-  - termcolor =3.0.1
+  - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.71.2
+  - gh =2.72.0
   - setuptools_scm =8.3.1
   - pytest =8.3.5
   - pytest-cov =6.1.1
   - pytest-qt =4.4.0
   - pytest-timeout =2.3.1
   - pre-commit =4.2.0
-  - ruff =0.11.7
-  - uv =0.6.17
+  - ruff =0.11.8
+  - uv =0.7.2
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -221,7 +220,7 @@ specs:
   - pydata-sphinx-theme =0.16.1
   - graphviz =12.2.1
   - python-graphviz =0.20.3
-  - selenium =4.31.0
+  - selenium =4.32.0
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
