@@ -143,7 +143,7 @@ specs:
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
   - antropy =0.1.9
-  - mayavi =4.8.3=pyside6*
+  - mayavi =4.8.3=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
