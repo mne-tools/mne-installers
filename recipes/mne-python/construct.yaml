@@ -202,6 +202,7 @@ specs:
   - pytest-cov =6.1.1
   - pytest-qt =4.4.0
   - pytest-timeout =2.4.0
+  - flaky =3.8.1
   - pre-commit =4.2.0
   - ruff =0.11.11
   - uv =0.7.8
