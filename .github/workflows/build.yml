@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-14]  # Intel and Apple Silicon, respectively
+        os: [macos-13, macos-latest]  # Intel and Apple Silicon, respectively
     runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
