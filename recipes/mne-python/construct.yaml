@@ -61,7 +61,7 @@ specs:
   - python =3.13.2  # [osx and arm64]  # allow_outdated
   - pip =25.1.1
   - wheel =0.45.1
-  - conda =25.3.1
+  - conda =25.5.0
   - mamba =2.1.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -96,8 +96,8 @@ specs:
   - eeg_positions =2.1.2
   - curryreader =0.1.1
   # MRI
-  - fsleyes =1.14.2
-  - dcm2niix =1.0.20241211
+  - fsleyes =1.15.0
+  - dcm2niix =1.0.20250506
   - dipy =1.11.0
   # Time-frequency analysis
   - pactools =0.3.1
@@ -174,7 +174,7 @@ specs:
   # NeuroSpin needs the following
   - questionary =2.1.0
   - pqdm =0.2.0
-  - astropy =7.0.2
+  - astropy =7.1.0
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
@@ -185,18 +185,18 @@ specs:
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.1.1
+  - plotly =6.1.2
   - vtk =9.4.2
   - ipywidgets =8.1.7
   - pyvista =0.45.2
   - pyvistaqt =0.11.2
-  - trame =3.9.0
+  - trame =3.10.1
   - trame-vtk =2.8.15
   - trame-vuetify =3.0.1
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.73.0
+  - gh =2.74.0
   - setuptools_scm =8.3.1
   - pytest =8.3.5
   - pytest-cov =6.1.1
@@ -204,8 +204,8 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.2.0
-  - ruff =0.11.11
-  - uv =0.7.8
+  - ruff =0.11.12
+  - uv =0.7.9
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -213,8 +213,8 @@ specs:
   - memory_profiler =0.61.0
   - twine =6.1.0
   - hatchling =1.27.0
-  - hatch-vcs =0.4.0
-  - mypy =1.15.0
+  - hatch-vcs =0.5.0
+  - mypy =1.16.0
   - towncrier =24.8.0
   - vulture =2.14
   # Doc building
