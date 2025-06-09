@@ -164,7 +164,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.61.2
-  - cython =3.1.1
+  - cython =3.1.2
   # I/O
   - pyxdf =1.17.0
   - openpyxl =3.1.5
