@@ -212,7 +212,7 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
-        timeout-minutes: 40
+        timeout-minutes: 50
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v4

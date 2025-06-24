@@ -62,7 +62,7 @@ specs:
   - pip =25.1.1
   - wheel =0.45.1
   - conda =25.5.1
-  - mamba =2.2.0
+  - mamba =2.3.0
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -149,7 +149,7 @@ specs:
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.0
-  - polars =1.30.0
+  - polars =1.31.0
   - scipy =1.15.2
   - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
@@ -191,21 +191,21 @@ specs:
   - pyvista =0.45.2
   - pyvistaqt =0.11.2
   - trame =3.10.2
-  - trame-vtk =2.8.17
+  - trame-vtk =2.9.0
   - trame-vuetify =3.0.1
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.74.0
+  - gh =2.74.2
   - setuptools_scm =8.3.1
-  - pytest =8.4.0
-  - pytest-cov =6.1.1
+  - pytest =8.4.1
+  - pytest-cov =6.2.1
   - pytest-qt =4.4.0
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.2.0
-  - ruff =0.11.13
-  - uv =0.7.12
+  - ruff =0.12.0
+  - uv =0.7.14
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -214,30 +214,30 @@ specs:
   - twine =6.1.0
   - hatchling =1.27.0
   - hatch-vcs =0.5.0
-  - mypy =1.16.0
+  - mypy =1.16.1
   - towncrier =24.8.0
   - vulture =2.14
   # Doc building
-  - numpydoc =1.8.0
+  - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =12.2.1
-  - python-graphviz =0.20.3
+  - graphviz =13.0.1
+  - python-graphviz =0.21
   - selenium =4.33.0
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
-  - sphinxcontrib-bibtex =2.6.3
+  - sphinxcontrib-bibtex =2.6.4
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2501.23
   # OS-specific
   - git =2.49.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =11.0  # [osx]
+  - pyobjc-core =11.1  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
-  - pyobjc-framework-Cocoa =11.0  # [osx]
-  - pyobjc-framework-FSEvents =11.0  # [osx]
+  - pyobjc-framework-Cocoa =11.1  # [osx]
+  - pyobjc-framework-FSEvents =11.1  # [osx]
 condarc:
   channels:
     - conda-forge
