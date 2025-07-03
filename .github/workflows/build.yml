@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-14]  # Intel and Apple Silicon, respectively
+        os: [macos-13, macos-latest]  # Intel and Apple Silicon, respectively
     runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -126,19 +126,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-14]
+        os: [macos-13, macos-15]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v4
-      # The macos-14 runner doesn't come equipped with Python, so we need to install it
-      # there.
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-        if: ${{ matrix.os == 'macos-14' }}
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v4
         with:

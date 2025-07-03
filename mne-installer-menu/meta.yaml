@@ -1,5 +1,5 @@
 package:
-  name: "mne-installer-menus"
+  name: "mne-installer-menu"
   version: "1.9.0"
 
 build:
@@ -11,17 +11,17 @@ build:
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python 3.10
   run:
-    - python >={{ python_min }}
+    - python >=3.10
 
 test:
   requires:
-    - python {{ python_min }}
+    - python 3.10
   commands:
     # Console/prompt, forum, info, tutorials, mne
     - test -f ${CONDA_PREFIX}/Menu/mne.json
-    - test -f ${CONDA_PREFIX}/Menu/mne_mne_default_icon.png
+    - test -f ${CONDA_PREFIX}/Menu/mne_default_icon.png
     - test -f ${CONDA_PREFIX}/Menu/mne.png
     - test -f ${CONDA_PREFIX}/Menu/mne_sys_info.py
     - test -f ${CONDA_PREFIX}/Menu/mne_open_prompt.applescript

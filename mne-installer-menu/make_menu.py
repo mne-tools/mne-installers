@@ -38,19 +38,20 @@ menu_txt = (in_path / "menu.json").read_text()
 (out_path / "mne.json").write_text(txt_replace(menu_txt))
 
 
-# icons
+# icons, with mne_ prefix
 for ext in ("icns", "ico", "png"):
     for fstem in ("console", "info", "web", "forum"):
         fpath = in_path / f"{fstem}.{ext}"
         copy2(fpath, out_path / f"mne_{fpath.name}")
 
-# shell scripts
+# shell scripts, with mne_ prefix
 for ext in ("sh", "applescript", "bat"):
     for fstem in ("open_prompt",):
         fpath = in_path / f"{fstem}.{ext}"
-        (out_path / fpath.name).write_text(txt_replace(fpath.read_text()))
+        text = txt_replace(fpath.read_text())
+        (out_path / out_path / f"mne_{fpath.name}").write_text(text)
 
-# other
+# other, with same filenames
 for fname in ("mne_sys_info.py", "mne.png", "mne_default_icon.png"):
     fpath = in_path / fname
-    copy2(fpath, out_path / f"mne_{fpath.name}")
+    copy2(fpath, out_path / fpath.name)
