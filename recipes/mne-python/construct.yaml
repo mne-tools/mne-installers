@@ -151,8 +151,8 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.0
   - polars =1.31.0
-  - scipy =1.16.0
   - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
+  - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libopenblas ==0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
