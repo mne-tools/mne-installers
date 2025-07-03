@@ -68,7 +68,7 @@ specs:
   # - mne-base =1.4dev0=*_20230503
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   - mne =1.9.0=*_pyside6_*_102
-  - mne-installer-menu =1.9.0  # locally_built
+  - mne-installer-menu =1.9.0=*  # locally_built
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
