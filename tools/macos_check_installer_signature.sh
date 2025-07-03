@@ -16,13 +16,7 @@ BINARY="${DIR}/_conda"
 echo "Checking ${BINARY} exists"
 test -e "${BINARY}"
 echo "Checking ${BINARY} is signed"
-product_version=$(sw_vers -productVersion)
-os_vers=( ${product_version//./ } )
-os_vers_major="${os_vers[0]}"
-if [[ ${os_vers_minor} -ge 15 ]]; then
-    EXTRA_ARGS="--sign"
-fi
-codesign $EXTRA_ARGS -vd "${BINARY}"
+codesign --sign -vd "${BINARY}"
 echo "Checking entitlements of ${BINARY}"
 codesign --display --entitlements - "${BINARY}"
 rm -rf ./mne-extracted
