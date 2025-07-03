@@ -69,8 +69,8 @@ specs:
   # - mne-installer-menus =1.4dev0=*_20230503
   # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.9.0=pyside6_*_100
-  - mne-installer-menus =1.9.0=*_100
+  - mne =1.9.0=*_pyside6_*_102
+  - mne-installer-menus =1.9.0=*_102
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
@@ -99,6 +99,7 @@ specs:
   - fsleyes =1.15.0
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
+  - nilearn =0.12.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -110,7 +111,7 @@ specs:
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2024.2.0
+  - openneuro-py =2025.1.0
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.6.5
@@ -150,8 +151,8 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.0
   - polars =1.31.0
-  - scipy =1.16.0
-  - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
+  - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
+  - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
@@ -171,6 +172,7 @@ specs:
   - xlrd =2.0.1
   # Statistics
   - pingouin =0.5.5
+  - statsmodels =0.14.4
   # NeuroSpin needs the following
   - questionary =2.1.0
   - pqdm =0.2.0
@@ -200,12 +202,12 @@ specs:
   - setuptools_scm =8.3.1
   - pytest =8.4.1
   - pytest-cov =6.2.1
-  - pytest-qt =4.4.0
+  - pytest-qt =4.5.0
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.2.0
   - ruff =0.12.1
-  - uv =0.7.16
+  - uv =0.7.19
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -220,7 +222,7 @@ specs:
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =13.0.1
+  - graphviz =13.1.0
   - python-graphviz =0.21
   - selenium =4.34.0
   - sphinx =8.2.3
