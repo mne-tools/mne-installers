@@ -99,6 +99,7 @@ specs:
   - fsleyes =1.15.0
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
+  - nilearn =0.12.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -171,6 +172,7 @@ specs:
   - xlrd =2.0.1
   # Statistics
   - pingouin =0.5.5
+  - statsmodels =0.14.0
   # NeuroSpin needs the following
   - questionary =2.1.0
   - pqdm =0.2.0
