@@ -16,7 +16,7 @@ BINARY="${DIR}/_conda"
 echo "Checking ${BINARY} exists"
 test -e "${BINARY}"
 echo "Checking ${BINARY} is signed"
-codesign --sign -vd "${BINARY}"
+codesign -vd "${BINARY}"
 echo "Checking entitlements of ${BINARY}"
 codesign --display --entitlements - "${BINARY}"
 rm -rf ./mne-extracted
