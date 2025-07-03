@@ -45,9 +45,10 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
     ls -l || exit 1
-    echo "Checking for existence of .desktop files:"
+    WANT=6
+    echo "Checking for existence of $WANT .desktop files:"
     ls mne-python*.desktop || exit 1
-    test `ls mne-python*.desktop | wc -l` -eq 5 || exit 1
+    test `ls mne-python*.desktop | wc -l` -eq $WANT || exit 1
     echo ""
 
     # … and patched to work around a bug in menuinst
