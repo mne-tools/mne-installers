@@ -10,3 +10,4 @@ dependencies:
   - menuinst
   - conda >=23.11.0
   - fmt !=10.2.0
+  - conda-build
