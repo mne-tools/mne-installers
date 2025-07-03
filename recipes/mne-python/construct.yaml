@@ -204,7 +204,7 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.2.0
-  - ruff =0.12.1
+  - ruff =0.12.2
   - uv =0.7.19
   - check-manifest =0.50
   - codespell =2.4.1
