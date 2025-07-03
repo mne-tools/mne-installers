@@ -50,6 +50,7 @@ menu_packages:
 
 channels:
   - conda-forge
+  - ./conda-bld
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
