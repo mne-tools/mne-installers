@@ -18,6 +18,7 @@ requirements:
 test:
   requires:
     - python 3.10
+  skip: true  # [win]
   commands:
     # Console/prompt, forum, info, tutorials, mne
     - test -f ${CONDA_PREFIX}/Menu/mne.json
