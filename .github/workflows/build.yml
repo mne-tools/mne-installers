@@ -59,8 +59,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: menu-package
-      - run: ls -alt
-      - run: ls -alt conda-bld
+          path: conda-bld
       - run: ./tools/extract_version.sh
       - run: ./tools/macos_install_certificates.sh
         if: ${{ github.event_name != 'pull_request' }}
@@ -113,6 +112,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: menu-package
+          path: conda-bld
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
@@ -142,6 +142,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: menu-package
+          path: conda-bld
       - run: conda install -c conda-forge -y "nsis==3.08"
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
