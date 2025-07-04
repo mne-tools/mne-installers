@@ -21,6 +21,9 @@ jobs:
   build_menu:
     name: Build menu package
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v2
