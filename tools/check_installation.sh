@@ -36,8 +36,9 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     ls -al /Applications/
     ls -al /Applications/MNE-Python
     ls -al ${APP_DIR}
-    echo "Checking that there are 5 directories"
-    test `ls -d ${APP_DIR}/*.app | wc -l` -eq 5 || exit 1
+    WANT=4
+    echo "Checking that there are $WANT directories"
+    test `ls -d ${APP_DIR}/*.app | wc -l` -eq $WANT || exit 1
     echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
     test -f /Applications/MNE-Python/Icon$'\r' || exit 1
     export SKIP_MNE_KIT_GUI_TESTS=1
