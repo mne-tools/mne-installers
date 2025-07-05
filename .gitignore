@@ -7,3 +7,4 @@ tests/.joblib_cache
 .pytest_cache
 .DS_Store
 __pycache__
+conda-bld

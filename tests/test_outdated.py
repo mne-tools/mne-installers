@@ -73,6 +73,10 @@ for line, spec in zip(lines, specs):
 
     if "allow_outdated" in comment:
         allowed_outdated.add(name)
+    if "locally_built" in comment:
+        # This is a locally built package, we can skip it
+        print(f"Skipping locally built package: {name}")
+        continue
 
     packages.append(Package(name=name, version_spec=version))
     del name, version

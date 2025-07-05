@@ -46,7 +46,7 @@ for spec in specs:
         "version": package_version,
         "build_string": package_build,
     }
-for name in ("mne", "mne-installer-menus"):  # the most important ones!
+for name in ("mne", "mne-installer-menu"):  # the most important ones!
     assert name in want_versions, f"{name} missing from want_versions (build str error)"
 assert len(want_versions) > 2, len(want_versions)  # more than just the two above
 

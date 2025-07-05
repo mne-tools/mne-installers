@@ -8,4 +8,5 @@ echo "Version:      ${MNE_INSTALLER_VERSION}"
 echo "Recipe:       ${RECIPE_DIR}"
 echo "OS:           ${MACHINE}"
 echo "Machine:      ${PYMACHINE}"
+${SCRIPT_DIR}/run_conda_build.sh
 ${SCRIPT_DIR}/run_constructor.sh "$@"
