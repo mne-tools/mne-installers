@@ -36,8 +36,9 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     ls -al /Applications/
     ls -al /Applications/MNE-Python
     ls -al ${APP_DIR}
-    echo "Checking that there are 5 directories"
-    test `ls -d ${APP_DIR}/*.app | wc -l` -eq 5 || exit 1
+    WANT=4
+    echo "Checking that there are $WANT directories"
+    test `ls -d ${APP_DIR}/*.app | wc -l` -eq $WANT || exit 1
     echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
     test -f /Applications/MNE-Python/Icon$'\r' || exit 1
     export SKIP_MNE_KIT_GUI_TESTS=1
@@ -45,7 +46,7 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
     ls -l || exit 1
-    WANT=6
+    WANT=5
     echo "Checking for existence of $WANT .desktop files:"
     ls mne-python*.desktop || exit 1
     test `ls mne-python*.desktop | wc -l` -eq $WANT || exit 1

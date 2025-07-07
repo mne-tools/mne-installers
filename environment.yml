@@ -9,4 +9,3 @@ dependencies:
   - conda-standalone >=23.11.0,!=24.11.0
   - menuinst
   - conda >=23.11.0
-  - fmt !=10.2.0
