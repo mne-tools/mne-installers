@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-menu_path = Path(os.environ["PREFIX"]) / "menu"
+menu_path = Path(os.environ["PREFIX"]) / "Menu"
 print(f"Looking for paths in {menu_path} ...")
 assert menu_path.parent.is_dir(), f"Not a directory: {menu_path.parent=}"
 options = "\n".join(sorted(os.listdir(menu_path.parent)))
