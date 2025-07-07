@@ -23,7 +23,7 @@
           ]
         },
         "osx": {
-          "CFBundleName": "System Information (MNE-Python #PKG_VERSION#)",
+          "CFBundleName": "MNE System Info",
           "CFBundleDisplayName": "System Information (MNE-Python #PKG_VERSION#)",
           "CFBundleVersion": "#PKG_VERSION#"
         }
@@ -63,7 +63,7 @@
             "osascript",
             "{{ MENU_DIR }}/mne_open_prompt.applescript"
           ],
-          "CFBundleName": "Prompt (MNE-Python #PKG_VERSION#)",
+          "CFBundleName": "MNE Prompt",
           "CFBundleDisplayName": "Prompt (MNE-Python #PKG_VERSION#)",
           "CFBundleVersion": "#PKG_VERSION#"
         }
@@ -100,7 +100,7 @@
             "open",
             "https://mne.tools/stable/auto_tutorials/"
           ],
-          "CFBundleName": "Tutorials (MNE-Python #PKG_VERSION#)",
+          "CFBundleName": "MNE Tutorials",
           "CFBundleDisplayName": "Tutorials (MNE-Python #PKG_VERSION#)",
           "CFBundleVersion": "#PKG_VERSION#"
         }
@@ -137,7 +137,7 @@
             "open",
             "https://mne.discourse.group"
           ],
-          "CFBundleName": "Forum (MNE-Python #PKG_VERSION#)",
+          "CFBundleName": "MNE Forum",
           "CFBundleDisplayName": "Forum (MNE-Python #PKG_VERSION#)",
           "CFBundleVersion": "#PKG_VERSION#"
         }

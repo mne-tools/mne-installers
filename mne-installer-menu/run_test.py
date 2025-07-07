@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
 
-menu_path = Path(os.environ["CONDA_PREFIX"]) / "menu"
+menu_path = Path(os.environ["PREFIX"]) / "menu"
 print(f"Looking for paths in {menu_path} ...")
-assert menu_path.is_dir, menu_path
+assert menu_path.is_dir(), f"Could not find {menu_path}"
 for name in (
     "mne.json",
     "mne_default_icon.png",
@@ -15,11 +15,11 @@ for name in (
     "mne_activate.bat",
 ):
     want_path = menu_path / name
-    assert want_path.is_file(), want_path
+    assert want_path.is_file(), f"Could not find {want_path}"
 
 # Check we didn't forget any icons
 for ext in ("icns", "ico", "png"):
     for fstem in ("console", "info", "web", "forum"):
         fpath = menu_path / f"mne_{fstem}.{ext}"
-        assert fpath.is_file()
+        assert fpath.is_file(), f"Could not find {fpath}"
 print("Done!")
