@@ -217,6 +217,12 @@ specs:
   - mypy =1.16.1
   - towncrier =24.8.0
   - vulture =2.14
+  - grayskull =2.9.1
+  - conda-build =25.5.0
+  - conda-smithy =3.50.1
+  - constructor =3.11.3
+  - menuinst =2.3.0
+  - conda-standalone =24.11.0
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1

@@ -46,8 +46,10 @@ for ext in ("icns", "ico", "png"):
 
 # shell scripts, with mne_ prefix
 for ext in ("sh", "applescript", "bat"):
-    for fstem in ("open_prompt",):
+    for fstem in ("open_prompt", "activate"):
         fpath = in_path / f"{fstem}.{ext}"
+        if not fpath.is_file():
+            continue  # for example, we only have activate.bat
         text = txt_replace(fpath.read_text())
         (out_path / out_path / f"mne_{fpath.name}").write_text(text)
 

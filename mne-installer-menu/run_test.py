@@ -1,0 +1,25 @@
+import os
+from pathlib import Path
+
+print(f"Looking for paths in {menu_path} ...")
+menu_path = Path(os.environ["CONDA_PREFIX"]) / "Menu"
+assert menu_path.is_dir, menu_path
+for name in (
+    "mne.json",
+    "mne_default_icon.png",
+    "mne.png",
+    "mne_sys_info.py",
+    "mne_open_prompt.applescript",
+    "mne_open_prompt.sh",
+    "mne_open_prompt.bat",
+    "mne_activate.bat",
+):
+    want_path = menu_path / name
+    assert want_path.is_file(), want_path
+
+# Check we didn't forget any icons
+for ext in ("icns", "ico", "png"):
+    for fstem in ("console", "info", "web", "forum"):
+        fpath = menu_path / f"mne_{fstem}.{ext}"
+        assert fpath.is_file()
+print("Done!")

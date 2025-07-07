@@ -18,21 +18,6 @@ requirements:
 test:
   requires:
     - python 3.10
-  skip: true  # [win]
-  commands:
-    # Console/prompt, forum, info, tutorials, mne
-    - test -f ${CONDA_PREFIX}/Menu/mne.json
-    - test -f ${CONDA_PREFIX}/Menu/mne_default_icon.png
-    - test -f ${CONDA_PREFIX}/Menu/mne.png
-    - test -f ${CONDA_PREFIX}/Menu/mne_sys_info.py
-    - test -f ${CONDA_PREFIX}/Menu/mne_open_prompt.applescript
-    - test -f ${CONDA_PREFIX}/Menu/mne_open_prompt.sh
-    - test -f ${CONDA_PREFIX}/Menu/mne_open_prompt.bat
-    # Check we didn't forget any icons
-    - test `ls ${CONDA_PREFIX}/Menu/mne_console.* | wc -l` -eq 3
-    - test `ls ${CONDA_PREFIX}/Menu/mne_forum.*   | wc -l` -eq 3
-    - test `ls ${CONDA_PREFIX}/Menu/mne_info.*    | wc -l` -eq 3
-    - test `ls ${CONDA_PREFIX}/Menu/mne_web.*     | wc -l` -eq 3
 
 about:
   home: http://mne.tools

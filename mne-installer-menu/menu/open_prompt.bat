@@ -1,10 +1,6 @@
 :: This is used to initialize the bash prompt on Windows.
 @ECHO OFF
-
-:: Workaround for
-:: https://github.com/conda/conda/issues/14884
-set "CONDA_EXE=#PREFIX#\Scripts\conda.exe"
-call "#PREFIX#\Scripts\Activate.bat"
+CALL "%~dp0mne_activate.bat"
 :: Find first Python on path.
 FOR /F "tokens=*" %%g IN ('where python') do (
     SET PYPATH=%%g
