@@ -3,7 +3,9 @@ from pathlib import Path
 
 menu_path = Path(os.environ["PREFIX"]) / "menu"
 print(f"Looking for paths in {menu_path} ...")
-assert menu_path.is_dir(), f"Could not find {menu_path}"
+assert menu_path.parent.is_dir(), f"Not a directory: {menu_path.parent=}"
+options = "\n".join(sorted(os.listdir(menu_path.parent)))
+assert menu_path.is_dir(), f"Not a directory: {menu_path=}\n{options}"
 for name in (
     "mne.json",
     "mne_default_icon.png",
