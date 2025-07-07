@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
 
+menu_path = Path(os.environ["CONDA_PREFIX"]) / "menu"
 print(f"Looking for paths in {menu_path} ...")
-menu_path = Path(os.environ["CONDA_PREFIX"]) / "Menu"
 assert menu_path.is_dir, menu_path
 for name in (
     "mne.json",
