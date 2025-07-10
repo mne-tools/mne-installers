@@ -76,7 +76,7 @@ specs:
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.16.0
   - mne-bids-pipeline =1.9.0
-  - mne-qt-browser =0.7.1
+  - mne-qt-browser =0.7.2
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
   - mne-nirs =0.7.1
@@ -147,7 +147,7 @@ specs:
   - traitsui =8.0.0
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
-  - pandas =2.3.0
+  - pandas =2.3.1
   - polars =1.31.0
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
@@ -205,7 +205,7 @@ specs:
   - flaky =3.8.1
   - pre-commit =4.2.0
   - ruff =0.12.2
-  - uv =0.7.19
+  - uv =0.7.20
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
@@ -228,7 +228,7 @@ specs:
   - pydata-sphinx-theme =0.16.1
   - graphviz =13.1.0
   - python-graphviz =0.21
-  - selenium =4.34.0
+  - selenium =4.34.2
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
