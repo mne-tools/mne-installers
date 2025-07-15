@@ -75,7 +75,7 @@ specs:
   # vvv this line is special and used by MNE-Python, do not change it!
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.16.0
-  - mne-bids-pipeline =1.10.0
+  - mne-bids-pipeline =1.9.0
   - mne-qt-browser =0.7.2
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
