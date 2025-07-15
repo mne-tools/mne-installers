@@ -101,17 +101,21 @@ if [[ "$MNE_MACHINE" != "Windows" ]]; then
 fi
 echo "::endgroup::"
 
-echo "::group::mne sys_info"
+echo "::group::Testing mne sys_info"
 mne sys_info
 echo "::endgroup::"
-
-echo "::group::Trying to import MNE and all additional packages included in the installer"
+echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
+echo "::endgroup::"
+echo "::group::Testing GUIs"
 python -u tests/test_gui.py
+echo "::endgroup::"
+echo "::group::Testing notebooks"
 python -u tests/test_notebook.py
+echo "::endgroup::"
+echo "::group::Testing that the JSON versions are correct"
 python -u tests/test_json_versions.py
 echo "::endgroup::"
-
-echo "::group::Checking that all packages are installed that MNE-Python devs would need"
+echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
 echo "::endgroup::"
