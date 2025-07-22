@@ -3,4 +3,5 @@ changelog:
     authors:
       - dependabot
       - pre-commit-ci
+      - pre-commit-ci[bot]
       - github-actions
