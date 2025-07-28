@@ -62,7 +62,7 @@ specs:
   - pip =25.1.1
   - wheel =0.45.1
   - conda =25.5.1
-  - mamba =2.3.0
+  - mamba =2.3.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -85,7 +85,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.7.0
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.10.0
+  - mne-lsl =1.10.1
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.5.0
@@ -115,9 +115,9 @@ specs:
   - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
-  - mnelab =1.0.3
+  - mnelab =1.0.4
   # other
-  - pyriemann =0.8
+  - pyriemann =0.9
   - pyprep =0.5.0
   - python-picard =0.8
   - pybv =0.7.6
@@ -189,14 +189,14 @@ specs:
   - vtk =9.4.2
   - ipywidgets =8.1.7
   - pyvista =0.45.3
-  - pyvistaqt =0.11.2
-  - trame =3.10.2
-  - trame-vtk =2.9.0
+  - pyvistaqt =0.11.3
+  - trame =3.11.0
+  - trame-vtk =2.9.1
   - trame-vuetify =3.0.1
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.76.0
+  - gh =2.76.1
   - setuptools_scm =8.3.1
   - pytest =8.4.1
   - pytest-cov =6.2.1
@@ -204,12 +204,12 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.2.0
-  - ruff =0.12.4
-  - uv =0.7.22
+  - ruff =0.12.5
+  - uv =0.8.3
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
-  - line_profiler =4.2.0
+  - line_profiler =5.0.0
   - memory_profiler =0.61.0
   - twine =6.1.0
   - hatchling =1.27.0
@@ -221,7 +221,7 @@ specs:
   - conda-build =25.5.0
   - conda-smithy =3.51.1
   - constructor =3.11.3
-  - menuinst =2.3.0
+  - menuinst =2.3.1
   - conda-standalone =24.11.0
   # Doc building
   - numpydoc =1.9.0
