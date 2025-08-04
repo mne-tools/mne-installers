@@ -36,8 +36,9 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     ls -al /Applications/
     ls -al /Applications/MNE-Python
     ls -al ${APP_DIR}
-    echo "Checking that there are 5 directories"
-    test `ls -d ${APP_DIR}/*.app | wc -l` -eq 5 || exit 1
+    WANT=4
+    echo "Checking that there are $WANT directories"
+    test `ls -d ${APP_DIR}/*.app | wc -l` -eq $WANT || exit 1
     echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
     test -f /Applications/MNE-Python/Icon$'\r' || exit 1
     export SKIP_MNE_KIT_GUI_TESTS=1
@@ -45,9 +46,10 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
     ls -l || exit 1
-    echo "Checking for existence of .desktop files:"
+    WANT=5
+    echo "Checking for existence of $WANT .desktop files:"
     ls mne-python*.desktop || exit 1
-    test `ls mne-python*.desktop | wc -l` -eq 5 || exit 1
+    test `ls mne-python*.desktop | wc -l` -eq $WANT || exit 1
     echo ""
 
     # … and patched to work around a bug in menuinst
@@ -99,18 +101,22 @@ if [[ "$MNE_MACHINE" != "Windows" ]]; then
 fi
 echo "::endgroup::"
 
-echo "::group::mne sys_info"
+echo "::group::Testing mne sys_info"
 mne sys_info
 echo "::endgroup::"
-
-echo "::group::Trying to import MNE and all additional packages included in the installer"
+echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
+echo "::endgroup::"
+echo "::group::Testing GUIs"
 python -u tests/test_gui.py
+echo "::endgroup::"
+echo "::group::Testing notebooks"
 python -u tests/test_notebook.py
+echo "::endgroup::"
+echo "::group::Testing that the JSON versions are correct"
 python -u tests/test_json_versions.py
 echo "::endgroup::"
-
-echo "::group::Checking that all packages are installed that MNE-Python devs would need"
+echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
 echo "::endgroup::"
 

@@ -1,0 +1,37 @@
+package:
+  name: "mne-installer-menu"
+  version: "1.10.0"
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - pushd {{ RECIPE_DIR }}
+    - python make_menu.py
+
+requirements:
+  host:
+    - python 3.10
+  run:
+    - python >=3.10
+
+test:
+  requires:
+    - python 3.10
+
+about:
+  home: http://mne.tools
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  summary: Menu entries for MNE-Python
+  description: |
+    This package provides various icons, configuration files and scripts for
+    use with the MNE-Python environment installer.
+  doc_url: http://mne.tools
+  dev_url: https://github.com/mne-tools/mne-installer
+
+extra:
+  recipe-maintainers:
+    - larsoner
+    - hoechenberger

@@ -1,4 +1,4 @@
-version: 1.9.0_0
+version: 1.10.0_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,11 +18,11 @@ conclusion_file: ../../assets/conclusion.rtf   # [not win]
 initialize_by_default: false
 register_python_default: false
 
-default_prefix: ${HOME}/mne-python/1.9.0_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.9.0_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.9.0_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.9.0_0"  # [win]
-default_location_pkg: "Applications/MNE-Python/1.9.0_0"             # [osx]
+default_prefix: ${HOME}/mne-python/1.10.0_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.10.0_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.10.0_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.10.0_0"  # [win]
+default_location_pkg: "Applications/MNE-Python/1.10.0_0"             # [osx]
 pkg_name: ".mne-python"                                             # [osx]
 progress_notifications: true                                        # [osx]
 install_path_exists_error_text: |
@@ -30,10 +30,10 @@ install_path_exists_error_text: |
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.9.0_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.9.0_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.9.0_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.9.0_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.10.0_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.10.0_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.10.0_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.10.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -45,33 +45,30 @@ signing_identity_name:                  # [osx]  Used for productsign
 notarization_identity_name:             # [osx]  Used for codesign
 reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identifier $reverse_domain_identifier.$name
 
-# Only create menus for mne-installer-menus
 menu_packages:
-  - mne-installer-menus
+  - mne-installer-menu
 
 channels:
   - conda-forge
+  - ./conda-bld
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
   # - conda-forge/label/mne-bids_dev
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  # https://github.com/conda-forge/spyder-feedstock/pull/228
-  - python =3.12.9  # [win] # allow_outdated, Windows doesn't have a 3.13 spyder-base
-  - python =3.13.2  # [not win]
-  - pip =25.0.1
+  - python =3.13.3  # [not (osx and arm64)]
+  - python =3.13.2  # [osx and arm64]  # allow_outdated
+  - pip =25.1.1
   - wheel =0.45.1
-  - conda =25.3.1
-  - mamba =2.1.0
+  - conda =25.5.1
+  - mamba =2.3.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
-  # - mne-installer-menus =1.4dev0=*_20230503
-  # - mne-bids =0.11dev0=*_20221007
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.9.0=pyside6_*_100
-  - mne-installer-menus =1.9.0=*_100
+  - mne =1.10.0=*_pyside6_*_100
+  - mne-installer-menu =1.10.0=*  # locally_built
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
@@ -79,7 +76,7 @@ specs:
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.16.0
   - mne-bids-pipeline =1.9.0
-  - mne-qt-browser =0.7.1
+  - mne-qt-browser =0.7.2
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
   - mne-nirs =0.7.1
@@ -88,147 +85,171 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.7.0
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.9.0
+  - mne-lsl =1.10.1
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.5.0
   - wfdb =4.3.0
   - meegkit =0.1.9
   - eeg_positions =2.1.2
+  - curryreader =0.1.1
   # MRI
-  - fsleyes =1.14.2
-  - dcm2niix =1.0.20241211
-  - dipy =1.10.0
+  - fsleyes =1.15.0
+  - dcm2niix =1.0.20250506
+  - dipy =1.11.0
+  - nilearn =0.12.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
   - emd =0.8.1
   - neurodsp =2.3.0
   - bycycle =1.1.0
-  - fooof =1.0.0
+  - fooof =1.1.1
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2024.2.0
+  - openneuro-py =2025.1.0
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
-  - mnelab =1.0.0
+  - mnelab =1.0.4
   # other
-  - pyriemann =0.8
-  - pyprep =0.4.3=*_1
+  - pyriemann =0.9
+  - pyprep =0.5.0
   - python-picard =0.8
   - pybv =0.7.6
-  - edfio =0.4.7  # allow_outdated, for some reason 0.4.8 won't download
-  - eeglabio =0.0.3
+  - edfio =0.4.9
+  - eeglabio =0.1.0
   - mffpy =0.10.0
-  - openmeeg =2.5.15
-  - python-neo =0.14.0
+  - openmeeg =2.5.15=*_1
+  - python-neo =0.14.1
   - nitime =0.11
   - snirf =0.8.0
+  - alphacsc =0.4.1
+  # Not on PyPI or no wheels on PyPI
+  # conpy: https://aaltoimaginglanguage.github.io/conpy/
+  # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
+  # eelbrain: https://eelbrain.readthedocs.io/en/stable/index.html
+  # Not on conda-forge
+  # niseq: https://github.com/john-veillette/niseq
+  # sesameeg: https://pybees.github.io/sesameeg
+  # invertmeeg: https://github.com/LukeTheHecker/invert
+  # Meggie: https://github.com/cibr-jyu/meggie
+  # MEM: https://github.com/multifunkim/best-python
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
   - antropy =0.1.9
-  - mayavi =4.8.2=pyside6_*
+  - mayavi =4.8.3=pyside6_*
   - traitsui =8.0.0
-  - pyface =8.0.0=*_1
+  - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
-  - pandas =2.2.3
-  - polars =1.27.0
-  - scipy =1.15.2
-  - numpy =2.1.3  # allow_outdated, each new version has to wait for numba
+  - pandas =2.3.1
+  - polars =1.31.0
+  - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
+  - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.4.0
+  - jupyterlab =4.4.5
   - ipykernel =6.29.5
-  - spyder-kernels =3.0.3
-  - spyder-base =6.0.5
+  - spyder-kernels =3.0.5
+  - spyder-base =6.1.0
   - qtconsole-base =5.6.1
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.61.2
   - cython =3.0.12
+  - darkdetect =0.8.0
+  - qdarkstyle =3.2.3
+  - numba =0.61.2
+  - cython =3.1.2
   # I/O
   - pyxdf =1.17.0
   - openpyxl =3.1.5
   - xlrd =2.0.1
   # Statistics
   - pingouin =0.5.5
+  - statsmodels =0.14.5
   # NeuroSpin needs the following
   - questionary =2.1.0
   - pqdm =0.2.0
-  - astropy =7.0.1
+  - astropy =7.1.0
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.10.1
-  - tornado =6.4.2
-  - pyside6 =6.8.2  # allow_outdated, PyVista (VTK 9.3.1) and Mayavi
-  - qt6-main =6.8.2  # allow_outdated
+  - matplotlib-base =3.10.3
+  - tornado =6.5.1
+  - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
+  - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.0.1
-  # PyVista doesn't yet support VTK 9.4
-  - vtk =9.3.1=qt*  # allow_outdated
-  - ipywidgets =8.1.6
-  - pyvista =0.44.2
-  - pyvistaqt =0.11.2
-  - trame =3.8.1
-  - trame-vtk =2.8.15
-  - trame-vuetify =3.0.0
-  - termcolor =3.0.1
+  - plotly =6.2.0
+  - vtk =9.4.2
+  - ipywidgets =8.1.7
+  - pyvista =0.45.3
+  - pyvistaqt =0.11.3
+  - trame =3.11.0
+  - trame-vtk =2.9.1
+  - trame-vuetify =3.0.1
+  - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.69.0
-  - setuptools_scm =8.2.1
-  - pytest =8.3.5
-  - pytest-cov =6.1.1
-  - pytest-qt =4.4.0
-  - pytest-timeout =2.3.1
+  - gh =2.76.1
+  - setuptools_scm =8.3.1
+  - pytest =8.4.1
+  - pytest-cov =6.2.1
+  - pytest-qt =4.5.0
+  - pytest-timeout =2.4.0
+  - flaky =3.8.1
   - pre-commit =4.2.0
-  - ruff =0.11.4
-  - uv =0.6.14
+  - ruff =0.12.5
+  - uv =0.8.3
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.0
-  - line_profiler =4.2.0
+  - line_profiler =5.0.0
   - memory_profiler =0.61.0
   - twine =6.1.0
   - hatchling =1.27.0
-  - hatch-vcs =0.4.0
-  - mypy =1.15.0
+  - hatch-vcs =0.5.0
+  - mypy =1.17.0
   - towncrier =24.8.0
   - vulture =2.14
+  - grayskull =2.9.1
+  - conda-build =25.5.0
+  - conda-smithy =3.51.1
+  - constructor =3.11.3
+  - menuinst =2.3.1
+  - conda-standalone =24.11.0
   # Doc building
-  - numpydoc =1.8.0
+  - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =12.2.1
-  - python-graphviz =0.20.3
-  - selenium =4.31.0
+  - graphviz =13.1.1
+  - python-graphviz =0.21
+  - selenium =4.34.2
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
-  - sphinxcontrib-bibtex =2.6.3
+  - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2501.23
   # OS-specific
   - git =2.49.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =11.0  # [osx]
+  - pyobjc-core =11.1  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
-  - libffi =3.4.2  # [osx and arm64]  # allow_outdated
-  - pyobjc-framework-Cocoa =11.0  # [osx]
-  - pyobjc-framework-FSEvents =11.0  # [osx]
+  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
+  - pyobjc-framework-Cocoa =11.1  # [osx]
+  - pyobjc-framework-FSEvents =11.1  # [osx]
 condarc:
   channels:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.9.0_0) "
+  env_prompt: "(mne-1.10.0_0) "
