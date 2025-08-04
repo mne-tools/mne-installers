@@ -187,7 +187,7 @@ specs:
   - seaborn =0.13.2
   - plotly =6.2.0
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
-  - vtk =9.4.2
+  - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.7
   - pyvista =0.45.3
   - pyvistaqt =0.11.3
