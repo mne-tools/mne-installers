@@ -50,6 +50,7 @@ menu_packages:
 
 channels:
   - conda-forge
+  - conda-forge/label/spyder_dev  # TODO: Can remove once not using an alpha
   - ./conda-bld
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
@@ -157,7 +158,7 @@ specs:
   - jupyterlab =4.4.5
   - ipykernel =6.29.5
   - spyder-kernels =3.0.5
-  - spyder-base =6.1.0
+  - spyder-base =6.1.0a4
   - qtconsole-base =5.6.1
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
