@@ -186,7 +186,7 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.2.0
-  - vtk-base = 9.5.0
+  - vtk-base =9.5.0
   - vtk =9.5.0
   - ipywidgets =8.1.7
   - pyvista =0.45.3
