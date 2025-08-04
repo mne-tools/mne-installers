@@ -186,8 +186,8 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.2.0
-  - vtk-base =9.5.0
-  - vtk =9.5.0
+  - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
+  - vtk =9.4.2
   - ipywidgets =8.1.7
   - pyvista =0.45.3
   - pyvistaqt =0.11.3
@@ -241,7 +241,6 @@ specs:
   - git =2.49.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =11.1  # [osx]
-  - fmt =11.2.0
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
   - pyobjc-framework-Cocoa =11.1  # [osx]
