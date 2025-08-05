@@ -181,8 +181,8 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.5
   - tornado =6.5.1
-  - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
-  - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
+  - pyside6 =6.8.3  # allow_outdated, bug in 6.9.1; Spyder doesn't work with 6.9+
+  - qt6-main =6.8.3  # allow_outdated, bug in 6.9.1; Spyder doesn't work with 6.9+
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
