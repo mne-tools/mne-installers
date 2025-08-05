@@ -157,7 +157,7 @@ specs:
   - jupyter =1.1.1
   - jupyterlab =4.4.5
   - ipykernel =6.30.0
-  - spyder-kernels =3.0.5
+  - spyder-kernels =3.1.0a3
   - spyder-base =6.1.0a4
   - qtconsole-base =5.6.1
   - darkdetect =0.8.0

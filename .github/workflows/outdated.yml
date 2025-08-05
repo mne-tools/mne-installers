@@ -11,8 +11,28 @@ on:  # yamllint disable-line rule:truthy
     branches: "*"
 
 jobs:
+  check-skip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check skip
+        id: skip
+        run: |
+          set -eo pipefail
+          PR_SHA=${{ github.event.pull_request.head.sha }}
+          MSG=$(git show -s $PR_SHA)
+          echo "Got from $PR_SHA:
+          echo "$MSG"
+          if [[ "$MSG" == *"[skip autofix]"* ]]; then
+            echo "Skipping because [skip autofix] found in commit message"
+            echo "::set-output name=skip::true"
+          else
+            echo "::set-output name=skip::false"
+          fi
   deps:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    needs: check-skip
+    if: needs.check-skip.outputs.skip != 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
