@@ -17,13 +17,15 @@ jobs:
       skip: ${{ steps.skip.outputs.skip }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Check skip
         id: skip
         run: |
           set -eo pipefail
-          PR_SHA=${{ github.event.pull_request.head.sha }}
+          PR_SHA="${{ github.event.pull_request.head.sha }}"
+          echo "Got from PR_SHA=$PR_SHA"
           MSG=$(git show -s $PR_SHA)
-          echo "Got from $PR_SHA:
           echo "$MSG"
           if [[ "$MSG" == *"[skip autofix]"* ]]; then
             echo "Skipping because [skip autofix] found in commit message"
