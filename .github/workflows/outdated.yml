@@ -27,11 +27,12 @@ jobs:
           echo "Got from PR_SHA=$PR_SHA"
           MSG=$(git show -s $PR_SHA)
           echo "$MSG"
-          if [[ "$MSG" == *"[skip autofix]"* ]]; then
-            echo "Skipping because [skip autofix] found in commit message"
-            echo "::set-output name=skip::true"
+          if [[ "$MSG" == *"[skip autofix]"* ]] || [[ "$MSG" == *"[autofix skip]"* ]]; then
+            echo "Skipping because [skip autofix] found in commit message" >> $GITHUB_STEP_SUMMARY
+            echo "skip::true" | tee $GITHUB_OUTPUT
           else
-            echo "::set-output name=skip::false"
+            echo "[skip autofix] not found in commit message" >> $GITHUB_STEP_SUMMARY
+            echo "skip::false" | tee $GITHUB_OUTPUT
           fi
   deps:
     runs-on: ubuntu-latest

@@ -51,6 +51,7 @@ menu_packages:
 channels:
   - conda-forge
   - conda-forge/label/spyder_dev  # TODO: Can remove once not using an alpha
+  - conda-forge/label/spyder_kernels_dev  # TODO: Can remove once not using an alpha
   - ./conda-bld
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
