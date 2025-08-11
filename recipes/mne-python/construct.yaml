@@ -61,7 +61,7 @@ specs:
   - python =3.13.2  # [osx and arm64]  # allow_outdated
   - pip =25.2
   - wheel =0.45.1
-  - conda =25.5.1
+  - conda =25.7.0
   - mamba =2.3.1
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -148,14 +148,14 @@ specs:
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.1
-  - polars =1.31.0
+  - polars =1.32.0
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
   - jupyterlab =4.4.5
-  - ipykernel =6.30.0
+  - ipykernel =6.30.1
   - spyder-kernels =3.0.5
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
@@ -179,7 +179,7 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.5
-  - tornado =6.5.1
+  - tornado =6.5.2
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
   - ipympl =0.9.7
@@ -189,24 +189,24 @@ specs:
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.7
-  - pyvista =0.45.3
+  - pyvista =0.46.0
   - pyvistaqt =0.11.3
   - trame =3.11.0
   - trame-vtk =2.9.1
-  - trame-vuetify =3.0.1
+  - trame-vuetify =3.0.2
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
   - gh =2.76.2
-  - setuptools_scm =8.3.1
+  - setuptools_scm =9.0.1
   - pytest =8.4.1
   - pytest-cov =6.2.1
   - pytest-qt =4.5.0
   - pytest-timeout =2.4.0
   - flaky =3.8.1
-  - pre-commit =4.2.0
-  - ruff =0.12.7
-  - uv =0.8.4
+  - pre-commit =4.3.0
+  - ruff =0.12.8
+  - uv =0.8.8
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -227,7 +227,7 @@ specs:
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =13.1.1
+  - graphviz =13.1.2
   - python-graphviz =0.21
   - selenium =4.34.2
   - sphinx =8.2.3
