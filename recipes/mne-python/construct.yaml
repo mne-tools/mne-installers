@@ -198,7 +198,7 @@ specs:
   - defusedxml =0.7.1
   # Development
   - gh =2.76.2
-  - setuptools_scm =9.0.1
+  - setuptools_scm =9.1.1
   - pytest =8.4.1
   - pytest-cov =6.2.1
   - pytest-qt =4.5.0
