@@ -25,7 +25,7 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-name: menubuild
@@ -52,11 +52,11 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: menu-package
           path: conda-bld
@@ -105,11 +105,11 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: menu-package
           path: conda-bld
@@ -135,11 +135,11 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: menu-package
           path: conda-bld
@@ -167,9 +167,9 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
@@ -202,9 +202,9 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - run: sh ./${MNE_INSTALLER_NAME} -b
@@ -234,9 +234,9 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
@@ -268,7 +268,7 @@ jobs:
         shell: bash -el {0}
     steps:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           pattern: MNE-Python-*
           merge-multiple: true
