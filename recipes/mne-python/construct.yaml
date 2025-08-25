@@ -147,7 +147,7 @@ specs:
   - traitsui =8.0.0
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
-  - pandas =2.3.1
+  - pandas =2.3.2
   - polars =1.32.3
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
@@ -189,15 +189,15 @@ specs:
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.7
-  - pyvista =0.46.1
+  - pyvista =0.46.2
   - pyvistaqt =0.11.3
-  - trame =3.11.0
+  - trame =3.12.0
   - trame-vtk =2.9.1
   - trame-vuetify =3.0.2
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.76.2
+  - gh =2.78.0
   - setuptools_scm =9.2.0
   - pytest =8.4.1
   - pytest-cov =6.2.1
@@ -205,8 +205,8 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.3.0
-  - ruff =0.12.9
-  - uv =0.8.11
+  - ruff =0.12.10
+  - uv =0.8.13
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -230,7 +230,7 @@ specs:
   - graphviz =13.1.2
   - python-graphviz =0.21
   - selenium =4.35.0
-  - sphinx =8.2.3
+  - sphinx =8.3.0
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
   - sphinxcontrib-bibtex =2.6.5
@@ -238,7 +238,7 @@ specs:
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2501.23
   # OS-specific
-  - git =2.49.0  # [win]
+  - git =2.51.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =11.1  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
