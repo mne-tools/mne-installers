@@ -62,7 +62,7 @@ specs:
   - pip =25.2
   - wheel =0.45.1
   - conda =25.7.0
-  - mamba =2.3.1
+  - mamba =2.3.2
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -167,7 +167,7 @@ specs:
   # I/O
   - pyxdf =1.17.0
   - openpyxl =3.1.5
-  - xlrd =2.0.1
+  - xlrd =2.0.2
   # Statistics
   - pingouin =0.5.5
   - statsmodels =0.14.5
@@ -189,7 +189,7 @@ specs:
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.7
-  - pyvista =0.46.2
+  - pyvista =0.46.3
   - pyvistaqt =0.11.3
   - trame =3.12.0
   - trame-vtk =2.9.1
@@ -205,7 +205,7 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.3.0
-  - ruff =0.12.10
+  - ruff =0.12.11
   - uv =0.8.13
   - check-manifest =0.50
   - codespell =2.4.1
@@ -216,11 +216,11 @@ specs:
   - hatchling =1.27.0
   - hatch-vcs =0.5.0
   - mypy =1.17.1
-  - towncrier =24.8.0
+  - towncrier =25.8.0
   - vulture =2.14
   - grayskull =2.9.1
   - conda-build =25.7.0
-  - conda-smithy =3.51.1
+  - conda-smithy =3.52.0
   - constructor =3.12.2
   - menuinst =2.3.1
   - conda-standalone =24.11.0
