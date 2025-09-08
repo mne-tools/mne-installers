@@ -88,7 +88,7 @@ specs:
   - mne-lsl =1.10.1
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
-  - antio =0.5.0
+  - antio =0.6.1
   - wfdb =4.3.0
   - meegkit =0.1.9
   - eeg_positions =2.1.2
@@ -97,7 +97,7 @@ specs:
   - fsleyes =1.15.0
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
-  - nilearn =0.12.0
+  - nilearn =0.12.1
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -148,13 +148,13 @@ specs:
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.2
-  - polars =1.32.3
+  - polars =1.33.0
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.4.6
+  - jupyterlab =4.4.7
   - ipykernel =6.30.1
   - spyder-kernels =3.0.5
   # TODO: Needs to not require pyqt
@@ -178,7 +178,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.10.5
+  - matplotlib-base =3.10.6
   - tornado =6.5.2
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
@@ -199,20 +199,20 @@ specs:
   # Development
   - gh =2.78.0
   - setuptools_scm =9.2.0
-  - pytest =8.4.1
-  - pytest-cov =6.2.1
+  - pytest =8.4.2
+  - pytest-cov =6.3.0
   - pytest-qt =4.5.0
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.3.0
-  - ruff =0.12.11
-  - uv =0.8.13
+  - ruff =0.12.12
+  - uv =0.8.15
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.1
   - line_profiler =5.0.0
   - memory_profiler =0.61.0
-  - twine =6.1.0
+  - twine =6.2.0
   - hatchling =1.27.0
   - hatch-vcs =0.5.0
   - mypy =1.17.1
@@ -220,7 +220,7 @@ specs:
   - vulture =2.14
   - grayskull =2.9.1
   - conda-build =25.7.0
-  - conda-smithy =3.52.0
+  - conda-smithy =3.52.1
   - constructor =3.12.2
   - menuinst =2.3.1
   - conda-standalone =24.11.0
