@@ -85,7 +85,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.7.0
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.10.1
+  - mne-lsl =1.11.0
   - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.6.1
