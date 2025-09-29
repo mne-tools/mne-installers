@@ -83,7 +83,7 @@ specs:
   - mne-features =0.3
   - mne-rsa =0.9.1
   - mne-ari =0.1.2
-  - mne-icalabel =0.7.0
+  - mne-icalabel =0.8.0
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.11.0
   - mne-kit-gui =1.3.0
@@ -122,7 +122,7 @@ specs:
   - python-picard =0.8
   - pybv =0.7.6
   - edfio =0.4.9
-  - eeglabio =0.1.0
+  - eeglabio =0.1.2
   - mffpy =0.10.0
   - openmeeg =2.5.15=*_1
   - python-neo =0.14.1
@@ -154,7 +154,7 @@ specs:
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.4.7
+  - jupyterlab =4.4.9
   - ipykernel =6.30.1
   - spyder-kernels =3.0.5
   # TODO: Needs to not require pyqt
@@ -162,7 +162,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.61.2
+  - numba =0.62.1
   - cython =3.1.4
   # I/O
   - pyxdf =1.17.0
@@ -193,11 +193,11 @@ specs:
   - pyvistaqt =0.11.3
   - trame =3.12.0
   - trame-vtk =2.9.1
-  - trame-vuetify =3.0.3
+  - trame-vuetify =3.1.0
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.79.0
+  - gh =2.80.0
   - setuptools_scm =9.2.0
   - pytest =8.4.2
   - pytest-cov =7.0.0
@@ -205,7 +205,7 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.3.0
-  - ruff =0.13.1
+  - ruff =0.13.2
   - uv =0.8.18
   - check-manifest =0.50
   - codespell =2.4.1
@@ -220,7 +220,7 @@ specs:
   - vulture =2.14
   - grayskull =2.9.1
   - conda-build =25.7.0
-  - conda-smithy =3.52.2
+  - conda-smithy =3.52.3
   - constructor =3.12.2
   - menuinst =2.3.1
   - conda-standalone =24.11.0
