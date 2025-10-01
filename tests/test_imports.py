@@ -54,6 +54,7 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
+spyder spyder-kernels
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
@@ -64,6 +65,8 @@ bad_ver = {
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "Foundation",
+    "spyder",
+    "spyder-kernels",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",

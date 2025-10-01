@@ -119,3 +119,7 @@ echo "::endgroup::"
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
 echo "::endgroup::"
+
+echo "::group::Checking Spyder"
+bash tests/test_spyder.sh
+echo "::endgroup::"
