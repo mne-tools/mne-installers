@@ -44,7 +44,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-latest]  # Intel and Apple Silicon, respectively
+        os: [macos-15-intel, macos-latest]  # Intel and Apple Silicon, respectively
     runs-on: ${{ matrix.os }}
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -161,7 +161,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-15]
+        os: [macos-15-intel, macos-latest]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -182,7 +182,7 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
         # upload just one for each installer version
-        if: matrix.os == 'macos-13' || matrix.os == 'macos-14'
+        if: matrix.os == 'macos-15-intel' || matrix.os == 'macos-latest'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
