@@ -61,7 +61,7 @@ specs:
   - python =3.13.2  # [osx and arm64]  # allow_outdated
   - pip =25.2
   - wheel =0.45.1
-  - conda =25.7.0
+  - conda =25.9.0
   - mamba =2.3.2
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -148,7 +148,7 @@ specs:
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
-  - polars =1.33.1
+  - polars =1.34.0
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
@@ -156,7 +156,7 @@ specs:
   - jupyter =1.1.1
   - jupyterlab =4.4.9
   - ipykernel =6.30.1
-  - spyder-kernels =3.0.5
+  - spyder-kernels =3.1.0
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =6.1.0
@@ -185,19 +185,19 @@ specs:
   - ipympl =0.9.7
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.3.0
+  - plotly =6.3.1
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.7
   - pyvista =0.46.3
   - pyvistaqt =0.11.3
   - trame =3.12.0
-  - trame-vtk =2.9.1
+  - trame-vtk =2.10.0
   - trame-vuetify =3.1.0
   - termcolor =3.1.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.80.0
+  - gh =2.81.0
   - setuptools_scm =9.2.0
   - pytest =8.4.2
   - pytest-cov =7.0.0
@@ -205,8 +205,8 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.3.0
-  - ruff =0.13.2
-  - uv =0.8.22
+  - ruff =0.13.3
+  - uv =0.8.23
   - check-manifest =0.50
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -229,14 +229,14 @@ specs:
   - pydata-sphinx-theme =0.16.1
   - graphviz =13.1.2
   - python-graphviz =0.21
-  - selenium =4.35.0
+  - selenium =4.36.0
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
-  - intersphinx-registry =0.2501.23
+  - intersphinx-registry =0.2510.5
   # OS-specific
   - git =2.51.0  # [win]
   - make =4.4.1  # [win]
