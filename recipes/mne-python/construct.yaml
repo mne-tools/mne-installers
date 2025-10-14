@@ -79,7 +79,7 @@ specs:
   - mne-qt-browser =0.7.2
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
-  - mne-nirs =0.7.1
+  - mne-nirs =0.7.2
   - mne-features =0.3
   - mne-rsa =0.9.1
   - mne-ari =0.1.2
