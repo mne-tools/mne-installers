@@ -15,6 +15,12 @@ on:  # yamllint disable-line rule:truthy
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'Enable ssh debugging'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   # Build installers
@@ -24,8 +30,18 @@ jobs:
     defaults:
       run:
         shell: bash -el {0}
+    outputs:
+      enable-ssh: ${{ steps.triage-ssh.outputs.enable-ssh }}
     steps:
       - uses: actions/checkout@v5
+      - name: Triage SSH
+        id: triage-ssh
+        run: |
+          if [[ "${{ inputs.ssh }}" == "true" ]] || [[ "$COMMIT_MESSAGE" == *"[actions ssh]"* ]]; then
+            echo "enable-ssh=true" | tee -a $GITHUB_OUTPUT
+          else
+            echo "enable-ssh=false" | tee -a $GITHUB_OUTPUT
+          fi
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-name: menubuild
@@ -53,6 +69,11 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v5
+      - uses: mxschmitt/action-tmate@v3
+        if: needs.build_menu.outputs.enable-ssh == 'true'
+        timeout-minutes: 20
+        with:
+          detached: true
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
@@ -106,6 +127,11 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v5
+      - uses: mxschmitt/action-tmate@v3
+        if: needs.build_menu.outputs.enable-ssh == 'true'
+        timeout-minutes: 20
+        with:
+          detached: true
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
@@ -136,6 +162,11 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v5
+      - uses: mxschmitt/action-tmate@v3
+        if: needs.build_menu.outputs.enable-ssh == 'true'
+        timeout-minutes: 20
+        with:
+          detached: true
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
