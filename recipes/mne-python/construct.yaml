@@ -239,11 +239,11 @@ specs:
   # OS-specific
   - git =2.51.1  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =11.1  # [osx]
+  - pyobjc-core =12.0  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
-  - pyobjc-framework-Cocoa =11.1  # [osx]
-  - pyobjc-framework-FSEvents =11.1  # [osx]
+  - pyobjc-framework-Cocoa =12.0  # [osx]
+  - pyobjc-framework-FSEvents =12.0  # [osx]
 condarc:
   channels:
     - conda-forge
