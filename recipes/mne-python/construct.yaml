@@ -61,7 +61,7 @@ specs:
   - pip =25.2
   - wheel =0.45.1
   - conda =25.9.1
-  - mamba =2.3.3
+  - mamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
