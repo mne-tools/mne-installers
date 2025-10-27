@@ -80,7 +80,7 @@ specs:
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
   - mne-features =0.3
-  - mne-rsa =0.9.1
+  - mne-rsa =0.10
   - mne-ari =0.1.2
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
@@ -147,13 +147,13 @@ specs:
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
-  - polars =1.34.0
+  - polars =1.35.0
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
   - libblas =3.9.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.4.9
+  - jupyterlab =4.4.10
   - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
   - spyder-kernels =3.1.1
   # TODO: Needs to not require pyqt
@@ -162,7 +162,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.62.1
-  - cython =3.1.5
+  - cython =3.1.6
   # I/O
   - pyxdf =1.17.1
   - openpyxl =3.1.5
@@ -193,10 +193,10 @@ specs:
   - trame =3.12.0
   - trame-vtk =2.10.0
   - trame-vuetify =3.1.0
-  - termcolor =3.1.0
+  - termcolor =3.2.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.82.0
+  - gh =2.82.1
   - setuptools_scm =9.2.2
   - pytest =8.4.2
   - pytest-cov =7.0.0
@@ -204,8 +204,8 @@ specs:
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.3.0
-  - ruff =0.14.1
-  - uv =0.9.4
+  - ruff =0.14.2
+  - uv =0.9.5
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -221,14 +221,14 @@ specs:
   - conda-build =25.9.0
   - conda-smithy =3.52.3
   - constructor =3.12.2
-  - menuinst =2.4.0
+  - menuinst =2.4.1
   - conda-standalone =24.11.0
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
   - graphviz =13.1.2
   - python-graphviz =0.21
-  - selenium =4.37.0
+  - selenium =4.38.0
   - sphinx =8.2.3
   - sphinx-design =0.6.1
   - sphinx-gallery =0.19.0
