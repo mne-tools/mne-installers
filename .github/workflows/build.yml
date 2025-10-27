@@ -48,7 +48,7 @@ jobs:
           create-args: python=3.13 conda-build
       - run: ./tools/run_conda_build.sh
         timeout-minutes: 5
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: menu-package
           path: conda-bld
@@ -77,7 +77,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: menu-package
           path: conda-bld
@@ -108,7 +108,7 @@ jobs:
           installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -135,7 +135,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: menu-package
           path: conda-bld
@@ -143,7 +143,7 @@ jobs:
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -170,7 +170,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: environment.yml
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: menu-package
           path: conda-bld
@@ -179,7 +179,7 @@ jobs:
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: MNE-Python-*.*
@@ -200,7 +200,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - name: Run installer
@@ -208,7 +208,7 @@ jobs:
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
             || ( tail -n 30 /var/log/install.log  && exit 1 ) # display last log messages on error
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
@@ -235,12 +235,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
@@ -267,7 +267,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: ./tools/extract_version.sh
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
@@ -275,7 +275,7 @@ jobs:
         timeout-minutes: 50
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
           path: MNE-Python-*.env.json
@@ -299,7 +299,7 @@ jobs:
         shell: bash -el {0}
     steps:
       # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: MNE-Python-*
           merge-multiple: true
