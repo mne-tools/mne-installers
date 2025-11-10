@@ -58,7 +58,7 @@ channels:
 specs:
   # Python
   - python =3.13.9
-  - pip =25.2
+  - pip =25.3
   - wheel =0.45.1
   - conda =25.9.1
   - mamba =2.3.2  # allow_outdated, vtk conflict
@@ -108,13 +108,13 @@ specs:
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2025.1.0
+  - openneuro-py =2025.2.0
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
-  - mnelab =1.0.7
+  - mnelab =1.0.8
   # other
   - pyriemann =0.9
   - pyprep =0.5.0
@@ -125,7 +125,7 @@ specs:
   - mffpy =0.10.0
   - openmeeg =2.5.15=*_1
   - python-neo =0.14.1
-  - nitime =0.11
+  - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
   # Not on PyPI or no wheels on PyPI
@@ -162,7 +162,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.62.1
-  - cython =3.1.6
+  - cython =3.2.0
   # I/O
   - pyxdf =1.17.1
   - openpyxl =3.1.5
@@ -184,7 +184,7 @@ specs:
   - ipympl =0.9.8
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.3.1
+  - plotly =6.4.0
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.8
@@ -196,16 +196,16 @@ specs:
   - termcolor =3.2.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.82.1
+  - gh =2.83.0
   - setuptools_scm =9.2.2
-  - pytest =8.4.2
+  - pytest =9.0.0
   - pytest-cov =7.0.0
   - pytest-qt =4.5.0
   - pytest-timeout =2.4.0
   - flaky =3.8.1
-  - pre-commit =4.3.0
-  - ruff =0.14.3
-  - uv =0.9.7
+  - pre-commit =4.4.0
+  - ruff =0.14.4
+  - uv =0.9.8
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -217,10 +217,10 @@ specs:
   - mypy =1.18.2
   - towncrier =25.8.0
   - vulture =2.14
-  - grayskull =2.9.1
+  - grayskull =2.9.2
   - conda-build =25.9.0
-  - conda-smithy =3.52.3
-  - constructor =3.12.2
+  - conda-smithy =3.53.0
+  - constructor =3.13.0
   - menuinst =2.4.1
   - conda-standalone =24.11.0
   # Doc building
@@ -235,7 +235,7 @@ specs:
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
-  - intersphinx-registry =0.2510.17
+  - intersphinx-registry =0.2511.7
   # OS-specific
   - git =2.51.2  # [win]
   - make =4.4.1  # [win]
