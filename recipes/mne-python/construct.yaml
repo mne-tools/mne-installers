@@ -177,7 +177,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.10.7
+  - matplotlib-base =3.10.8
   - tornado =6.5.2
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
@@ -196,16 +196,16 @@ specs:
   - termcolor =3.2.0
   - defusedxml =0.7.1
   # Development
-  - gh =2.83.0
+  - gh =2.83.1
   - setuptools_scm =9.2.2
-  - pytest =9.0.0
+  - pytest =9.0.1
   - pytest-cov =7.0.0
   - pytest-qt =4.5.0
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.4.0
-  - ruff =0.14.4
-  - uv =0.9.8
+  - ruff =0.14.5
+  - uv =0.9.9
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -219,14 +219,14 @@ specs:
   - vulture =2.14
   - grayskull =2.9.2
   - conda-build =25.9.0
-  - conda-smithy =3.53.0
+  - conda-smithy =3.53.1
   - constructor =3.13.0
   - menuinst =2.4.1
   - conda-standalone =24.11.0
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =13.1.2
+  - graphviz =14.0.4
   - python-graphviz =0.21
   - selenium =4.38.0
   - sphinx =8.2.3
@@ -239,11 +239,11 @@ specs:
   # OS-specific
   - git =2.51.2  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.0  # [osx]
+  - pyobjc-core =12.1  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
-  - pyobjc-framework-Cocoa =12.0  # [osx]
-  - pyobjc-framework-FSEvents =12.0  # [osx]
+  - pyobjc-framework-Cocoa =12.1  # [osx]
+  - pyobjc-framework-FSEvents =12.1  # [osx]
 condarc:
   channels:
     - conda-forge
