@@ -123,7 +123,8 @@ specs:
   - edfio =0.4.10
   - eeglabio =0.1.2
   - mffpy =0.10.0
-  - openmeeg =2.5.15=*_1
+  - openmeeg =2.5.15=*_3
+  - libgfortran5 =15.2.0
   - python-neo =0.14.1
   - nitime =0.12.1
   - snirf =0.8.0
