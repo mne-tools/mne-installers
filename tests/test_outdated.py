@@ -84,9 +84,9 @@ for line, spec in zip(lines, specs):
 
 
 @_cache
-def get_mne_file(filename):
+def get_github_file(filename, *, repo="mne-tools/mne-python"):
     """Get conda json for a package."""
-    url = f"https://github.com/mne-tools/mne-python/raw/refs/heads/main/{filename}"
+    url = f"https://github.com/{repo}/raw/refs/heads/main/{filename}"
     return requests.get(url).text
 
 
@@ -113,7 +113,7 @@ def get_conda_json(package):
 
 
 # Check to make sure we have all packages we need
-mne_toml = tomllib.loads(get_mne_file("pyproject.toml"))
+mne_toml = tomllib.loads(get_github_file("pyproject.toml"))
 mne_deps = (
     mne_toml["project"]["dependencies"]
     + mne_toml["project"]["optional-dependencies"]["full-no-qt"]
@@ -135,7 +135,23 @@ pypi_to_conda = {
 mne_dep_names = [pypi_to_conda.get(name, name) for name in mne_dep_names]
 for name in "sip tomli".split():
     mne_dep_names.pop(mne_dep_names.index(name))
-missing = sorted(set(mne_dep_names) - set(pkg.name for pkg in packages))
+# add conda-forge ones
+meta_str = get_github_file("recipe/meta.yaml", repo="conda-forge/mne-feedstock")
+# remove jinja lines and expressions
+meta_str = re.sub("({%.+?%})", "", meta_str)
+meta_str = re.sub(r"({{.+?}})", "placeholder", meta_str)
+mne_feedstock = yaml.safe_load(meta_str)
+mne_output = mne_feedstock["outputs"][1]
+assert mne_output["name"] == "mne", f"Need mne, got {mne_output['name']=}"
+feedstock_dep_names = sorted(
+    re.split(r"[;<>=! ]", dep)[0] for dep in mne_output["requirements"]["run"]
+)
+for dep in "placeholder __osx pyqt pyobjc-framework-cocoa".split():
+    feedstock_dep_names.pop(feedstock_dep_names.index(dep))
+missing = sorted(
+    set(mne_dep_names).union(set(feedstock_dep_names))
+    - set(pkg.name for pkg in packages)
+)
 
 outdated = []
 not_found = []
