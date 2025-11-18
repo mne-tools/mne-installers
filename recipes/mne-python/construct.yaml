@@ -234,7 +234,6 @@ specs:
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
-  - flaky =3.8.1
   - pre-commit =4.4.0
   - ruff =0.14.5
   - uv =0.9.10
