@@ -148,8 +148,8 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
   - polars =1.35.1
-  - numpy =2.3.5  # allow_outdated, each new version has to wait for numba
-  - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
+  - numpy =2.3.5
+  - scipy =1.16.3
   - openblas =0.3.30
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
@@ -240,8 +240,6 @@ specs:
   - git =2.52.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
-  # https://github.com/conda-forge/libffi-feedstock/issues/52
-  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
 condarc:
