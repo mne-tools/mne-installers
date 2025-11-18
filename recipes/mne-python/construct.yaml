@@ -123,7 +123,8 @@ specs:
   - edfio =0.4.10
   - eeglabio =0.1.2
   - mffpy =0.10.0
-  - openmeeg =2.5.15=*_1
+  - openmeeg =2.5.15=*_3
+  - libgfortran5 =15.2.0
   - python-neo =0.14.1
   - nitime =0.12.1
   - snirf =0.8.0
@@ -141,7 +142,19 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - decorator =5.2.1
+  - filelock =3.20.0
+  - lazy-loader =0.4
+  - packaging =25.0
+  - pooch =1.8.2
+  - tqdm =4.67.1
+  - h5py =3.15.1
+  - h5io =0.2.5
+  - pymatreader =1.1.0
+  - numexpr =2.14.1
   - antropy =0.1.9
+  - threadpoolctl =3.6.0
+  - scikit-learn =1.7.2
   - mayavi =4.8.3=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0
@@ -153,7 +166,8 @@ specs:
   - openblas =0.3.30
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.5.0
+  - notebook =7.4.7
+  - jupyterlab =4.4.10  # allow_outdated, needs notebook 7.5.0 update
   - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
   - spyder-kernels =3.1.1
   # TODO: Needs to not require pyqt
@@ -163,10 +177,13 @@ specs:
   - qdarkstyle =3.2.3
   - numba =0.62.1
   - cython =3.2.0
+  - joblib =1.5.2
   # I/O
   - pyxdf =1.17.1
   - openpyxl =3.1.5
   - xlrd =2.0.2
+  - nibabel =5.3.2
+  - pyarrow =21.0.0  # allow_outdated, needs qt6-main bump
   # Statistics
   - pingouin =0.5.5
   - statsmodels =0.14.5
@@ -181,6 +198,7 @@ specs:
   - tornado =6.5.2
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
+  - pcre2 =10.45  # allow_outdated, needs qt6-main bump
   - ipympl =0.9.8
   - qtpy =2.4.3
   - seaborn =0.13.2
@@ -195,14 +213,27 @@ specs:
   - trame-vuetify =3.1.0
   - termcolor =3.2.0
   - defusedxml =0.7.1
+  - imageio =2.37.0
+  - ipyevents =2.0.4
+  - ipython =9.7.0
+  - jinja2 =3.1.6
+  - jupyter_client =8.6.3
+  - nbclient =0.10.2
+  - nbformat =5.10.4
+  - pillow =12.0.0
+  - pyzmq =27.1.0
+  - traitlets =5.14.3
   # Development
+  - pygments =2.19.2
+  - psutil =7.1.3
+  - memory_profiler =0.61.0
   - gh =2.83.1
   - setuptools_scm =9.2.2
   - pytest =9.0.1
   - pytest-cov =7.0.0
   - pytest-qt =4.5.0
+  - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
-  - flaky =3.8.1
   - pre-commit =4.4.0
   - ruff =0.14.5
   - uv =0.9.10
@@ -235,13 +266,17 @@ specs:
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
+  - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2511.7
   # OS-specific
   - git =2.52.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.1  # [osx]
-  - pyobjc-framework-Cocoa =12.1  # [osx]
-  - pyobjc-framework-FSEvents =12.1  # [osx]
+  # https://github.com/conda-forge/libffi-feedstock/issues/52
+  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
+  # 12.1+ requires libffi 3.5.2+
+  - pyobjc-core =12.0  # [osx]  # allow_outdated
+  - pyobjc-framework-Cocoa =12.0  # [osx]  # allow_outdated
+  - pyobjc-framework-FSEvents =12.0  # [osx]  # allow_outdated
 condarc:
   channels:
     - conda-forge
