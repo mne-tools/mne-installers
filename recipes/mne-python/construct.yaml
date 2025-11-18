@@ -151,7 +151,7 @@ specs:
   - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
   - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
   - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
-  - libblas =3.9.0=*openblas
+  - libblas =3.11.0=*openblas
   - jupyter =1.1.1
   - jupyterlab =4.4.10
   - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
@@ -184,7 +184,7 @@ specs:
   - ipympl =0.9.8
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.4.0
+  - plotly =6.5.0
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.8
@@ -205,7 +205,7 @@ specs:
   - flaky =3.8.1
   - pre-commit =4.4.0
   - ruff =0.14.5
-  - uv =0.9.9
+  - uv =0.9.10
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -237,7 +237,7 @@ specs:
   - sphinxcontrib-youtube =1.4.1
   - intersphinx-registry =0.2511.7
   # OS-specific
-  - git =2.51.2  # [win]
+  - git =2.52.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
