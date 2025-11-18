@@ -7,6 +7,11 @@ import platform
 
 parser = argparse.ArgumentParser(prog="test_imports")
 parser.add_argument("--ignore", nargs="*", help="Modules to ignore", default=[])
+parser.add_argument(
+    "--ignore-version-check",
+    action="store_true",
+    help="Ignore version check",
+)
 parsed = parser.parse_args()
 
 
@@ -30,9 +35,10 @@ def check_version_eq(package, ver):
         raise ImportError(
             f"Could not parse version for {package}: {repr(package.__version__)}"
         )
-    assert package_ver >= parse(ver), (
-        f"{package}: got {package.__version__} wanted {ver}"
-    )
+    if not parsed.ignore_version_check:
+        assert package_ver >= parse(ver), (
+            f"{package}: got {package.__version__} wanted {ver}"
+        )
 
 
 # All related software
@@ -54,6 +60,7 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
+sklearn.decomposition
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
@@ -73,7 +80,11 @@ mod_map = {  # for import test, need map from conda-forge line/name to importabl
 ver_map = {  # for __version__, need map from importable name to conda-forge line/name
     "matplotlib": "matplotlib-base",
 }
-ignore = list(parsed.ignore) + ["dcm2niix"]
+ignore = list(parsed.ignore) + [
+    "dcm2niix",  # binary
+    "scikit-learn",  # not the import name (added manually above)
+    "libgfortran5",  # C library
+]
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
         continue
