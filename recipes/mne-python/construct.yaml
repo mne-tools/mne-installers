@@ -226,7 +226,7 @@ specs:
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =14.0.4
+  - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - python-graphviz =0.21
   - selenium =4.38.0
   - sphinx =8.2.3
