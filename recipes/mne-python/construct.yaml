@@ -271,7 +271,8 @@ specs:
   # OS-specific
   - git =2.52.0  # [win]
   - make =4.4.1  # [win]
-  - libffi =3.5.2  # [osx]
+  # https://github.com/conda-forge/libffi-feedstock/issues/52
+  - libffi =3.4.6  # [osx and arm64]
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
