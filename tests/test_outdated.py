@@ -10,6 +10,7 @@ from pathlib import Path
 import packaging.version
 import requests
 import yaml
+import tomllib
 
 try:
     from joblib import Memory, expires_after
@@ -83,6 +84,13 @@ for line, spec in zip(lines, specs):
 
 
 @_cache
+def get_mne_file(filename):
+    """Get conda json for a package."""
+    url = f"https://github.com/mne-tools/mne-python/raw/refs/heads/main/{filename}"
+    return requests.get(url).text
+
+
+@_cache
 def get_conda_json(package):
     """Get conda json for a package."""
     anaconda_url = f"https://api.anaconda.org/package/conda-forge/{package.name}"
@@ -103,6 +111,31 @@ def get_conda_json(package):
         raise RuntimeError(f"{package.name} failed to get JSON from conda-forge")
     return json
 
+
+# Check to make sure we have all packages we need
+mne_toml = tomllib.loads(get_mne_file("pyproject.toml"))
+mne_deps = (
+    mne_toml["project"]["dependencies"]
+    + mne_toml["project"]["optional-dependencies"]["full-no-qt"]
+    + mne_toml["dependency-groups"]["doc"]
+    + mne_toml["dependency-groups"]["test"]
+)
+mne_deps += [
+    dep for dep in mne_toml["dependency-groups"]["test_extra"] if isinstance(dep, str)
+]  # remove dict entries (like {"include-group": "test"})
+mne_dep_names = [re.split(r"[;<>=! ]", dep)[0].replace("_", "-") for dep in mne_deps]
+# Fix a few
+pypi_to_conda = {
+    "mne[hdf5]": "mne",
+    "matplotlib": "matplotlib-base",
+    "neo": "python-neo",
+    "jupyter-client": "jupyter_client",
+    "memory-profiler": "memory_profiler",
+}
+mne_dep_names = [pypi_to_conda.get(name, name) for name in mne_dep_names]
+for name in "sip tomli".split():
+    mne_dep_names.pop(mne_dep_names.index(name))
+missing = sorted(set(mne_dep_names) - set(pkg.name for pkg in packages))
 
 outdated = []
 not_found = []
@@ -159,6 +192,12 @@ if not_found:
     print("\n".join(f" * {package.name}" for package in not_found))
     exit_code = 1
 
+if missing:
+    print(f"\n{len(missing)} packages from MNE pyproject.toml missing from recipe:\n")
+    print("\n".join(f" * {name}" for name in missing))
+    print("\nPlease add to the construct.yaml recipe in the correct section(s).")
+    exit_code = 1
+
 if outdated:
     print(f"\n{len(outdated)} packages outdated:\n")
     print(
@@ -173,6 +212,7 @@ if outdated:
     exit_code = 1
 else:
     print("\nEverything is up to date.")
+
 if __name__ == "__main__":
     if exit_code == 1:  # stuff needs updating
         print("Updating .yaml file.")

@@ -141,19 +141,28 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - decorator =5.2.1
+  - filelock =3.20.0
+  - lazy-loader =0.4
+  - packaging =25.0
+  - pooch =1.8.2
+  - tqdm =4.67.1
+  - h5py =3.15.1
   - antropy =0.1.9
+  - threadpoolctl =3.6.0
+  - scikit-learn =1.7.2
   - mayavi =4.8.3=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
   - polars =1.35.1
-  - numpy =2.2.6  # allow_outdated, each new version has to wait for numba
-  - scipy =1.15.2  # allow_outdated, statsmodels pins to <1.16
-  - openblas =0.3.28  # allow_outdated, NumPy etc. need to update
-  - libblas =3.9.0=*openblas
+  - numpy =2.3.5
+  - scipy =1.16.3
+  - openblas =0.3.30
+  - libblas =3.11.0=*openblas
   - jupyter =1.1.1
-  - jupyterlab =4.4.10
+  - jupyterlab =4.5.0
   - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
   - spyder-kernels =3.1.1
   # TODO: Needs to not require pyqt
@@ -163,10 +172,13 @@ specs:
   - qdarkstyle =3.2.3
   - numba =0.62.1
   - cython =3.2.0
+  - joblib =1.5.2
   # I/O
   - pyxdf =1.17.1
   - openpyxl =3.1.5
   - xlrd =2.0.2
+  - nibabel =5.3.2
+  - pyarrow =22.0.0
   # Statistics
   - pingouin =0.5.5
   - statsmodels =0.14.5
@@ -177,14 +189,14 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.10.7
+  - matplotlib-base =3.10.8
   - tornado =6.5.2
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
   - ipympl =0.9.8
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.4.0
+  - plotly =6.5.0
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.8
@@ -195,17 +207,32 @@ specs:
   - trame-vuetify =3.1.0
   - termcolor =3.2.0
   - defusedxml =0.7.1
+  - imageio =2.73.0
+  - ipyevents =2.0.4
+  - ipython =9.7.0
+  - jinja2 =3.1.6
+  - jupyter_client =8.6.3
+  - nbclient =0.10.2
+  - nbformat =5.10.4
+  - pillow =12.0.0
+  - pyzmq =27.1.0
+  - traitlets =5.14.3
   # Development
-  - gh =2.83.0
+  - toml-sort
+  - pygments =2.19.2
+  - psutil =7.1.3
+  - memory_profiler =0.61.0
+  - gh =2.83.1
   - setuptools_scm =9.2.2
-  - pytest =9.0.0
+  - pytest =9.0.1
   - pytest-cov =7.0.0
   - pytest-qt =4.5.0
+  - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - flaky =3.8.1
   - pre-commit =4.4.0
-  - ruff =0.14.4
-  - uv =0.9.8
+  - ruff =0.14.5
+  - uv =0.9.10
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -219,14 +246,14 @@ specs:
   - vulture =2.14
   - grayskull =2.9.2
   - conda-build =25.9.0
-  - conda-smithy =3.53.0
+  - conda-smithy =3.53.1
   - constructor =3.13.0
   - menuinst =2.4.1
   - conda-standalone =24.11.0
   # Doc building
   - numpydoc =1.9.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =13.1.2
+  - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - python-graphviz =0.21
   - selenium =4.38.0
   - sphinx =8.2.3
@@ -235,15 +262,14 @@ specs:
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
+  - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2511.7
   # OS-specific
-  - git =2.51.2  # [win]
+  - git =2.52.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.0  # [osx]
-  # https://github.com/conda-forge/libffi-feedstock/issues/52
-  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
-  - pyobjc-framework-Cocoa =12.0  # [osx]
-  - pyobjc-framework-FSEvents =12.0  # [osx]
+  - pyobjc-core =12.1  # [osx]
+  - pyobjc-framework-Cocoa =12.1  # [osx]
+  - pyobjc-framework-FSEvents =12.1  # [osx]
 condarc:
   channels:
     - conda-forge
