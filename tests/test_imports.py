@@ -81,9 +81,7 @@ ver_map = {  # for __version__, need map from importable name to conda-forge lin
     "matplotlib": "matplotlib-base",
 }
 ignore = list(parsed.ignore) + [
-    "dcm2niix",  # binary
-    "scikit-learn",  # not the import name (added manually above)
-    "libgfortran5",  # C library
+    "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
 ]
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
