@@ -120,7 +120,7 @@ specs:
   - pyprep =0.5.0
   - python-picard =0.8
   - pybv =0.7.6
-  - edfio =0.4.10
+  - edfio =0.4.11
   - eeglabio =0.1.2
   - mffpy =0.10.0
   - openmeeg =2.5.15=*_3
