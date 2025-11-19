@@ -169,7 +169,7 @@ specs:
   - notebook =7.5.0
   - jupyterlab =4.4.10  # allow_outdated, needs notebook 7.5.0 update
   - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
-  - spyder-kernels =3.1.1
+  - spyder-kernels =3.1.2
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =6.1.0
