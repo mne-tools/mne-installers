@@ -79,7 +79,7 @@ specs:
   - mne-connectivity =0.7.0=*_1
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
-  - mne-features =0.3
+  - mne-features =0.3.1
   - mne-rsa =0.10
   - mne-ari =0.1.2
   - mne-icalabel =0.8.1
@@ -93,7 +93,7 @@ specs:
   - eeg_positions =2.1.2
   - curryreader =0.1.2
   # MRI
-  - fsleyes =1.16.2
+  - fsleyes =1.16.3
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
   - nilearn =0.12.1
@@ -160,7 +160,7 @@ specs:
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
-  - polars =1.35.1
+  - polars =1.35.2
   - numpy =2.3.5
   - scipy =1.16.3
   - openblas =0.3.30
@@ -237,8 +237,8 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.4.0
-  - ruff =0.14.5
-  - uv =0.9.10
+  - ruff =0.14.6
+  - uv =0.9.11
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -252,7 +252,7 @@ specs:
   - vulture =2.14
   - grayskull =2.9.2
   - conda-build =25.9.0
-  - conda-smithy =3.53.1
+  - conda-smithy =3.53.2
   - constructor =3.13.0
   - menuinst =2.4.1
   - conda-standalone =24.11.0
