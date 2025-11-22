@@ -134,7 +134,7 @@ pypi_to_conda = {
 }
 mne_dep_names = [pypi_to_conda.get(name, name) for name in mne_dep_names]
 # remove a few exceptions (toml-sort not on conda-forge, don't need others)
-for name in "sip tomli toml-sort".split():
+for name in "sip tomli toml-sort nest-asyncio2".split():
     mne_dep_names.pop(mne_dep_names.index(name))
 # add conda-forge ones
 meta_str = get_github_file("recipe/meta.yaml", repo="conda-forge/mne-feedstock")
