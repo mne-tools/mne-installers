@@ -52,6 +52,7 @@ deps = [
     and not dep.startswith("sphinxcontrib-towncrier")
     and not dep.startswith("toml-sort")
     and not dep.startswith("tomlkit")
+    and not dep.startswith("nest-asyncio2")
     # for some reason vtk is not detected properly on Windows even though it imports
     and not (platform.system() == "Windows" and dep.startswith("vtk"))
 ]
