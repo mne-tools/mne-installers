@@ -251,8 +251,8 @@ specs:
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =2.9.2
-  - conda-build =25.9.0
-  - conda-smithy =3.53.2
+  - conda-build =25.11.0
+  - conda-smithy =3.53.3
   - constructor =3.13.0
   - menuinst =2.4.1
   - conda-standalone =24.11.0
