@@ -60,7 +60,7 @@ specs:
   - python =3.13.9
   - pip =25.3
   - wheel =0.45.1
-  - conda =25.9.1
+  - conda =25.11.0
   - mamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -236,7 +236,7 @@ specs:
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
-  - pre-commit =4.4.0
+  - pre-commit =4.5.0
   - ruff =0.14.6
   - uv =0.9.11
   - check-manifest =0.51
@@ -269,7 +269,7 @@ specs:
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
   - sphinxcontrib-towncrier =0.5.0a0
-  - intersphinx-registry =0.2511.7
+  - intersphinx-registry =0.2511.25
   # OS-specific
   - git =2.52.0  # [win]
   - make =4.4.1  # [win]
