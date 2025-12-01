@@ -118,7 +118,7 @@ specs:
   # other
   - pyriemann =0.9
   - pyprep =0.5.0
-  - python-picard =0.8
+  - python-picard =0.8.1
   - pybv =0.7.6
   - edfio =0.4.11
   - eeglabio =0.1.2
@@ -176,7 +176,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.62.1
-  - cython =3.2.0
+  - cython =3.2.2
   - joblib =1.5.2
   # I/O
   - pyxdf =1.17.1
@@ -190,7 +190,7 @@ specs:
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
-  - astropy =7.1.1
+  - astropy =7.2.0
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
@@ -237,8 +237,8 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.0
-  - ruff =0.14.6
-  - uv =0.9.11
+  - ruff =0.14.7
+  - uv =0.9.13
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -247,7 +247,7 @@ specs:
   - twine =6.2.0
   - hatchling =1.27.0
   - hatch-vcs =0.5.0
-  - mypy =1.18.2
+  - mypy =1.19.0
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =2.9.2
