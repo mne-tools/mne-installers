@@ -238,7 +238,7 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.0
   - ruff =0.14.7
-  - uv =0.9.13
+  - uv =0.9.14
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
