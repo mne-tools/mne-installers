@@ -57,7 +57,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.9
+  - python =3.14.2
   - pip =25.3
   - wheel =0.45.1
   - conda =25.11.0
@@ -124,7 +124,7 @@ specs:
   - eeglabio =0.1.2
   - mffpy =0.10.0
   - openmeeg =2.5.15=*_3
-  - python-neo =0.14.1
+  - python-neo =0.14.3
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
@@ -186,7 +186,7 @@ specs:
   - pyarrow =21.0.0  # allow_outdated, needs qt6-main bump
   # Statistics
   - pingouin =0.5.5
-  - statsmodels =0.14.5
+  - statsmodels =0.14.6
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
@@ -210,12 +210,12 @@ specs:
   - pyvistaqt =0.11.3
   - trame =3.12.0
   - trame-vtk =2.10.0
-  - trame-vuetify =3.1.0
+  - trame-vuetify =3.2.0
   - termcolor =3.2.0
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.7.0
+  - ipython =9.8.0
   - jinja2 =3.1.6
   - jupyter_client =8.6.3
   - nbclient =0.10.2
@@ -231,14 +231,14 @@ specs:
   - memory_profiler =0.61.0
   - gh =2.83.1
   - setuptools_scm =9.2.2
-  - pytest =9.0.1
+  - pytest =9.0.2
   - pytest-cov =7.0.0
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.0
-  - ruff =0.14.7
-  - uv =0.9.14
+  - ruff =0.14.8
+  - uv =0.9.16
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -251,20 +251,20 @@ specs:
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =2.9.2
-  - conda-build =25.11.0
+  - conda-build =25.11.1
   - conda-smithy =3.53.3
-  - constructor =3.13.0
+  - constructor =3.14.0
   - menuinst =2.4.1
   - conda-standalone =24.11.0
   # Doc building
-  - numpydoc =1.9.0
+  - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
   - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - python-graphviz =0.21
-  - selenium =4.38.0
-  - sphinx =8.2.3
+  - selenium =4.39.0
+  - sphinx =9.0.4
   - sphinx-design =0.6.1
-  - sphinx-gallery =0.19.0
+  - sphinx-gallery =0.20.0
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
