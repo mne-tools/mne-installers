@@ -262,7 +262,7 @@ specs:
   - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - python-graphviz =0.21
   - selenium =4.39.0
-  - sphinx =9.0.4
+  - sphinx =8.2.3  # allow_outdated, needs sphinx-design update
   - sphinx-design =0.6.1
   - sphinx-gallery =0.20.0
   - sphinxcontrib-bibtex =2.6.5
