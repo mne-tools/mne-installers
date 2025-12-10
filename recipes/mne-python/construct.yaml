@@ -154,13 +154,13 @@ specs:
   - numexpr =2.14.1
   - antropy =0.1.9
   - threadpoolctl =3.6.0
-  - scikit-learn =1.7.2
+  - scikit-learn =1.8.0
   - mayavi =4.8.3=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
-  - polars =1.35.2
+  - polars =1.36.1
   - numpy =2.3.5
   - scipy =1.16.3
   - openblas =0.3.30
@@ -175,7 +175,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.62.1
+  - numba =0.63.0
   - cython =3.2.2
   - joblib =1.5.2
   # I/O
@@ -217,7 +217,7 @@ specs:
   - ipyevents =2.0.4
   - ipython =9.8.0
   - jinja2 =3.1.6
-  - jupyter_client =8.6.3
+  - jupyter_client =8.7.0
   - nbclient =0.10.2
   - nbformat =5.10.4
   - pillow =12.0.0
@@ -238,7 +238,7 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.0
   - ruff =0.14.8
-  - uv =0.9.16
+  - uv =0.9.17
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
