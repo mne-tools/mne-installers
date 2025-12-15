@@ -175,7 +175,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.63.1
+  - numba =0.63.0  # allow_outdated, https://github.com/conda-forge/numba-feedstock/issues/177
   - cython =3.2.3
   - joblib =1.5.3
   # I/O
