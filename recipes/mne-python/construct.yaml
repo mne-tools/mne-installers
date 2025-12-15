@@ -80,7 +80,7 @@ specs:
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
   - mne-features =0.3.1
-  - mne-rsa =0.10
+  - mne-rsa =1.0
   - mne-ari =0.1.2
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
@@ -175,9 +175,9 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.63.0
-  - cython =3.2.2
-  - joblib =1.5.2
+  - numba =0.63.0  # allow_outdated, https://github.com/conda-forge/numba-feedstock/issues/177
+  - cython =3.2.3
+  - joblib =1.5.3
   # I/O
   - pyxdf =1.17.1
   - openpyxl =3.1.5
@@ -195,7 +195,7 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.8
-  - tornado =6.5.2
+  - tornado =6.5.3
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
   - pcre2 =10.45  # allow_outdated, needs qt6-main bump
@@ -229,7 +229,7 @@ specs:
   - pygments =2.19.2
   - psutil =7.1.3
   - memory_profiler =0.61.0
-  - gh =2.83.1
+  - gh =2.83.2
   - setuptools_scm =9.2.2
   - pytest =9.0.2
   - pytest-cov =7.0.0
@@ -237,7 +237,7 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.0
-  - ruff =0.14.8
+  - ruff =0.14.9
   - uv =0.9.17
   - check-manifest =0.51
   - codespell =2.4.1
@@ -247,14 +247,14 @@ specs:
   - twine =6.2.0
   - hatchling =1.27.0
   - hatch-vcs =0.5.0
-  - mypy =1.19.0
+  - mypy =1.19.1
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =2.9.2
   - conda-build =25.11.1
   - conda-smithy =3.53.3
   - constructor =3.14.0
-  - menuinst =2.4.1
+  - menuinst =2.4.2
   - conda-standalone =24.11.0
   # Doc building
   - numpydoc =1.10.0
