@@ -93,6 +93,7 @@ specs:
   - eeg_positions =2.1.2
   - curryreader =0.1.2
   # MRI
+  - surfa =0.6.3
   - fsleyes =1.16.3
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
