@@ -93,6 +93,7 @@ specs:
   - eeg_positions =2.1.2
   - curryreader =0.1.2
   # MRI
+  - surfa =0.6.3
   - fsleyes =1.16.3
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
@@ -236,9 +237,9 @@ specs:
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
-  - pre-commit =4.5.0
-  - ruff =0.14.9
-  - uv =0.9.17
+  - pre-commit =4.5.1
+  - ruff =0.14.10
+  - uv =0.9.18
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -252,7 +253,7 @@ specs:
   - vulture =2.14
   - grayskull =2.9.2
   - conda-build =25.11.1
-  - conda-smithy =3.53.3
+  - conda-smithy =3.54.1
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =24.11.0
