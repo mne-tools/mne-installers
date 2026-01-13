@@ -221,7 +221,7 @@ specs:
   - jupyter_client =8.8.0
   - nbclient =0.10.4
   - nbformat =5.10.4
-  - pillow =12.1.0
+  - pillow =12.0.0  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - pyzmq =27.1.0
   - traitlets =5.14.3
   - pyopengl =3.1.10
