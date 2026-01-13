@@ -162,7 +162,7 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3
   - polars =1.37.0
-  - numpy =2.4.1
+  - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.0
   - openblas =0.3.30
   - libblas =3.11.0=*openblas
