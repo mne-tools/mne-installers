@@ -109,7 +109,7 @@ specs:
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2025.2.0
+  - openneuro-py =2026.1.0
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.6.5
@@ -164,7 +164,7 @@ specs:
   - polars =1.37.1
   - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.0
-  - openblas =0.3.30
+  - openblas =0.3.30  # allow_outdated, needs libblas update
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
   - notebook =7.5.2
@@ -203,11 +203,11 @@ specs:
   - ipympl =0.9.8
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.5.1
+  - plotly =6.5.2
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.8
-  - pyvista =0.46.4
+  - pyvista =0.46.5
   - pyvistaqt =0.11.3
   - trame =3.12.0
   - trame-vtk =2.10.2
@@ -230,7 +230,7 @@ specs:
   - pygments =2.19.2
   - psutil =7.2.1
   - memory_profiler =0.61.0
-  - gh =2.83.2
+  - gh =2.85.0
   - setuptools_scm =9.2.2
   - pytest =9.0.2
   - pytest-cov =7.0.0
@@ -238,8 +238,8 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.14.11
-  - uv =0.9.24
+  - ruff =0.14.13
+  - uv =0.9.26
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -251,7 +251,7 @@ specs:
   - mypy =1.19.1
   - towncrier =25.8.0
   - vulture =2.14
-  - grayskull =2.9.2
+  - grayskull =3.0.1
   - conda-build =25.11.1
   - conda-smithy =3.54.1
   - constructor =3.14.0
