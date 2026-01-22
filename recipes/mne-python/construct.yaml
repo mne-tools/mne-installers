@@ -257,6 +257,11 @@ specs:
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =24.11.0
+  - meson =1.10.1  # matplotlib, scipy
+  - meson-python =0.19.0
+  - pybind11 =2.13.6
+  - gfortran =15.2.0  # scipy
+  - pythran =0.18.1
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
