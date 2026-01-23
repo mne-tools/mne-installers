@@ -59,7 +59,7 @@ specs:
   # Python
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
   - pip =25.3
-  - wheel =0.46.2
+  - wheel =0.46.3
   - conda =25.11.1
   - mamba =2.3.2  # allow_outdated, vtk conflict
   - libmamba =2.3.2  # allow_outdated, vtk conflict
