@@ -59,7 +59,7 @@ specs:
   # Python
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
   - pip =25.3
-  - wheel =0.45.1
+  - wheel =0.46.2
   - conda =25.11.1
   - mamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
@@ -121,8 +121,8 @@ specs:
   - pyprep =0.5.0
   - python-picard =0.8.1
   - pybv =0.7.6
-  - edfio =0.4.11
-  - eeglabio =0.1.2
+  - edfio =0.4.12
+  - eeglabio =0.1.3
   - mffpy =0.10.0
   - openmeeg =2.5.15=*_3
   - python-neo =0.14.3
@@ -146,7 +146,7 @@ specs:
   - decorator =5.2.1
   - filelock =3.20.3
   - lazy-loader =0.4
-  - packaging =25.0
+  - packaging =26.0
   - pooch =1.8.2
   - tqdm =4.67.1
   - h5py =3.15.1
@@ -160,7 +160,7 @@ specs:
   - traitsui =8.0.0
   - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
-  - pandas =2.3.3
+  - pandas =3.0.0
   - polars =1.37.1
   - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.0
@@ -180,7 +180,7 @@ specs:
   - cython =3.2.3
   - joblib =1.5.3
   # I/O
-  - pyxdf =1.17.2
+  - pyxdf =1.17.3
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.3.2
@@ -230,7 +230,7 @@ specs:
   - pygments =2.19.2
   - psutil =7.2.1
   - memory_profiler =0.61.0
-  - gh =2.85.0
+  - gh =2.86.0
   - setuptools_scm =9.2.2
   - pytest =9.0.2
   - pytest-cov =7.0.0
@@ -251,7 +251,7 @@ specs:
   - mypy =1.19.1
   - towncrier =25.8.0
   - vulture =2.14
-  - grayskull =3.0.1
+  - grayskull =3.0.2
   - conda-build =25.11.1
   - conda-smithy =3.54.1
   - constructor =3.14.0
@@ -259,7 +259,7 @@ specs:
   - conda-standalone =24.11.0
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
-  - pybind11 =2.13.6
+  - pybind11 =3.0.1
   - gfortran =15.2.0  # scipy
   - pythran =0.18.1
   # Doc building
@@ -269,7 +269,7 @@ specs:
   - python-graphviz =0.21
   - selenium =4.38.0  # allow_outdated, needs qt6-main bump
   - sphinx =8.2.3  # allow_outdated, needs sphinx-design update
-  - sphinx-design =0.6.1
+  - sphinx-design =0.7.0
   - sphinx-gallery =0.20.0
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
