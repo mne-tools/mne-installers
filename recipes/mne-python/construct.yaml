@@ -62,6 +62,7 @@ specs:
   - wheel =0.46.2
   - conda =25.11.1
   - mamba =2.3.2  # allow_outdated, vtk conflict
+  - libmamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -259,7 +260,7 @@ specs:
   - conda-standalone =24.11.0
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
-  - pybind11 =3.0.1
+  - pybind11 =2.13.6  # allow_outdated, vtk conflict
   - gfortran =15.2.0  # scipy
   - pythran =0.18.1
   # Doc building
