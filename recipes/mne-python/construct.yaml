@@ -168,8 +168,8 @@ specs:
   - openblas =0.3.30  # allow_outdated, needs libblas update
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
-  - notebook =7.5.2
-  - jupyterlab =4.5.2
+  - notebook =7.5.3
+  - jupyterlab =4.5.3
   - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
   - spyder-kernels =3.1.2
   # TODO: Needs to not require pyqt
@@ -201,7 +201,7 @@ specs:
   - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
   - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
   - pcre2 =10.45  # allow_outdated, needs qt6-main bump
-  - ipympl =0.9.8
+  - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.5.2
@@ -239,7 +239,7 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.14.13
+  - ruff =0.14.14
   - uv =0.9.26
   - check-manifest =0.51
   - codespell =2.4.1
@@ -252,7 +252,7 @@ specs:
   - mypy =1.19.1
   - towncrier =25.8.0
   - vulture =2.14
-  - grayskull =3.0.2
+  - grayskull =3.1.0
   - conda-build =25.11.1
   - conda-smithy =3.54.1
   - constructor =3.14.0
