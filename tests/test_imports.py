@@ -67,8 +67,10 @@ if platform.system() == "Darwin":
 
 # Now do the importing and version checking
 bad_ver = {
-    "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
+    # as of 2026/01 merged but no release:
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
+    "mne-videobrowser",  # https://github.com/mne-tools/mne-installers/pull/409#issuecomment-3824786744
+    # 1yo as of 2026/02, maybe dead project? :
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "Foundation",
 }
@@ -83,6 +85,9 @@ ver_map = {  # for __version__, need map from importable name to conda-forge lin
 ignore = list(parsed.ignore) + [
     "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
 ]
+if platform.platform() == "Darwin" and platform.machine() == "x86_64":
+    ignore += ["mne-videobrowser"]  # issue with opencv on macOS x86_64
+
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
         continue
