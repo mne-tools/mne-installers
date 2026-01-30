@@ -85,7 +85,7 @@ ver_map = {  # for __version__, need map from importable name to conda-forge lin
 ignore = list(parsed.ignore) + [
     "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
 ]
-if platform.platform() == "Darwin" and platform.machine() == "x86_64":
+if platform.system() == "Darwin" and platform.machine() == "x86_64":
     ignore += ["mne-videobrowser"]  # issue with opencv on macOS x86_64
 
 for mod in tqdm(mods, desc="Imports", unit="module"):
