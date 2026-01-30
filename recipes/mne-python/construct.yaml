@@ -212,7 +212,7 @@ specs:
   - pyvista =0.46.5
   - pyvistaqt =0.11.3
   - trame =3.12.0
-  - trame-vtk =2.10.2
+  - trame-vtk =2.10.3
   - trame-vuetify =3.2.0
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -230,7 +230,7 @@ specs:
   - pyqtgraph =0.14.0
   # Development
   - pygments =2.19.2
-  - psutil =7.2.1
+  - psutil =7.2.2
   - memory_profiler =0.61.0
   - gh =2.86.0
   - setuptools_scm =9.2.2
@@ -241,7 +241,7 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
   - ruff =0.14.14
-  - uv =0.9.26
+  - uv =0.9.28
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
