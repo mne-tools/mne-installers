@@ -145,7 +145,7 @@ specs:
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
   - libgfortran5 =15.2.0
-  - opencv =4.13.0  # from mne-videobrowser
+  - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
   - decorator =5.2.1
   - filelock =3.20.3
   - lazy-loader =0.4
