@@ -58,7 +58,7 @@ channels:
 specs:
   # Python
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
-  - pip =25.3
+  - pip =26.0
   - wheel =0.46.3
   - conda =25.11.1
   - mamba =2.3.2  # allow_outdated, vtk conflict
@@ -143,13 +143,14 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - noqt5 =1.0
   - libgfortran5 =15.2.0
   - decorator =5.2.1
   - filelock =3.20.3
   - lazy-loader =0.4
   - packaging =26.0
-  - pooch =1.8.2
-  - tqdm =4.67.1
+  - pooch =1.9.0
+  - tqdm =4.67.2
   - h5py =3.15.1
   - h5io =0.2.5
   - pymatreader =1.1.0
@@ -211,7 +212,7 @@ specs:
   - pyvista =0.46.5
   - pyvistaqt =0.11.3
   - trame =3.12.0
-  - trame-vtk =2.10.2
+  - trame-vtk =2.10.3
   - trame-vuetify =3.2.0
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -229,7 +230,7 @@ specs:
   - pyqtgraph =0.14.0
   # Development
   - pygments =2.19.2
-  - psutil =7.2.1
+  - psutil =7.2.2
   - memory_profiler =0.61.0
   - gh =2.86.0
   - setuptools_scm =9.2.2
@@ -240,7 +241,7 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
   - ruff =0.14.14
-  - uv =0.9.26
+  - uv =0.9.28
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -253,8 +254,8 @@ specs:
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =3.1.0
-  - conda-build =25.11.1
-  - conda-smithy =3.54.1
+  - conda-build =25.11.1  # allow_outdated, needs libffi update
+  - conda-smithy =3.54.2
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =24.11.0

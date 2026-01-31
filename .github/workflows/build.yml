@@ -24,8 +24,8 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   # Build installers
-  build_menu:
-    name: Build menu package
+  build_local:
+    name: Build local packages
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,19 +44,19 @@ jobs:
           fi
       - uses: mamba-org/setup-micromamba@v2
         with:
-          environment-name: menubuild
+          environment-name: localbuild
           create-args: python=3.13 conda-build
       - run: ./tools/run_conda_build.sh
         timeout-minutes: 5
       - uses: actions/upload-artifact@v6
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
           retention-days: 1
 
   build_macos:
     name: Build (${{ matrix.os }})
-    needs: [build_menu]
+    needs: [build_local]
     strategy:
       fail-fast: false
       matrix:
@@ -70,7 +70,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: mxschmitt/action-tmate@v3
-        if: needs.build_menu.outputs.enable-ssh == 'true'
+        if: needs.build_local.outputs.enable-ssh == 'true'
         timeout-minutes: 20
         with:
           detached: true
@@ -79,7 +79,7 @@ jobs:
           environment-file: environment.yml
       - uses: actions/download-artifact@v7
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
       - run: ./tools/extract_version.sh
       - run: ./tools/macos_install_certificates.sh
@@ -116,7 +116,7 @@ jobs:
 
   build_linux:
     name: Build (${{ matrix.os }})
-    needs: [build_menu]
+    needs: [build_local]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -128,7 +128,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: mxschmitt/action-tmate@v3
-        if: needs.build_menu.outputs.enable-ssh == 'true'
+        if: needs.build_local.outputs.enable-ssh == 'true'
         timeout-minutes: 20
         with:
           detached: true
@@ -137,7 +137,7 @@ jobs:
           environment-file: environment.yml
       - uses: actions/download-artifact@v7
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
@@ -151,7 +151,7 @@ jobs:
 
   build_windows:
     name: Build (${{ matrix.os }})
-    needs: [build_menu]
+    needs: [build_local]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -163,7 +163,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: mxschmitt/action-tmate@v3
-        if: needs.build_menu.outputs.enable-ssh == 'true'
+        if: needs.build_local.outputs.enable-ssh == 'true'
         timeout-minutes: 20
         with:
           detached: true
@@ -172,7 +172,7 @@ jobs:
           environment-file: environment.yml
       - uses: actions/download-artifact@v7
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
       - run: conda install -c conda-forge -y "nsis==3.08"
       - run: ./tools/extract_version.sh
