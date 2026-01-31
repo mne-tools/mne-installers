@@ -119,3 +119,8 @@ echo "::endgroup::"
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
 echo "::endgroup::"
+echo "::group::Testing that all packages are installed that MNE-Python devs would need"
+conda activate mne-kit-gui
+python -u tests/test_mne_kit_gui.py
+conda deactivate
+echo "::endgroup::"
