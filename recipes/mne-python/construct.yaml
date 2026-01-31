@@ -196,7 +196,7 @@ specs:
   - matplotlib-base =3.10.8
   - tornado =6.5.4
   - pyside6 =6.10.1
-  - qt6-main =6.9.0
+  - qt6-main =6.10.1
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
