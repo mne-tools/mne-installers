@@ -144,6 +144,7 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - noqt5 =1.0
   - libgfortran5 =15.2.0
   - decorator =5.2.1
   - filelock =3.20.3
