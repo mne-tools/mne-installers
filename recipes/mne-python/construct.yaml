@@ -58,7 +58,7 @@ channels:
 specs:
   # Python
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
-  - pip =25.3
+  - pip =26.0
   - wheel =0.46.3
   - conda =25.11.1
   - mamba =2.3.2  # allow_outdated, vtk conflict
@@ -144,14 +144,15 @@ specs:
   # <<< END RELATED SOFTWARE LIST >>>
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
+  - noqt5 =1.0
   - libgfortran5 =15.2.0
   - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
   - decorator =5.2.1
   - filelock =3.20.3
   - lazy-loader =0.4
   - packaging =26.0
-  - pooch =1.8.2
-  - tqdm =4.67.1
+  - pooch =1.9.0
+  - tqdm =4.67.2
   - h5py =3.15.1
   - h5io =0.2.5
   - pymatreader =1.1.0
@@ -255,8 +256,8 @@ specs:
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =3.1.0
-  - conda-build =25.11.1
-  - conda-smithy =3.54.1
+  - conda-build =25.11.1  # allow_outdated, needs libffi update
+  - conda-smithy =3.54.2
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =24.11.0
