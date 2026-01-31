@@ -1,0 +1,28 @@
+package:
+  name: "noqt5"
+  version: "1.0.0"
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - echo "Noop"
+requirements:
+  run_constrained:
+    - qt-main <0.a0
+
+about:
+  home: http://mne.tools
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  summary: Ensure Qt5 is not installed by conda
+  description: |
+    This package prevents conda from installing qt-main, similar to the "nomkl" package.
+  doc_url: http://mne.tools
+  dev_url: https://github.com/mne-tools/mne-installer
+
+extra:
+  recipe-maintainers:
+    - larsoner
+    - hoechenberger

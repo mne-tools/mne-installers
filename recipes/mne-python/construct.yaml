@@ -69,6 +69,7 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   - mne =1.11.0=*_pyside6_*_100
   - mne-installer-menu =1.11.0=*  # locally_built
+  - noqt5 =1.0.0=*  # locally_built
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
