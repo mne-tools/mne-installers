@@ -250,7 +250,7 @@ specs:
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =3.1.0
-  - conda-build =25.11.1  # allow_outdated
+  - conda-build =25.11.1  # allow_outdated, https://github.com/conda-forge/conda-build-feedstock/issues/269
   - conda-smithy =3.54.2
   - constructor =3.14.0
   - menuinst =2.4.2
