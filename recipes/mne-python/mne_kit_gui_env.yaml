@@ -8,8 +8,8 @@ dependencies:
   - mayavi =4.8.3=pyside6_*
   - traitsui =8.0.0
   - pyface =8.0.0
-  - pyside6 =6.9.0
-  - qt6-main =6.9.0
+  - pyside6 =6.9.1
+  - qt6-main =6.9.1
   - vtk-base =9.4.2
   - vtk =9.4.2
   - noqt5 =1.0.0
