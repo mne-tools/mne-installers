@@ -12,3 +12,4 @@ dependencies:
   - qt6-main =6.9.0
   - vtk-base =9.4.2
   - vtk =9.4.2
+  - noqt5 =1.0.0
