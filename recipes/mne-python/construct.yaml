@@ -280,6 +280,9 @@ specs:
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
+extra_envs:
+  mne-kit-gui:
+    environment_file: mne_kit_gui_env.yaml
 condarc:
   channels:
     - conda-forge

@@ -10,6 +10,10 @@ echo "::group::conda info"
 conda info
 echo "::endgroup::"
 
+echo "::group::conda info --envs"
+conda info --envs
+echo "::endgroup::"
+
 echo "::group::conda list"
 conda list
 echo "::endgroup::"
@@ -104,23 +108,29 @@ echo "::endgroup::"
 echo "::group::Testing mne sys_info"
 mne sys_info
 echo "::endgroup::"
+
 echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
 echo "::endgroup::"
+
 echo "::group::Testing GUIs"
 python -u tests/test_gui.py
 echo "::endgroup::"
+
 echo "::group::Testing notebooks"
 python -u tests/test_notebook.py
 echo "::endgroup::"
-echo "::group::Testing that the JSON versions are correct"
-python -u tests/test_json_versions.py
-echo "::endgroup::"
-echo "::group::Testing that all packages are installed that MNE-Python devs would need"
-python -u tests/test_dev_installed.py
-echo "::endgroup::"
-echo "::group::Testing that all packages are installed that MNE-Python devs would need"
+
+echo "::group::Testing MNE-KIT-GUI env + package"
 conda activate mne-kit-gui
 python -u tests/test_mne_kit_gui.py
 conda deactivate
+echo "::endgroup::"
+
+echo "::group::Testing that the JSON versions are correct"
+python -u tests/test_json_versions.py
+echo "::endgroup::"
+
+echo "::group::Testing that all packages are installed that MNE-Python devs would need"
+python -u tests/test_dev_installed.py
 echo "::endgroup::"
