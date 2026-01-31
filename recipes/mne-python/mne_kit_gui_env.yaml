@@ -1,0 +1,14 @@
+name: mne-kit-gui
+channels:
+  - conda-forge
+dependencies:
+  - python =3.13
+  - mne-kit-gui
+  - numpy <2.4
+  - mayavi =4.8.3=pyside6_*
+  - traitsui =8.0.0
+  - pyface =8.0.0
+  - pyside6 =6.9.0
+  - qt6-main =6.9.0
+  - vtk-base =9.4.2
+  - vtk =9.4.2
