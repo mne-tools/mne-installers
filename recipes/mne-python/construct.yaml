@@ -282,7 +282,20 @@ specs:
   - pyobjc-framework-FSEvents =12.1  # [osx]
 extra_envs:
   mne-kit-gui:
-    environment_file: mne_kit_gui_env.yaml
+    channels:
+      - conda-forge
+    specs:
+      - python =3.13
+      - mne-kit-gui
+      - numpy <2.4
+      - mayavi =4.8.3=pyside6_*
+      - traitsui =8.0.0
+      - pyface =8.0.0
+      - pyside6 =6.9.1
+      - qt6-main =6.9.1
+      - vtk-base =9.4.2
+      - vtk =9.4.2
+      - noqt5 =1.0.0
 condarc:
   channels:
     - conda-forge
