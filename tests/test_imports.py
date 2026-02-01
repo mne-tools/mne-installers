@@ -49,6 +49,8 @@ lines = (
 )
 lines = [line.strip() for line in lines]
 all_lines = lines
+# need to limit to those before extra_envs
+all_lines = all_lines[: all_lines.index("extra_envs:")]
 sidx = lines.index("# <<< BEGIN RELATED SOFTWARE LIST >>>")
 eidx = lines.index("# <<< END RELATED SOFTWARE LIST >>>")
 lines = [line for line in lines[sidx : eidx + 1] if not line.startswith("#")]
