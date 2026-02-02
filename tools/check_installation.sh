@@ -46,6 +46,7 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
     test -f /Applications/MNE-Python/Icon$'\r' || exit 1
     export SKIP_MNE_KIT_GUI_TESTS=1
+    export SKIP_PYVISTAQT_TESTS=1
 elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
