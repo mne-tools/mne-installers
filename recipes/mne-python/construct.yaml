@@ -60,7 +60,7 @@ specs:
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
   - pip =26.0
   - wheel =0.46.3
-  - conda =25.11.1
+  - conda =26.1.0
   - mamba =2.5.0
   - libmamba =2.5.0
   # MNE ecosystem
@@ -214,7 +214,7 @@ specs:
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.9.0
+  - ipython =9.10.0
   - jinja2 =3.1.6
   - jupyter_client =8.8.0
   - nbclient =0.10.4
