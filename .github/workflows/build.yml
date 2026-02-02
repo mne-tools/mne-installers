@@ -266,7 +266,7 @@ jobs:
       matrix:
         os: [windows-2022, windows-2025]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 50
+    timeout-minutes: 80
     defaults:
       run:
         shell: bash -el {0}
@@ -278,7 +278,7 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
-        timeout-minutes: 50
+        timeout-minutes: 70
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v6
