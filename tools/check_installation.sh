@@ -46,7 +46,6 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Checking that the custom icon was set on the MNE folder in ${APP_DIR}"
     test -f /Applications/MNE-Python/Icon$'\r' || exit 1
     export SKIP_MNE_KIT_GUI_TESTS=1
-    export SKIP_PYVISTAQT_TESTS=1
 elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
@@ -70,11 +69,10 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
     popd
     if [[ `grep "24.04" /etc/lsb-release` ]] || [[ `grep "20.04" /etc/lsb-release` ]]; then
-        export SKIP_PYVISTAQT_TESTS=1
         export SKIP_NOTEBOOK_TESTS=1
     fi
 else
-    export SKIP_PYVISTAQT_TESTS=1
+    pass
 fi
 echo "::endgroup::"
 
