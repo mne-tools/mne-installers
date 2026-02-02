@@ -22,7 +22,7 @@ echo "::group::pip list"
 pip list
 echo "::endgroup::"
 
-echo "::group::Platform specific tests"
+echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
     # https://unix.stackexchange.com/a/7733
@@ -72,7 +72,7 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
         export SKIP_NOTEBOOK_TESTS=1
     fi
 else
-    # Noop
+    test "$MNE_MACHINE" == "Windows" || exit 1
 fi
 echo "::endgroup::"
 
