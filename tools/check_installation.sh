@@ -72,7 +72,7 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
         export SKIP_NOTEBOOK_TESTS=1
     fi
 else
-    pass
+    # Noop
 fi
 echo "::endgroup::"
 
