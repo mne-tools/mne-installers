@@ -61,13 +61,13 @@ specs:
   - pip =26.0
   - wheel =0.46.3
   - conda =26.1.0
-  - mamba =2.5.0
-  - libmamba =2.5.0
+  - mamba =2.3.2  # allow_outdated, vtk conflict
+  - libmamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.11.0=*_pyside6_*_100
+  - mne =1.11.0=*_pyside6_*
   - mne-installer-menu =1.11.0=*  # locally_built
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
@@ -182,7 +182,7 @@ specs:
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.3.2
-  - pyarrow =23.0.0
+  - pyarrow =21.0.0  # allow_outdated, needs qt6-main bump
   # Statistics
   - pingouin =0.5.5
   - statsmodels =0.14.6
@@ -195,15 +195,15 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.8
   - tornado =6.5.4
-  - pyside6 =6.10.1
-  - qt6-main =6.10.1
-  - pcre2 =10.47
+  - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
+  - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
+  - pcre2 =10.45  # allow_outdated, needs qt6-main bump
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.5.2
-  - vtk-base =9.5.2
-  - vtk =9.5.2
+  - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
+  - vtk =9.4.2  # allow_outdated
   - ipywidgets =8.1.8
   - pyvista =0.46.5
   - pyvistaqt =0.11.3
@@ -219,7 +219,7 @@ specs:
   - jupyter_client =8.8.0
   - nbclient =0.10.4
   - nbformat =5.10.4
-  - pillow =12.1.0
+  - pillow =12.0.0  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - pyzmq =27.1.0
   - traitlets =5.14.3
   - pyopengl =3.1.10
@@ -250,23 +250,23 @@ specs:
   - towncrier =25.8.0
   - vulture =2.14
   - grayskull =3.1.0
-  - conda-build =26.1.0
+  - conda-build =25.11.1  # allow_outdated, needs libffi update
   - conda-smithy =3.54.2
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =24.11.0
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
-  - pybind11 =3.0.1
+  - pybind11 =2.13.6  # allow_outdated, vtk conflict
   - gfortran =15.2.0  # scipy
   - pythran =0.18.1
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =14.1.2
+  - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - python-graphviz =0.21
-  - selenium =4.40.0
-  - sphinx =9.1.0
+  - selenium =4.38.0  # allow_outdated, needs qt6-main bump
+  - sphinx =8.2.3  # allow_outdated, needs sphinx-design update
   - sphinx-design =0.7.0
   - sphinx-gallery =0.20.0
   - sphinxcontrib-bibtex =2.6.5
@@ -277,9 +277,12 @@ specs:
   # OS-specific
   - git =2.52.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.1  # [osx]
-  - pyobjc-framework-Cocoa =12.1  # [osx]
-  - pyobjc-framework-FSEvents =12.1  # [osx]
+  # https://github.com/conda-forge/libffi-feedstock/issues/52
+  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
+  # 12.1+ requires libffi 3.5.2+
+  - pyobjc-core =12.0  # [osx]  # allow_outdated
+  - pyobjc-framework-Cocoa =12.0  # [osx]  # allow_outdated
+  - pyobjc-framework-FSEvents =12.0  # [osx]  # allow_outdated
 extra_envs:
   mne-kit-gui:
     channels:
