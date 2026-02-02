@@ -60,7 +60,7 @@ specs:
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
   - pip =26.0
   - wheel =0.46.3
-  - conda =25.11.1
+  - conda =26.1.0
   - mamba =2.3.2  # allow_outdated, vtk conflict
   - libmamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
