@@ -67,7 +67,7 @@ specs:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.11.0=*_pyside6_*_100
+  - mne =1.11.0=*_pyside6_*
   - mne-installer-menu =1.11.0=*  # locally_built
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
@@ -86,7 +86,6 @@ specs:
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.12.0
-  - mne-kit-gui =1.3.0
   - autoreject =0.4.3
   - antio =0.6.1
   - wfdb =4.3.0
@@ -158,9 +157,6 @@ specs:
   - antropy =0.1.9
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
-  - mayavi =4.8.3=pyside6_*
-  - traitsui =8.0.0
-  - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, wfdb https://github.com/MIT-LCP/wfdb-python/issues/560
   - polars =1.37.1
@@ -287,6 +283,22 @@ specs:
   - pyobjc-core =12.0  # [osx]  # allow_outdated
   - pyobjc-framework-Cocoa =12.0  # [osx]  # allow_outdated
   - pyobjc-framework-FSEvents =12.0  # [osx]  # allow_outdated
+extra_envs:
+  mne-kit-gui:
+    channels:
+      - conda-forge
+    specs:
+      - python =3.13
+      - mne-kit-gui
+      - numpy <2.4
+      - mayavi =4.8.3=pyside6_*
+      - traitsui =8.0.0
+      - pyface =8.0.0
+      - pyside6 =6.9.1
+      - qt6-main =6.9.1
+      - vtk-base =9.4.2
+      - vtk =9.4.2
+      - noqt5 =1.0.0
 condarc:
   channels:
     - conda-forge
