@@ -158,7 +158,7 @@ specs:
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
   - imageio-ffmpeg =0.6.0
-  - pandas =2.3.3
+  - pandas =3.0.0
   - polars =1.37.1
   - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.0
