@@ -30,7 +30,7 @@ recipe = construct_yaml_path.read_text(encoding="utf-8")
 lines = [line.strip() for line in recipe.splitlines()]
 lines = [
     line
-    for line in lines[lines.index("specs:") + 1 : lines.index("condarc:")]
+    for line in lines[lines.index("specs:") + 1 : lines.index("extra_envs:")]
     if line and not line.startswith("#")
 ]
 for line in lines:
