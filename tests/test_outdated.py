@@ -132,7 +132,8 @@ pypi_to_conda = {
     "jupyter-client": "jupyter_client",
     "memory-profiler": "memory_profiler",
 }
-mne_dep_names = [pypi_to_conda.get(name, name) for name in mne_dep_names]
+# ensure this is unique
+mne_dep_names = sorted(set(pypi_to_conda.get(name, name) for name in mne_dep_names))
 # remove a few exceptions (toml-sort not on conda-forge, don't need others)
 # TODO: pymef should be on conda-forge soon
 ignores = """
