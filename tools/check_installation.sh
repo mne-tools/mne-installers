@@ -10,6 +10,10 @@ echo "::group::conda info"
 conda info
 echo "::endgroup::"
 
+echo "::group::conda info --envs"
+conda info --envs
+echo "::endgroup::"
+
 echo "::group::conda list"
 conda list
 echo "::endgroup::"
@@ -18,7 +22,7 @@ echo "::group::pip list"
 pip list
 echo "::endgroup::"
 
-echo "::group::Platform specific tests"
+echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
     # https://unix.stackexchange.com/a/7733
@@ -65,11 +69,10 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
     popd
     if [[ `grep "24.04" /etc/lsb-release` ]] || [[ `grep "20.04" /etc/lsb-release` ]]; then
-        export SKIP_PYVISTAQT_TESTS=1
         export SKIP_NOTEBOOK_TESTS=1
     fi
 else
-    export SKIP_PYVISTAQT_TESTS=1
+    test "$MNE_MACHINE" == "Windows" || exit 1
 fi
 echo "::endgroup::"
 
@@ -104,18 +107,29 @@ echo "::endgroup::"
 echo "::group::Testing mne sys_info"
 mne sys_info
 echo "::endgroup::"
+
 echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
 echo "::endgroup::"
+
 echo "::group::Testing GUIs"
 python -u tests/test_gui.py
 echo "::endgroup::"
+
 echo "::group::Testing notebooks"
 python -u tests/test_notebook.py
 echo "::endgroup::"
+
+echo "::group::Testing MNE-KIT-GUI env + package"
+conda activate mne-kit-gui
+python -u tests/test_mne_kit_gui.py
+conda deactivate
+echo "::endgroup::"
+
 echo "::group::Testing that the JSON versions are correct"
 python -u tests/test_json_versions.py
 echo "::endgroup::"
+
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
 echo "::endgroup::"

@@ -24,14 +24,15 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   # Build installers
-  build_menu:
-    name: Build menu package
+  build_local:
+    name: Build local packages
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -el {0}
     outputs:
       enable-ssh: ${{ steps.triage-ssh.outputs.enable-ssh }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - name: Triage SSH
@@ -44,24 +45,24 @@ jobs:
           fi
       - uses: mamba-org/setup-micromamba@v2
         with:
-          environment-name: menubuild
+          environment-name: localbuild
           create-args: python=3.13 conda-build
       - run: ./tools/run_conda_build.sh
-        timeout-minutes: 5
       - uses: actions/upload-artifact@v6
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
           retention-days: 1
 
   build_macos:
     name: Build (${{ matrix.os }})
-    needs: [build_menu]
+    needs: [build_local]
     strategy:
       fail-fast: false
       matrix:
         os: [macos-15-intel, macos-latest]  # Intel and Apple Silicon, respectively
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 50
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
     defaults:
@@ -70,7 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: mxschmitt/action-tmate@v3
-        if: needs.build_menu.outputs.enable-ssh == 'true'
+        if: needs.build_local.outputs.enable-ssh == 'true'
         timeout-minutes: 20
         with:
           detached: true
@@ -79,7 +80,7 @@ jobs:
           environment-file: environment.yml
       - uses: actions/download-artifact@v7
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
       - run: ./tools/extract_version.sh
       - run: ./tools/macos_install_certificates.sh
@@ -116,19 +117,20 @@ jobs:
 
   build_linux:
     name: Build (${{ matrix.os }})
-    needs: [build_menu]
+    needs: [build_local]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
+    timeout-minutes: 50
     defaults:
       run:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v6
       - uses: mxschmitt/action-tmate@v3
-        if: needs.build_menu.outputs.enable-ssh == 'true'
+        if: needs.build_local.outputs.enable-ssh == 'true'
         timeout-minutes: 20
         with:
           detached: true
@@ -137,7 +139,7 @@ jobs:
           environment-file: environment.yml
       - uses: actions/download-artifact@v7
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
@@ -151,19 +153,20 @@ jobs:
 
   build_windows:
     name: Build (${{ matrix.os }})
-    needs: [build_menu]
+    needs: [build_local]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [windows-latest]
+    timeout-minutes: 50
     defaults:
       run:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v6
       - uses: mxschmitt/action-tmate@v3
-        if: needs.build_menu.outputs.enable-ssh == 'true'
+        if: needs.build_local.outputs.enable-ssh == 'true'
         timeout-minutes: 20
         with:
           detached: true
@@ -172,7 +175,7 @@ jobs:
           environment-file: environment.yml
       - uses: actions/download-artifact@v7
         with:
-          name: menu-package
+          name: local-packages
           path: conda-bld
       - run: conda install -c conda-forge -y "nsis==3.08"
       - run: ./tools/extract_version.sh
@@ -194,6 +197,7 @@ jobs:
       matrix:
         os: [macos-15-intel, macos-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 50
     defaults:
       run:
         shell: bash -el {0}
@@ -229,6 +233,7 @@ jobs:
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 50
     defaults:
       run:
         shell: bash -el {0}
@@ -261,6 +266,7 @@ jobs:
       matrix:
         os: [windows-2022, windows-2025]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 80
     defaults:
       run:
         shell: bash -el {0}
@@ -272,7 +278,7 @@ jobs:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
-        timeout-minutes: 50
+        timeout-minutes: 70
         shell: cmd
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v6
@@ -294,6 +300,7 @@ jobs:
     name: Release
     needs: [build_macos, build_linux, build_windows, test_macos, test_linux, test_windows]
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     defaults:
       run:
         shell: bash -el {0}
