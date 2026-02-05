@@ -58,7 +58,7 @@ channels:
 specs:
   # Python
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
-  - pip =26.0
+  - pip =26.0.1
   - wheel =0.46.3
   - conda =26.1.0
   - mamba =2.3.2  # allow_outdated, vtk conflict
@@ -160,7 +160,7 @@ specs:
   - scikit-learn =1.8.0
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.0
-  - polars =1.37.1
+  - polars =1.38.0
   - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.0
   - openblas =0.3.30  # allow_outdated, needs libblas update
@@ -209,7 +209,7 @@ specs:
   - pyvista =0.46.5
   - pyvistaqt =0.11.3
   - trame =3.12.0
-  - trame-vtk =2.10.3
+  - trame-vtk =2.11.0
   - trame-vuetify =3.2.1
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -238,7 +238,7 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
   - ruff =0.15.0
-  - uv =0.9.29
+  - uv =0.9.30
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
