@@ -37,25 +37,22 @@ assert len(deps) == 1, len(deps)
 deps = deps[0]
 print(f"Found pip install line:\n{deps}")
 deps = deps[len(would) :]
-# Remove PyQt6 and some other stuff
+# intentional, then Qt-related, grayskull, then not on CF
+ignore_starts = tuple(
+    """
+numpy- pyxdf- quantities-
+sip- tinycss2-
+click- typer-
+sphinxcontrib-towncrier- toml-sort- tomlkit- nest-asyncio2- pymef-
+""".strip().split()
+)
 deps = [
     dep
     for dep in deps.split()
     if not re.match("mne-[0-9]+", dep)
-    and not dep.startswith("numpy-")
-    and not dep.startswith("pyxdf-")
-    and not dep.startswith("quantities-")
-    # Qt-related stuff
-    and not dep.startswith("sip-")
-    and not dep.startswith("tinycss2")
-    # and not on conda-forge yet
-    and not dep.startswith("sphinxcontrib-towncrier")
-    and not dep.startswith("toml-sort")
-    and not dep.startswith("tomlkit")
-    and not dep.startswith("nest-asyncio2")
-    and not dep.startswith("pymef")
+    and not dep.startswith(ignore_starts)
     # for some reason vtk is not detected properly on Windows even though it imports
     and not (platform.system() == "Windows" and dep.startswith("vtk"))
 ]
 deps = "\n".join(deps)
-assert deps == "", f"Unexpected unmet dependencies:\n{deps}\n\nOutput:\n{out}"
+assert deps == "", f"Output:\n{out}\n\nUnexpected unmet dependencies:\n\n{deps}"
