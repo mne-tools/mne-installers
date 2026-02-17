@@ -37,10 +37,9 @@ assert len(deps) == 1, len(deps)
 deps = deps[0]
 print(f"Found pip install line:\n{deps}")
 deps = deps[len(would) :]
-# Remove PyQt6 and some other stuff
-ignore_starts = tuple(  # intentional, then Qt-related, grayskull, then not on CF
-    dep
-    for dep in """
+# intentional, then Qt-related, grayskull, then not on CF
+ignore_starts = tuple(
+    """
 numpy- pyxdf- quantities-
 sip- tinycss2-
 click- typer-
