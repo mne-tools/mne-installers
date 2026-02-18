@@ -32,9 +32,8 @@ def check_version_eq(package, ver):
     try:
         package_ver = parse(package.__version__)
     except Exception:
-        raise ImportError(
-            f"Could not parse version for {package}: {repr(package.__version__)}"
-        )
+        package_ver = getattr(package, "__version__", "Missing version__")
+        raise ImportError(f"Could not parse version for {package}: {package_ver:!r}")
     if not parsed.ignore_version_check:
         assert package_ver >= parse(ver), (
             f"{package}: got {package.__version__} wanted {ver}"
@@ -84,6 +83,7 @@ ver_map = {  # for __version__, need map from importable name to conda-forge lin
 }
 ignore = list(parsed.ignore) + [
     "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
+    "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
 ]
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
