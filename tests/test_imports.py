@@ -71,6 +71,7 @@ bad_ver = {
     "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
     "pactools",  # https://github.com/pactools/pactools/pull/37
+    "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
     "Foundation",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
@@ -83,7 +84,6 @@ ver_map = {  # for __version__, need map from importable name to conda-forge lin
 }
 ignore = list(parsed.ignore) + [
     "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
-    "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
 ]
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
