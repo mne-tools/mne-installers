@@ -68,7 +68,6 @@ if platform.system() == "Darwin":
 
 # Now do the importing and version checking
 bad_ver = {
-    "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
