@@ -279,7 +279,7 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2602.2
   # OS-specific
-  - git =2.54.0.dev0  # [win]
+  - git =2.53.0  # [win]  # allow_outdated, 2.54.0.dev0 on 2026/02/19 not on windows
   - make =4.4.1  # [win]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
