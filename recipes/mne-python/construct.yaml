@@ -58,16 +58,16 @@ channels:
 specs:
   # Python
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
-  - pip =26.0
+  - pip =26.0.1
   - wheel =0.46.3
-  - conda =25.11.1
+  - conda =26.1.0
   - mamba =2.3.2  # allow_outdated, vtk conflict
   - libmamba =2.3.2  # allow_outdated, vtk conflict
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.11.0=*_pyside6_*_100
+  - mne =1.11.0=*_pyside6_*
   - mne-installer-menu =1.11.0=*  # locally_built
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
@@ -78,19 +78,19 @@ specs:
   - mne-bids-pipeline =1.9.0
   - mne-qt-browser =0.7.4
   - mne-connectivity =0.7.0=*_1
+  - mne-denoise =0.0.1
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
-  - mne-features =0.3.1
+  - mne-features =0.3.2
   - mne-rsa =1.0
   - mne-ari =0.1.2
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.12.0
-  - mne-kit-gui =1.3.0
   - mne-videobrowser =0.1.8
   - autoreject =0.4.3
   - antio =0.6.1
-  - wfdb =4.3.0
+  - wfdb =4.3.1
   - meegkit =0.1.9
   - eeg_positions =2.1.2
   - curryreader =0.1.2
@@ -99,7 +99,7 @@ specs:
   - fsleyes =1.16.3
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
-  - nilearn =0.13.0
+  - nilearn =0.13.1
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -123,10 +123,11 @@ specs:
   - pyprep =0.5.0
   - python-picard =0.8.1
   - pybv =0.7.6
-  - edfio =0.4.12
+  - pybvrf =0.1.0
+  - edfio =0.4.13
   - eeglabio =0.1.3
   - mffpy =0.10.0
-  - openmeeg =2.5.15=*_3
+  - openmeeg =2.5.16
   - python-neo =0.14.3
   - nitime =0.12.1
   - snirf =0.8.0
@@ -148,11 +149,11 @@ specs:
   - libgfortran5 =15.2.0
   - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
   - decorator =5.2.1
-  - filelock =3.20.3
+  - filelock =3.24.2
   - lazy-loader =0.4
   - packaging =26.0
   - pooch =1.9.0
-  - tqdm =4.67.2
+  - tqdm =4.67.3
   - h5py =3.15.1
   - h5io =0.2.5
   - pymatreader =1.1.0
@@ -160,21 +161,18 @@ specs:
   - antropy =0.1.9
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
-  - mayavi =4.8.3=pyside6_*
-  - traitsui =8.0.0
-  - pyface =8.0.0
   - imageio-ffmpeg =0.6.0
-  - pandas =2.3.3  # allow_outdated, wfdb https://github.com/MIT-LCP/wfdb-python/issues/560
-  - polars =1.37.1
+  - pandas =3.0.1
+  - polars =1.38.1
   - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.0
   - openblas =0.3.30  # allow_outdated, needs libblas update
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
   - notebook =7.5.3
-  - jupyterlab =4.5.3
-  - ipykernel =6.30.1  # allow_outdated, 7+ incompatible with spyder_kernels
-  - spyder-kernels =3.1.2
+  - jupyterlab =4.5.4
+  - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
+  - spyder-kernels =3.1.3
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =6.1.0
@@ -209,18 +207,18 @@ specs:
   - seaborn =0.13.2
   - plotly =6.5.2
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
-  - vtk =9.4.2  # allow_outdated
+  - vtk =9.4.2  # allow_outdated, needs qt6-main bump
   - ipywidgets =8.1.8
-  - pyvista =0.46.5
+  - pyvista =0.47.0
   - pyvistaqt =0.11.3
   - trame =3.12.0
-  - trame-vtk =2.10.3
-  - trame-vuetify =3.2.0
+  - trame-vtk =2.11.1
+  - trame-vuetify =3.2.1
   - termcolor =3.3.0
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.9.0
+  - ipython =9.10.0
   - jinja2 =3.1.6
   - jupyter_client =8.8.0
   - nbclient =0.10.4
@@ -242,12 +240,12 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.14.14
-  - uv =0.9.28
+  - ruff =0.15.1
+  - uv =0.10.4
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
-  - line_profiler =5.0.0
+  - line_profiler =5.0.1
   - memory_profiler =0.61.0
   - twine =6.2.0
   - hatchling =1.28.0
@@ -257,7 +255,7 @@ specs:
   - vulture =2.14
   - grayskull =3.1.0
   - conda-build =25.11.1  # allow_outdated, needs libffi update
-  - conda-smithy =3.54.2
+  - conda-smithy =3.55.1
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =24.11.0
@@ -272,16 +270,16 @@ specs:
   - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
   - python-graphviz =0.21
   - selenium =4.38.0  # allow_outdated, needs qt6-main bump
-  - sphinx =8.2.3  # allow_outdated, needs sphinx-design update
+  - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.20.0
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
   - sphinxcontrib-towncrier =0.5.0a0
-  - intersphinx-registry =0.2601.5
+  - intersphinx-registry =0.2602.2
   # OS-specific
-  - git =2.52.0  # [win]
+  - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
@@ -289,6 +287,22 @@ specs:
   - pyobjc-core =12.0  # [osx]  # allow_outdated
   - pyobjc-framework-Cocoa =12.0  # [osx]  # allow_outdated
   - pyobjc-framework-FSEvents =12.0  # [osx]  # allow_outdated
+extra_envs:
+  mne-kit-gui:
+    channels:
+      - conda-forge
+    specs:
+      - python =3.13
+      - mne-kit-gui
+      - numpy <2.4
+      - mayavi =4.8.3=pyside6_*
+      - traitsui =8.0.0
+      - pyface =8.0.0
+      - pyside6 =6.9.1
+      - qt6-main =6.9.1
+      - vtk-base =9.4.2
+      - vtk =9.4.2
+      - noqt5 =1.0.0
 condarc:
   channels:
     - conda-forge

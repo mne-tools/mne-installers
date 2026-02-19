@@ -32,9 +32,8 @@ def check_version_eq(package, ver):
     try:
         package_ver = parse(package.__version__)
     except Exception:
-        raise ImportError(
-            f"Could not parse version for {package}: {repr(package.__version__)}"
-        )
+        package_ver = getattr(package, "__version__", "Missing version__")
+        raise ImportError(f"Could not parse version for {package}: {package_ver:!r}")
     if not parsed.ignore_version_check:
         assert package_ver >= parse(ver), (
             f"{package}: got {package.__version__} wanted {ver}"
@@ -49,6 +48,8 @@ lines = (
 )
 lines = [line.strip() for line in lines]
 all_lines = lines
+# need to limit to those before extra_envs
+all_lines = all_lines[: all_lines.index("extra_envs:")]
 sidx = lines.index("# <<< BEGIN RELATED SOFTWARE LIST >>>")
 eidx = lines.index("# <<< END RELATED SOFTWARE LIST >>>")
 lines = [line for line in lines[sidx : eidx + 1] if not line.startswith("#")]
@@ -72,6 +73,7 @@ bad_ver = {
     "mne-videobrowser",  # https://github.com/mne-tools/mne-installers/pull/409#issuecomment-3824786744
     # 1yo as of 2026/02, maybe dead project? :
     "pactools",  # https://github.com/pactools/pactools/pull/37
+    "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
     "Foundation",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name

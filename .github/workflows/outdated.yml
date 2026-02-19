@@ -13,6 +13,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   deps:
     runs-on: ubuntu-22.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -20,5 +21,5 @@ jobs:
           python-version: "3.12"
       - run: pip install packaging requests pyyaml
       - run: python tests/test_outdated.py  # can update the file in place
-      - uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27
+      - uses: autofix-ci/action@7a166d7532b277f34e16238930461bf77f9d7ed8
         if: failure()
