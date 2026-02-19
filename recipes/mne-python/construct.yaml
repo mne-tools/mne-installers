@@ -87,6 +87,7 @@ specs:
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.12.0
+  - mne-videobrowser =0.2.1
   - autoreject =0.4.3
   - antio =0.6.1
   - wfdb =4.3.1
@@ -116,7 +117,7 @@ specs:
   - yasa =0.6.5
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.10
-  - mnelab =1.0.8
+  - mnelab =1.0.8  # allow_outdated, needs qt6-main bump
   # other
   - pyriemann =0.10
   - pyprep =0.5.0
@@ -146,8 +147,9 @@ specs:
 
   - noqt5 =1.0
   - libgfortran5 =15.2.0
+  - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
   - decorator =5.2.1
-  - filelock =3.24.2
+  - filelock =3.24.3
   - lazy-loader =0.4
   - packaging =26.0
   - pooch =1.9.0
@@ -230,7 +232,7 @@ specs:
   - pygments =2.19.2
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.86.0
+  - gh =2.87.0
   - setuptools_scm =9.2.2
   - pytest =9.0.2
   - pytest-cov =7.0.0
@@ -256,7 +258,7 @@ specs:
   - conda-smithy =3.55.1
   - constructor =3.14.0
   - menuinst =2.4.2
-  - conda-standalone =24.11.0
+  - conda-standalone =25.5.1
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =2.13.6  # allow_outdated, vtk conflict
@@ -277,7 +279,7 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2602.2
   # OS-specific
-  - git =2.53.0  # [win]
+  - git =2.53.0  # [win]  # allow_outdated, 2.54.0.dev0 on 2026/02/19 not on windows
   - make =4.4.1  # [win]
   # https://github.com/conda-forge/libffi-feedstock/issues/52
   - libffi =3.4.6  # [osx and arm64]  # allow_outdated
