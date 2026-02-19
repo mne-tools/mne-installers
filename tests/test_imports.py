@@ -70,7 +70,6 @@ if platform.system() == "Darwin":
 bad_ver = {
     # as of 2026/01 merged but no release:
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
-    "mne-videobrowser",  # https://github.com/mne-tools/mne-installers/pull/409#issuecomment-3824786744
     # 1yo as of 2026/02, maybe dead project? :
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
