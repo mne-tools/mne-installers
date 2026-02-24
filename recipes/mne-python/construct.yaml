@@ -165,7 +165,7 @@ specs:
   - pandas =3.0.1
   - polars =1.38.1
   - numpy =2.3.5  # allow_outdated, numba
-  - scipy =1.17.0
+  - scipy =1.17.1
   - openblas =0.3.30  # allow_outdated, needs libblas update
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
@@ -209,7 +209,7 @@ specs:
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated, needs qt6-main bump
   - ipywidgets =8.1.8
-  - pyvista =0.47.0
+  - pyvista =0.47.1
   - pyvistaqt =0.11.3
   - trame =3.12.0
   - trame-vtk =2.11.1
@@ -232,7 +232,7 @@ specs:
   - pygments =2.19.2
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.87.0
+  - gh =2.87.2
   - setuptools_scm =9.2.2
   - pytest =9.0.2
   - pytest-cov =7.0.0
@@ -240,7 +240,7 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.15.1
+  - ruff =0.15.2
   - uv =0.10.4
   - check-manifest =0.51
   - codespell =2.4.1
@@ -258,7 +258,7 @@ specs:
   - conda-smithy =3.55.1
   - constructor =3.14.0
   - menuinst =2.4.2
-  - conda-standalone =25.5.1
+  - conda-standalone =25.11.0
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =2.13.6  # allow_outdated, vtk conflict
