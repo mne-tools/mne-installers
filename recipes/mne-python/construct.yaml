@@ -96,7 +96,7 @@ specs:
   - curryreader =0.1.2
   # MRI
   - surfa =0.6.3
-  - fsleyes =1.17.0
+  - fsleyes =1.17.1
   - dcm2niix =1.0.20250506
   - dipy =1.11.0
   - nilearn =0.13.1
@@ -156,7 +156,7 @@ specs:
   - tqdm =4.67.3
   - h5py =3.15.1
   - h5io =0.2.5
-  - pymatreader =1.1.0
+  - pymatreader =1.2.2
   - numexpr =2.14.1
   - antropy =0.1.9
   - threadpoolctl =3.6.0
@@ -179,7 +179,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.63.0  # allow_outdated, https://github.com/conda-forge/numba-feedstock/issues/177
-  - cython =3.2.3
+  - cython =3.2.4
   - joblib =1.5.3
   # I/O
   - pyxdf =1.17.3
@@ -205,7 +205,7 @@ specs:
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.5.2
+  - plotly =6.6.0
   - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
   - vtk =9.4.2  # allow_outdated, needs qt6-main bump
   - ipywidgets =8.1.8
@@ -240,9 +240,8 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  # https://github.com/conda-forge/ruff-feedstock/pull/324
-  - ruff =0.15.2  # allow_outdated
-  - uv =0.10.7
+  - ruff =0.15.4
+  - uv =0.10.8
   - check-manifest =0.51
   - codespell =2.4.1
   - py-spy =0.4.1
@@ -253,13 +252,14 @@ specs:
   - hatch-vcs =0.5.0
   - mypy =1.19.1
   - towncrier =25.8.0
-  - vulture =2.14
+  - vulture =2.15
   - grayskull =3.1.0
   - conda-build =25.11.1  # allow_outdated, needs libffi update
   - conda-smithy =3.55.1
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =25.11.0
+  - cmake =4.2.3  # scipy
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =2.13.6  # allow_outdated, vtk conflict
