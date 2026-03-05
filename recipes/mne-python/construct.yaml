@@ -260,6 +260,7 @@ specs:
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =25.11.0
+  - cmake =4.2.3  # scipy
   - meson =1.10.1  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =2.13.6  # allow_outdated, vtk conflict
