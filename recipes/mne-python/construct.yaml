@@ -96,9 +96,9 @@ specs:
   - curryreader =0.1.2
   # MRI
   - surfa =0.6.3
-  - fsleyes =1.17.1
+  - fsleyes =1.18.0
   - dcm2niix =1.0.20250506
-  - dipy =1.11.0
+  - dipy =1.12.0
   - nilearn =0.13.1
   # Time-frequency analysis
   - pactools =0.3.1
@@ -116,7 +116,7 @@ specs:
   - sleepecg =0.5.9=*_2
   - yasa =0.7.0
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2 =0.2.10
+  - neurokit2 =0.2.13
   - mnelab =1.0.8  # allow_outdated, needs qt6-main bump
   # other
   - pyriemann =0.10
@@ -149,7 +149,7 @@ specs:
   - libgfortran5 =15.2.0
   - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
   - decorator =5.2.1
-  - filelock =3.25.0
+  - filelock =3.25.2
   - lazy-loader =0.5
   - packaging =26.0
   - pooch =1.9.0
@@ -169,8 +169,8 @@ specs:
   - openblas =0.3.30  # allow_outdated, needs libblas update
   - libblas =3.11.0=*openblas
   - jupyter =1.1.1
-  - notebook =7.5.4
-  - jupyterlab =4.5.5
+  - notebook =7.5.5
+  - jupyterlab =4.5.6
   - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
   - spyder-kernels =3.1.3
   # TODO: Needs to not require pyqt
@@ -212,7 +212,7 @@ specs:
   - pyvista =0.47.1
   - pyvistaqt =0.11.3
   - trame =3.12.0
-  - trame-vtk =2.11.1
+  - trame-vtk =2.11.3
   - trame-vuetify =3.2.1
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -232,7 +232,7 @@ specs:
   - pygments =2.19.2
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.87.3
+  - gh =2.88.1
   - setuptools_scm =9.2.2
   - pytest =9.0.2
   - pytest-cov =7.0.0
@@ -241,26 +241,26 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
   - ruff =0.15.5
-  - uv =0.10.9
+  - uv =0.10.10
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.1
   - line_profiler =5.0.2
   - memory_profiler =0.61.0
   - twine =6.2.0
-  - hatchling =1.28.0
+  - hatchling =1.29.0
   - hatch-vcs =0.5.0
   - mypy =1.19.1
   - towncrier =25.8.0
   - vulture =2.15
   - grayskull =3.1.0
   - conda-build =25.11.1  # allow_outdated, needs libffi update
-  - conda-smithy =3.56.1
+  - conda-smithy =3.56.3
   - constructor =3.14.0
   - menuinst =2.4.2
   - conda-standalone =25.11.0
   - cmake =4.2.3  # scipy
-  - meson =1.10.1  # matplotlib, scipy
+  - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =2.13.6  # allow_outdated, vtk conflict
   - gfortran =15.2.0  # scipy
