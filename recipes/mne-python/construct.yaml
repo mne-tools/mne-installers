@@ -86,7 +86,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.13.0
+  - mne-lsl =1.13.1
   - mne-videobrowser =0.2.1
   - autoreject =0.4.3
   - antio =0.6.1
@@ -128,7 +128,7 @@ specs:
   - eeglabio =0.1.3
   - mffpy =0.10.0
   - openmeeg =2.5.16
-  - python-neo =0.14.3
+  - python-neo =0.14.4
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
@@ -163,7 +163,7 @@ specs:
   - scikit-learn =1.8.0
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.1
-  - polars =1.38.1
+  - polars =1.39.3
   - numpy =2.3.5  # allow_outdated, numba
   - scipy =1.17.1
   - openblas =0.3.30  # allow_outdated, needs libblas update
@@ -235,13 +235,13 @@ specs:
   - gh =2.88.1
   - setuptools_scm =9.2.2
   - pytest =9.0.2
-  - pytest-cov =7.0.0
+  - pytest-cov =7.1.0
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.15.5
-  - uv =0.10.10
+  - ruff =0.15.7
+  - uv =0.10.12
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.1
@@ -255,11 +255,11 @@ specs:
   - vulture =2.15
   - grayskull =3.1.0
   - conda-build =25.11.1  # allow_outdated, needs libffi update
-  - conda-smithy =3.56.3
-  - constructor =3.14.0
+  - conda-smithy =3.57.0
+  - constructor =3.15.1
   - menuinst =2.4.2
-  - conda-standalone =25.11.0
-  - cmake =4.2.3  # scipy
+  - conda-standalone =26.1.1
+  - cmake =4.3.0  # scipy
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =2.13.6  # allow_outdated, vtk conflict
@@ -278,7 +278,7 @@ specs:
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.4.1
   - sphinxcontrib-towncrier =0.5.0a0
-  - intersphinx-registry =0.2602.2
+  - intersphinx-registry =0.2603.16
   # OS-specific
   - git =2.53.0  # [win]  # allow_outdated, 2.54.0.dev0 on 2026/02/19 not on windows
   - make =4.4.1  # [win]
