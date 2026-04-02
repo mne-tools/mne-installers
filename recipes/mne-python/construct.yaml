@@ -117,7 +117,7 @@ specs:
   - yasa =0.7.0
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
-  - mnelab =1.0.8  # allow_outdated, needs qt6-main bump
+  - mnelab =1.0.8
   # other
   - pyriemann =0.10
   - pyprep =0.6.0
@@ -164,10 +164,10 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.1
   - polars =1.38.1
-  - numpy =2.3.5  # allow_outdated, numba
+  - numpy =2.4.4
   - scipy =1.17.1
-  - openblas =0.3.30  # allow_outdated, needs libblas update
-  - libblas =3.11.0=*openblas
+  - openblas =0.3.30
+  - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.5.5
   - jupyterlab =4.5.6
@@ -178,7 +178,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.63.0  # allow_outdated, https://github.com/conda-forge/numba-feedstock/issues/177
+  - numba =0.65.0
   - cython =3.2.4
   - joblib =1.5.3
   # I/O
@@ -186,7 +186,7 @@ specs:
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.4.0
-  - pyarrow =21.0.0  # allow_outdated, needs qt6-main bump
+  - pyarrow =21.0.0
   # Statistics
   - pingouin =0.6.0
   - statsmodels =0.14.6
@@ -199,15 +199,15 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.8
   - tornado =6.5.4
-  - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
-  - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
-  - pcre2 =10.45  # allow_outdated, needs qt6-main bump
+  - pyside6 =6.11.0
+  - qt6-main =6.11.0
+  - pcre2 =10.45
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.6.0
-  - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
-  - vtk =9.4.2  # allow_outdated, needs qt6-main bump
+  - vtk-base =9.4.2
+  - vtk =9.4.2
   - ipywidgets =8.1.8
   - pyvista =0.47.1
   - pyvistaqt =0.11.3
@@ -223,7 +223,7 @@ specs:
   - jupyter_client =8.8.0
   - nbclient =0.10.4
   - nbformat =5.10.4
-  - pillow =12.0.0  # allow_outdated, needs qt6-main bump due to pcre2 conflict
+  - pillow =12.0.0
   - pyzmq =27.1.0
   - traitlets =5.14.3
   - pyopengl =3.1.10
@@ -254,7 +254,7 @@ specs:
   - towncrier =25.8.0
   - vulture =2.15
   - grayskull =3.1.0
-  - conda-build =25.11.1  # allow_outdated, needs libffi update
+  - conda-build =25.11.1
   - conda-smithy =3.56.3
   - constructor =3.14.0
   - menuinst =2.4.2
@@ -262,15 +262,15 @@ specs:
   - cmake =4.2.3  # scipy
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
-  - pybind11 =2.13.6  # allow_outdated, vtk conflict
+  - pybind11 =2.13.6
   - gfortran =15.2.0  # scipy
   - pythran =0.18.1
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
+  - graphviz =13.1.2
   - python-graphviz =0.21
-  - selenium =4.38.0  # allow_outdated, needs qt6-main bump
+  - selenium =4.38.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.20.0
@@ -280,14 +280,12 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2602.2
   # OS-specific
-  - git =2.53.0  # [win]  # allow_outdated, 2.54.0.dev0 on 2026/02/19 not on windows
+  - git =2.53.0  # [win]
   - make =4.4.1  # [win]
-  # https://github.com/conda-forge/libffi-feedstock/issues/52
-  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
-  # 12.1+ requires libffi 3.5.2+
-  - pyobjc-core =12.0  # [osx]  # allow_outdated
-  - pyobjc-framework-Cocoa =12.0  # [osx]  # allow_outdated
-  - pyobjc-framework-FSEvents =12.0  # [osx]  # allow_outdated
+  - libffi =3.5.2
+  - pyobjc-core =12.0  # [osx]
+  - pyobjc-framework-Cocoa =12.0  # [osx]
+  - pyobjc-framework-FSEvents =12.0  # [osx]
 extra_envs:
   mne-kit-gui:
     channels:
