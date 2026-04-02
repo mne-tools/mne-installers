@@ -63,7 +63,7 @@ for line, spec in zip(lines, specs):
     if " " in spec:
         assert spec.count(" ") == 1, f"Wrong number of spaces in spec: {spec}"
         name, version = spec.split(" ")
-        version = (version.lstrip("~").lstrip("=").split("="))[0]  # build number
+        version = (version.lstrip("~=").rstrip("*").split("="))[0]  # build number
         if version == "!":  # this is "a !=something", we can skip it
             version = None
         elif version.startswith(("<", ">")):  # "a <something" or ">=something"
