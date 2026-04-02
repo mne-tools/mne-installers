@@ -61,8 +61,8 @@ specs:
   - pip =26.0.1
   - wheel =0.46.3
   - conda =26.1.1
-  - mamba =2.3.2  # allow_outdated, vtk conflict
-  - libmamba =2.3.2  # allow_outdated, vtk conflict
+  - mamba =2.3.2
+  - libmamba =2.3.2
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -147,7 +147,7 @@ specs:
 
   - noqt5 =1.0
   - libgfortran5 =15.2.0
-  - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
+  - opencv =4.12.0
   - decorator =5.2.1
   - filelock =3.25.2
   - lazy-loader =0.5
@@ -190,6 +190,7 @@ specs:
   # Statistics
   - pingouin =0.6.1
   - statsmodels =0.14.6
+  - rpy2 =3.6.6
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
