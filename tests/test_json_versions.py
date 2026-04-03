@@ -40,7 +40,7 @@ for spec in specs:
     if " =" not in spec or spec.count("=") < 2:
         continue
     package_name, package_version_and_build = spec.split(" ")
-    package_version = package_version_and_build.split("=")[1]
+    package_version = package_version_and_build.split("=")[1].rstrip("*")
     package_build = package_version_and_build.split("=")[-1]
     want_versions[package_name] = {
         "version": package_version,
