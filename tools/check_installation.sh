@@ -129,7 +129,11 @@ conda deactivate
 echo "::endgroup::"
 
 echo "::group::Testing that the JSON versions are correct"
-python -u tests/test_json_versions.py
+# TODO: dev group needs to not include rpy2
+# https://github.com/mne-tools/mne-python/issues/13796
+if [[ "$MNE_MACHINE" != "Windows" ]]; then
+    python -u tests/test_json_versions.py || exit 1
+fi
 echo "::endgroup::"
 
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
