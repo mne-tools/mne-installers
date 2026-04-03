@@ -32,6 +32,7 @@ out = subprocess.check_output(
     cwd="../mne-python",
 )
 out = out.decode("utf-8")
+trimmed_out = "\n".join(line for line in out.split("\n") if "Collecting " in line)
 deps = [line for line in out.split("\n") if line.startswith(would)]
 assert len(deps) == 1, len(deps)
 deps = deps[0]
@@ -58,4 +59,9 @@ deps = [
     and not (platform.system() == "Windows" and dep.startswith("vtk"))
 ]
 deps = "\n".join(deps)
-assert deps == "", f"Output:\n{out}\n\nUnexpected unmet dependencies:\n\n{deps}"
+assert deps == "", (
+    f"Full output from pip:\n{out}\n\n"
+    f"Indicative lines from pip:\n{trimmed_out}\n\n"
+    "Unexpected unmet dependencies:\n\n"
+    f"{deps}"
+)

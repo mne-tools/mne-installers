@@ -134,7 +134,7 @@ specs:
   - snirf =0.8.0
   - alphacsc =0.4.1
   - quantities =0.16.4
-  - tinycss2 =1.5.1
+  - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   # Not on PyPI or no wheels on PyPI
   # conpy: https://aaltoimaginglanguage.github.io/conpy/
   # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
@@ -173,6 +173,7 @@ specs:
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.5.5
+  - nbconvert =7.17.0
   - jupyterlab =4.5.6
   - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
   - spyder-kernels =3.1.4
@@ -275,8 +276,9 @@ specs:
   - pybind11 =3.0.3
   - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
   - pythran =0.18.1
-  - click =8.2.1  # allow_outdated, conda-recipe-manager needs update
+  - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.24.1
+  - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
@@ -294,7 +296,6 @@ specs:
   # OS-specific
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
-  - libffi =3.5.2
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
