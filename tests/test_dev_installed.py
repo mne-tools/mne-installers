@@ -40,10 +40,22 @@ deps = deps[len(would) :]
 # intentional, then Qt-related, grayskull, then not on CF
 ignore_starts = tuple(
     """
-numpy- pyxdf- quantities-
-sip- tinycss2-
-click- typer-
-sphinxcontrib-towncrier- toml-sort- tomlkit- nest-asyncio2- pymef-
+numpy-
+pyxdf-
+quantities-
+
+sip-
+tinycss2-
+
+click-
+typer-
+
+sphinxcontrib-towncrier-
+toml-sort-
+tomlkit-
+nest-asyncio2-
+pymef-
+hedtools-
 """.strip().split()
 )
 deps = [

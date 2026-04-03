@@ -164,7 +164,7 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.2
   - polars =1.39.3
-  - numpy =2.4.4
+  - numpy =2.4.3
   - scipy =1.17.1
   - openblas =0.3.32
   - libblas =3.11.0*=*openblas
@@ -201,8 +201,8 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.8
   - tornado =6.5.5
-  - pyside6 =6.11.0
-  - qt6-main =6.11.0
+  - pyside6 =6.10.2  # allow_outdated, needs vtk update
+  - qt6-main =6.10.2  # allow_outdated, needs vtk update
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
@@ -242,7 +242,7 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.15.8
+  - ruff =0.15.9
   - uv =0.11.3
   - check-manifest =0.51
   - codespell =2.4.2
@@ -265,7 +265,7 @@ specs:
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
-  - gfortran =15.2.0  # scipy
+  - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
   - pythran =0.18.1
   # Doc building
   - numpydoc =1.10.0
@@ -301,8 +301,8 @@ extra_envs:
       - pyface =8.0.0
       - pyside6 =6.9.1
       - qt6-main =6.9.1
-      - vtk-base =9.6.1
-      - vtk =9.6.1
+      - vtk-base =9.4.2
+      - vtk =9.4.2
       - noqt5 =1.0.0
 condarc:
   channels:
