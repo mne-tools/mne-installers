@@ -105,6 +105,7 @@ fi
 echo "::endgroup::"
 
 echo "::group::Testing mne sys_info"
+# TODO: Run on Windows once more robust https://github.com/mne-tools/mne-python/pull/13810
 if [[ "$MNE_MACHINE" != "Windows" ]]; then
     mne sys_info || exit 1
 fi
