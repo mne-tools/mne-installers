@@ -133,6 +133,8 @@ specs:
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
+  - quantities =0.16.4
+  - tinycss2 =1.5.1
   # Not on PyPI or no wheels on PyPI
   # conpy: https://aaltoimaginglanguage.github.io/conpy/
   # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
@@ -261,6 +263,7 @@ specs:
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.0
+  - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
   - conda-smithy =3.58.1
   - constructor =3.15.1
@@ -272,6 +275,8 @@ specs:
   - pybind11 =3.0.3
   - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
   - pythran =0.18.1
+  - click =8.2.1  # allow_outdated, conda-recipe-manager needs update
+  - typer =0.24.1
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
