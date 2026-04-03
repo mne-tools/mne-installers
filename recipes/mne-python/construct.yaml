@@ -90,6 +90,7 @@ specs:
   - mne-videobrowser =0.2.1
   - autoreject =0.4.3
   - antio =0.6.1
+  - hedtools =1.0.0
   - wfdb =4.3.1
   - meegkit =0.1.9
   - eeg_positions =2.1.2
@@ -162,7 +163,7 @@ specs:
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
   - imageio-ffmpeg =0.6.0
-  - pandas =3.0.2
+  - pandas =2.3.3  # allow_outdated, hedtools
   - polars =1.39.3
   - numpy =2.4.3
   - scipy =1.17.1
@@ -219,6 +220,7 @@ specs:
   - trame =3.12.0
   - trame-vtk =2.11.6
   - trame-vuetify =3.2.1
+  - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
   - imageio =2.37.0

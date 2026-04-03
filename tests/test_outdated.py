@@ -143,7 +143,6 @@ ignores = """
 sip
 tomli
 toml-sort
-nest-asyncio2
 pymef
 hedtools
 """.strip().split()

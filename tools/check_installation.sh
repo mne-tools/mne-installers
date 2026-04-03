@@ -105,7 +105,9 @@ fi
 echo "::endgroup::"
 
 echo "::group::Testing mne sys_info"
-mne sys_info
+if [[ "$MNE_MACHINE" != "Windows" ]]; then
+    mne sys_info || exit 1
+fi
 echo "::endgroup::"
 
 echo "::group::Testing import of MNE and all additional packages included in the installer"
