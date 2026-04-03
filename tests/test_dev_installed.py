@@ -51,9 +51,6 @@ click-
 typer-
 
 sphinxcontrib-towncrier-
-toml-sort-
-tomlkit-
-nest-asyncio2-
 pymef-
 """.strip().split()
 )
