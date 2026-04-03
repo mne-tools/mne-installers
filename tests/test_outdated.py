@@ -139,8 +139,6 @@ mne_dep_names = sorted(set(pypi_to_conda.get(name, name) for name in mne_dep_nam
 # https://github.com/conda-forge/staged-recipes/pull/32039
 ignores = """
 sip
-tomli
-toml-sort
 pymef
 """.strip().split()
 for name in ignores:
