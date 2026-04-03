@@ -116,9 +116,7 @@ python -u tests/test_imports.py
 echo "::endgroup::"
 
 echo "::group::Testing GUIs"
-if [[ "$MNE_MACHINE" != "macOS" ]]; then
-    python -u tests/test_gui.py || exit 1
-fi
+python -u tests/test_gui.py
 echo "::endgroup::"
 
 echo "::group::Testing notebooks"
