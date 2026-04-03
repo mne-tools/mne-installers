@@ -63,7 +63,7 @@ for line, spec in zip(lines, specs):
     if " " in spec:
         assert spec.count(" ") == 1, f"Wrong number of spaces in spec: {spec}"
         name, version = spec.split(" ")
-        version = (version.lstrip("~").lstrip("=").split("="))[0]  # build number
+        version = (version.lstrip("~=").split("="))[0].rstrip("*")  # build number
         if version == "!":  # this is "a !=something", we can skip it
             version = None
         elif version.startswith(("<", ">")):  # "a <something" or ">=something"
@@ -136,8 +136,10 @@ pypi_to_conda = {
 mne_dep_names = sorted(set(pypi_to_conda.get(name, name) for name in mne_dep_names))
 # remove a few exceptions (toml-sort not on conda-forge, don't need others)
 # TODO: pymef should be on conda-forge soon
+# https://github.com/conda-forge/staged-recipes/pull/32039
 ignores = """
-sip tomli toml-sort nest-asyncio2 pymef
+sip
+pymef
 """.strip().split()
 for name in ignores:
     mne_dep_names.pop(mne_dep_names.index(name))
@@ -243,7 +245,7 @@ if __name__ == "__main__":
             use_spec = package.version_spec.replace(".", r"\.")
             recipe = re.sub(
                 # Three groups: 1: package name, 2: version spec, 3: rest of line
-                f"^( +- {package.name} =)({use_spec})(.*)$",
+                f"^(  - {package.name} =)({use_spec})(.*)$",
                 # Put back the first and third group, replace the second
                 rf"\g<1>{package.version_conda_forge}\g<3>",
                 recipe,

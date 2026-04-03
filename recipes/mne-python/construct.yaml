@@ -61,8 +61,8 @@ specs:
   - pip =26.0.1
   - wheel =0.46.3
   - conda =26.1.1
-  - mamba =2.3.2  # allow_outdated, vtk conflict
-  - libmamba =2.3.2  # allow_outdated, vtk conflict
+  - mamba =2.5.0
+  - libmamba =2.5.0
   # MNE ecosystem
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
@@ -77,7 +77,7 @@ specs:
   - mne-bids =0.18.0
   - mne-bids-pipeline =1.9.0
   - mne-qt-browser =0.7.4
-  - mne-connectivity =0.7.0=*_1
+  - mne-connectivity =0.8=*_1
   - mne-denoise =0.0.1
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
@@ -86,10 +86,11 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.13.0
+  - mne-lsl =1.13.1
   - mne-videobrowser =0.2.1
   - autoreject =0.4.3
   - antio =0.6.1
+  - hedtools =1.0.0
   - wfdb =4.3.1
   - meegkit =0.1.9
   - eeg_positions =2.1.2
@@ -111,13 +112,13 @@ specs:
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2026.3.0
+  - openneuro-py =2026.3.1
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.7.0
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
-  - mnelab =1.0.8  # allow_outdated, needs qt6-main bump
+  - mnelab =1.4.2
   # other
   - pyriemann =0.10
   - pyprep =0.6.0
@@ -128,10 +129,12 @@ specs:
   - eeglabio =0.1.3
   - mffpy =0.10.0
   - openmeeg =2.5.16
-  - python-neo =0.14.3
+  - python-neo =0.14.4
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
+  - quantities =0.16.4
+  - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   # Not on PyPI or no wheels on PyPI
   # conpy: https://aaltoimaginglanguage.github.io/conpy/
   # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
@@ -147,49 +150,51 @@ specs:
 
   - noqt5 =1.0
   - libgfortran5 =15.2.0
-  - opencv =4.12.0  # allow_outdated, needs libffi/pcre update, from mne-videobrowser
+  - opencv =4.13.0
   - decorator =5.2.1
   - filelock =3.25.2
   - lazy-loader =0.5
   - packaging =26.0
   - pooch =1.9.0
   - tqdm =4.67.3
-  - h5py =3.15.1
+  - h5py =3.16.0
   - h5io =0.2.5
   - pymatreader =1.2.2
   - numexpr =2.14.1
-  - antropy =0.2.1
+  - antropy =0.2.2
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
   - imageio-ffmpeg =0.6.0
-  - pandas =3.0.1
-  - polars =1.38.1
-  - numpy =2.3.5  # allow_outdated, numba
+  - pandas =2.3.3  # allow_outdated, hedtools
+  - polars =1.39.3
+  - numpy =2.4.3
   - scipy =1.17.1
-  - openblas =0.3.30  # allow_outdated, needs libblas update
-  - libblas =3.11.0=*openblas
+  - openblas =0.3.32
+  - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.5.5
+  - nbconvert =7.17.0
   - jupyterlab =4.5.6
   - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
-  - spyder-kernels =3.1.3
+  - spyder-kernels =3.1.4
   # TODO: Needs to not require pyqt
   # https://github.com/spyder-ide/spyder/issues/20201
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.63.0  # allow_outdated, https://github.com/conda-forge/numba-feedstock/issues/177
+  - numba =0.65.0
   - cython =3.2.4
   - joblib =1.5.3
   # I/O
-  - pyxdf =1.17.3
+  - pyxdf =1.17.4
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.4.0
-  - pyarrow =21.0.0  # allow_outdated, needs qt6-main bump
+  - pyarrow =23.0.1
   # Statistics
-  - pingouin =0.6.0
+  - pingouin =0.6.1
   - statsmodels =0.14.6
+  - r-base =4.5.3
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
@@ -198,22 +203,25 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.8
-  - tornado =6.5.4
-  - pyside6 =6.9.0  # allow_outdated, bug in 6.9.1
-  - qt6-main =6.9.0  # allow_outdated, bug in 6.9.1
-  - pcre2 =10.45  # allow_outdated, needs qt6-main bump
+  - tornado =6.5.5
+  # conda-forge pinning needs to update to 6.11, then we can rerender VTK
+  # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
+  - pyside6 =6.10.2  # allow_outdated, needs vtk update
+  - qt6-main =6.10.2  # allow_outdated, needs vtk update
+  - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.6.0
-  - vtk-base =9.4.2  # allow_outdated, requires Qt 6.9.1+
-  - vtk =9.4.2  # allow_outdated, needs qt6-main bump
+  - vtk-base =9.6.1
+  - vtk =9.6.1
   - ipywidgets =8.1.8
   - pyvista =0.47.1
-  - pyvistaqt =0.11.3
+  - pyvistaqt =0.11.4
   - trame =3.12.0
-  - trame-vtk =2.11.3
+  - trame-vtk =2.11.6
   - trame-vuetify =3.2.1
+  - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
   - imageio =2.37.0
@@ -223,25 +231,25 @@ specs:
   - jupyter_client =8.8.0
   - nbclient =0.10.4
   - nbformat =5.10.4
-  - pillow =12.0.0  # allow_outdated, needs qt6-main bump due to pcre2 conflict
+  - pillow =12.2.0
   - pyzmq =27.1.0
   - traitlets =5.14.3
   - pyopengl =3.1.10
   - pyqtgraph =0.14.0
   # Development
-  - pygments =2.19.2
+  - pygments =2.20.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
   - gh =2.88.1
   - setuptools_scm =9.2.2
   - pytest =9.0.2
-  - pytest-cov =7.0.0
+  - pytest-cov =7.1.0
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.15.5
-  - uv =0.10.10
+  - ruff =0.15.9
+  - uv =0.11.3
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.1
@@ -250,44 +258,47 @@ specs:
   - twine =6.2.0
   - hatchling =1.29.0
   - hatch-vcs =0.5.0
-  - mypy =1.19.1
+  - mypy =1.20.0
   - towncrier =25.8.0
-  - vulture =2.15
+  - vulture =2.16
   - grayskull =3.1.0
-  - conda-build =25.11.1  # allow_outdated, needs libffi update
-  - conda-smithy =3.56.3
-  - constructor =3.14.0
+  - conda-recipe-manager =0.10.1
+  - conda-build =26.3.0
+  - conda-smithy =3.58.1
+  - constructor =3.15.1
   - menuinst =2.4.2
-  - conda-standalone =25.11.0
-  - cmake =4.2.3  # scipy
+  - conda-standalone =26.1.1
+  - cmake =4.3.1  # scipy
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
-  - pybind11 =2.13.6  # allow_outdated, vtk conflict
-  - gfortran =15.2.0  # scipy
+  - pybind11 =3.0.3
+  - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
   - pythran =0.18.1
+  - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
+  - typer =0.24.1
+  - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.16.1
-  - graphviz =13.1.2  # allow_outdated, needs qt6-main bump due to pcre2 conflict
+  - graphviz =14.1.2
   - python-graphviz =0.21
-  - selenium =4.38.0  # allow_outdated, needs qt6-main bump
+  - selenium =4.41.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.20.0
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
-  - sphinxcontrib-youtube =1.4.1
+  - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
-  - intersphinx-registry =0.2602.2
+  - intersphinx-registry =0.2603.16
   # OS-specific
-  - git =2.53.0  # [win]  # allow_outdated, 2.54.0.dev0 on 2026/02/19 not on windows
+  # https://github.com/conda-forge/rpy2-feedstock/issues/149
+  - rpy2 =3.6.6  # [not win]
+  - git =2.53.0  # [win]
   - make =4.4.1  # [win]
-  # https://github.com/conda-forge/libffi-feedstock/issues/52
-  - libffi =3.4.6  # [osx and arm64]  # allow_outdated
-  # 12.1+ requires libffi 3.5.2+
-  - pyobjc-core =12.0  # [osx]  # allow_outdated
-  - pyobjc-framework-Cocoa =12.0  # [osx]  # allow_outdated
-  - pyobjc-framework-FSEvents =12.0  # [osx]  # allow_outdated
+  - pyobjc-core =12.1  # [osx]
+  - pyobjc-framework-Cocoa =12.1  # [osx]
+  - pyobjc-framework-FSEvents =12.1  # [osx]
 extra_envs:
   mne-kit-gui:
     channels:
