@@ -79,6 +79,7 @@ mod_map = {  # for import test, need map from conda-forge line/name to importabl
     "python-neo": "neo",
     "python-picard": "picard",
     "openneuro-py": "openneuro",
+    "hedtools": "hed",
 }
 ver_map = {  # for __version__, need map from importable name to conda-forge line/name
     "matplotlib": "matplotlib-base",
