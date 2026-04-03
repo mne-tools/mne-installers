@@ -137,14 +137,11 @@ mne_dep_names = sorted(set(pypi_to_conda.get(name, name) for name in mne_dep_nam
 # remove a few exceptions (toml-sort not on conda-forge, don't need others)
 # TODO: pymef should be on conda-forge soon
 # https://github.com/conda-forge/staged-recipes/pull/32039
-# hedtools should be on conda-forge soon
-# https://github.com/conda-forge/staged-recipes/pull/32640
 ignores = """
 sip
 tomli
 toml-sort
 pymef
-hedtools
 """.strip().split()
 for name in ignores:
     mne_dep_names.pop(mne_dep_names.index(name))

@@ -37,7 +37,7 @@ assert len(deps) == 1, len(deps)
 deps = deps[0]
 print(f"Found pip install line:\n{deps}")
 deps = deps[len(would) :]
-# intentional, then Qt-related, grayskull, then hedtools, then not on CF
+# intentional, then Qt-related, grayskull, then not on CF
 ignore_starts = tuple(
     """
 numpy-
@@ -50,18 +50,11 @@ tinycss2-
 click-
 typer-
 
-inflect-
-pandas-
-portalocker-
-semantic-version-
-typeguard-
-
 sphinxcontrib-towncrier-
 toml-sort-
 tomlkit-
 nest-asyncio2-
 pymef-
-hedtools-
 """.strip().split()
 )
 deps = [
