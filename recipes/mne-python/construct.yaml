@@ -191,7 +191,6 @@ specs:
   - pingouin =0.6.1
   - statsmodels =0.14.6
   - rpy2 =3.6.6  # [not win]
-  - rpy2 =3.6.4  # [win] allow_outdated, https://github.com/conda-forge/rpy2-feedstock/issues/149
   - r-base =4.5.3
   # NeuroSpin needs the following
   - questionary =2.1.1
@@ -202,6 +201,8 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.8
   - tornado =6.5.5
+  # conda-forge pinning needs to update to 6.11, then we can rerender VTK
+  # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
   - pyside6 =6.10.2  # allow_outdated, needs vtk update
   - qt6-main =6.10.2  # allow_outdated, needs vtk update
   - pcre2 =10.47
