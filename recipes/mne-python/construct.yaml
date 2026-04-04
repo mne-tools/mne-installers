@@ -108,6 +108,7 @@ specs:
   - neurodsp =2.3.0
   - bycycle =1.1.0
   - fooof =1.1.1
+  - pybispectra =1.3.0
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
