@@ -280,7 +280,7 @@ specs:
   - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
-  - pydata-sphinx-theme =0.16.1
+  - pydata-sphinx-theme =0.17.0
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.41.0
