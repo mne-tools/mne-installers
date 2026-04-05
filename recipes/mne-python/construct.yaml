@@ -168,7 +168,8 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, hedtools
   - polars =1.39.3
-  - numpy =2.4.3
+  - numpy =2.4.3  # [not is_macos_intel]
+  - numpy =2.3.5  # [is_macos_intel]  # allow_outdated, numba
   - scipy =1.17.1
   - openblas =0.3.32
   - libblas =3.11.0*=*openblas
@@ -183,7 +184,8 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.65.0
+  - numba =0.65.0  # [not is_macos_intel]
+  - numba =0.63.1  # [is_macos_intel]  # allow_outdated, last with first-class support
   - cython =3.2.4
   - joblib =1.5.3
   # I/O
