@@ -96,12 +96,28 @@ for mod in tqdm(mods, desc="Imports", unit="module"):
     py_mod = _import(mod_map.get(mod, mod))
     if mod not in bad_ver and "." not in mod:
         ver_lines = [
-            line.split("#")[0].strip()
+            line
             for line in all_lines
             if line.startswith(f"- {ver_map.get(mod, mod).lower()} =")
         ]
+        if len(ver_lines) == 2:
+            # should be the macos lines
+            if platform.system() == "Darwin" and platform.machine() == "x86_64":
+                ver_lines = ver_lines[1:]
+                assert "not" not in ver_lines[0], (
+                    f"Expected no 'not' in line for macos-x86_64: {ver_lines[0]}"
+                )
+            else:
+                ver_lines = ver_lines[:1]
+                assert "[not (osx and x86_64)]" in ver_lines[0], (
+                    f"Expected 'not' in line for non-macos-x86_64: {ver_lines[0]}"
+                )
+            assert "osx and x86_64" in ver_lines[0], (
+                f"Expected 'osx and x86_64' in line: {ver_lines[0]}"
+            )
         assert len(ver_lines) == 1, f"{mod}: {ver_lines}"
-        check_version_eq(py_mod, ver_lines[0].split("=")[1])
+        want_ver = ver_lines[0].split("#")[0].strip().split("=")[1]
+        check_version_eq(py_mod, want_ver)
     if mod == "matplotlib.pyplot":
         backend = py_mod.get_backend()
         assert backend.lower() == "qtagg", backend
