@@ -112,8 +112,8 @@ for mod in tqdm(mods, desc="Imports", unit="module"):
                 assert "[not (osx and x86_64)]" in ver_lines[0], (
                     f"Expected 'not' in line for non-macos-x86_64: {ver_lines[0]}"
                 )
-            assert "macos and x86_64" in ver_lines[0], (
-                f"Expected 'macos and x86_64' in line: {ver_lines[0]}"
+            assert "osx and x86_64" in ver_lines[0], (
+                f"Expected 'osx and x86_64' in line: {ver_lines[0]}"
             )
         assert len(ver_lines) == 1, f"{mod}: {ver_lines}"
         want_ver = ver_lines[0].split("#")[0].strip().split("=")[1]
