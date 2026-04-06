@@ -60,7 +60,7 @@ specs:
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
   - pip =26.0.1
   - wheel =0.46.3
-  - conda =26.1.1
+  - conda =26.3.1
   - mamba =2.5.0
   - libmamba =2.5.0
   # MNE ecosystem
@@ -75,7 +75,7 @@ specs:
   # vvv this line is special and used by MNE-Python, do not change it!
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.18.0
-  - mne-bids-pipeline =1.9.0
+  - mne-bids-pipeline =1.10.0
   - mne-qt-browser =0.7.4
   - mne-connectivity =0.8=*_1
   - mne-denoise =0.0.1
@@ -108,7 +108,7 @@ specs:
   - neurodsp =2.3.0
   - bycycle =1.1.0
   - fooof =1.1.1
-  - pybispectra =1.3.0
+  - pybispectra =1.3.1
   # Microstates
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
@@ -267,7 +267,7 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
-  - conda-smithy =3.58.1
+  - conda-smithy =3.59.0
   - constructor =3.15.1
   - menuinst =2.4.2
   - conda-standalone =26.1.1
