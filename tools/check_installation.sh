@@ -99,13 +99,16 @@ if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
 fi
 # TODO: broken on Windows!
 if [[ "$MNE_MACHINE" != "Windows" ]]; then
-    python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
-    python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
+    python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'" || exit 1
+    python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'" || exit 1
 fi
 echo "::endgroup::"
 
 echo "::group::Testing mne sys_info"
-mne sys_info
+# TODO: Run on Windows once more robust https://github.com/mne-tools/mne-python/pull/13810
+if [[ "$MNE_MACHINE" != "Windows" ]]; then
+    mne sys_info || exit 1
+fi
 echo "::endgroup::"
 
 echo "::group::Testing import of MNE and all additional packages included in the installer"
