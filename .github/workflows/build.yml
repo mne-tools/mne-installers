@@ -43,7 +43,7 @@ jobs:
           else
             echo "enable-ssh=false" | tee -a $GITHUB_OUTPUT
           fi
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           environment-name: localbuild
           create-args: python=3.13 conda-build
@@ -75,7 +75,7 @@ jobs:
         timeout-minutes: 20
         with:
           detached: true
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           environment-file: environment.yml
       - uses: actions/download-artifact@v8
@@ -134,7 +134,7 @@ jobs:
         timeout-minutes: 20
         with:
           detached: true
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           environment-file: environment.yml
       - uses: actions/download-artifact@v8
@@ -170,7 +170,7 @@ jobs:
         timeout-minutes: 20
         with:
           detached: true
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           environment-file: environment.yml
       - uses: actions/download-artifact@v8
