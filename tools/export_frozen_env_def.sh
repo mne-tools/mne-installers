@@ -3,7 +3,6 @@
 set -eo pipefail
 
 source "${MNE_ACTIVATE}"
-echo "Exporting frozen environment definition to ${MNE_INSTALLER_JSON_NAME}"
 echo "::group::Exporting frozen environment definition to ${MNE_INSTALLER_JSON_NAME}"
 conda list --json | tee ${MNE_INSTALLER_JSON_NAME}
 echo "::endgroup::"
