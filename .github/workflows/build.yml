@@ -111,7 +111,6 @@ jobs:
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: ${{ env.MNE_INSTALLER_NAME }}
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
           archive: false
@@ -148,7 +147,6 @@ jobs:
       - run: ./tools/calculate_installer_hash.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: ${{ env.MNE_INSTALLER_NAME }}
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
           archive: false
@@ -186,7 +184,6 @@ jobs:
       - run: ./tools/calculate_installer_hash.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           path: ${{ env.MNE_INSTALLER_NAME }}
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
           archive: false
@@ -209,7 +206,7 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          name: ${{ env.MNE_INSTALLER_NAME }}
           skip-decompress: true
       - name: Run installer
         run: |
@@ -218,7 +215,6 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}.env.json
           path: ${{ env.MNE_INSTALLER_NAME }}.env.json
           archive: false
         # upload just one for each installer version
@@ -247,13 +243,11 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
           skip-decompress: true
       - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}.env.json
           path: ${{ env.MNE_INSTALLER_NAME }}.env.json
           archive: false
         # upload just one for each installer version
@@ -282,7 +276,7 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          name: ${{ env.MNE_INSTALLER_NAME }}
           skip-decompress: true
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
@@ -291,7 +285,6 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}.env.json
           path: ${{ env.MNE_INSTALLER_NAME }}.env.json
           archive: false
         # upload just one for each installer version
@@ -314,7 +307,7 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
+      # These names should correspond to MNE_INSTALLER_NAME (plus JSONs) in tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
           pattern: MNE-Python-*
