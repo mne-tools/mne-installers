@@ -294,12 +294,12 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2603.16
   # OS-specific
-  # https://github.com/conda-forge/rpy2-feedstock/issues/149
-  - rpy2 =3.6.6  # [not win]
   # Windows installers must stay under 2GB due to nsis. r-base itself is fairly big,
   # but (much) worse it requires gfortran, which in turn requires clang, which is big.
   # pythran also requires gfortran.
   - r-base =4.5.3  # [not win]
+  # https://github.com/conda-forge/rpy2-feedstock/issues/149
+  - rpy2 =3.6.6  # [not win]
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
   - gfortran =14.3.0  # [not win]  # allow_outdated, needs r-base update, scipy
   - git =2.53.0  # [win]
