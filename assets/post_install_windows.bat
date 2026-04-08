@@ -12,6 +12,6 @@ echo Disabling mamba package manager banner.
 echo Pinning BLAS implementation to OpenBLAS.
 echo libblas=*=*openblas >> "%PREFIX%\conda-meta\pinned"
 
-:: TODO: needs https://github.com/mne-tools/mne-python/pull/13810 and release
+:: TODO: Failing due to Unicode issue
 :: echo Running mne sys_info.
 :: "%PREFIX%\Scripts\conda" run mne sys_info || echo
