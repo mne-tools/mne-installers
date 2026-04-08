@@ -198,7 +198,6 @@ specs:
   # Statistics
   - pingouin =0.6.1
   - statsmodels =0.14.6
-  - r-base =4.5.3  # [not win]  # have to save space, at 2GB limit as of 2026/04/08
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
@@ -277,8 +276,6 @@ specs:
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
-  - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
-  - pythran =0.18.1
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.24.1
   - libffi =3.5.2
@@ -299,6 +296,12 @@ specs:
   # OS-specific
   # https://github.com/conda-forge/rpy2-feedstock/issues/149
   - rpy2 =3.6.6  # [not win]
+  # Windows installers must stay under 2GB due to nsis. r-base itself is fairly big,
+  # but (much) worse it requires gfortran, which in turn requires clang, which is big.
+  # pythran also requires gfortran.
+  - r-base =4.5.3  # [not win]
+  - pythran =0.18.1  # [not win]  # pulls in clang, scipy
+  - gfortran =14.3.0  # [not win]  # allow_outdated, needs r-base update, scipy
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]

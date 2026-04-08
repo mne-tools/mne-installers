@@ -97,11 +97,8 @@ conda env config vars list
 if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
 fi
-# TODO: broken on Windows!
-if [[ "$MNE_MACHINE" != "Windows" ]]; then
-    python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'" || exit 1
-    python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'" || exit 1
-fi
+python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
+python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
 echo "::endgroup::"
 
 echo "::group::Testing mne sys_info"

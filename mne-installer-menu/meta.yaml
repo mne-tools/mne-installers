@@ -1,3 +1,5 @@
+{% set python_min = "3.10" %}
+
 package:
   name: "mne-installer-menu"
   version: "1.0.0"
@@ -11,13 +13,18 @@ build:
 
 requirements:
   host:
-    - python 3.10
+    - python {{ python_min }}
   run:
-    - python >=3.10
+    - python >={{ python_min }}
+  # If we ever want to see why an installer-dependent package is pulled in, we can
+  # cause it to be avoided using the same methods as "noqt" package:
+  # run_constrained:
+  #   - clang <0.0
+  #   - clang-22 <0.0
 
 test:
   requires:
-    - python 3.10
+    - python {{ python_min }}
 
 about:
   home: http://mne.tools
