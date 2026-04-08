@@ -9,4 +9,3 @@ repos:
     hooks:
       - id: yamllint
         args: [--strict, -c, .yamllint.yml]
-        exclude: ^mne-installer-menu/meta.yaml$
