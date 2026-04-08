@@ -243,6 +243,7 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
+          name: ${{ env.MNE_INSTALLER_NAME }}
           skip-decompress: true
       - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
