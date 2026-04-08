@@ -1,4 +1,4 @@
-version: 1.11.0_0
+version: 1.12.0_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -18,11 +18,11 @@ conclusion_file: ../../assets/conclusion.rtf   # [not win]
 initialize_by_default: false
 register_python_default: false
 
-default_prefix: ${HOME}/mne-python/1.11.0_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.11.0_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.11.0_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.11.0_0"  # [win]
-default_location_pkg: "Applications/MNE-Python/1.11.0_0"             # [osx]
+default_prefix: ${HOME}/mne-python/1.12.0_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.12.0_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.12.0_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.12.0_0"  # [win]
+default_location_pkg: "Applications/MNE-Python/1.12.0_0"             # [osx]
 pkg_name: ".mne-python"                                             # [osx]
 progress_notifications: true                                        # [osx]
 install_path_exists_error_text: |
@@ -30,10 +30,10 @@ install_path_exists_error_text: |
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.11.0_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.11.0_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.11.0_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.11.0_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.12.0_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.12.0_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.12.0_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.12.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -64,11 +64,11 @@ specs:
   - mamba =2.5.0
   - libmamba =2.5.0
   # MNE ecosystem
+  - mne-installer-menu =1.0.0=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.11.0=*_pyside6_*
-  - mne-installer-menu =1.11.0=*  # locally_built
+  - mne =1.12.0=*_pyside6_*
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
@@ -216,9 +216,9 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.6.0
-  - vtk-base =9.6.0  # allow_outdated, proj >= 9.8.0 unavailability bug
+  - vtk-base =9.6.0  # allow_outdated, needs proj bug to go away
   - vtk =9.6.0  # allow_outdated
-  - proj =9.7.1  # allow_outdated
+  - proj =9.7.1  # allow_outdated, some bug with 9.8.0
   - ipywidgets =8.1.8
   - pyvista =0.47.1
   - pyvistaqt =0.11.4
@@ -324,4 +324,4 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.11.0_0) "
+  env_prompt: "(mne-1.12.0_0) "

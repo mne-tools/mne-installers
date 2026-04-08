@@ -8,4 +8,4 @@ dependencies:
   - conda-libmamba-solver
   - conda-standalone >=23.11.0,!=24.11.0
   - menuinst
-  - conda >=23.11.0
+  - conda >=23.11.0,!=26.3.1
