@@ -269,7 +269,7 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
-  - conda-smithy =3.59.0
+  - conda-smithy =3.59.1
   - constructor =3.15.1
   - menuinst =2.4.2
   - conda-standalone =26.1.1
