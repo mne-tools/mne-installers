@@ -215,7 +215,7 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          path: ${{ env.MNE_INSTALLER_NAME }}.env.json
+          path: ${{ env.MNE_INSTALLER_JSON_NAME }}
           archive: false
         # upload just one for each installer version
         if: matrix.os == 'macos-15-intel' || matrix.os == 'macos-latest'
@@ -248,7 +248,7 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          path: ${{ env.MNE_INSTALLER_NAME }}.env.json
+          path: ${{ env.MNE_INSTALLER_JSON_NAME }}
           archive: false
         # upload just one for each installer version
         if: matrix.os == 'ubuntu-24.04'
@@ -285,7 +285,7 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          path: ${{ env.MNE_INSTALLER_NAME }}.env.json
+          path: ${{ env.MNE_INSTALLER_JSON_NAME }}
           archive: false
         # upload just one for each installer version
         if: matrix.os == 'windows-2022'
