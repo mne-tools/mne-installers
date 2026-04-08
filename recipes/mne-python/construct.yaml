@@ -198,7 +198,7 @@ specs:
   # Statistics
   - pingouin =0.6.1
   - statsmodels =0.14.6
-  - r-base =4.5.3
+  - r-base =4.5.3  # [not win]  # have to save space, at 2GB limit as of 2026/04/08
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
@@ -277,6 +277,7 @@ specs:
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
+  # We have to remove
   - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
   - pythran =0.18.1
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
