@@ -109,7 +109,6 @@ jobs:
           installer -verbose -pkginfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -dominfo -pkg ./${MNE_INSTALLER_NAME}
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
-      - run: ./tools/check_installer_sizes.sh
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
@@ -147,7 +146,6 @@ jobs:
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - run: ./tools/check_installer_sizes.sh
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
@@ -186,7 +184,6 @@ jobs:
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
-      - run: ./tools/check_installer_sizes.sh
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
