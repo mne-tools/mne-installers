@@ -9,7 +9,7 @@
 
 Page Custom muiExtraPages_Create
 
-Var hwnd
+; Var hwnd
 
 Function muiExtraPages_Create
     Push $0
