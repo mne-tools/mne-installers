@@ -11,9 +11,11 @@ welcome_image: ../../assets/welcome_macOS.png  # [osx]
 welcome_image: ../../assets/welcome.png        # [not osx]
 header_image: ../../assets/header.png
 icon_image: ../../assets/icon.png
-welcome_file: ../../assets/welcome.rtf
-readme_text: ""
+welcome_file: ../../assets/welcome.rtf         # [not win]
+welcome_file: ../../assets/welcome.nsi         # [win]
 conclusion_file: ../../assets/conclusion.rtf   # [not win]
+conclusion_file: ../../assets/conclusion.nsi   # [win]
+readme_text: ""
 
 initialize_by_default: false
 register_python_default: false
