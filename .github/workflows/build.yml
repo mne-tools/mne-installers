@@ -111,9 +111,9 @@ jobs:
           installer -verbose -volinfo -pkg ./${MNE_INSTALLER_NAME}
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-          path: MNE-Python-*.*
+          path: ${{ env.MNE_INSTALLER_NAME }}
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
+          archive: false
 
   build_linux:
     name: Build (${{ matrix.os }})
@@ -147,9 +147,9 @@ jobs:
       - run: ./tools/calculate_installer_hash.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-          path: MNE-Python-*.*
+          path: ${{ env.MNE_INSTALLER_NAME }}
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
+          archive: false
 
   build_windows:
     name: Build (${{ matrix.os }})
@@ -177,16 +177,15 @@ jobs:
         with:
           name: local-packages
           path: conda-bld
-      - run: conda install -c conda-forge -y "nsis==3.08"
       - run: ./tools/extract_version.sh
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/calculate_installer_hash.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
-          path: MNE-Python-*.*
+          path: ${{ env.MNE_INSTALLER_NAME }}
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
+          archive: false
 
   # Test
   test_macos:
@@ -206,7 +205,8 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          name: ${{ env.MNE_INSTALLER_NAME }}
+          skip-decompress: true
       - name: Run installer
         run: |
           sudo installer -verbose -pkg ${MNE_INSTALLER_NAME} -target / \
@@ -214,8 +214,8 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
-          path: MNE-Python-*.env.json
+          path: ${{ env.MNE_INSTALLER_JSON_NAME }}
+          archive: false
         # upload just one for each installer version
         if: matrix.os == 'macos-15-intel' || matrix.os == 'macos-latest'
       - uses: pyvista/setup-headless-display-action@main
@@ -242,13 +242,14 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          name: ${{ env.MNE_INSTALLER_NAME }}
+          skip-decompress: true
       - run: sh ./${MNE_INSTALLER_NAME} -b
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
-          path: MNE-Python-*.env.json
+          path: ${{ env.MNE_INSTALLER_JSON_NAME }}
+          archive: false
         # upload just one for each installer version
         if: matrix.os == 'ubuntu-24.04'
       - uses: pyvista/setup-headless-display-action@main
@@ -275,7 +276,8 @@ jobs:
       - run: ./tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}
+          name: ${{ env.MNE_INSTALLER_NAME }}
+          skip-decompress: true
       # https://docs.anaconda.com/anaconda/install/silent-mode.html#windows
       - run: .\%MNE_INSTALLER_NAME% /S /InstallationType=JustMe /AddToPath=1
         timeout-minutes: 70
@@ -283,8 +285,8 @@ jobs:
       - run: ./tools/export_frozen_env_def.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.MNE_INSTALLER_ARTIFACT_ID }}-json
-          path: MNE-Python-*.env.json
+          path: ${{ env.MNE_INSTALLER_JSON_NAME }}
+          archive: false
         # upload just one for each installer version
         if: matrix.os == 'windows-2022'
       - uses: pyvista/setup-headless-display-action@main
@@ -305,11 +307,12 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      # These names should correspond to MNE_INSTALLER_ARTIFACT_ID in tools/extract_version.sh
+      # These names should correspond to MNE_INSTALLER_NAME (plus JSONs) in tools/extract_version.sh
       - uses: actions/download-artifact@v8
         with:
           pattern: MNE-Python-*
           merge-multiple: true
+          skip-decompress: true
       - run: ls -al ./
       - uses: ncipollo/release-action@v1
         with:

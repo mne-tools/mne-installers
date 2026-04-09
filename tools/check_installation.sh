@@ -97,11 +97,8 @@ conda env config vars list
 if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
 fi
-# TODO: broken on Windows!
-if [[ "$MNE_MACHINE" != "Windows" ]]; then
-    python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'" || exit 1
-    python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'" || exit 1
-fi
+python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
+python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
 echo "::endgroup::"
 
 echo "::group::Testing mne sys_info"
@@ -126,12 +123,9 @@ python -u tests/test_mne_kit_gui.py
 conda deactivate
 echo "::endgroup::"
 
-# TODO: broken on Windows!
-if [[ "$MNE_MACHINE" != "Windows" ]]; then
-    echo "::group::Testing that the JSON versions are correct"
-    python -u tests/test_json_versions.py || exit 1
-    echo "::endgroup::"
-fi
+echo "::group::Testing that the JSON versions are correct"
+python -u tests/test_json_versions.py || exit 1
+echo "::endgroup::"
 
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py

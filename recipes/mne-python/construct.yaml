@@ -60,7 +60,8 @@ specs:
   - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
   - pip =26.0.1
   - wheel =0.46.3
-  - conda =26.3.1
+  - conda =26.3.1  # [not win]
+  - conda =26.1.1  # [win]  # allow_outdated, has correct JSON export
   - mamba =2.5.0
   - libmamba =2.5.0
   # MNE ecosystem
@@ -197,7 +198,6 @@ specs:
   # Statistics
   - pingouin =0.6.1
   - statsmodels =0.14.6
-  - r-base =4.5.3
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
@@ -253,7 +253,7 @@ specs:
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
   - ruff =0.15.9
-  - uv =0.11.3
+  - uv =0.11.4
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.1
@@ -268,7 +268,7 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
-  - conda-smithy =3.59.0
+  - conda-smithy =3.59.1
   - constructor =3.15.1
   - menuinst =2.4.2
   - conda-standalone =26.1.1
@@ -276,8 +276,6 @@ specs:
   - meson =1.10.2  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
-  - gfortran =14.3.0  # allow_outdated, needs r-base update, scipy
-  - pythran =0.18.1
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.24.1
   - libffi =3.5.2
@@ -296,8 +294,14 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2603.16
   # OS-specific
+  # Windows installers must stay under 2GB due to nsis. r-base itself is fairly big,
+  # but (much) worse it requires gfortran, which in turn requires clang, which is big.
+  # pythran also requires gfortran.
+  - r-base =4.5.3  # [not win]
   # https://github.com/conda-forge/rpy2-feedstock/issues/149
   - rpy2 =3.6.6  # [not win]
+  - pythran =0.18.1  # [not win]  # pulls in clang, scipy
+  - gfortran =14.3.0  # [not win]  # allow_outdated, needs r-base update, scipy
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]

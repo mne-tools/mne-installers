@@ -11,13 +11,19 @@ build:
 
 requirements:
   host:
-    - python 3.10
+    - python
   run:
-    - python >=3.10
+    - python
+#   If we ever want to see why an installer-dependent package is pulled in during
+# testing, we can cause it to be avoided using the same methods as "noqt" package:
+#
+#   run_constrained:
+#     - clang <0.0
+#     - clang-22 <0.0
 
 test:
   requires:
-    - python 3.10
+    - python
 
 about:
   home: http://mne.tools
