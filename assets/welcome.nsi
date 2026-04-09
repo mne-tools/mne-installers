@@ -1,8 +1,30 @@
-!define MUI_WELCOMEPAGE_TITLE "Welcome to the MNE-Python installer!"
-!define MUI_WELCOMEPAGE_TEXT "\
-This installer will guide you through the installation of MNE-Python.$\r$\n\
-$\r$\n\
-Installation might take several minutes to complete, even if the installer says it's less than one minute. Please be patient!$\r$\n\
-$\r$\n\
-For more information on MNE-Python, please visit our website at mne.tools."
+# Combine
+# https://github.com/conda/constructor/blob/162a5cda86e94ca27a87cd3e7d205184e90a7f19/examples/customized_welcome_conclusion/custom_welcome.nsi#L4
+# https://nsis.sourceforge.io/LoadRTF
+
+!define MUI_PAGE_CUSTOMFUNCTION_PRE SkipPageIfUACInnerInstance
 !insertmacro MUI_PAGE_WELCOME
+
+!include "nsDialogs.nsh"
+!include "LoadRTF.nsh"
+
+Page Custom muiExtraPages_Create
+
+Var hwnd
+
+Function muiExtraPages_Create
+    Push $0
+
+    !insertmacro MUI_HEADER_TEXT_PAGE "${PRODUCT_NAME}" "Welcome"
+
+    nsDialogs::Create /NOUNLOAD 1018
+
+    nsDialogs::CreateControl "RichEdit20A" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_TABSTOP}|${WS_VSCROLL}|${ES_MULTILINE}|${ES_WANTRETURN} ${WS_EX_STATICEDGE} 0 0 100% 100% ''
+    Pop $hwnd
+
+    ${LoadRTF} "$PLUGINSDIR\welcome.rtf" $hwnd
+
+    nsDialogs::Show
+
+    Pop $0
+FunctionEnd
