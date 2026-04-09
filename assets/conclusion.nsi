@@ -7,11 +7,11 @@
 !include "nsDialogs.nsh"
 !include "LoadRTF.nsh"
 
-Page Custom muiExtraPages_Create
+Page Custom muiExtraPagesConclusion_Create
 
-; Var hwnd
+Var hwndConclusion
 
-Function muiExtraPages_Create
+Function muiExtraPagesConclusion_Create
     Push $0
 
     !insertmacro MUI_HEADER_TEXT_PAGE "${PRODUCT_NAME}" "Finished"
@@ -19,9 +19,9 @@ Function muiExtraPages_Create
     nsDialogs::Create /NOUNLOAD 1018
 
     nsDialogs::CreateControl "RichEdit20A" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_TABSTOP}|${WS_VSCROLL}|${ES_MULTILINE}|${ES_WANTRETURN} ${WS_EX_STATICEDGE} 0 0 100% 100% ''
-    Pop $hwnd
+    Pop $hwndConclusion
 
-    ${LoadRTF} "$PLUGINSDIR\conclusion.rtf" $hwnd
+    ${LoadRTF} "$PLUGINSDIR\conclusion.rtf" $hwndConclusion
 
     nsDialogs::Show
 
