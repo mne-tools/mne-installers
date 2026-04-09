@@ -19,6 +19,7 @@ readme_text: ""
 temp_extra_files:
   - ../../assets/conclusion.rtf
   - ../../assets/welcome.rtf
+  - ../../assets/LoadRTF.nsh
 
 initialize_by_default: false
 register_python_default: false
