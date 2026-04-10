@@ -83,7 +83,7 @@ specs:
   # vvv this line is special and used by MNE-Python, do not change it!
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.18.0
-  - mne-bids-pipeline =1.10.0
+  # - mne-bids-pipeline =1.10.0
   - mne-qt-browser =0.7.4
   - mne-connectivity =0.8=*_1
   - mne-denoise =0.0.1
