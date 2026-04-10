@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#grouping-log-lines
-
 set -eo pipefail
 echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
 source "${MNE_ACTIVATE}"
@@ -50,7 +48,9 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
     ls -l || exit 1
-    WANT=5
+    # TODO: got rid of the generic launcher due to
+    # https://github.com/conda/menuinst/issues/463
+    WANT=4
     echo "Checking for existence of $WANT .desktop files:"
     ls mne-python*.desktop || exit 1
     test `ls mne-python*.desktop | wc -l` -eq $WANT || exit 1
@@ -71,8 +71,9 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     if [[ `grep "24.04" /etc/lsb-release` ]] || [[ `grep "20.04" /etc/lsb-release` ]]; then
         export SKIP_NOTEBOOK_TESTS=1
     fi
-else
-    test "$MNE_MACHINE" == "Windows" || exit 1
+elif [[ "$MNE_MACHINE" != "Windows" ]]; then
+    echo "Unknown MNE_MACHINE=$MNE_MACHINE, exiting with error"
+    exit 1
 fi
 echo "::endgroup::"
 
@@ -124,7 +125,7 @@ conda deactivate
 echo "::endgroup::"
 
 echo "::group::Testing that the JSON versions are correct"
-python -u tests/test_json_versions.py || exit 1
+python -u tests/test_json_versions.py
 echo "::endgroup::"
 
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
