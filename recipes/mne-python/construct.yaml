@@ -101,6 +101,7 @@ specs:
   - meegkit =0.1.9
   - eeg_positions =2.1.2
   - curryreader =0.1.2
+  - rsatoolbox =0.3.2
   # MRI
   - surfa =0.6.3
   - fsleyes =1.18.0
@@ -171,6 +172,7 @@ specs:
   - antropy =0.2.2
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
+  - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, hedtools
   - polars =1.39.3
@@ -273,7 +275,7 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
-  - conda-smithy =3.59.1
+  - conda-smithy =3.60.0
   - constructor =3.15.1
   - menuinst =2.4.2
   - conda-standalone =26.1.1

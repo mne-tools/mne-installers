@@ -33,7 +33,7 @@ def check_version_eq(package, ver):
         package_ver = parse(package.__version__)
     except Exception:
         package_ver = getattr(package, "__version__", "Missing version__")
-        raise ImportError(f"Could not parse version for {package}: {package_ver:!r}")
+        raise ImportError(f"Could not parse version for {package}: {package_ver!r}")
     if not parsed.ignore_version_check:
         assert package_ver >= parse(ver), (
             f"{package}: got {package.__version__} wanted {ver}"
@@ -74,6 +74,7 @@ bad_ver = {
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
     "Foundation",
+    "rsatoolbox",  # https://github.com/rsagroup/rsatoolbox/issues/487
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
