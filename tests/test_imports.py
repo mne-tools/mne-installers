@@ -33,7 +33,7 @@ def check_version_eq(package, ver):
         package_ver = parse(package.__version__)
     except Exception:
         package_ver = getattr(package, "__version__", "Missing version__")
-        raise ImportError(f"Could not parse version for {package}: {package_ver:!r}")
+        raise ImportError(f"Could not parse version for {package}: {package_ver!r}")
     if not parsed.ignore_version_check:
         assert package_ver >= parse(ver), (
             f"{package}: got {package.__version__} wanted {ver}"
