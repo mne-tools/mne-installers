@@ -9,5 +9,8 @@ echo Disabling mamba package manager banner.
 echo Pinning BLAS implementation to OpenBLAS.
 echo libblas=*=*openblas >> "%PREFIX%\conda-meta\pinned"
 
+echo Setting read/write permissions on the Python installation to %USERNAME% (this can take a few minutes!).
+icacls %PREFIX% /grant %USERNAME%:(OI)(CI)M /c /t /q
+
 echo Running mne sys_info.
 "%PREFIX%\Scripts\conda" run mne sys_info -a || echo
