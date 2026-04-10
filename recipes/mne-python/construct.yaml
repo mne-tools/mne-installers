@@ -63,7 +63,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.13.9  # allow_outdated, 3.14+ will have to wait until all deps are ready
+  - python =3.14.4
   - pip =26.0.1
   - wheel =0.46.3
   - conda =26.3.1
@@ -273,7 +273,7 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
-  - conda-smithy =3.59.1
+  - conda-smithy =3.60.0
   - constructor =3.15.1
   - menuinst =2.4.2
   - conda-standalone =26.1.1
