@@ -105,7 +105,7 @@ specs:
   - surfa =0.6.3
   - fsleyes =1.18.0
   - dcm2niix =1.0.20250506
-  - dipy =1.12.0
+  # - dipy =1.12.0  # https://github.com/conda-forge/dipy-feedstock/pull/64
   - nilearn =0.13.1
   # Time-frequency analysis
   - pactools =0.3.1
@@ -235,7 +235,7 @@ specs:
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.11.0
+  - ipython =9.12.0
   - jinja2 =3.1.6
   - jupyter_client =8.8.0
   - nbclient =0.10.4
