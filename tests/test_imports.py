@@ -74,6 +74,7 @@ bad_ver = {
     "pactools",  # https://github.com/pactools/pactools/pull/37
     "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
     "Foundation",
+    "rsatoolbox",  # https://github.com/rsagroup/rsatoolbox/issues/487
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
