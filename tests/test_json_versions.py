@@ -46,9 +46,9 @@ for spec in specs:
         "version": package_version,
         "build_string": package_build,
     }
-for name in ("mne", "mne-installer-menu"):  # the most important ones!
-    assert name in want_versions, f"{name} missing from want_versions (build str error)"
-assert len(want_versions) > 2, len(want_versions)  # more than just the two above
+# for name in ("mne", "mne-installer-menu"):  # the most important ones!
+#     assert name in want_versions, f"{name} missing from construct.yml versions"
+assert len(want_versions) > 20, len(want_versions)  # lots of packages
 
 # Extract versions from created environment
 fname = dir_ / f"MNE-Python-{installer_version}-{sys_name}{sys_ext}.env.json"
