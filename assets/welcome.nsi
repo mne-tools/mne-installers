@@ -21,7 +21,7 @@ Function muiExtraPagesWelcome_Create
     nsDialogs::CreateControl "RichEdit20A" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_TABSTOP}|${WS_VSCROLL}|${ES_MULTILINE}|${ES_WANTRETURN} ${WS_EX_STATICEDGE} 0 0 100% 100% ''
     Pop $hwndWelcome
 
-    ${LoadRTF} "$PLUGINSDIR\welcome.rtf" $hwndWelcome
+    ${LoadRTF} "$PLUGINSDIR\welcome_windows.rtf" $hwndWelcome
 
     nsDialogs::Show
 

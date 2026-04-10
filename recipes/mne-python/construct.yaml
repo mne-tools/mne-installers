@@ -17,8 +17,8 @@ conclusion_file: ../../assets/conclusion.rtf   # [not win]
 conclusion_file: ../../assets/conclusion.nsi   # [win]
 readme_text: ""
 temp_extra_files:
-  - ../../assets/conclusion.rtf
-  - ../../assets/welcome.rtf
+  - ../../assets/conclusion_windows.rtf
+  - ../../assets/welcome_windows.rtf
   - ../../assets/LoadRTF.nsh
 
 initialize_by_default: false

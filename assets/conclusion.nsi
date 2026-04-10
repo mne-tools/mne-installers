@@ -21,7 +21,7 @@ Function muiExtraPagesConclusion_Create
     nsDialogs::CreateControl "RichEdit20A" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_TABSTOP}|${WS_VSCROLL}|${ES_MULTILINE}|${ES_WANTRETURN} ${WS_EX_STATICEDGE} 0 0 100% 100% ''
     Pop $hwndConclusion
 
-    ${LoadRTF} "$PLUGINSDIR\conclusion.rtf" $hwndConclusion
+    ${LoadRTF} "$PLUGINSDIR\conclusion_windows.rtf" $hwndConclusion
 
     nsDialogs::Show
 
