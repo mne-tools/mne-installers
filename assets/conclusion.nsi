@@ -1,0 +1,31 @@
+; Combine
+; https://github.com/conda/constructor/blob/162a5cda86e94ca27a87cd3e7d205184e90a7f19/examples/customized_welcome_conclusion/custom_welcome.nsi#L4
+; https://nsis.sourceforge.io/LoadRTF
+
+; Placeholder line to facilitate diff with welcome.nsi
+
+!include "nsDialogs.nsh"
+!include "LoadRTF.nsh"
+
+Page Custom muiExtraPagesConclusion_Create
+
+Var hwndConclusion
+
+Function muiExtraPagesConclusion_Create
+    Push $0
+
+    !insertmacro MUI_HEADER_TEXT_PAGE "${PRODUCT_NAME}" "Finished"
+
+    nsDialogs::Create /NOUNLOAD 1018
+
+    nsDialogs::CreateControl "RichEdit20A" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_TABSTOP}|${WS_VSCROLL}|${ES_MULTILINE}|${ES_WANTRETURN} ${WS_EX_STATICEDGE} 0 0 100% 100% ''
+    Pop $hwndConclusion
+
+    ${LoadRTF} "$PLUGINSDIR\conclusion_windows.rtf" $hwndConclusion
+
+    nsDialogs::Show
+
+    Pop $0
+FunctionEnd
+
+!insertmacro MUI_PAGE_FINISH
