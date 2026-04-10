@@ -48,7 +48,9 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     echo "Checking that menu shortcuts were created …"
     pushd ~/.local/share/applications
     ls -l || exit 1
-    WANT=5
+    # TODO: got rid of the generic launcher due to
+    # https://github.com/conda/menuinst/issues/463
+    WANT=4
     echo "Checking for existence of $WANT .desktop files:"
     ls mne-python*.desktop || exit 1
     test `ls mne-python*.desktop | wc -l` -eq $WANT || exit 1

@@ -19,7 +19,7 @@ readme_text: ""
 temp_extra_files:
   - ../../assets/conclusion_windows.rtf
   - ../../assets/welcome_windows.rtf
-  - ../../assets/LoadRTF.nsh
+  - ../../assets/LoadRTF.nsh  # https://nsis.sourceforge.io/LoadRTF
 
 initialize_by_default: false
 register_python_default: false
