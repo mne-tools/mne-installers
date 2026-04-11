@@ -103,6 +103,7 @@ specs:
   - meegkit =0.1.9
   - eeg_positions =2.1.2
   - curryreader =0.1.2
+  - rsatoolbox =0.3.2
   # MRI
   - surfa =0.6.3
   - fsleyes =1.18.0
@@ -173,6 +174,7 @@ specs:
   - antropy =0.2.2
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0
+  - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, hedtools
   - polars =1.39.3
