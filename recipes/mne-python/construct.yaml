@@ -178,8 +178,7 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, hedtools
   - polars =1.39.3
-  - numpy =2.4.3  # [not (osx and x86_64)]
-  - numpy =2.3.5  # [osx and x86_64]  # allow_outdated, numba
+  - numpy =2.4.3
   - scipy =1.17.1
   - openblas =0.3.32
   - libblas =3.11.0*=*openblas
@@ -195,8 +194,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.65.0  # [not (osx and x86_64)]
-  - numba =0.63.1  # [osx and x86_64]  # allow_outdated, last with first-class support
+  - numba =0.65.0
   - cython =3.2.4
   - joblib =1.5.3
   # I/O
@@ -219,16 +217,16 @@ specs:
   - tornado =6.5.5
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
-  - pyside6 =6.10.2  # allow_outdated, needs vtk update
-  - qt6-main =6.10.2  # allow_outdated, needs vtk update
+  - pyside6 =6.11.0
+  - qt6-main =6.11.0
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.6.0
-  - vtk-base =9.6.0  # allow_outdated, needs proj bug to go away
-  - vtk =9.6.0  # allow_outdated
-  - proj =9.7.1  # allow_outdated, some bug with 9.8.0
+  - vtk-base =9.6.1
+  - vtk =9.6.1
+  - proj =9.8.1
   - ipywidgets =8.1.8
   - pyvista =0.47.3
   - pyvistaqt =0.11.4
