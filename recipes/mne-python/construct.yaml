@@ -217,8 +217,8 @@ specs:
   - tornado =6.5.5
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
-  - pyside6 =6.11.0
-  - qt6-main =6.11.0
+  - pyside6 =6.10.2  # allow_outdated, needs vtk update
+  - qt6-main =6.10.2  # allow_outdated, needs vtk update
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
