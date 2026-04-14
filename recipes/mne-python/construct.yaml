@@ -83,7 +83,7 @@ specs:
   - mne-bids =0.18.0
   - mne-bids-pipeline =1.10.0
   - mne-qt-browser =0.7.4
-  - mne-connectivity =0.8=*_1
+  - mne-connectivity =0.8.1
   - mne-denoise =0.0.1
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
@@ -230,7 +230,7 @@ specs:
   - pyvista =0.47.3
   - pyvistaqt =0.11.4
   - trame =3.12.0
-  - trame-vtk =2.11.6
+  - trame-vtk =2.11.7
   - trame-vuetify =3.2.1
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
@@ -269,7 +269,7 @@ specs:
   - twine =6.2.0
   - hatchling =1.29.0
   - hatch-vcs =0.5.0
-  - mypy =1.20.0
+  - mypy =1.20.1
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.0
