@@ -104,7 +104,7 @@ specs:
   - rsatoolbox =0.3.2
   # MRI
   - surfa =0.6.3
-  - fsleyes =1.18.0
+  - fsleyes =1.18.1
   - dcm2niix =1.0.20250506
   - dipy =1.12.0
   - nilearn =0.13.1
@@ -126,7 +126,7 @@ specs:
   - yasa =0.7.0
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
-  - mnelab =1.4.2
+  - mnelab =1.4.3
   # other
   - pyriemann =0.10
   - pyprep =0.6.0
@@ -160,9 +160,9 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   - opencv =4.13.0
   - decorator =5.2.1
-  - filelock =3.25.2
+  - filelock =3.28.0
   - lazy-loader =0.5
-  - packaging =26.0
+  - packaging =26.1
   - pooch =1.9.0
   - tqdm =4.67.3
   - h5py =3.16.0
@@ -275,11 +275,11 @@ specs:
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
   - conda-smithy =3.60.0
-  - constructor =3.15.1
+  - constructor =3.15.3
   - menuinst =2.4.2
   - conda-standalone =26.1.1
   - cmake =4.3.1  # scipy
-  - meson =1.10.2  # matplotlib, scipy
+  - meson =1.11.0  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
