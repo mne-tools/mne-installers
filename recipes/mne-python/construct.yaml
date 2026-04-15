@@ -143,8 +143,6 @@ specs:
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
-  - quantities =0.16.4
-  - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   # Not on PyPI or no wheels on PyPI
   # conpy: https://aaltoimaginglanguage.github.io/conpy/
   # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
@@ -160,6 +158,8 @@ specs:
 
   - noqt5 =1.0
   - libgfortran5 =15.2.0
+  - quantities =0.16.4
+  - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   - opencv =4.13.0
   - decorator =5.2.1
   - filelock =3.25.2
@@ -231,7 +231,7 @@ specs:
   - pyvista =0.47.3
   - pyvistaqt =0.11.4
   - trame =3.12.0
-  - trame-vtk =2.11.6
+  - trame-vtk =2.11.7
   - trame-vuetify =3.2.1
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
