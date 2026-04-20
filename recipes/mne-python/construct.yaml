@@ -120,7 +120,7 @@ specs:
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2026.4.0
+  - openneuro-py =2026.4.1
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.7.0
