@@ -175,7 +175,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, hedtools
-  - polars =1.40.0
+  - polars =1.39.3  # allow_outdated, https://github.com/conda-forge/polars-feedstock/issues/365
   - numpy =2.4.3  # [not (osx and x86_64)]
   - numpy =2.3.5  # [osx and x86_64]  # allow_outdated, numba
   - scipy =1.17.1
