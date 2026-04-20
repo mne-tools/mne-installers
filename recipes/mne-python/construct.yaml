@@ -96,7 +96,7 @@ specs:
   - mne-videobrowser =0.2.1
   - autoreject =0.4.3
   - antio =0.6.1
-  - hedtools =1.0.0
+  - hedtools =1.1.0
   - wfdb =4.3.1
   - meegkit =0.1.9
   - eeg_positions =2.1.2
@@ -174,8 +174,8 @@ specs:
   - scikit-learn =1.8.0
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
-  - pandas =2.3.3  # allow_outdated, hedtools
-  - polars =1.39.3  # allow_outdated, https://github.com/conda-forge/polars-feedstock/issues/365
+  - pandas =3.0.2
+  - polars =1.40.0
   - numpy =2.4.3  # [not (osx and x86_64)]
   - numpy =2.3.5  # [osx and x86_64]  # allow_outdated, numba
   - scipy =1.17.1
