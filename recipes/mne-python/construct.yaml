@@ -104,7 +104,7 @@ specs:
   - rsatoolbox =0.3.2
   # MRI
   - surfa =0.6.3
-  - fsleyes =1.18.0
+  - fsleyes =1.18.1
   - dcm2niix =1.0.20250506
   - dipy =1.12.0
   - nilearn =0.13.1
@@ -120,19 +120,19 @@ specs:
   - mne-microstates =0.3.0
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2026.3.1
+  - openneuro-py =2026.4.0
   # sleep staging
   - sleepecg =0.5.9=*_2
   - yasa =0.7.0
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
-  - mnelab =1.4.2
+  - mnelab =1.4.3
   # other
-  - pyriemann =0.10
+  - pyriemann =0.11
   - pyprep =0.6.0
   - python-picard =0.8.1
   - pybv =0.7.6
-  - pybvrf =0.1.2
+  - pybvrf =0.1.4
   - edfio =0.4.13
   - eeglabio =0.1.3
   - mffpy =0.10.0
@@ -160,9 +160,9 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   - opencv =4.13.0
   - decorator =5.2.1
-  - filelock =3.25.2
+  - filelock =3.29.0
   - lazy-loader =0.5
-  - packaging =26.0
+  - packaging =26.1
   - pooch =1.9.0
   - tqdm =4.67.3
   - h5py =3.16.0
@@ -175,7 +175,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =2.3.3  # allow_outdated, hedtools
-  - polars =1.39.3
+  - polars =1.40.0
   - numpy =2.4.3  # [not (osx and x86_64)]
   - numpy =2.3.5  # [osx and x86_64]  # allow_outdated, numba
   - scipy =1.17.1
@@ -251,7 +251,7 @@ specs:
   - pygments =2.20.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.88.1
+  - gh =2.90.0
   - setuptools_scm =9.2.2
   - pytest =9.0.3
   - pytest-cov =7.1.0
@@ -259,8 +259,8 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.5.1
-  - ruff =0.15.10
-  - uv =0.11.6
+  - ruff =0.15.11
+  - uv =0.11.7
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.1
@@ -276,11 +276,11 @@ specs:
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
   - conda-smithy =3.60.0
-  - constructor =3.15.1
+  - constructor =3.15.3
   - menuinst =2.4.2
   - conda-standalone =26.1.1
   - cmake =4.3.1  # scipy
-  - meson =1.10.2  # matplotlib, scipy
+  - meson =1.11.0  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
