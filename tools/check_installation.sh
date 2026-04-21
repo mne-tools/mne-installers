@@ -35,9 +35,9 @@ if [[ "$MNE_MACHINE" == "macOS" ]]; then
 else
     SIZE_OPT="-c%s"
 fi
-actual_size=$(stat $SIZE_OPT "$MNE_INSTALLER_NAME")
-if [ "$actual_size" -gt "$MAX_SIZE" ]; then
-    echo "Error: Installer size ($actual_size bytes) exceeds the maximum allowed size ($MAX_SIZE bytes)."
+ACTUAL_SIZE=$(stat $SIZE_OPT "$MNE_INSTALLER_NAME")
+if [ "$ACTUAL_SIZE" -gt "$MAX_SIZE" ]; then
+    echo "Error: Installer size ($ACTUAL_SIZE bytes) exceeds the maximum allowed size ($MAX_SIZE bytes)."
     exit 1
 fi
 
