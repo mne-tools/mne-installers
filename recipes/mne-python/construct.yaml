@@ -276,13 +276,9 @@ specs:
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
   - conda-smithy =3.61.0
-  - constructor =3.15.3
   - menuinst =2.4.2
-  - conda-standalone =26.1.1
   - cmake =4.3.1  # scipy
   - meson =1.11.1  # matplotlib, scipy
-  - pythran =0.18.1  # scipy
-  - gfortran =15.2.0  # scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
@@ -303,12 +299,17 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2603.16
   # OS-specific
+  - pythran =0.18.1  # [not win]  # pulls in clang, scipy
+  - gfortran =15.2.0  # [not win]  # scipy
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
-  #  r-base and rpy2 add too many dependencies, so we don't add them
+  # Size considerations:
+  # - r-base and rpy2 add too many dependencies, so we don't add them
+  # - constructor adds conda-standalone, which is ~50 MB
+
 extra_envs:
   mne-kit-gui:
     channels:
