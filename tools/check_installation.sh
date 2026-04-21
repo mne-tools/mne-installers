@@ -32,7 +32,7 @@ echo "::endgroup::"
 MAX_SIZE=2147483648
 # I hate macOS sometimes
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
-    SIZE_OPT="-f%s"
+    SIZE_OPT="-f%c"
 else
     SIZE_OPT="-c%s"
 fi
