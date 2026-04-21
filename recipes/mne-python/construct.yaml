@@ -275,8 +275,8 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
-  - constructor =3.15.3
   - conda-smithy =3.61.0
+  - constructor =3.15.3
   - menuinst =2.4.2
   - conda-standalone =26.1.1
   - cmake =4.3.1  # scipy
