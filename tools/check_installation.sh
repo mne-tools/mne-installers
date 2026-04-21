@@ -39,6 +39,8 @@ ACTUAL_SIZE=$(stat $SIZE_OPT "$MNE_INSTALLER_NAME")
 if [ "$ACTUAL_SIZE" -gt "$MAX_SIZE" ]; then
     echo "Error: Installer size ($ACTUAL_SIZE bytes) exceeds the maximum allowed size ($MAX_SIZE bytes)."
     exit 1
+else
+    echo "Installer size ($ACTUAL_SIZE bytes) is within the allowed limit ($MAX_SIZE bytes)."
 fi
 
 echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
