@@ -20,6 +20,11 @@ echo "::group::pip list"
 pip list
 echo "::endgroup::"
 
+echo "::group::package sizes"
+# https://stackoverflow.com/a/67976448/2175965
+grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed 's/.*conda-meta\///g' | column -t
+echo "::endgroup::"
+
 echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"

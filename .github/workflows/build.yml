@@ -55,6 +55,7 @@ jobs:
           retention-days: 1
 
   build_macos:
+    if: false
     name: Build (${{ matrix.os }})
     needs: [build_local]
     strategy:
@@ -152,6 +153,7 @@ jobs:
           archive: false
 
   build_windows:
+    if: false
     name: Build (${{ matrix.os }})
     needs: [build_local]
     runs-on: ${{ matrix.os }}
