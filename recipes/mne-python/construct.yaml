@@ -281,13 +281,13 @@ specs:
   - conda-standalone =26.1.1
   - cmake =4.3.1  # scipy
   - meson =1.11.1  # matplotlib, scipy
+  - pythran =0.18.1  # scipy
+  - gfortran =15.2.0  # scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.24.1
   - libffi =3.5.2
-  - pythran =0.18.1
-  - gfortran =14.3.0
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.17.1
