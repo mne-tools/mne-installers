@@ -275,8 +275,10 @@ specs:
   - grayskull =3.1.0
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
+  - constructor =3.15.3
   - conda-smithy =3.61.0
   - menuinst =2.4.2
+  - conda-standalone =26.1.1
   - cmake =4.3.1  # scipy
   - meson =1.11.1  # matplotlib, scipy
   - meson-python =0.19.0
@@ -284,6 +286,8 @@ specs:
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.24.1
   - libffi =3.5.2
+  - pythran =0.18.1
+  - gfortran =14.3.0
   # Doc building
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.17.1
@@ -299,22 +303,12 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2603.16
   # OS-specific
-  # Windows installers must stay under 2GB due to nsis. r-base itself is fairly big,
-  # but (much) worse it requires gfortran, which in turn requires clang, which is big.
-  # pythran also requires gfortran.
-  - r-base =4.5.3  # [not win]
-  # https://github.com/conda-forge/rpy2-feedstock/issues/149
-  - rpy2 =3.6.6  # [not win]
-  - pythran =0.18.1  # [not win]  # pulls in clang, scipy
-  - gfortran =14.3.0  # [not win]  # allow_outdated, needs r-base update, scipy
-  # Linux installers need to be under 2GB to be attachable to GitHub releases
-  - constructor =3.15.3  # [not linux]
-  - conda-standalone =26.1.1  # [not linux]
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
+  #  r-base and rpy2 add too many dependencies, so we don't add them
 extra_envs:
   mne-kit-gui:
     channels:
