@@ -25,6 +25,15 @@ echo "::group::package sizes"
 grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed 's/.*conda-meta\///g' | column -t
 echo "::endgroup::"
 
+# Now that we have the package sizes listed, raise an error if the installer is too big
+# (it will fail to attach to GH releases)
+MAX_SIZE=2147483648
+actual_size=$(stat -c%s "$MNE_INSTALLER_NAME")
+if [ "$actual_size" -gt "$MAX_SIZE" ]; then
+    echo "Error: Installer size ($actual_size bytes) exceeds the maximum allowed size ($MAX_SIZE bytes)."
+    exit 1
+fi
+
 echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"

@@ -276,9 +276,9 @@ specs:
   - conda-recipe-manager =0.10.1
   - conda-build =26.3.0
   - conda-smithy =3.61.0
-  - constructor =3.15.3
   - menuinst =2.4.2
-  - conda-standalone =26.1.1
+  - constructor =3.15.3  # [not linux]
+  - conda-standalone =26.1.1  # [not linux]
   - cmake =4.3.1  # scipy
   - meson =1.11.1  # matplotlib, scipy
   - meson-python =0.19.0
