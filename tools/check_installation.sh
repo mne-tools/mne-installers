@@ -23,7 +23,8 @@ echo "::endgroup::"
 N=100
 echo "::group::package sizes (top $N)"
 # https://stackoverflow.com/a/67976448/2175965
-grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed 's/.*conda-meta\///g' | sed 's/"size": //g' | head -n $N | column -t
+grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed 's/.*conda-meta\///g' | sed 's/"size": //g' > package_sizes.txt
+head -n $N package_sizes.txt
 echo "::endgroup::"
 
 # Now that we have the package sizes listed, raise an error if the installer is too big
