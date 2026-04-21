@@ -306,10 +306,9 @@ specs:
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
-  # Size considerations:
+  # Size considerations (must stay under 2GB for releases and Windows!):
   # - r-base and rpy2 add too many dependencies, so we don't add them
   # - constructor adds conda-standalone, which is ~50 MB
-
 extra_envs:
   mne-kit-gui:
     channels:
