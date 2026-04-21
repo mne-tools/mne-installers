@@ -277,8 +277,6 @@ specs:
   - conda-build =26.3.0
   - conda-smithy =3.61.0
   - menuinst =2.4.2
-  - constructor =3.15.3  # [not linux]
-  - conda-standalone =26.1.1  # [not linux]
   - cmake =4.3.1  # scipy
   - meson =1.11.1  # matplotlib, scipy
   - meson-python =0.19.0
@@ -309,6 +307,9 @@ specs:
   - rpy2 =3.6.6  # [not win]
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
   - gfortran =14.3.0  # [not win]  # allow_outdated, needs r-base update, scipy
+  # Linux installers need to be under 2GB to be attachable to GitHub releases
+  - constructor =3.15.3  # [not linux]
+  - conda-standalone =26.1.1  # [not linux]
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
