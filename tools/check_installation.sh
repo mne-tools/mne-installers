@@ -20,15 +20,22 @@ echo "::group::pip list"
 pip list
 echo "::endgroup::"
 
-echo "::group::package sizes"
+N=100
+echo "::group::package sizes (top $N)"
 # https://stackoverflow.com/a/67976448/2175965
-grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed 's/.*conda-meta\///g' | column -t
+grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed 's/.*conda-meta\///g' | sed 's/"size": //g' | head -n $N | column -t
 echo "::endgroup::"
 
 # Now that we have the package sizes listed, raise an error if the installer is too big
 # (it will fail to attach to GH releases)
 MAX_SIZE=2147483648
-actual_size=$(stat -c%s "$MNE_INSTALLER_NAME")
+# I hate macOS sometimes
+if [[ "$MNE_MACHINE" == "macOS" ]]; then
+    SIZE_OPT="-f%s"
+else
+    SIZE_OPT="-c%s"
+fi
+actual_size=$(stat $SIZE_OPT "$MNE_INSTALLER_NAME")
 if [ "$actual_size" -gt "$MAX_SIZE" ]; then
     echo "Error: Installer size ($actual_size bytes) exceeds the maximum allowed size ($MAX_SIZE bytes)."
     exit 1
