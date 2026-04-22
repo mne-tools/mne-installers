@@ -27,6 +27,8 @@ jobs:
   build_local:
     name: Build local packages
     runs-on: ubuntu-latest
+    env:
+      CI_OS: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
@@ -64,6 +66,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 50
     env:
+      CI_OS: ${{ matrix.os }}
       GITHUB_EVENT_NAME: ${{ github.event_name }}
     defaults:
       run:
@@ -124,6 +127,8 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     timeout-minutes: 50
+    env:
+      CI_OS: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
@@ -160,6 +165,8 @@ jobs:
       matrix:
         os: [windows-latest]
     timeout-minutes: 50
+    env:
+      CI_OS: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
@@ -197,6 +204,8 @@ jobs:
         os: [macos-15-intel, macos-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 50
+    env:
+      CI_OS: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
@@ -234,6 +243,8 @@ jobs:
         os: [ubuntu-22.04, ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 50
+    env:
+      CI_OS: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}
@@ -268,6 +279,8 @@ jobs:
         os: [windows-2022, windows-2025]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 80
+    env:
+      CI_OS: ${{ matrix.os }}
     defaults:
       run:
         shell: bash -el {0}

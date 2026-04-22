@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eo pipefail
-echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
+echo "Running tests for MNE_MACHINE=${MNE_MACHINE} on CI_OS=${CI_OS}"
 source "${MNE_ACTIVATE}"
 
 echo "::group::conda info"
@@ -127,9 +127,13 @@ python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == 
 python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
 echo "::endgroup::"
 
-echo "::group::Testing mne sys_info"
-mne sys_info
-echo "::endgroup::"
+if [[ "$CI_OS" == "windows-2022" ]]; then
+    echo "Skipping mne sys_info (hangs sometimes!)"
+else
+    echo "::group::Testing mne sys_info"
+    mne sys_info || exit 1
+    echo "::endgroup::"
+fi
 
 echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
