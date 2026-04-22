@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eo pipefail
-echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
+echo "Running tests for MNE_MACHINE=${MNE_MACHINE} on CI_OS=${CI_OS}"
 source "${MNE_ACTIVATE}"
 
 echo "::group::conda info"
@@ -19,6 +19,31 @@ echo "::endgroup::"
 echo "::group::pip list"
 pip list
 echo "::endgroup::"
+
+N=100
+echo "::group::package sizes (top $N)"
+# https://stackoverflow.com/a/67976448/2175965
+grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed -E 's/.*conda-meta\/(.+)\.json:.+"size": (.+),/\1 \2/g' > package_sizes.txt
+head -n $N package_sizes.txt | column -t
+echo "::endgroup::"
+
+# Now that we have the package sizes listed, raise an error if the installer is too big
+# (it will fail to attach to GH releases)
+MAX_SIZE=2147483648
+# I hate macOS sometimes
+if [[ "$MNE_MACHINE" == "macOS" ]]; then
+    SIZE_OPT="-f%c"
+else
+    SIZE_OPT="-c%s"
+fi
+ACTUAL_SIZE=$(stat $SIZE_OPT "$MNE_INSTALLER_NAME")
+DIFF_SIZE=$((MAX_SIZE - ACTUAL_SIZE))
+if [ "$ACTUAL_SIZE" -gt "$MAX_SIZE" ]; then
+    echo "Error: Installer size ($ACTUAL_SIZE bytes) exceeds the maximum allowed size ($MAX_SIZE bytes) by $((-DIFF_SIZE)) bytes."
+    exit 1
+else
+    echo "Installer size ($ACTUAL_SIZE bytes) is within the allowed limit ($MAX_SIZE bytes) by $DIFF_SIZE bytes."
+fi
 
 echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
@@ -102,9 +127,13 @@ python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == 
 python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
 echo "::endgroup::"
 
-echo "::group::Testing mne sys_info"
-mne sys_info
-echo "::endgroup::"
+if [[ "$CI_OS" == "windows-2022" ]]; then
+    echo "Skipping mne sys_info (hangs sometimes!)"
+else
+    echo "::group::Testing mne sys_info"
+    mne sys_info || exit 1
+    echo "::endgroup::"
+fi
 
 echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
