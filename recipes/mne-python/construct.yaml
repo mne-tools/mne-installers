@@ -251,7 +251,7 @@ specs:
   - pygments =2.20.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.91.0
+  - gh =2.92.0
   - setuptools_scm =9.2.2
   - pytest =9.0.3
   - pytest-cov =7.1.0
