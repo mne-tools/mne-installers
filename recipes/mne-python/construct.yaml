@@ -179,7 +179,7 @@ specs:
   - numpy =2.4.3  # [not (osx and x86_64)]
   - numpy =2.3.5  # [osx and x86_64]  # allow_outdated, numba
   - scipy =1.17.1
-  - openblas =0.3.33
+  - openblas =0.3.32  # allow_outdated, needs libblas update
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.5.5
