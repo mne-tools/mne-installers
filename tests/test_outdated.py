@@ -174,22 +174,23 @@ for package in packages:
         not_found.append(package)
         continue
 
-    # Iterate in reverse chronological order, omitting versions marked as broken and
     # those that are not in the main channel
     # TODO We may want to make exceptions here for MNE testing versions if we need them
-    version = None
-    for file in json["files"][::-1]:
+    version = "0.0"
+    for file in json["files"]:
+        # Omitting versions marked as broken, dev, and those not in the main channel
         if "broken" in file["labels"]:
             continue
-        elif "main" not in file["labels"]:
+        if "dev" in file["labels"]:
             continue
-        elif ".rc" in file["version"]:
+        if "main" not in file["labels"]:
             continue
-        else:
+        if ".rc" in file["version"]:
+            continue
+        if packaging.version.parse(file["version"]) > packaging.version.parse(version):
             version = file["version"]
-            break
 
-    assert version is not None
+    assert version != "0.0", f"Did not find a valid version for {package.name}"
 
     package.version_conda_forge = version
     del json, version
