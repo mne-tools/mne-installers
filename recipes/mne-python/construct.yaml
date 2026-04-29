@@ -65,7 +65,7 @@ specs:
   # Python
   - python =3.14.4
   - pip =26.0.1
-  - wheel =0.46.3
+  - wheel =0.47.0
   - conda =26.3.2
   - mamba =2.5.0
   - libmamba =2.5.0
@@ -92,10 +92,10 @@ specs:
   - mne-ari =0.1.2
   # - mne-icalabel =0.8.1  # onnx
   - mne-gui-addons =0.1=*_1
-  - mne-lsl =1.13.1
+  - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
   - autoreject =0.4.3
-  - antio =0.6.1
+  - antio =0.7.0
   - hedtools =1.1.0
   - wfdb =4.3.1
   - meegkit =0.1.9
@@ -106,7 +106,7 @@ specs:
   - surfa =0.6.3
   - fsleyes =1.18.1
   - dcm2niix =1.0.20250506
-  - dipy =1.12.0
+  - dipy =1.12.1
   - nilearn =0.13.1
   # Time-frequency analysis
   - pactools =0.3.1
@@ -162,7 +162,7 @@ specs:
   - decorator =5.2.1
   - filelock =3.29.0
   - lazy-loader =0.5
-  - packaging =26.1
+  - packaging =26.2
   - pooch =1.9.0
   - tqdm =4.67.3
   - h5py =3.16.0
@@ -178,7 +178,7 @@ specs:
   - polars =1.40.0
   - numpy =2.4.3
   - scipy =1.17.1
-  - openblas =0.3.32
+  - openblas =0.3.32  # allow_outdated, needs libblas update
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.5.5
@@ -200,7 +200,7 @@ specs:
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.4.0
-  - pyarrow =23.0.1
+  - pyarrow =24.0.0
   # Statistics
   - pingouin =0.6.1
   - statsmodels =0.14.6
@@ -211,7 +211,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.10.8
+  - matplotlib-base =3.10.9
   - tornado =6.5.5
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
@@ -229,14 +229,14 @@ specs:
   - pyvista =0.47.3
   - pyvistaqt =0.11.4
   - trame =3.12.0
-  - trame-vtk =2.11.7
+  - trame-vtk =2.11.8
   - trame-vuetify =3.2.1
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.12.0
+  - ipython =9.13.0
   - jinja2 =3.1.6
   - jupyter_client =8.8.0
   - nbclient =0.10.4
@@ -250,50 +250,48 @@ specs:
   - pygments =2.20.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.90.0
+  - gh =2.92.0
   - setuptools_scm =9.2.2
   - pytest =9.0.3
   - pytest-cov =7.1.0
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
-  - pre-commit =4.5.1
+  - pre-commit =4.6.0
   - ruff =0.15.11
   - uv =0.11.7
   - check-manifest =0.51
   - codespell =2.4.2
-  - py-spy =0.4.1
+  - py-spy =0.4.2
   - line_profiler =5.0.2
   - memory_profiler =0.61.0
   - twine =6.2.0
   - hatchling =1.29.0
   - hatch-vcs =0.5.0
-  - mypy =1.20.1
+  - mypy =1.20.2
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.0
-  - conda-recipe-manager =0.10.1
+  - conda-recipe-manager =0.10.2
   - conda-build =26.3.0
-  - conda-smithy =3.60.0
-  - constructor =3.15.3
+  - conda-smithy =3.61.2
   - menuinst =2.4.2
-  - conda-standalone =26.1.1
-  - cmake =4.3.1  # scipy
-  - meson =1.11.0  # matplotlib, scipy
+  - cmake =4.3.2  # scipy
+  - meson =1.11.1  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
-  - typer =0.24.1
+  - typer =0.25.0
   - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
-  - pydata-sphinx-theme =0.17.0
+  - pydata-sphinx-theme =0.17.1
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.43.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
-  - sphinx-gallery =0.20.0
+  - sphinx-gallery =0.21.0
   - sphinxcontrib-bibtex =2.6.5
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.5.0
@@ -302,21 +300,17 @@ specs:
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
-  #
-  # Windows installers must stay under 2GB due to nsis. r-base itself is fairly big,
-  # but (much) worse it requires gfortran, which in turn requires clang, which is big.
-  # pythran also requires gfortran.
-  - r-base =4.5.3  # [not win]
-  # https://github.com/conda-forge/rpy2-feedstock/issues/149
-  - rpy2 =3.6.6  # [not win]
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
-  - gfortran =14.3.0  # [not win]  # allow_outdated, needs r-base update, scipy
+  - gfortran =15.2.0  # [not win]  # scipy
   - git =2.53.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
   - pyobjc-framework-FSEvents =12.1  # [osx]
   # End OS-specific defs
+  # Size considerations (must stay under 2GB for releases and Windows!):
+  # - r-base and rpy2 add too many dependencies, so we don't add them
+  # - constructor adds conda-standalone, which is ~50 MB
 extra_envs:
   mne-kit-gui:
     channels:

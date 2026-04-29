@@ -2,11 +2,12 @@
 
 import fnmatch
 import json
-import os
 import pathlib
 import platform
 import sys
 import yaml
+
+from tqdm import tqdm
 
 dir_ = pathlib.Path(__file__).parent.parent
 
@@ -54,7 +55,7 @@ assert len(want_versions) > 50, want_versions  # lots of packages with version s
 
 # Extract versions from created environment
 fname = dir_ / f"MNE-Python-{installer_version}-{sys_name}{sys_ext}.env.json"
-assert fname.is_file(), (fname, os.listdir(os.getcwd()))
+assert fname.is_file(), f"{fname=}\n" + "\n".join(str(d) for d in dir_.iterdir())
 env_json = json.loads(fname.read_text(encoding="utf-8"))
 got_versions = dict()
 for package in env_json:
@@ -73,7 +74,7 @@ ignores = [
 ]
 ignores += ["numpy", "numba"]
 # check versions
-for package_name, want in want_versions.items():
+for package_name, want in tqdm(want_versions.items(), desc="Versions", unit="package"):
     if package_name in ignores:
         continue
     assert package_name in got_versions, f"{package_name} missing from env.json"
