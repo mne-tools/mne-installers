@@ -181,7 +181,7 @@ specs:
   - openblas =0.3.32  # allow_outdated, needs libblas update
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
-  - notebook =7.5.5
+  - notebook =7.5.6
   - nbconvert =7.17.1
   - jupyterlab =4.5.7
   - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
