@@ -63,7 +63,8 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.14.4
+  - python =3.14.4  # [not (osx and x86_64)]
+  - python =3.13.9  # [osx and x86_64]  # allow_outdated, onnx
   - pip =26.0.1
   - wheel =0.47.0
   - conda =26.3.2
@@ -81,7 +82,7 @@ specs:
   # vvv this line is special and used by MNE-Python, do not change it!
   # <<< BEGIN RELATED SOFTWARE LIST >>>
   - mne-bids =0.18.0
-  # - mne-bids-pipeline =1.10.1  # onnx
+  - mne-bids-pipeline =1.11.0
   - mne-qt-browser =0.7.4
   - mne-connectivity =0.8.1
   - mne-denoise =0.0.1
@@ -90,7 +91,7 @@ specs:
   - mne-features =0.3.2
   - mne-rsa =1.0
   - mne-ari =0.1.2
-  # - mne-icalabel =0.8.1  # onnx
+  - mne-icalabel =0.8.1
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
@@ -296,8 +297,8 @@ specs:
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2605.27
-  # - onnxruntime =1.24.2  # [not osx and x86_64]
-  # - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
+  - onnxruntime =1.24.2  # [not (osx and x86_64)]
+  - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
