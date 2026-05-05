@@ -63,8 +63,6 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - python =3.14.4  # [not (osx and x86_64)]
-  - python =3.13.9  # [osx and x86_64]  # allow_outdated, onnx
   - pip =26.1.1
   - wheel =0.47.0
   - conda =26.3.2
@@ -297,11 +295,15 @@ specs:
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2605.27
-  - onnxruntime =1.24.2  # [not (osx and x86_64)]
-  - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
+  - python =3.14.4  # [not (osx and x86_64)]
+  - python =3.13.9  # [osx and x86_64]  # allow_outdated, onnx
+  - python_abi =3.14  # [not (osx and x86_64)]
+  - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
+  - onnxruntime =1.24.4  # [not (osx and x86_64)]
+  - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
   - gfortran =15.2.0  # [not win]  # scipy
   - git =2.53.0  # [win]
