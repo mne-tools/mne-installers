@@ -227,7 +227,7 @@ specs:
   - pyvista =0.48.2
   - pyvistaqt =0.11.4
   - trame =3.13.0
-  - trame-pyvista=0.1.1
+  - trame-pyvista =0.1.1
   - trame-vtk =2.11.8
   - trame-vuetify =3.2.2
   - nest-asyncio2 =1.7.2
