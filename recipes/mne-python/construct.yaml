@@ -104,7 +104,7 @@ specs:
   # MRI
   - surfa =0.6.3
   - fsleyes =1.18.1
-  - dcm2niix =1.0.20250506
+  - dcm2niix =1.0.20260416
   - dipy =1.12.1
   - nilearn =0.13.1
   # Time-frequency analysis
@@ -224,9 +224,10 @@ specs:
   - vtk =9.6.1
   - proj =9.8.1
   - ipywidgets =8.1.8
-  - pyvista =0.48.0
+  - pyvista =0.48.2
   - pyvistaqt =0.11.4
-  - trame =3.12.0
+  - trame =3.13.0
+  - trame-pyvista =0.1.1
   - trame-vtk =2.11.8
   - trame-vuetify =3.2.2
   - nest-asyncio2 =1.7.2
@@ -241,7 +242,7 @@ specs:
   - nbformat =5.10.4
   - pillow =12.2.0
   - pyzmq =27.1.0
-  - traitlets =5.14.3
+  - traitlets =5.15.0
   - pyopengl =3.1.10
   - pyqtgraph =0.14.0
   # Development
@@ -256,8 +257,8 @@ specs:
   - pytest-rerunfailures =16.1
   - pytest-timeout =2.4.0
   - pre-commit =4.6.0
-  - ruff =0.15.11
-  - uv =0.11.9
+  - ruff =0.15.12
+  - uv =0.11.13
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.2
@@ -270,7 +271,7 @@ specs:
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.1
-  - conda-recipe-manager =0.10.2
+  - conda-recipe-manager =0.10.3
   - conda-build =26.3.0
   - conda-smithy =3.61.2
   - menuinst =2.4.2
@@ -290,7 +291,7 @@ specs:
   - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.21.0
-  - sphinxcontrib-bibtex =2.6.5
+  - sphinxcontrib-bibtex =2.7.0
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
@@ -306,7 +307,7 @@ specs:
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
   - gfortran =15.2.0  # [not win]  # scipy
-  - git =2.53.0  # [win]
+  - git =2.54.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.1  # [osx]
   - pyobjc-framework-Cocoa =12.1  # [osx]
