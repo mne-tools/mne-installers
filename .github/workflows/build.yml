@@ -47,7 +47,6 @@ jobs:
           fi
       - uses: mamba-org/setup-micromamba@v3
         with:
-          micromamba-version: '2.6.0-0'  # workaround for https://github.com/mamba-org/setup-micromamba/issues/306
           environment-name: localbuild
           create-args: python=3.13 conda-build
       - run: ./tools/run_conda_build.sh
@@ -81,6 +80,7 @@ jobs:
           detached: true
       - uses: mamba-org/setup-micromamba@v3
         with:
+          micromamba-version: '2.6.0-0'  # workaround for https://github.com/mamba-org/micromamba-releases/issues/97
           environment-file: environment.yml
       - uses: actions/download-artifact@v8
         with:
