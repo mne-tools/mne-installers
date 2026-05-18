@@ -179,6 +179,7 @@ jobs:
           detached: true
       - uses: mamba-org/setup-micromamba@v3
         with:
+          micromamba-version: '2.6.0-0'  # workaround for https://github.com/mamba-org/micromamba-releases/issues/97
           environment-file: environment.yml
       - uses: actions/download-artifact@v8
         with:
