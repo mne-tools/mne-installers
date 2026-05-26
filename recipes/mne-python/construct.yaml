@@ -223,6 +223,7 @@ specs:
   - vtk-base =9.6.2
   - vtk =9.6.2
   - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
+  - lightgbm =4.6.0  # from yasa
   - proj =9.8.1
   - ipywidgets =8.1.8
   - pyvista =0.48.4
