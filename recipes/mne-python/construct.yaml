@@ -66,8 +66,8 @@ specs:
   - pip =26.1.1
   - wheel =0.47.0
   - conda =26.5.0
-  - mamba =2.6.1
-  - libmamba =2.6.1
+  - mamba =2.6.2
+  - libmamba =2.6.2
   # MNE ecosystem
   - mne-installer-menu =1.12.1=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -89,7 +89,7 @@ specs:
   - mne-features =0.3.2
   - mne-rsa =1.0
   - mne-ari =0.1.2
-  - mne-icalabel =0.8.1
+  - mne-icalabel =0.9.0
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
@@ -125,7 +125,7 @@ specs:
   - yasa =0.7.0
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
-  - mnelab =1.4.6
+  - mnelab =1.5.1
   # other
   - pyriemann =0.11
   - pyprep =0.6.0
@@ -174,8 +174,8 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.3
-  - polars =1.40.1
-  - numpy =2.4.5
+  - polars =1.41.0
+  - numpy =2.4.6
   - scipy =1.17.1
   - openblas =0.3.32  # allow_outdated, needs libblas update
   - libblas =3.11.0*=*openblas
@@ -191,7 +191,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.65.1
-  - cython =3.2.4
+  - cython =3.2.5
   - joblib =1.5.3
   # I/O
   - pyxdf =1.17.4
@@ -213,20 +213,22 @@ specs:
   - tornado =6.5.5
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
-  - pyside6 =6.10.2  # allow_outdated, needs vtk update
-  - qt6-main =6.10.2  # allow_outdated, needs vtk update
+  - pyside6 =6.11.1  # allow_outdated, follows vtk updates
+  - qt6-main =6.11.1  # allow_outdated, follows vtk updates
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.6.0
-  - vtk-base =9.6.1
-  - vtk =9.6.1
+  - vtk-base =9.6.2
+  - vtk =9.6.2
+  - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
+  - lightgbm =4.6.0  # from yasa
   - proj =9.8.1
   - ipywidgets =8.1.8
   - pyvista =0.48.4
   - pyvistaqt =0.11.4
-  - trame =3.13.1
+  - trame =3.13.2
   - trame-pyvista =0.1.1
   - trame-vtk =2.11.8
   - trame-vuetify =3.2.2
@@ -250,15 +252,15 @@ specs:
   - psutil =7.2.2
   - memory_profiler =0.61.0
   - gh =2.92.0
-  - setuptools_scm =9.2.2
+  - setuptools_scm =10.0.5
   - pytest =9.0.3
   - pytest-cov =7.1.0
   - pytest-qt =4.5.0
-  - pytest-rerunfailures =16.2
+  - pytest-rerunfailures =16.3
   - pytest-timeout =2.4.0
   - pre-commit =4.6.0
-  - ruff =0.15.13
-  - uv =0.11.14
+  - ruff =0.15.14
+  - uv =0.11.16
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.2
@@ -272,10 +274,10 @@ specs:
   - vulture =2.16
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.3
-  - conda-build =26.3.0
-  - conda-smithy =3.61.2
+  - conda-build =26.5.0
+  - conda-smithy =3.62.0
   - menuinst =2.4.2
-  - cmake =4.3.2  # scipy
+  - cmake =4.3.3  # scipy
   - meson =1.11.1  # matplotlib, scipy
   - meson-python =0.19.0
   - pybind11 =3.0.3
@@ -284,7 +286,7 @@ specs:
   - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
-  - pydata-sphinx-theme =0.17.1
+  - pydata-sphinx-theme =0.18.0
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.43.0
@@ -295,7 +297,7 @@ specs:
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
-  - intersphinx-registry =0.2605.27
+  - intersphinx-registry =0.2605.28
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
