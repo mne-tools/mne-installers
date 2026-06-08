@@ -65,7 +65,7 @@ specs:
   # Python
   - pip =26.1.2
   - wheel =0.47.0
-  - conda =26.5.2
+  - conda =26.5.0  # allow_outdated, needs conda-smithy update
   - mamba =2.8.1
   - libmamba =2.8.1
   # MNE ecosystem
