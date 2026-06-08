@@ -66,8 +66,8 @@ specs:
   - pip =26.1.2
   - wheel =0.47.0
   - conda =26.5.2
-  - mamba =2.8.0
-  - libmamba =2.8.0
+  - mamba =2.8.1
+  - libmamba =2.8.1
   # MNE ecosystem
   - mne-installer-menu =1.12.1=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
