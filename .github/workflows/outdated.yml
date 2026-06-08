@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 15
     defaults:
       run:
-        shell: bash -el --pipefail {0}
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v6
         with:
