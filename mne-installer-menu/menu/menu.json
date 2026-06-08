@@ -166,8 +166,7 @@
           "SingleMainWindow": true,
           "NoDisplay": true,
           "StartupWMClass": "MNE-Python"
-        },
-        "win": null
+        }
       }
     }
   ]
