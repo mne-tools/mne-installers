@@ -14,10 +14,15 @@ jobs:
   deps:
     runs-on: ubuntu-22.04
     timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -el --pipefail {0}
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
       - name: Get commit message
-        run: echo "commit-message=$(git show -s --format=%s ${{ github.event.pull_request.head.sha || github.sha }})" | tee -a ${GITHUB_OUTPUT}
+        run: echo "commit-message=$(git show -s --format=%s ${{ github.event.pull_request.head.sha }})" | tee -a ${GITHUB_OUTPUT}
         id: get-commit-message
       - uses: actions/setup-python@v6
         with:
