@@ -1,4 +1,8 @@
 name: Bot auto-merge
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
+  cancel-in-progress: true
+
 on: pull_request_target  # yamllint disable-line rule:truthy
 
 permissions:
