@@ -16,10 +16,14 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
+      - name: Get commit message
+        run: echo "commit-message=$(git show -s --format=%s ${{ github.event.pull_request.head.sha || github.sha }})" | tee -a ${GITHUB_OUTPUT}
+        id: get-commit-message
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install packaging requests pyyaml
       - run: python tests/test_outdated.py  # can update the file in place
+        if: ${{ !contains(steps.get-commit-message.outputs.commit-message, '[skip outdated]') }}
       - uses: autofix-ci/action@7a166d7532b277f34e16238930461bf77f9d7ed8
         if: failure()
