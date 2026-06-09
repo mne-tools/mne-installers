@@ -230,7 +230,7 @@ specs:
   - pyvistaqt =0.11.4
   - trame =3.13.2
   - trame-pyvista =0.1.1
-  - trame-vtk =2.11.9
+  - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
   - trame-vuetify =3.2.2
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
