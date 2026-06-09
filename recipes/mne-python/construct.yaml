@@ -163,7 +163,7 @@ specs:
   - lazy-loader =0.5
   - packaging =26.2
   - pooch =1.9.0
-  - tqdm =4.68.1
+  - tqdm =4.68.2
   - h5py =3.16.0
   - h5io =0.2.5
   - pymatreader =1.2.3
@@ -197,7 +197,7 @@ specs:
   - pyxdf =1.17.4
   - openpyxl =3.1.5
   - xlrd =2.0.2
-  - nibabel =5.4.0
+  - nibabel =5.4.2
   - pyarrow =24.0.0
   # Statistics
   - pingouin =0.6.1
@@ -210,7 +210,7 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.10.9
-  - tornado =6.5.6
+  - tornado =6.5.7
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
   - pyside6 =6.11.1  # allow_outdated, follows vtk updates
@@ -230,7 +230,7 @@ specs:
   - pyvistaqt =0.11.4
   - trame =3.13.2
   - trame-pyvista =0.1.1
-  - trame-vtk =2.11.8
+  - trame-vtk =2.11.9
   - trame-vuetify =3.2.2
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
@@ -239,7 +239,7 @@ specs:
   - ipyevents =2.0.4
   - ipython =9.14.1
   - jinja2 =3.1.6
-  - jupyter_client =8.9.0
+  - jupyter_client =8.9.1
   - nbclient =0.11.0
   - nbformat =5.10.4
   - pillow =12.2.0
