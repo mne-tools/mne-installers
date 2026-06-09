@@ -7,5 +7,5 @@ dependencies:
   - constructor >=3.15.3
   - conda-libmamba-solver
   - conda-standalone >=23.11.0,!=24.11.0
-  - menuinst
+  - menuinst >=2.5.0
   - conda >=23.11.0

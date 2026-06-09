@@ -14,12 +14,21 @@ jobs:
   deps:
     runs-on: ubuntu-22.04
     timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+      - name: Get commit message
+        run: echo "commit-message=$(git show -s --format=%s ${{ github.event.pull_request.head.sha }})" | tee -a ${GITHUB_OUTPUT}
+        id: get-commit-message
       - uses: actions/setup-python@v6
         with:
           python-version: "3.14"
       - run: pip install packaging requests pyyaml
       - run: python -u tests/test_outdated.py  # can update the file in place
+        if: ${{ !contains(steps.get-commit-message.outputs.commit-message, '[skip outdated]') }}
       - uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a
         if: failure()

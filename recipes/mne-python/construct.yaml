@@ -93,7 +93,7 @@ specs:
   - mne-gui-addons =0.1=*_1
   - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
-  - autoreject =0.4.3
+  - autoreject =0.4.4
   - antio =0.7.0
   - hedtools =1.1.0
   - wfdb =4.3.1
