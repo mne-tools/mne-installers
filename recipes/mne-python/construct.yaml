@@ -128,7 +128,7 @@ specs:
   - mnelab =1.5.3
   # other
   - pyriemann =0.11
-  - pyprep =0.6.0
+  - pyprep =0.7.1
   - python-picard =0.8.1
   - pybv =0.7.6
   - pybvrf =0.1.4
@@ -159,7 +159,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   - opencv =4.13.0
   - decorator =5.3.1
-  - filelock =3.29.1
+  - filelock =3.29.4
   - lazy-loader =0.5
   - packaging =26.2
   - pooch =1.9.0
@@ -251,7 +251,7 @@ specs:
   - pygments =2.20.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.93.0
+  - gh =2.94.0
   - setuptools_scm =10.0.5
   - pytest =9.0.3
   - pytest-cov =7.1.0
@@ -259,8 +259,8 @@ specs:
   - pytest-rerunfailures =16.3
   - pytest-timeout =2.4.0
   - pre-commit =4.6.0
-  - ruff =0.15.16
-  - uv =0.11.19
+  - ruff =0.15.17
+  - uv =0.11.21
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.2
@@ -273,13 +273,13 @@ specs:
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.1
-  - conda-recipe-manager =0.10.3
+  - conda-recipe-manager =0.10.4
   - conda-build =26.5.0
-  - conda-smithy =2026.5.29
+  - conda-smithy =2026.6.14
   - menuinst =2.5.0
   - cmake =4.3.3  # scipy
   - meson =1.11.1  # matplotlib, scipy
-  - meson-python =0.19.0
+  - meson-python =0.20.0
   - abi3audit =0.0.26
   - cibuildwheel =4.0.0
   - pybind11 =3.0.3
@@ -288,7 +288,7 @@ specs:
   - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
-  - pydata-sphinx-theme =0.18.0
+  - pydata-sphinx-theme =0.19.0
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.44.0
