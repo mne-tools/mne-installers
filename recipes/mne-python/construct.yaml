@@ -253,7 +253,7 @@ specs:
   - memory_profiler =0.61.0
   - gh =2.94.0
   - setuptools_scm =10.0.5
-  - pytest =9.1.0
+  - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
   - pytest-qt =4.5.0
   - pytest-rerunfailures =16.3
