@@ -163,7 +163,7 @@ specs:
   - lazy-loader =0.5
   - packaging =26.2
   - pooch =1.9.0
-  - tqdm =4.68.1  # allow_outdated, metadata for 4.68.2 seems wrong
+  - tqdm =4.68.2
   - h5py =3.16.0
   - h5io =0.2.5
   - pymatreader =1.2.3
@@ -177,7 +177,7 @@ specs:
   - polars =1.41.2
   - numpy =2.4.6
   - scipy =1.17.1
-  - openblas =0.3.32  # allow_outdated, needs libblas update
+  - openblas =0.3.33
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.5.7
