@@ -158,7 +158,7 @@ specs:
   - libgfortran5 =15.2.0
   - quantities =0.16.4
   - tinycss2 =1.4.0  # allow_outdated, from nbconvert
-  - opencv =4.13.0
+  - opencv =4.13.0  # allow_outdated, 5.0.0 has liblzma xv conflict
   - decorator =5.3.1
   - filelock =3.29.4
   - lazy-loader =0.5
@@ -176,7 +176,7 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.3
   - polars =1.41.2
-  - numpy =2.4.6
+  - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
   - scipy =1.18.0
   - openblas =0.3.33
   - libblas =3.11.0*=*openblas
