@@ -88,6 +88,7 @@ specs:
   - mne-nirs =0.7.3
   - mne-features =0.3.2
   - mne-rsa =1.0
+  - mne-rt =1.0.2
   - mne-ari =0.1.2
   - mne-icalabel =0.9.0
   - mne-gui-addons =0.1=*_1
