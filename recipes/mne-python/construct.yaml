@@ -276,6 +276,7 @@ specs:
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.4
   - conda-build =26.5.0
+  - rattler-build =0.67.0
   - conda-smithy =2026.6.14
   - menuinst =2.5.1
   - cmake =4.3.4  # scipy
