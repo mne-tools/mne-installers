@@ -175,7 +175,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.3
-  - polars =1.42.0
+  - polars =1.42.1
   - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
   - scipy =1.18.0
   - openblas =0.3.33
@@ -192,7 +192,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.65.1
-  - cython =3.2.7
+  - cython =3.2.8
   - joblib =1.5.3
   # I/O
   - pyxdf =1.17.5
@@ -243,7 +243,7 @@ specs:
   - jupyter_client =8.9.1
   - nbclient =0.11.0
   - nbformat =5.10.4
-  - pillow =12.2.0
+  - pillow =12.3.0
   - pyzmq =27.1.0
   - traitlets =5.15.1
   - pyopengl =3.1.10
@@ -257,11 +257,11 @@ specs:
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
   - pytest-qt =4.5.0
-  - pytest-rerunfailures =16.3
+  - pytest-rerunfailures =16.4
   - pytest-timeout =2.4.0
   - pre-commit =4.6.0
   - ruff =0.15.20
-  - uv =0.11.25
+  - uv =0.11.26
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.2
