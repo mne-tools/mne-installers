@@ -92,6 +92,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.9.0
   - mne-gui-addons =0.1=*_1
+  # - mne-kit-gui =2.0.0  # Needs https://github.com/mne-tools/mne-kit-gui/pull/68, reenable in test_installation once installed
   - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
   - autoreject =0.4.4
@@ -325,22 +326,6 @@ specs:
   # Size considerations (must stay under 2GB for releases and Windows!):
   # - r-base and rpy2 add too many dependencies, so we don't add them
   # - constructor adds conda-standalone, which is ~50 MB
-extra_envs:
-  mne-kit-gui:
-    channels:
-      - conda-forge
-    specs:
-      - python =3.13
-      - mne-kit-gui
-      - numpy <2.4
-      - mayavi =4.8.3=pyside6_*
-      - traitsui =8.0.0
-      - pyface =8.0.0
-      - pyside6 =6.9.1
-      - qt6-main =6.9.1
-      - vtk-base =9.4.2
-      - vtk =9.4.2
-      - noqt5 =1.0.0
 condarc:
   channels:
     - conda-forge
