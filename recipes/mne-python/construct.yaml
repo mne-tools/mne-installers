@@ -321,7 +321,7 @@ specs:
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.24.4  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
-  - ty =0.0.56  # not [osx and x86_64]
+  - ty =0.0.56  # [not (osx and x86_64)]
   - ty =0.0.55  # [osx and x86_64]  # allow_outdated
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
   - gfortran =15.2.0  # [not win]  # scipy
