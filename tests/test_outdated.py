@@ -28,9 +28,13 @@ print(f"Analyzing spec file: {construct_yaml_path}\n")
 
 recipe = construct_yaml_path.read_text(encoding="utf-8")
 lines = [line.strip() for line in recipe.splitlines()]
+try:  # in case we ever add extra_envs back
+    end = lines.index("extra_envs:")
+except ValueError:
+    end = len(lines)
 lines = [
     line
-    for line in lines[lines.index("specs:") + 1 : lines.index("extra_envs:")]
+    for line in lines[lines.index("specs:") + 1 : end]
     if line and not line.startswith("#")
 ]
 for line in lines:

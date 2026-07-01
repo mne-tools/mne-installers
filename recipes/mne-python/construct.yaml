@@ -54,6 +54,13 @@ reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identif
 menu_packages:
   - mne-installer-menu
 
+condarc:
+  channels:
+    - conda-forge
+  channel_priority: strict
+  allow_other_channels: false
+  env_prompt: "(mne-1.12.1_0) "
+
 channels:
   - conda-forge
   - ./conda-bld
@@ -92,6 +99,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.9.0
   - mne-gui-addons =0.1=*_1
+  # - mne-kit-gui =2.0.0  # Needs https://github.com/mne-tools/mne-kit-gui/pull/68, reenable in test_installation once installed
   - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
   - autoreject =0.4.4
@@ -175,7 +183,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.3
-  - polars =1.42.0
+  - polars =1.42.1
   - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
   - scipy =1.18.0
   - openblas =0.3.33
@@ -192,7 +200,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.65.1
-  - cython =3.2.7
+  - cython =3.2.8
   - joblib =1.5.3
   # I/O
   - pyxdf =1.17.5
@@ -243,7 +251,7 @@ specs:
   - jupyter_client =8.9.1
   - nbclient =0.11.0
   - nbformat =5.10.4
-  - pillow =12.2.0
+  - pillow =12.3.0
   - pyzmq =27.1.0
   - traitlets =5.15.1
   - pyopengl =3.1.10
@@ -257,11 +265,12 @@ specs:
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
   - pytest-qt =4.5.0
-  - pytest-rerunfailures =16.3
+  - pytest-rerunfailures =16.4
   - pytest-timeout =2.4.0
   - pre-commit =4.6.0
+  - prek =0.4.6
   - ruff =0.15.20
-  - uv =0.11.25
+  - uv =0.11.26
   - check-manifest =0.51
   - codespell =2.4.2
   - py-spy =0.4.2
@@ -276,6 +285,7 @@ specs:
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.4
   - conda-build =26.5.0
+  - rattler-build =0.67.0
   - conda-smithy =2026.6.14
   - menuinst =2.5.1
   - cmake =4.3.4  # scipy
@@ -286,6 +296,7 @@ specs:
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.26.8
+  - pyrefly =1.1.1
   - libffi =3.5.2
   # Doc building
   - numpydoc =1.10.0
@@ -310,6 +321,8 @@ specs:
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.24.4  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
+  - ty =0.0.56  # [not (osx and x86_64)]
+  - ty =0.0.55  # [osx and x86_64]  # allow_outdated
   - pythran =0.18.1  # [not win]  # pulls in clang, scipy
   - gfortran =15.2.0  # [not win]  # scipy
   - git =2.54.0  # [win]
@@ -322,25 +335,3 @@ specs:
   # Size considerations (must stay under 2GB for releases and Windows!):
   # - r-base and rpy2 add too many dependencies, so we don't add them
   # - constructor adds conda-standalone, which is ~50 MB
-extra_envs:
-  mne-kit-gui:
-    channels:
-      - conda-forge
-    specs:
-      - python =3.13
-      - mne-kit-gui
-      - numpy <2.4
-      - mayavi =4.8.3=pyside6_*
-      - traitsui =8.0.0
-      - pyface =8.0.0
-      - pyside6 =6.9.1
-      - qt6-main =6.9.1
-      - vtk-base =9.4.2
-      - vtk =9.4.2
-      - noqt5 =1.0.0
-condarc:
-  channels:
-    - conda-forge
-  channel_priority: strict
-  allow_other_channels: false
-  env_prompt: "(mne-1.12.1_0) "

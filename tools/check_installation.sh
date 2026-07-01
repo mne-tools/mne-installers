@@ -146,9 +146,7 @@ python -u tests/test_notebook.py
 echo "::endgroup::"
 
 echo "::group::Testing MNE-KIT-GUI env + package"
-conda activate mne-kit-gui
-python -u tests/test_mne_kit_gui.py
-conda deactivate
+# python -u tests/test_mne_kit_gui.py
 echo "::endgroup::"
 
 echo "::group::Testing that the JSON versions are correct"
