@@ -48,7 +48,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v3
         with:
           environment-name: localbuild
-          create-args: python=3.13 rattler-build
+          create-args: rattler-build
       - run: ./tools/run_local_build.sh
       - uses: actions/upload-artifact@v7
         with:
