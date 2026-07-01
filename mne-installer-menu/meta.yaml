@@ -12,6 +12,7 @@ build:
 requirements:
   host:
     - python
+    - conda
   run:
     - python
 #   If we ever want to see why an installer-dependent package is pulled in during
@@ -40,4 +41,3 @@ about:
 extra:
   recipe-maintainers:
     - larsoner
-    - hoechenberger
