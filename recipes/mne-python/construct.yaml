@@ -54,6 +54,13 @@ reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identif
 menu_packages:
   - mne-installer-menu
 
+condarc:
+  channels:
+    - conda-forge
+  channel_priority: strict
+  allow_other_channels: false
+  env_prompt: "(mne-1.12.1_0) "
+
 channels:
   - conda-forge
   - ./conda-bld
@@ -327,9 +334,3 @@ specs:
   # Size considerations (must stay under 2GB for releases and Windows!):
   # - r-base and rpy2 add too many dependencies, so we don't add them
   # - constructor adds conda-standalone, which is ~50 MB
-condarc:
-  channels:
-    - conda-forge
-  channel_priority: strict
-  allow_other_channels: false
-  env_prompt: "(mne-1.12.1_0) "

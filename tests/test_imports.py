@@ -48,7 +48,7 @@ lines = (
 )
 lines = [line.strip() for line in lines]
 all_lines = lines
-if "extra_envs:" in all_lines:  # in case we ever add extra_envs back
+if "extra_envs:" in all_lines:  # in case we ever add extra_envs back at the end
     # need to limit to those before extra_envs
     all_lines = all_lines[: all_lines.index("extra_envs:")]
 sidx = lines.index("# <<< BEGIN RELATED SOFTWARE LIST >>>")
