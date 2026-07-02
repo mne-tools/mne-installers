@@ -99,7 +99,7 @@ specs:
   - mne-ari =0.1.2
   - mne-icalabel =0.9.0
   - mne-gui-addons =0.1=*_1
-  # - mne-kit-gui =2.0.0  # Needs https://github.com/mne-tools/mne-kit-gui/pull/68, reenable in test_installation once installed
+  - mne-kit-gui =2.0.0
   - mne-lsl =1.13.2
   - mne-videobrowser =0.2.1
   - autoreject =0.4.4
@@ -115,7 +115,7 @@ specs:
   - fsleyes =1.19.0
   - dcm2niix =1.0.20260416
   - dipy =1.12.1
-  - nilearn =0.13.1
+  - nilearn =0.14.0
   # Time-frequency analysis
   - pactools =0.3.1
   - tensorpac =0.6.5
@@ -179,7 +179,7 @@ specs:
   - numexpr =2.14.1
   - antropy =0.2.2
   - threadpoolctl =3.6.0
-  - scikit-learn =1.9.0
+  - scikit-learn =1.8.0  # allow_outdated, nilearn incompatible
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.3
@@ -236,7 +236,7 @@ specs:
   - proj =9.8.1
   - ipywidgets =8.1.8
   - pyvista =0.48.4
-  - pyvistaqt =0.11.4
+  - pyvistaqt =0.12.0
   - trame =3.13.2
   - trame-pyvista =0.1.1
   - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
