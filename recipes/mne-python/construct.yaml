@@ -104,7 +104,7 @@ specs:
   - mne-videobrowser =0.2.1
   - autoreject =0.4.4
   - antio =0.7.0
-  - hedtools =1.1.1
+  - hedtools =1.2.0
   - wfdb =4.3.1
   - meegkit =0.1.9
   - eeg_positions =2.1.2
@@ -141,7 +141,7 @@ specs:
   - python-picard =0.8.1
   - pybv =0.8.1
   - pybvrf =0.1.4
-  - edfio =0.4.13
+  - edfio =0.4.14
   - eeglabio =0.1.3
   - mffpy =0.11.0
   - openmeeg =2.5.16
@@ -168,15 +168,15 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, from nbconvert
   - opencv =4.13.0  # allow_outdated, 5.0.0 has liblzma xv conflict
   - decorator =5.3.1
-  - filelock =3.29.7
+  - filelock =3.31.1
   - lazy-loader =0.5
   - packaging =26.2
   - pooch =1.9.0
-  - tqdm =4.68.4
+  - tqdm =4.69.0
   - h5py =3.16.0
   - h5io =0.2.5
   - pymatreader =1.2.3
-  - numexpr =2.14.1
+  - numexpr =2.14.2
   - antropy =0.2.2
   - threadpoolctl =3.6.0
   - scikit-learn =1.8.0  # allow_outdated, nilearn incompatible
@@ -186,7 +186,7 @@ specs:
   - polars =1.42.1
   - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
   - scipy =1.18.0
-  - openblas =0.3.33
+  - openblas =0.3.34
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.6.0
@@ -199,7 +199,7 @@ specs:
   # spyder =6.1.0
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.65.1
+  - numba =0.66.0
   - cython =3.2.8
   - joblib =1.5.3
   # I/O
@@ -207,7 +207,7 @@ specs:
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.4.2
-  - pyarrow =24.0.0
+  - pyarrow =25.0.0
   # Statistics
   - pingouin =0.6.1
   - statsmodels =0.14.6
@@ -218,7 +218,7 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.11.0
+  - matplotlib-base =3.11.1
   - tornado =6.5.7
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
@@ -232,7 +232,7 @@ specs:
   - vtk-base =9.6.2
   - vtk =9.6.2
   - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
-  - lightgbm =4.6.0  # from yasa
+  - lightgbm =4.7.0  # from yasa
   - proj =9.8.1
   - ipywidgets =8.1.8
   - pyvista =0.48.4
@@ -240,7 +240,7 @@ specs:
   - trame =3.13.2
   - trame-pyvista =0.1.1
   - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
-  - trame-vuetify =3.2.2
+  - trame-vuetify =3.2.5
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -269,27 +269,27 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.6.0
-  - prek =0.4.9
-  - ruff =0.15.21
-  - uv =0.11.28
+  - prek =0.4.10
+  - ruff =0.15.22
+  - uv =0.11.29
   - check-manifest =0.51
   - refleak =0.2.1
-  - codespell =2.4.2
+  - codespell =2.4.3
   - py-spy =0.4.2
   - line_profiler =5.0.2
   - memory_profiler =0.61.0
   - twine =6.2.0
   - hatchling =1.31.0
   - hatch-vcs =0.5.0
-  - mypy =2.2.0
+  - mypy =2.3.0
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.5
   - conda-build =26.5.0
-  - rattler-build =0.68.0
+  - rattler-build =0.69.1
   - conda-smithy =2026.6.14
-  - menuinst =2.5.1
+  - menuinst =2.5.2
   - cmake =4.4.0  # scipy
   - meson =1.11.2  # matplotlib, scipy
   - meson-python =0.20.0
@@ -297,7 +297,7 @@ specs:
   - cibuildwheel =4.0.0
   - pybind11 =3.0.3
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
-  - typer =0.26.8
+  - typer =0.27.0
   - pyrefly =1.1.1
   - libffi =3.5.2  # allow_outdated, needs graphviz update
   # Doc building
