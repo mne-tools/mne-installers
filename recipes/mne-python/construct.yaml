@@ -186,7 +186,7 @@ specs:
   - polars =1.42.1
   - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
   - scipy =1.18.0
-  - openblas =0.3.34
+  - openblas =0.3.33  # allow_outdated, needs libblas update
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.6.0
