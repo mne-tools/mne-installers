@@ -136,7 +136,7 @@ specs:
   - neurokit2 =0.2.13
   - mnelab =1.5.4
   # other
-  - pyriemann =0.11
+  - pyriemann =0.12
   - pyprep =0.7.1
   - python-picard =0.8.1
   - pybv =0.8.1
