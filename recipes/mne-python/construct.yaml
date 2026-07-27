@@ -54,6 +54,11 @@ reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identif
 menu_packages:
   - mne-installer-menu
 
+# constructor pre-solves, so without this an older macOS would install fine and then
+# fail at `import numpy` on Accelerate symbols that aren't in its system libraries
+virtual_specs:        # [osx and arm64]
+  - __osx>=15.5       # [osx and arm64]
+
 condarc:
   channels:
     - conda-forge
@@ -186,8 +191,6 @@ specs:
   - polars =1.42.1
   - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
   - scipy =1.18.0
-  - openblas =0.3.33  # allow_outdated, needs libblas update
-  - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.6.0
   - nbconvert =7.17.1
@@ -290,6 +293,7 @@ specs:
   - conda-smithy =2026.6.14
   - menuinst =2.5.2
   - cmake =4.4.0  # scipy
+  - pkg-config =0.29.2
   - meson =1.11.2  # matplotlib, scipy
   - meson-python =0.20.0
   - abi3audit =0.0.26
@@ -334,6 +338,10 @@ specs:
   - pyobjc-core =12.2.1  # [osx]
   - pyobjc-framework-Cocoa =12.2.1  # [osx]
   - pyobjc-framework-FSEvents =12.2.1  # [osx]
+  # BLAS: Apple Silicon uses the reworked Accelerate, everything else OpenBLAS
+  - libblas =3.11.0*=*newaccelerate  # [osx and arm64]
+  - libblas =3.11.0*=*openblas  # [not (osx and arm64)]
+  - openblas =0.3.33  # [not (osx and arm64)]  # allow_outdated, needs libblas update
   # End OS-specific defs
   # ^^^ This line is also special, do not change it!
   # Size considerations (must stay under 2GB for releases and Windows!):

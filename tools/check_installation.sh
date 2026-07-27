@@ -102,7 +102,8 @@ echo "::endgroup::"
 
 echo "::group::Checking for pinned file..."
 test -e "$MNE_INSTALL_PREFIX/conda-meta/pinned"
-grep "openblas" "$MNE_INSTALL_PREFIX/conda-meta/pinned"
+cat "$MNE_INSTALL_PREFIX/conda-meta/pinned"
+python -u tests/test_blas.py
 echo "::endgroup::"
 
 echo "::group::Checking permissions"
