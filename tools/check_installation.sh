@@ -161,5 +161,9 @@ python -u tests/test_dev_installed.py
 echo "::endgroup::"
 
 echo "::group::Checking Spyder"
-bash tests/test_spyder.sh
+if [[ "$MNE_MACHINE" == "Windows" ]]; then
+    echo "Skipping, spyder-base is not installed on Windows (see construct.yaml)"
+else
+    bash tests/test_spyder.sh
+fi
 echo "::endgroup::"
