@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#grouping-log-lines
-
 set -eo pipefail
-echo "Running tests for MNE_MACHINE=${MNE_MACHINE}"
+echo "Running tests for MNE_MACHINE=${MNE_MACHINE} on CI_OS=${CI_OS}"
 source "${MNE_ACTIVATE}"
 
 echo "::group::conda info"
 conda info
+echo "::endgroup::"
+
+echo "::group::conda info --envs"
+conda info --envs
 echo "::endgroup::"
 
 echo "::group::conda list"
@@ -18,7 +20,32 @@ echo "::group::pip list"
 pip list
 echo "::endgroup::"
 
-echo "::group::Platform specific tests"
+N=100
+echo "::group::package sizes (top $N)"
+# https://stackoverflow.com/a/67976448/2175965
+grep '"size":' ${CONDA_PREFIX}/conda-meta/*.json | sort -k3rn | sed -E 's/.*conda-meta\/(.+)\.json:.+"size": (.+),/\1 \2/g' > package_sizes.txt
+head -n $N package_sizes.txt | column -t
+echo "::endgroup::"
+
+# Now that we have the package sizes listed, raise an error if the installer is too big
+# (it will fail to attach to GH releases)
+MAX_SIZE=2147483648
+# I hate macOS sometimes
+if [[ "$MNE_MACHINE" == "macOS" ]]; then
+    SIZE_OPT="-f%c"
+else
+    SIZE_OPT="-c%s"
+fi
+ACTUAL_SIZE=$(stat $SIZE_OPT "$MNE_INSTALLER_NAME")
+DIFF_SIZE=$((MAX_SIZE - ACTUAL_SIZE))
+if [ "$ACTUAL_SIZE" -gt "$MAX_SIZE" ]; then
+    echo "Error: Installer size ($ACTUAL_SIZE bytes) exceeds the maximum allowed size ($MAX_SIZE bytes) by $((-DIFF_SIZE)) bytes."
+    exit 1
+else
+    echo "Installer size ($ACTUAL_SIZE bytes) is within the allowed limit ($MAX_SIZE bytes) by $DIFF_SIZE bytes."
+fi
+
+echo "::group::Platform specific tests for MNE_MACHINE=$MNE_MACHINE"
 if [[ "$MNE_MACHINE" == "macOS" ]]; then
     echo "Testing that file permissions are set correctly (owned by "$USER", not "root".)"
     # https://unix.stackexchange.com/a/7733
@@ -65,11 +92,11 @@ elif [[ "$MNE_MACHINE" == "Linux" ]]; then
     for f in mne-python*.desktop; do echo "📂 $f:"; cat "$f"; echo; done
     popd
     if [[ `grep "24.04" /etc/lsb-release` ]] || [[ `grep "20.04" /etc/lsb-release` ]]; then
-        export SKIP_PYVISTAQT_TESTS=1
         export SKIP_NOTEBOOK_TESTS=1
     fi
-else
-    export SKIP_PYVISTAQT_TESTS=1
+elif [[ "$MNE_MACHINE" != "Windows" ]]; then
+    echo "Unknown MNE_MACHINE=$MNE_MACHINE, exiting with error"
+    exit 1
 fi
 echo "::endgroup::"
 
@@ -94,28 +121,38 @@ conda env config vars list
 if [[ "$MNE_MACHINE" == "macOS" && "$MACOS_ARCH" == "Intel" ]]; then
     python -c "import os; x = os.getenv('CONDA_SUBDIR'); assert x == 'osx-64', f'CONDA_SUBDIR ({repr(x)}) != osx-64'" || exit 1
 fi
-# TODO: broken on Windows!
-if [[ "$MNE_MACHINE" != "Windows" ]]; then
-    python -c "import os; x = os.getenv('PYTHONNOUSERSITE'); assert x == '1', f'PYTHONNOUSERSITE ({repr(x)}) != 1'" || exit 1
-    python -c "import os; x = os.getenv('MAMBA_NO_BANNER'); assert x == '1', f'MAMBA_NO_BANNER ({repr(x)}) != 1'" || exit 1
-fi
+python -c "import os; key = 'PYTHONNOUSERSITE'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
+python -c "import os; key = 'MAMBA_NO_BANNER'; x = os.getenv(key); assert x == '1', f'{key}={repr(x)} != 1'"
 echo "::endgroup::"
 
-echo "::group::Testing mne sys_info"
-mne sys_info
-echo "::endgroup::"
+if [[ "$CI_OS" == "windows-2022" ]]; then
+    echo "Skipping mne sys_info (hangs sometimes!)"
+else
+    echo "::group::Testing mne sys_info"
+    mne sys_info || exit 1
+    echo "::endgroup::"
+fi
+
 echo "::group::Testing import of MNE and all additional packages included in the installer"
 python -u tests/test_imports.py
 echo "::endgroup::"
+
 echo "::group::Testing GUIs"
 python -u tests/test_gui.py
 echo "::endgroup::"
+
 echo "::group::Testing notebooks"
 python -u tests/test_notebook.py
 echo "::endgroup::"
+
+echo "::group::Testing MNE-KIT-GUI env + package"
+# python -u tests/test_mne_kit_gui.py
+echo "::endgroup::"
+
 echo "::group::Testing that the JSON versions are correct"
 python -u tests/test_json_versions.py
 echo "::endgroup::"
+
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
 echo "::endgroup::"

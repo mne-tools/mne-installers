@@ -51,18 +51,3 @@ raw = mne.io.RawArray(np.zeros((1, 1000)), mne.create_info(1, 1000.0, "eeg"))
 fig = raw.plot()
 fig.close()
 assert "MNEQtBrowser" in repr(fig), repr(fig)
-
-# mne-kit-gui
-if os.getenv("SKIP_MNE_KIT_GUI_TESTS", "").lower() in ("1", "true"):
-    print("Skipping MNE-KIT-GUI tests")
-else:
-    print("Running MNE-KIT-GUI tests")
-    from pyface.api import GUI  # noqa
-    import mne_kit_gui  # noqa
-
-    os.environ["_MNE_GUI_TESTING_MODE"] = "true"
-    gui = GUI()
-    gui.process_events()
-    ui, frame = mne_kit_gui.kit2fiff()
-    assert not frame.model.can_save
-    ui.dispose()

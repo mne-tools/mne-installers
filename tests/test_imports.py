@@ -7,6 +7,11 @@ import platform
 
 parser = argparse.ArgumentParser(prog="test_imports")
 parser.add_argument("--ignore", nargs="*", help="Modules to ignore", default=[])
+parser.add_argument(
+    "--ignore-version-check",
+    action="store_true",
+    help="Ignore version check",
+)
 parsed = parser.parse_args()
 
 
@@ -27,12 +32,12 @@ def check_version_eq(package, ver):
     try:
         package_ver = parse(package.__version__)
     except Exception:
-        raise ImportError(
-            f"Could not parse version for {package}: {repr(package.__version__)}"
+        package_ver = getattr(package, "__version__", "Missing version__")
+        raise ImportError(f"Could not parse version for {package}: {package_ver!r}")
+    if not parsed.ignore_version_check:
+        assert package_ver >= parse(ver), (
+            f"{package}: got {package.__version__} wanted {ver}"
         )
-    assert package_ver >= parse(ver), (
-        f"{package}: got {package.__version__} wanted {ver}"
-    )
 
 
 # All related software
@@ -43,6 +48,9 @@ lines = (
 )
 lines = [line.strip() for line in lines]
 all_lines = lines
+if "extra_envs:" in all_lines:  # in case we ever add extra_envs back at the end
+    # need to limit to those before extra_envs
+    all_lines = all_lines[: all_lines.index("extra_envs:")]
 sidx = lines.index("# <<< BEGIN RELATED SOFTWARE LIST >>>")
 eidx = lines.index("# <<< END RELATED SOFTWARE LIST >>>")
 lines = [line for line in lines[sidx : eidx + 1] if not line.startswith("#")]
@@ -54,41 +62,67 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
-spyder spyder-kernels
+sklearn.decomposition spyder spyder-kernels
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
 
 # Now do the importing and version checking
 bad_ver = {
-    "mne-faster",  # https://github.com/wmvanvliet/mne-faster/pull/7
+    # as of 2026/01 merged but no release:
     "mne-ari",  # https://github.com/john-veillette/mne-ari/pull/7
+    # 1yo as of 2026/02, maybe dead project? :
     "pactools",  # https://github.com/pactools/pactools/pull/37
+    "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
     "Foundation",
-    "spyder",
+    "rsatoolbox",  # https://github.com/rsagroup/rsatoolbox/issues/487
+    "spyder",  # spyder-base spec name != importable name
     "spyder-kernels",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
     "python-picard": "picard",
     "openneuro-py": "openneuro",
+    "hedtools": "hed",
+    "spyder-kernels": "spyder_kernels",
 }
 ver_map = {  # for __version__, need map from importable name to conda-forge line/name
     "matplotlib": "matplotlib-base",
 }
-ignore = list(parsed.ignore) + ["dcm2niix"]
+ignore = list(parsed.ignore) + [
+    "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
+]
+if platform.system() == "Darwin" and platform.machine() == "x86_64":
+    ignore += ["mne-videobrowser"]  # issue with opencv on macOS x86_64
+
 for mod in tqdm(mods, desc="Imports", unit="module"):
     if mod in ignore:
         continue
     py_mod = _import(mod_map.get(mod, mod))
     if mod not in bad_ver and "." not in mod:
         ver_lines = [
-            line.split("#")[0].strip()
+            line
             for line in all_lines
             if line.startswith(f"- {ver_map.get(mod, mod).lower()} =")
         ]
+        if len(ver_lines) == 2:
+            # should be the macos lines
+            if platform.system() == "Darwin" and platform.machine() == "x86_64":
+                ver_lines = ver_lines[1:]
+                assert "not" not in ver_lines[0], (
+                    f"Expected no 'not' in line for macos-x86_64: {ver_lines[0]}"
+                )
+            else:
+                ver_lines = ver_lines[:1]
+                assert "[not (osx and x86_64)]" in ver_lines[0], (
+                    f"Expected 'not' in line for non-macos-x86_64: {ver_lines[0]}"
+                )
+            assert "osx and x86_64" in ver_lines[0], (
+                f"Expected 'osx and x86_64' in line: {ver_lines[0]}"
+            )
         assert len(ver_lines) == 1, f"{mod}: {ver_lines}"
-        check_version_eq(py_mod, ver_lines[0].split("=")[1])
+        want_ver = ver_lines[0].split("#")[0].strip().split("=")[1]
+        check_version_eq(py_mod, want_ver)
     if mod == "matplotlib.pyplot":
         backend = py_mod.get_backend()
         assert backend.lower() == "qtagg", backend

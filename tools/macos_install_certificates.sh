@@ -43,7 +43,6 @@ echo "✅ Done downloading Apple certificates."
 # the following line is required for macOS 11+, see
 # https://developer.apple.com/forums/thread/671582?answerId=693632022#693632022
 echo "🏃 Installing Apple certificates …"
-sudo security authorizationdb write com.apple.trust-settings.admin allow
 sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleIncRootCertificate.cer
 sudo security add-trusted-cert -d -r trustRoot -k $KEYCHAIN_PATH ./AppleComputerRootCertificate.cer
 security add-certificates -k $KEYCHAIN_PATH ./AppleWWDRCA.cer
