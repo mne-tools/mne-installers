@@ -200,10 +200,7 @@ specs:
   # pyqtwebengine, whereas `spyder-base` leaves the Qt binding free (qtpy only),
   # so it works with our PySide6. Requires 6.2.0a2+ for PySide6 support:
   # https://github.com/spyder-ide/spyder/pull/25422
-  # TODO: `[not win]` because spyder-base is only noarch on unix, and the
-  # feedstock `dev` branch has not been rerendered, so it has no win-64 py3.14
-  # build. Drop the selector once a rerendered 6.2.0a* build is available.
-  - spyder-base =6.2.0a2  # [not win]
+  - spyder-base =6.2.0a2
   - qtconsole-base =5.7.2
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3

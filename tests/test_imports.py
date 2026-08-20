@@ -62,12 +62,10 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
-sklearn.decomposition spyder-kernels
+sklearn.decomposition spyder spyder-kernels
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
-if platform.system() != "Windows":
-    mods += ["spyder"]  # spyder-base is `# [not win]` in construct.yaml
 
 # Now do the importing and version checking
 bad_ver = {
