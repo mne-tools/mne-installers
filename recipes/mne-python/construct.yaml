@@ -274,7 +274,7 @@ specs:
   - pytest-xdist =3.8.0
   - pre-commit =4.6.2
   - prek =0.4.14
-  - ruff =0.16.3
+  - ruff =0.16.4
   - uv =0.12.5
   - check-manifest =0.51
   - refleak =0.2.2
