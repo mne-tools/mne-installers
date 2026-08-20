@@ -236,8 +236,8 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.9.0
-  - vtk-base =9.7.0
-  - vtk =9.7.0
+  - vtk-base =9.6.2  # allow_outdated, 9.7.0 not solvable with our other pins
+  - vtk =9.6.2  # allow_outdated, must match vtk-base
   - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
   - lightgbm =4.7.0  # from yasa
   - proj =9.8.1
@@ -302,7 +302,7 @@ specs:
   - meson-python =0.20.0
   - abi3audit =0.0.26
   - cibuildwheel =4.2.0
-  - pybind11 =3.1.0
+  - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.27.1
   - typing-extensions =4.16.0
