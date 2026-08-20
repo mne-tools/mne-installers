@@ -337,9 +337,9 @@ specs:
   - gfortran =16.1.0  # [not win]  # scipy
   - git =2.55.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.2.2  # [osx]
-  - pyobjc-framework-Cocoa =12.2.2  # [osx]
-  - pyobjc-framework-FSEvents =12.2.2  # [osx]
+  - pyobjc-core =12.2.1  # [osx]  # allow_outdated, 12.2.2 wants libffi 3.7, python 3.14 needs 3.5
+  - pyobjc-framework-Cocoa =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
+  - pyobjc-framework-FSEvents =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
   # End OS-specific defs
   # ^^^ This line is also special, do not change it!
   # Size considerations (must stay under 2GB for releases and Windows!):
