@@ -76,18 +76,16 @@ bad_ver = {
     "pybvrf",  # needs release after __version__ fix implemented 2026/02/17
     "Foundation",
     "rsatoolbox",  # https://github.com/rsagroup/rsatoolbox/issues/487
-    "spyder",  # spyder-base spec name != importable name
-    "spyder-kernels",
 }
 mod_map = {  # for import test, need map from conda-forge line/name to importable name
     "python-neo": "neo",
     "python-picard": "picard",
     "openneuro-py": "openneuro",
     "hedtools": "hed",
-    "spyder-kernels": "spyder_kernels",
 }
 ver_map = {  # for __version__, need map from importable name to conda-forge line/name
     "matplotlib": "matplotlib-base",
+    "spyder": "spyder-base",  # we install spyder-base, not spyder
 }
 ignore = list(parsed.ignore) + [
     "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary
