@@ -74,9 +74,9 @@ specs:
   # Python
   - pip =26.2.1
   - wheel =0.48.0
-  - conda =26.5.0  # allow_outdated, needs conda-smithy update
-  - mamba =2.8.0  # allow_outdated, osx-64 build timing out as of 2026-06-08
-  - libmamba =2.8.0  # allow_outdated
+  - conda =26.7.0
+  - mamba =2.9.0
+  - libmamba =2.9.0
   # MNE ecosystem
   - mne-installer-menu =1.12.1=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -167,8 +167,8 @@ specs:
   - noqt5 =1.0
   - libgfortran5 =16.1.0
   - quantities =0.16.4
-  - tinycss2 =1.4.0  # allow_outdated, from nbconvert
-  - opencv =4.13.0  # allow_outdated, 5.0.0 has liblzma xv conflict
+  - tinycss2 =1.5.1
+  - opencv =5.0.0
   - decorator =5.3.1
   - filelock =3.32.3
   - lazy-loader =0.5
@@ -186,9 +186,9 @@ specs:
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.5
   - polars =1.43.2
-  - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
+  - numpy =2.5.2
   - scipy =1.18.0
-  - openblas =0.3.33  # allow_outdated, needs libblas update
+  - openblas =0.3.34
   - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.6.2
@@ -274,7 +274,7 @@ specs:
   - pytest-xdist =3.8.0
   - pre-commit =4.6.2
   - prek =0.4.14
-  - ruff =0.16.3
+  - ruff =0.16.4
   - uv =0.12.5
   - check-manifest =0.51
   - refleak =0.2.2
