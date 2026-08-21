@@ -167,7 +167,7 @@ specs:
   - noqt5 =1.0
   - libgfortran5 =16.1.0
   - quantities =0.16.4
-  - tinycss2 =1.5.1
+  - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
   - filelock =3.32.3
@@ -264,7 +264,7 @@ specs:
   - pygments =2.21.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.97.0
+  - gh =2.98.0
   - setuptools_scm =10.2.1
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
