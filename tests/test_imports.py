@@ -62,7 +62,7 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 mods += """
 darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
-sklearn.decomposition
+sklearn.decomposition spyder spyder-kernels
 """.strip().split()
 if platform.system() == "Darwin":
     mods += ["Foundation"]  # pyobjc
@@ -85,6 +85,7 @@ mod_map = {  # for import test, need map from conda-forge line/name to importabl
 }
 ver_map = {  # for __version__, need map from importable name to conda-forge line/name
     "matplotlib": "matplotlib-base",
+    "spyder": "spyder-base",  # we install spyder-base, not spyder
 }
 ignore = list(parsed.ignore) + [
     "dcm2niix",  # conda-forge version doesn't expose dcm2niix, just pure binary

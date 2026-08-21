@@ -116,6 +116,46 @@ def get_conda_json(package):
     return json
 
 
+# The subdirs we actually build installers for
+SUBDIRS = ("noarch", "linux-64", "osx-64", "osx-arm64", "win-64")
+
+
+def on_cdn(basenames):
+    """Check that a version's files can really be downloaded, not just that they exist.
+
+    Anaconda.org lists a file the moment it is uploaded, but conda cannot install it
+    until it reaches the CDN, which can lag by an hour or two. Bumping to such a
+    version makes the constructor run fail with PackagesNotFoundError, so we have to
+    ask the CDN rather than trusting the API listing.
+    """
+    # One file per subdir is enough to tell a propagated upload from a fresh one
+    check = {}
+    for basename in basenames:
+        check.setdefault(basename.split("/")[0], basename)
+    for subdir, basename in check.items():
+        if subdir not in SUBDIRS:
+            continue
+        url = f"https://conda.anaconda.org/conda-forge/{basename}"
+        for _ in range(3):  # retries
+            try:
+                status = requests.head(
+                    url, allow_redirects=True, timeout=30
+                ).status_code
+            except requests.exceptions.RequestException:
+                time.sleep(0.1)
+                continue
+            if status == 404:
+                return False
+            if status < 400:
+                break
+            time.sleep(0.1)
+        else:
+            # Treat an unclear answer the same as a missing one: the worst case is
+            # that we skip a bump and pick it up on the next run
+            return False
+    return True
+
+
 # Check to make sure we have all packages we need
 mne_toml = tomllib.loads(get_github_file("pyproject.toml"))
 mne_deps = (
@@ -180,7 +220,7 @@ for package in packages:
 
     # those that are not in the main channel
     # TODO We may want to make exceptions here for MNE testing versions if we need them
-    version = "0.0"
+    candidates = {}
     for file in json["files"]:
         # Omitting versions marked as broken, dev, and those not in the main channel
         if "broken" in file["labels"]:
@@ -191,8 +231,15 @@ for package in packages:
             continue
         if ".rc" in file["version"]:
             continue
-        if packaging.version.parse(file["version"]) > packaging.version.parse(version):
-            version = file["version"]
+        candidates.setdefault(file["version"], []).append(file["basename"])
+
+    version = "0.0"
+    for candidate in sorted(candidates, key=packaging.version.parse, reverse=True):
+        # What we already build with is installable by definition, no need to ask
+        if candidate == package.version_spec or on_cdn(candidates[candidate]):
+            version = candidate
+            break
+        print(f"  {package.name.ljust(LJUST)} … {candidate} not on the CDN yet")
 
     assert version != "0.0", f"Did not find a valid version for {package.name}"
 
