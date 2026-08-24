@@ -74,7 +74,7 @@ specs:
   # Python
   - pip =26.2.1
   - wheel =0.48.0
-  - conda =26.7.0
+  - conda =26.7.1
   - mamba =2.9.0
   - libmamba =2.9.0
   # MNE ecosystem
@@ -139,7 +139,7 @@ specs:
   - mnelab =1.5.4
   # other
   - pyriemann =0.12
-  - pyprep =0.8.0
+  - pyprep =0.9.0
   - python-picard =0.8.1
   - pybv =0.8.1
   - pybvrf =0.1.4
@@ -170,7 +170,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.3
+  - filelock =3.32.4
   - lazy-loader =0.5
   - packaging =26.3
   - pooch =1.9.0
@@ -205,7 +205,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.67.0
-  - cython =3.2.9
+  - cython =3.3.0
   - joblib =1.5.3
   # I/O
   - pyxdf =1.17.5
@@ -256,7 +256,7 @@ specs:
   - nbclient =0.11.0
   - nbformat =5.11.1
   - pillow =12.3.0
-  - pyzmq =27.1.0
+  - pyzmq =27.2.0
   - traitlets =5.16.1
   - pyopengl =3.1.10
   - pyqtgraph =0.14.0
