@@ -91,7 +91,7 @@ specs:
   - mne-bids =0.19.0
   - mne-bids-pipeline =1.10.1
   - mne-qt-browser =0.7.5
-  - mne-connectivity =0.8.1
+  - mne-connectivity =0.9.0
   - mne-denoise =0.0.1
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
@@ -114,7 +114,7 @@ specs:
   - rsatoolbox =0.3.2
   # MRI
   - surfa =0.6.3
-  - fsleyes =1.20.1
+  - fsleyes =1.20.2
   - dcm2niix =1.0.20260416
   - dipy =1.12.1
   - nilearn =0.14.0
@@ -165,7 +165,7 @@ specs:
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
   - noqt5 =1.0
-  - libgfortran5 =16.1.0
+  - libgfortran5 =16.2.0
   - quantities =0.16.4
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
@@ -185,7 +185,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.5
-  - polars =1.43.2
+  - polars =1.44.1
   - numpy =2.5.2
   - scipy =1.18.0
   - openblas =0.3.34
@@ -214,7 +214,7 @@ specs:
   - nibabel =5.4.2
   # Statistics
   - pingouin =0.6.1
-  - statsmodels =0.14.6
+  - statsmodels =0.15.0
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
@@ -250,9 +250,9 @@ specs:
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.16.1
+  - ipython =9.17.0
   - jinja2 =3.1.6
-  - jupyter_client =8.9.1
+  - jupyter_client =8.10.0
   - nbclient =0.11.0
   - nbformat =5.11.1
   - pillow =12.3.0
@@ -273,9 +273,9 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.6.2
-  - prek =0.4.14
-  - ruff =0.16.4
-  - uv =0.12.5
+  - prek =0.5.0
+  - ruff =0.16.5
+  - uv =0.12.7
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
@@ -291,27 +291,27 @@ specs:
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.5
   - conda-build =26.7.1
-  - rattler-build =0.74.0
+  - rattler-build =0.75.0
   - conda-smithy =2026.8.9
   - menuinst =2.5.2
-  - cmake =4.4.2  # scipy
+  - cmake =4.4.3  # scipy
   - meson =1.12.0  # matplotlib, scipy
   - meson-python =0.20.0
   - abi3audit =0.0.26
   - cibuildwheel =4.2.0
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
-  - typer =0.27.1
+  - typer =0.27.2
   - typing-extensions =4.16.0
   - pyrefly =1.2.0
   - libffi =3.5.2  # allow_outdated, needs graphviz update
   # Doc building
   - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
   - numpydoc =1.10.0
-  - pydata-sphinx-theme =0.20.0
+  - pydata-sphinx-theme =0.21.0
   - graphviz =14.1.2
   - python-graphviz =0.21
-  - selenium =4.47.0
+  - selenium =4.48.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.21.0
@@ -319,7 +319,10 @@ specs:
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
-  - intersphinx-registry =0.2606.25
+  - intersphinx-registry =0.2608.26
+  - jupyterlite =0.8.3
+  - jupyterlite-pyodide-kernel =0.8.5
+  - jupyterlite-sphinx =0.23.0
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
@@ -334,7 +337,7 @@ specs:
   - ty =0.0.56  # [not (osx and x86_64)]
   - ty =0.0.55  # [osx and x86_64]  # allow_outdated
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
-  - gfortran =16.1.0  # [not win]  # scipy
+  - gfortran =16.2.0  # [not win]  # scipy
   - git =2.55.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.2.1  # [osx]  # allow_outdated, 12.2.2 wants libffi 3.7, python 3.14 needs 3.5
