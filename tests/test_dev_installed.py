@@ -38,9 +38,11 @@ assert len(deps) == 1, len(deps)
 deps = deps[0]
 print(f"Found pip install line:\n{deps}")
 deps = deps[len(would) :]
-ignore_starts = tuple([
-    "sip-",  # qt-related
-])
+ignore_starts = tuple(
+    [
+        "sip-",  # qt-related
+    ]
+)
 ignore_starts = tuple(s.split("#")[0] for s in ignore_starts)
 deps = [
     dep
