@@ -71,8 +71,13 @@ ${DSTBIN}/conda env config vars set MAMBA_NO_BANNER=1
 logger -p 'install.info' "ℹ️ Configuring Matplotlib to use the Qt backend by default."
 sed -i '.bak' "s/##backend: Agg/backend: qtagg/" ${PREFIX}/lib/python${PYSHORT}/site-packages/matplotlib/mpl-data/matplotlibrc
 
-logger -p 'install.info' "ℹ️ Pinning BLAS implementation to OpenBLAS."
-echo "libblas=*=*openblas" >> ${PREFIX}/conda-meta/pinned
+if [ "${PYTHON_PLATFORM}" == "arm64" ]; then
+    BLAS_IMPL="newaccelerate"
+else
+    BLAS_IMPL="openblas"
+fi
+logger -p 'install.info' "ℹ️ Pinning BLAS implementation to ${BLAS_IMPL}."
+echo "libblas=*=*${BLAS_IMPL}" >> ${PREFIX}/conda-meta/pinned
 
 logger -p 'install.info' "ℹ️ Fixing permissions of entire conda environment for user=${USER_FROM_HOMEDIR}."
 chown -R "$USER_FROM_HOMEDIR" "${PREFIX}"
