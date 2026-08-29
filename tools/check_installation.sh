@@ -115,6 +115,9 @@ echo "::endgroup::"
 echo "::group::Checking whether Qt is working"
 # LD_DEBUG=libs
 python -c "from qtpy.QtWidgets import QApplication, QWidget; app = QApplication([])"
+# We install spyder-base rather than spyder specifically to avoid the pyqt 5.15
+# pin the `spyder` output carries, so make sure nothing pulled PyQt back in
+python -c "import qtpy; assert qtpy.API_NAME == 'PySide6', qtpy.API_NAME"
 echo "::endgroup::"
 
 echo "::group::Checking the deployed environment variables were set correctly upon environment activation"
@@ -156,4 +159,8 @@ echo "::endgroup::"
 
 echo "::group::Testing that all packages are installed that MNE-Python devs would need"
 python -u tests/test_dev_installed.py
+echo "::endgroup::"
+
+echo "::group::Checking Spyder"
+bash tests/test_spyder.sh
 echo "::endgroup::"

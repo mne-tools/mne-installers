@@ -68,6 +68,8 @@ condarc:
 
 channels:
   - conda-forge
+  - conda-forge/label/spyder_dev  # TODO: Can remove once not using an alpha
+  - conda-forge/label/spyder_kernels_dev  # TODO: Can remove once not using an alpha
   - ./conda-bld
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - conda-forge/label/mne_dev
@@ -75,11 +77,11 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - pip =26.1.2
-  - wheel =0.47.0
-  - conda =26.5.0  # allow_outdated, needs conda-smithy update
-  - mamba =2.8.0  # allow_outdated, osx-64 build timing out as of 2026-06-08
-  - libmamba =2.8.0  # allow_outdated
+  - pip =26.2.1
+  - wheel =0.48.0
+  - conda =26.7.1
+  - mamba =2.9.0
+  - libmamba =2.9.0
   # MNE ecosystem
   - mne-installer-menu =1.12.1=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -100,12 +102,12 @@ specs:
   - mne-nirs =0.7.3
   - mne-features =0.3.2
   - mne-rsa =1.0
-  - mne-rt =1.0.2
+  - mne-rt =1.1.0
   - mne-ari =0.1.2
   - mne-icalabel =0.9.0
   - mne-gui-addons =0.1=*_1
   - mne-kit-gui =2.0.0
-  - mne-lsl =1.13.2
+  - mne-lsl =1.14.0
   - mne-videobrowser =0.2.1
   - autoreject =0.4.4
   - antio =0.7.1
@@ -128,12 +130,12 @@ specs:
   - neurodsp =2.3.0
   - bycycle =1.1.0
   - fooof =1.1.1
-  - pybispectra =1.3.1
+  - pybispectra =1.3.2
   # Microstates
   - mne-microstates =0.3
   - pycrostates =0.6.1
   # OpenNeuro.org data access
-  - openneuro-py =2026.7.0
+  - openneuro-py =2026.7.1
   # sleep staging
   - sleepecg =0.5.9
   - yasa =0.7.0
@@ -142,11 +144,11 @@ specs:
   - mnelab =1.5.4
   # other
   - pyriemann =0.12
-  - pyprep =0.7.1
+  - pyprep =0.9.0
   - python-picard =0.8.1
   - pybv =0.8.1
   - pybvrf =0.1.4
-  - edfio =0.4.14
+  - edfio =0.4.16
   - eeglabio =0.1.3
   - mffpy =0.11.0
   - openmeeg =2.5.16
@@ -168,14 +170,14 @@ specs:
   # ^^^ this line is special and used by MNE-Python, do not change it!
 
   - noqt5 =1.0
-  - libgfortran5 =15.2.0
+  - libgfortran5 =16.1.0
   - quantities =0.16.4
-  - tinycss2 =1.4.0  # allow_outdated, from nbconvert
-  - opencv =4.13.0  # allow_outdated, 5.0.0 has liblzma xv conflict
+  - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
+  - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.0
+  - filelock =3.32.4
   - lazy-loader =0.5
-  - packaging =26.2
+  - packaging =26.3
   - pooch =1.9.0
   - tqdm =4.70.0
   - h5py =3.16.0
@@ -188,22 +190,25 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.5
-  - polars =1.43.0
-  - numpy =2.4.6  # allow_outdated, 2.5.0 needs latest xv and zlib which conflicts with cmake
+  - polars =1.43.2
+  - numpy =2.5.2
   - scipy =1.18.0
   - jupyter =1.1.1
-  - notebook =7.6.1
+  - notebook =7.6.2
   - nbconvert =7.17.1
-  - jupyterlab =4.6.2
+  - jupyterlab =4.6.3
   - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
-  - spyder-kernels =3.1.5
-  # TODO: Needs to not require pyqt
-  # https://github.com/spyder-ide/spyder/issues/20201
-  # spyder =6.1.0
+  - spyder-kernels =3.2.0a1
+  # spyder-base rather than spyder: the `spyder` output pins pyqt 5.15 and
+  # pyqtwebengine, whereas `spyder-base` leaves the Qt binding free (qtpy only),
+  # so it works with our PySide6. Requires 6.2.0a2+ for PySide6 support:
+  # https://github.com/spyder-ide/spyder/pull/25422
+  - spyder-base =6.2.0a2
+  - qtconsole-base =5.7.2
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.66.0
-  - cython =3.2.9
+  - numba =0.67.0
+  - cython =3.3.0
   - joblib =1.5.3
   # I/O
   - pyxdf =1.17.5
@@ -221,7 +226,7 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.11.1
-  - tornado =6.5.7
+  - tornado =6.5.8
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
   - pyside6 =6.11.1  # allow_outdated, follows vtk updates
@@ -231,12 +236,12 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =6.9.0
-  - vtk-base =9.6.2
-  - vtk =9.6.2
+  - vtk-base =9.6.2  # allow_outdated, 9.7.0 not solvable with our other pins
+  - vtk =9.6.2  # allow_outdated, must match vtk-base
   - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
   - lightgbm =4.7.0  # from yasa
   - proj =9.8.1
-  - ipywidgets =8.1.8
+  - ipywidgets =8.1.9
   - pyvista =0.48.4
   - pyvistaqt =0.12.0
   - trame =3.13.2
@@ -248,68 +253,69 @@ specs:
   - defusedxml =0.7.1
   - imageio =2.37.0
   - ipyevents =2.0.4
-  - ipython =9.15.0
+  - ipython =9.16.1
   - jinja2 =3.1.6
   - jupyter_client =8.9.1
   - nbclient =0.11.0
-  - nbformat =5.10.4
+  - nbformat =5.11.1
   - pillow =12.3.0
-  - pyzmq =27.1.0
-  - traitlets =5.15.1
+  - pyzmq =27.2.0
+  - traitlets =5.16.1
   - pyopengl =3.1.10
   - pyqtgraph =0.14.0
   # Development
-  - pygments =2.20.0
+  - pygments =2.21.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.96.0
+  - gh =2.98.0
   - setuptools_scm =10.2.1
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
   - pytest-qt =4.5.0
-  - pytest-rerunfailures =16.4
+  - pytest-rerunfailures =16.6
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
-  - pre-commit =4.6.1
-  - prek =0.4.11
-  - ruff =0.16.0
-  - uv =0.11.32
+  - pre-commit =4.6.2
+  - prek =0.4.14
+  - ruff =0.16.4
+  - uv =0.12.5
   - check-manifest =0.51
-  - refleak =0.2.1
+  - refleak =0.2.2
   - codespell =2.4.3
   - py-spy =0.4.2
   - line_profiler =5.0.2
   - memory_profiler =0.61.0
-  - twine =6.2.0
-  - hatchling =1.31.0
+  - twine =7.0.0
+  - hatchling =1.32.0
   - hatch-vcs =0.5.0
-  - mypy =2.3.0
+  - mypy =2.3.1
   - towncrier =25.8.0
   - vulture =2.16
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.5
-  - conda-build =26.5.0
-  - rattler-build =0.71.0
-  - conda-smithy =2026.6.14
+  - conda-build =26.7.1
+  - rattler-build =0.74.0
+  - conda-smithy =2026.8.9
   - menuinst =2.5.2
-  - cmake =4.4.0  # scipy
+  - cmake =4.4.2  # scipy
   - pkg-config =0.29.2
-  - meson =1.11.2  # matplotlib, scipy
+  - meson =1.12.0  # matplotlib, scipy
   - meson-python =0.20.0
   - abi3audit =0.0.26
-  - cibuildwheel =4.1.1
-  - pybind11 =3.0.3
+  - cibuildwheel =4.2.0
+  - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
-  - typer =0.27.0
+  - typer =0.27.1
   - typing-extensions =4.16.0
-  - pyrefly =1.1.1
+  - pyrefly =1.2.0
   - libffi =3.5.2  # allow_outdated, needs graphviz update
   # Doc building
+  - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
   - numpydoc =1.10.0
   - pydata-sphinx-theme =0.20.0
   - graphviz =14.1.2
   - python-graphviz =0.21
-  - selenium =4.46.0
+  - selenium =4.47.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.21.0
@@ -331,17 +337,17 @@ specs:
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   - ty =0.0.56  # [not (osx and x86_64)]
   - ty =0.0.55  # [osx and x86_64]  # allow_outdated
-  - pythran =0.18.1  # [not win]  # pulls in clang, scipy
-  - gfortran =15.2.0  # [not win]  # scipy
+  - pythran =0.19.0  # [not win]  # pulls in clang, scipy
+  - gfortran =16.1.0  # [not win]  # scipy
   - git =2.55.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.2.1  # [osx]
-  - pyobjc-framework-Cocoa =12.2.1  # [osx]
-  - pyobjc-framework-FSEvents =12.2.1  # [osx]
+  - pyobjc-core =12.2.1  # [osx]  # allow_outdated, 12.2.2 wants libffi 3.7, python 3.14 needs 3.5
+  - pyobjc-framework-Cocoa =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
+  - pyobjc-framework-FSEvents =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
   # BLAS: Apple Silicon uses the reworked Accelerate, everything else OpenBLAS
   - libblas =3.11.0*=*newaccelerate  # [osx and arm64]
   - libblas =3.11.0*=*openblas  # [not (osx and arm64)]
-  - openblas =0.3.33  # [not (osx and arm64)]  # allow_outdated, needs libblas update
+  - openblas =0.3.34  # [not (osx and arm64)]
   # End OS-specific defs
   # ^^^ This line is also special, do not change it!
   # Size considerations (must stay under 2GB for releases and Windows!):

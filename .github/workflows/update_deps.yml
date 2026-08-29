@@ -1,0 +1,81 @@
+name: Weekly dependency update
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    # Mondays at 05:00 UTC, so the PR is waiting at the start of the week.
+    # Doing this weekly keeps each PR small; letting it drift means dozens of
+    # bumps land at once and it's painful to work out which one broke the solve.
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    if: github.repository == 'mne-tools/mne-installers'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -el {0}
+    env:
+      GH_TOKEN: ${{ secrets.MNE_BOT_TOKEN }}
+      BRANCH: bot/update-deps
+      TITLE: "MAINT: Update outdated dependencies"
+    steps:
+      # Check out with the bot token so that the push below is attributed to
+      # mne-bot *and* triggers the build workflows (pushes made with the default
+      # GITHUB_TOKEN do not trigger further workflow runs)
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.MNE_BOT_TOKEN }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - run: pip install packaging requests pyyaml
+      # Exits 1 whenever anything needs updating (including packages it cannot
+      # fix itself), so look at the diff rather than the exit status
+      - name: Run the updater
+        run: python -u tests/test_outdated.py || true
+      - name: Check for changes
+        id: changed
+        run: |
+          if git diff --quiet -- recipes/mne-python/construct.yaml; then
+            echo "changed=false" | tee -a $GITHUB_OUTPUT
+          else
+            git --no-pager diff -- recipes/mne-python/construct.yaml | tee deps.diff
+            echo "changed=true" | tee -a $GITHUB_OUTPUT
+          fi
+      # Auto-merge is not enabled here: automerge.yml picks the PR up because
+      # it is authored by mne-bot, so all of that logic lives in one place
+      - name: Open or update the mne-bot PR
+        if: steps.changed.outputs.changed == 'true'
+        run: |
+          git config user.name "mne-bot"
+          git config user.email "50266005+mne-bot@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add recipes/mne-python/construct.yaml
+          git commit -m "$TITLE"
+          git push --force origin "$BRANCH"
+          {
+            echo "Automated weekly run of \`tests/test_outdated.py\`."
+            echo ""
+            echo "If the build fails, roll the offending pin back with a"
+            echo "\`# allow_outdated\` comment rather than reverting the whole PR."
+            echo ""
+            echo '```diff'
+            cat deps.diff
+            echo '```'
+          } > deps_body.md
+          PR_URL=$(gh pr list --head "$BRANCH" --state open --json url --jq '.[0].url')
+          if [[ -z "$PR_URL" ]]; then
+            PR_URL=$(gh pr create --head "$BRANCH" --title "$TITLE" --body-file deps_body.md)
+          else
+            gh pr edit "$PR_URL" --body-file deps_body.md
+          fi
+          echo "PR: $PR_URL" >> $GITHUB_STEP_SUMMARY
