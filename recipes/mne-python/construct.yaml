@@ -54,6 +54,11 @@ reverse_domain_identifier: tools.mne    # [osx]  Used for productbuild --identif
 menu_packages:
   - mne-installer-menu
 
+# constructor pre-solves, so without this an older macOS would install fine and then
+# fail at `import numpy` on Accelerate symbols that aren't in its system libraries
+virtual_specs:        # [osx and arm64]
+  - __osx>=15.5       # [osx and arm64]
+
 condarc:
   channels:
     - conda-forge
@@ -189,8 +194,6 @@ specs:
   - polars =1.44.1
   - numpy =2.5.2
   - scipy =1.18.0
-  - openblas =0.3.34
-  - libblas =3.11.0*=*openblas
   - jupyter =1.1.1
   - notebook =7.6.2
   - nbconvert =7.17.1
@@ -296,6 +299,7 @@ specs:
   - conda-smithy =2026.8.9
   - menuinst =2.5.2
   - cmake =4.4.3  # scipy
+  - pkg-config =0.29.2
   - meson =1.12.0  # matplotlib, scipy
   - meson-python =0.20.0
   - abi3audit =0.0.26
@@ -321,6 +325,9 @@ specs:
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2608.26
+  - jupyterlite =0.8.3
+  - jupyterlite-pyodide-kernel =0.8.5
+  - jupyterlite-sphinx =0.23.0
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
@@ -341,6 +348,10 @@ specs:
   - pyobjc-core =12.2.1  # [osx]  # allow_outdated, 12.2.2 wants libffi 3.7, python 3.14 needs 3.5
   - pyobjc-framework-Cocoa =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
   - pyobjc-framework-FSEvents =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
+  # BLAS: Apple Silicon uses the reworked Accelerate, everything else OpenBLAS
+  - libblas =3.11.0*=*newaccelerate  # [osx and arm64]
+  - libblas =3.11.0*=*openblas  # [not (osx and arm64)]
+  - openblas =0.3.34  # [not (osx and arm64)]
   # End OS-specific defs
   # ^^^ This line is also special, do not change it!
   # Size considerations (must stay under 2GB for releases and Windows!):
