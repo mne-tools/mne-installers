@@ -38,18 +38,10 @@ assert len(deps) == 1, len(deps)
 deps = deps[0]
 print(f"Found pip install line:\n{deps}")
 deps = deps[len(would) :]
-# intentional, then Qt-related, then not on CF
-# pymef: https://github.com/conda-forge/staged-recipes/pull/32039
-ignore_starts = tuple(
-    """
-numpy-
-pyxdf-
-
-sip-
-
-pymef-
-""".strip().split()
-)
+ignore_starts = tuple([
+    "sip-",  # qt-related
+])
+ignore_starts = tuple(s.split("#")[0] for s in ignore_starts)
 deps = [
     dep
     for dep in deps.split()
