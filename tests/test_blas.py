@@ -26,7 +26,7 @@ want_pin = f"libblas=*=*{want_impl}"
 assert want_pin in [line.strip() for line in pinned], (
     f"{want_pin!r} missing from {pinned_path}:\n" + "\n".join(pinned)
 )
-print(f"✓ {pinned_path.name} pins {want_pin}")
+print(f"OK: {pinned_path.name} pins {want_pin}")
 
 # The libblas that actually got solved into the installer
 records = glob.glob(str(conda_meta / "libblas-*.json"))
@@ -36,7 +36,7 @@ assert libblas["build"].endswith(f"_{want_impl}"), (
     f"Installed libblas {libblas['version']}={libblas['build']} is not a "
     f"{want_impl} build"
 )
-print(f"✓ installed libblas {libblas['version']}={libblas['build']}")
+print(f"OK: installed libblas {libblas['version']}={libblas['build']}")
 
 if not on_apple_silicon:
     sys.exit(0)
@@ -65,4 +65,4 @@ assert want_floor == got_floor, (
     f"virtual_specs to match, otherwise the installer will either refuse machines it "
     f"could support or accept machines that will fail at `import numpy`."
 )
-print(f"✓ virtual_specs __osx>={want_floor} matches the libblas requirement")
+print(f"OK: virtual_specs __osx>={want_floor} matches the libblas requirement")
