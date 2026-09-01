@@ -177,7 +177,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.4
+  - filelock =3.32.5
   - lazy-loader =0.5
   - packaging =26.3
   - pooch =1.9.0
@@ -278,9 +278,9 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.6.2
-  - prek =0.5.0
+  - prek =0.5.1
   - ruff =0.16.5
-  - uv =0.12.7
+  - uv =0.12.8
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
