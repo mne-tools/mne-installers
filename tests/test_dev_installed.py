@@ -41,7 +41,6 @@ deps = deps[len(would) :]
 ignore_starts = tuple(
     [
         "sip-",  # qt-related
-        "jamica",  # 0.3 not on conda-forge
     ]
 )
 ignore_starts = tuple(s.split("#")[0] for s in ignore_starts)
