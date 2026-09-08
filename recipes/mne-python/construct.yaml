@@ -237,7 +237,7 @@ specs:
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
-  - plotly =6.9.0
+  - plotly =7.0.0
   - vtk-base =9.6.2  # allow_outdated, 9.7.0 not solvable with our other pins
   - vtk =9.6.2  # allow_outdated, must match vtk-base
   - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
@@ -253,7 +253,7 @@ specs:
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
-  - imageio =2.37.0
+  - imageio =2.37.4
   - ipyevents =2.0.4
   - ipython =9.17.1
   - jinja2 =3.1.6
@@ -296,13 +296,13 @@ specs:
   - grayskull =3.1.1
   - conda-recipe-manager =0.10.6
   - conda-build =26.7.1
-  - rattler-build =0.75.0
+  - rattler-build =0.76.0
   - conda-smithy =2026.9.1
   - menuinst =2.5.2
   - cmake =4.4.3  # scipy
   - pkg-config =0.29.2
   - meson =1.12.0  # matplotlib, scipy
-  - meson-python =0.20.0
+  - meson-python =0.21.0
   - abi3audit =0.0.26
   - cibuildwheel =4.2.1
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
