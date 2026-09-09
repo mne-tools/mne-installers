@@ -177,7 +177,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.5
+  - filelock =3.32.6
   - lazy-loader =0.5
   - packaging =26.3
   - pooch =1.9.0
@@ -192,7 +192,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.5
-  - polars =1.44.1
+  - polars =1.44.2
   - numpy =2.5.3
   - scipy =1.18.0
   - jupyter =1.1.1
@@ -245,7 +245,7 @@ specs:
   - proj =9.8.1
   - ipywidgets =8.1.9
   - pyvista =0.48.4
-  - pyvistaqt =0.13.0
+  - pyvistaqt =0.13.1
   - trame =3.13.2
   - trame-pyvista =0.1.1
   - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
@@ -281,7 +281,7 @@ specs:
   - pre-commit =4.6.2
   - prek =0.5.2
   - ruff =0.16.6
-  - uv =0.12.10
+  - uv =0.12.11
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
