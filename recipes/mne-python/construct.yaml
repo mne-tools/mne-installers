@@ -247,6 +247,7 @@ specs:
   - pyvista =0.48.4
   - pyvistaqt =0.13.1
   - trame =3.13.2
+  - trame-client =3.13.6  # allow_outdated, trame-vuetify needs <4 but the conda pin is missing it
   - trame-pyvista =0.1.1
   - trame-server =3.15.0  # allow_outdated, pinned by trame-pyvista
   - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
