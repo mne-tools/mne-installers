@@ -91,7 +91,25 @@ for line, spec in zip(lines, specs):
 def get_github_file(filename, *, repo="mne-tools/mne-python"):
     """Get conda json for a package."""
     url = f"https://github.com/{repo}/raw/refs/heads/main/{filename}"
-    return requests.get(url).text
+    r = requests.get(url)
+    # otherwise a moved/renamed file silently yields GitHub's HTML 404 page
+    r.raise_for_status()
+    return r.text
+
+
+def _flatten_v1_deps(deps):
+    """Expand rattler-build if/then/else selector entries into a flat dep list."""
+    flat = []
+    for dep in deps:
+        if isinstance(dep, dict):
+            for branch in ("then", "else"):
+                branch = dep.get(branch, [])
+                if not isinstance(branch, list):
+                    branch = [branch]
+                flat.extend(_flatten_v1_deps(branch))
+        else:
+            flat.append(dep)
+    return flat
 
 
 @_cache
@@ -185,17 +203,18 @@ ignores = [
 for name in ignores:
     mne_dep_names.pop(mne_dep_names.index(name))
 # add conda-forge ones
-meta_str = get_github_file("recipe/meta.yaml", repo="conda-forge/mne-feedstock")
-# remove jinja lines and expressions
-meta_str = re.sub("({%.+?%})", "", meta_str)
-meta_str = re.sub(r"({{.+?}})", "placeholder", meta_str)
+meta_str = get_github_file("recipe/recipe.yaml", repo="conda-forge/mne-feedstock")
+# remove v1 template expressions
+meta_str = re.sub(r"(\$\{\{.+?\}\})", "placeholder", meta_str)
 mne_feedstock = yaml.safe_load(meta_str)
 mne_output = mne_feedstock["outputs"][1]
-assert mne_output["name"] == "mne", f"Need mne, got {mne_output['name']=}"
+mne_output_name = mne_output["package"]["name"]
+assert mne_output_name == "mne", f"Need mne, got {mne_output_name=}"
 feedstock_dep_names = sorted(
-    re.split(r"[;<>=! ]", dep)[0] for dep in mne_output["requirements"]["run"]
+    re.split(r"[;<>=! ]", dep)[0]
+    for dep in _flatten_v1_deps(mne_output["requirements"]["run"])
 )
-for dep in "placeholder __osx pyqt pyobjc-framework-cocoa".split():
+for dep in "placeholder __osx pyqt6 qt6-main pyside6 pyobjc-framework-cocoa".split():
     feedstock_dep_names.pop(feedstock_dep_names.index(dep))
 missing = sorted(
     set(mne_dep_names).union(set(feedstock_dep_names))
