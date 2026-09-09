@@ -219,6 +219,7 @@ for dep in "placeholder __osx pyqt6 qt6-main pyside6 pyobjc-framework-cocoa".spl
 missing = sorted(
     set(mne_dep_names).union(set(feedstock_dep_names))
     - set(pkg.name for pkg in packages)
+    - set(ignores)  # the feedstock can list them even when we don't want them
 )
 
 outdated = []
