@@ -55,7 +55,7 @@ assert 'CanvasAgg ' in repr(fig.canvas), repr(fig.canvas)
 import mne
 mne.viz.set_3d_backend('notebook')
 fig = mne.viz.create_3d_figure((400, 400), show=True)
-assert '.Plotter ' in repr(fig.plotter), repr(fig.plotter)
+assert '._NotebookPlotter ' in repr(fig.plotter), repr(fig.plotter)
 """
 with _nbclient.setup_kernel():
     assert _nbclient.kc is not None
