@@ -41,7 +41,6 @@ deps = deps[len(would) :]
 ignore_starts = tuple(
     [
         "sip-",  # qt-related
-        "pyvista-js",  # not on CF: github.com/conda-forge/staged-recipes/pull/34749
     ]
 )
 ignore_starts = tuple(s.split("#")[0] for s in ignore_starts)

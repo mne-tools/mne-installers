@@ -181,7 +181,6 @@ mne_dep_names = sorted(set(pypi_to_conda.get(name, name) for name in mne_dep_nam
 # remove a few exceptions (toml-sort not on conda-forge, don't need others)
 ignores = [
     "sip",  # qt-related
-    "pyvista-js",
 ]
 for name in ignores:
     mne_dep_names.pop(mne_dep_names.index(name))
