@@ -1,4 +1,4 @@
-version: 1.12.1_0
+version: 1.13.0_0
 name: MNE-Python
 company: MNE-Python Developers
 # When the version above changes to a new major/minor, it needs to be updated
@@ -24,11 +24,11 @@ temp_extra_files:
 initialize_by_default: false
 register_python_default: false
 
-default_prefix: ${HOME}/mne-python/1.12.1_0                          # [linux]
-default_prefix: "%USERPROFILE%\\mne-python\\1.12.1_0"                # [win]
-default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.12.1_0"   # [win]
-default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.12.1_0"  # [win]
-default_location_pkg: "Applications/MNE-Python/1.12.1_0"             # [osx]
+default_prefix: ${HOME}/mne-python/1.13.0_0                          # [linux]
+default_prefix: "%USERPROFILE%\\mne-python\\1.13.0_0"                # [win]
+default_prefix_domain_user: "%LOCALAPPDATA%\\mne-python\\1.13.0_0"   # [win]
+default_prefix_all_users: "%ALLUSERSPROFILE%\\mne-python\\1.13.0_0"  # [win]
+default_location_pkg: "Applications/MNE-Python/1.13.0_0"             # [osx]
 pkg_name: ".mne-python"                                             # [osx]
 progress_notifications: true                                        # [osx]
 install_path_exists_error_text: |
@@ -36,10 +36,10 @@ install_path_exists_error_text: |
 
 uninstall_name: MNE-Python ${VERSION} (Python ${PYVERSION})
 
-installer_filename: MNE-Python-1.12.1_0-macOS_Intel.pkg  # [osx and not arm64]
-installer_filename: MNE-Python-1.12.1_0-macOS_M1.pkg     # [osx and arm64]
-installer_filename: MNE-Python-1.12.1_0-Windows.exe      # [win]
-installer_filename: MNE-Python-1.12.1_0-Linux.sh         # [linux]
+installer_filename: MNE-Python-1.13.0_0-macOS_Intel.pkg  # [osx and not arm64]
+installer_filename: MNE-Python-1.13.0_0-macOS_M1.pkg     # [osx and arm64]
+installer_filename: MNE-Python-1.13.0_0-Windows.exe      # [win]
+installer_filename: MNE-Python-1.13.0_0-Linux.sh         # [linux]
 
 post_install: ../../assets/post_install_macOS.sh        # [osx]
 post_install: ../../assets/post_install_linux.sh        # [linux]
@@ -64,7 +64,7 @@ condarc:
     - conda-forge
   channel_priority: strict
   allow_other_channels: false
-  env_prompt: "(mne-1.12.1_0) "
+  env_prompt: "(mne-1.13.0_0) "
 
 channels:
   - conda-forge
@@ -83,11 +83,11 @@ specs:
   - mamba =2.9.0
   - libmamba =2.9.0
   # MNE ecosystem
-  - mne-installer-menu =1.12.1=*  # locally_built
+  - mne-installer-menu =1.13.0=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
   # - mne-base =1.4dev0=*_20230503
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
-  - mne =1.12.1=*_pyside6_*
+  - mne =1.13.0=*_pyside6_*
   # For testing purposes with build_local.sh, you can comment out all deps
   # below for speed, and change mne to mne-base above
 
@@ -177,7 +177,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.5
+  - filelock =3.32.6
   - lazy-loader =0.5
   - packaging =26.3
   - pooch =1.9.0
@@ -192,7 +192,7 @@ specs:
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.5
-  - polars =1.44.1
+  - polars =1.44.2
   - numpy =2.5.3
   - scipy =1.18.0
   - jupyter =1.1.1
@@ -245,11 +245,14 @@ specs:
   - proj =9.8.1
   - ipywidgets =8.1.9
   - pyvista =0.48.4
-  - pyvistaqt =0.13.0
+  - pyvistaqt =0.13.1
   - trame =3.13.2
+  - trame-client =3.13.6  # allow_outdated, trame-vuetify needs <4 but the conda pin is missing it
   - trame-pyvista =0.1.1
+  - trame-server =3.15.0  # allow_outdated, pinned by trame-pyvista
   - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
   - trame-vuetify =3.2.5
+  - pyvista-js =0.15.2
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -280,7 +283,7 @@ specs:
   - pre-commit =4.6.2
   - prek =0.5.2
   - ruff =0.16.6
-  - uv =0.12.10
+  - uv =0.12.12
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
