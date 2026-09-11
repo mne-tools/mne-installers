@@ -278,7 +278,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2022, windows-2025]
+        os: [windows-2025]  # windows-2022 is way slower and never showed any different behavior
     runs-on: ${{ matrix.os }}
     timeout-minutes: 80
     env:
@@ -303,7 +303,7 @@ jobs:
           path: ${{ env.MNE_INSTALLER_JSON_NAME }}
           archive: false
         # upload just one for each installer version
-        if: matrix.os == 'windows-2022'
+        if: matrix.os == 'windows-2025'
       - uses: pyvista/setup-headless-display-action@main
         with:
           qt: true
