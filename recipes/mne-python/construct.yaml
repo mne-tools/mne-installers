@@ -252,7 +252,7 @@ specs:
   - trame-server =3.15.0  # allow_outdated, pinned by trame-pyvista
   - trame-vtk =2.11.8  # allow_outdated, pinned by trame-pyvista
   - trame-vuetify =3.2.6
-  - pyvista-js =0.15.2
+  - pyvista-js =0.16.0
   - nest-asyncio2 =1.7.2
   - termcolor =3.3.0
   - defusedxml =0.7.1
