@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.13.1"
+  version: "1.13.2"
 
 package:
   name: mne-installer-menu
