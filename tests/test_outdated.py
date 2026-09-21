@@ -185,10 +185,10 @@ mne_deps = (
 mne_deps += [
     dep for dep in mne_toml["dependency-groups"]["test_extra"] if isinstance(dep, str)
 ]  # remove dict entries (like {"include-group": "test"})
-mne_dep_names = [re.split(r"[;<>=! ]", dep)[0].replace("_", "-") for dep in mne_deps]
+# strip extras too, e.g. jupyterlite-pyodide-kernel[lock] (its deps we add by hand)
+mne_dep_names = [re.split(r"[;<>=! \[]", dep)[0].replace("_", "-") for dep in mne_deps]
 # Fix a few
 pypi_to_conda = {
-    "mne[hdf5]": "mne",
     "matplotlib": "matplotlib-base",
     "neo": "python-neo",
     "jupyter-client": "jupyter_client",
