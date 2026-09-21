@@ -60,7 +60,7 @@ mods = [line[2:].split("#")[0].split(">")[0].split("=")[0].strip() for line in l
 
 # Plus some custom ones
 mods += """
-darkdetect qdarkstyle numba openpyxl xlrd pingouin questionary
+darkdetect qdarkstyle numba openpyxl xlrd pingouin formulaic questionary
 seaborn plotly pqdm pyvistaqt vtk PySide6 PySide6.QtCore matplotlib matplotlib.pyplot
 sklearn.decomposition spyder spyder-kernels
 """.strip().split()
