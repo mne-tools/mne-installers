@@ -333,7 +333,7 @@ specs:
   - intersphinx-registry =0.2609.5
   - jupyterlite =0.8.3
   - jupyterlite-pyodide-kernel =0.8.6
-  - pyodide-lock =0.2.1  # jupyterlite-pyodide-kernel[lock]
+  - pyodide-lock =0.2.1  # jupyterlite-pyodide-kernel lock
   - jupyterlite-sphinx =0.23.0
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
