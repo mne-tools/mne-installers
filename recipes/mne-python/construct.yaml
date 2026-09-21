@@ -97,7 +97,7 @@ specs:
   - mne-bids-pipeline =1.10.1
   - mne-qt-browser =0.7.5
   - mne-connectivity =0.9.0
-  - mne-denoise =0.0.1
+  - mne-denoise =0.0.2
   - mne-faster =1.2.2
   - mne-nirs =0.7.3
   - mne-features =0.3.2
@@ -187,11 +187,11 @@ specs:
   - pymatreader =1.3.1
   - numexpr =2.14.2
   - antropy =0.2.2
-  - threadpoolctl =3.6.0
+  - threadpoolctl =3.7.0
   - scikit-learn =1.8.0  # allow_outdated, nilearn incompatible
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
-  - pandas =3.0.5
+  - pandas =3.0.6
   - polars =1.44.2
   - numpy =2.5.3
   - scipy =1.18.1
@@ -227,8 +227,8 @@ specs:
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
-  - matplotlib-base =3.11.1
-  - tornado =6.5.8
+  - matplotlib-base =3.11.2
+  - tornado =6.5.10
   # conda-forge pinning needs to update to 6.11, then we can rerender VTK
   # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
   - pyside6 =6.11.1  # allow_outdated, follows vtk updates
@@ -242,7 +242,7 @@ specs:
   - vtk =9.6.2  # allow_outdated, must match vtk-base
   - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
   - lightgbm =4.7.0  # from yasa
-  - proj =9.8.1
+  - proj =9.9.0
   - ipywidgets =8.1.9
   - pyvista =0.48.4
   - pyvistaqt =0.13.1
@@ -272,7 +272,7 @@ specs:
   - pygments =2.21.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.100.0
+  - gh =2.101.0
   - setuptools_scm =10.2.3
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
@@ -283,7 +283,7 @@ specs:
   - pre-commit =4.6.2
   - prek =0.5.3
   - ruff =0.16.7
-  - uv =0.12.13
+  - uv =0.12.17
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
@@ -291,7 +291,7 @@ specs:
   - line_profiler =5.0.2
   - memory_profiler =0.61.0
   - twine =7.0.0
-  - hatchling =1.32.0
+  - hatchling =1.32.4
   - hatch-vcs =0.5.0
   - mypy =2.3.1
   - towncrier =25.8.0
@@ -300,7 +300,7 @@ specs:
   - conda-recipe-manager =0.10.6
   - conda-build =26.7.1
   - rattler-build =0.76.1
-  - conda-smithy =2026.9.10
+  - conda-smithy =2026.9.19
   - menuinst =2.5.2
   - cmake =4.4.3  # scipy
   - pkg-config =0.29.2
@@ -312,18 +312,18 @@ specs:
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.27.2
   - typing-extensions =4.16.0
-  - pyrefly =1.3.0
+  - pyrefly =1.3.1
   - libffi =3.5.2  # allow_outdated, needs graphviz update
   # Doc building
   - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
-  - numpydoc =1.10.0
+  - numpydoc =1.11.0
   - pydata-sphinx-theme =0.21.0
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.49.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
-  - sphinx-gallery =0.21.0
+  - sphinx-gallery =0.22.1
   - sphinxcontrib-bibtex =2.7.0
   - sphinx-copybutton =0.5.2
   - sphinxcontrib-youtube =1.5.0
