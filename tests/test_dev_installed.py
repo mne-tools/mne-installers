@@ -41,7 +41,6 @@ deps = deps[len(would) :]
 ignore_starts = tuple(
     [
         "sip-",  # qt-related
-        "uv-",  # conda-forge uv is binary-only, so pip cannot see it
     ]
 )
 ignore_starts = tuple(s.split("#")[0] for s in ignore_starts)

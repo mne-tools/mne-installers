@@ -285,6 +285,7 @@ specs:
   - prek =0.5.3
   - ruff =0.16.7
   - uv =0.12.17
+  - python-uv =0.12.17  # uv dist-info for pip, must match uv
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
