@@ -230,22 +230,19 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.11.2
   - tornado =6.5.10
-  # conda-forge pinning needs to update to 6.11, then we can rerender VTK
-  # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/8372
-  - pyside6 =6.11.1  # allow_outdated, follows vtk updates
-  - qt6-main =6.11.1  # allow_outdated, follows vtk updates
+  - pyside6 =6.11.2
+  - qt6-main =6.11.2
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =7.0.0
-  - vtk-base =9.6.2  # allow_outdated, 9.7.0 not solvable with our other pins
-  - vtk =9.6.2  # allow_outdated, must match vtk-base
-  - libboost =1.90.0  # allow_outdated, needs to be available for vtk and lightgbm
+  - vtk-base =9.7.0
+  - vtk =9.7.0
   - lightgbm =4.7.0  # from yasa
-  - proj =9.8.1  # allow_outdated, vtk-base 9.6.2 needs <9.9
+  - proj =9.9.0
   - ipywidgets =8.1.9
-  - pyvista =0.48.4
+  - pyvista =0.49.0
   - pyvistaqt =0.13.1
   - trame =3.13.2  # allow_outdated, incompat with others
   - trame-client =3.13.6  # allow_outdated, trame-vuetify needs <4 but the conda pin is missing it
