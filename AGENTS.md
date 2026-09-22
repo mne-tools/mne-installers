@@ -166,8 +166,19 @@ the old version).
 conda env create -f environment.yml
 conda activate constructor-env
 ./tools/build_local.sh           # builds mne-installer-menu, then runs constructor
-./tools/build_local.sh --dry-run # skips the constructor solve
+./tools/build_local.sh --dry-run # solves the env, skips downloading and packaging
 ```
+
+`build_local.sh` just runs two scripts, which can also be run separately:
+
+```bash
+./tools/run_local_build.sh           # builds mne-installer-menu into conda-bld/
+./tools/run_constructor.sh --dry-run # solves the specs for the current platform only
+```
+
+After editing `specs`, the dry-run solve is the fastest way to catch unsolvable pins
+(a few minutes, versus the full CI build). The menu package only needs rebuilding when
+`mne-installer-menu/` or the installer version changes.
 
 Full installer builds take a long time and need the platform they target, so most
 recipe changes are validated by opening a PR and letting CI build all platforms. For a
