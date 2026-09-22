@@ -177,7 +177,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.6
+  - filelock =4.0.1
   - lazy-loader =0.5
   - packaging =26.3
   - pooch =1.9.0
@@ -299,7 +299,7 @@ specs:
   - conda-recipe-manager =0.10.6
   - conda-build =26.7.1
   - rattler-build =0.76.1
-  - conda-smithy =2026.9.19
+  - conda-smithy =2026.9.22
   - menuinst =2.5.2
   - cmake =4.4.3  # scipy
   - pkg-config =0.29.2
