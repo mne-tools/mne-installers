@@ -180,6 +180,11 @@ After editing `specs`, the dry-run solve is the fastest way to catch unsolvable 
 (a few minutes, versus the full CI build). The menu package only needs rebuilding when
 `mne-installer-menu/` or the installer version changes.
 
+`constructor` cannot solve for another OS, so `./tools/run_constructor.sh --platform
+osx-arm64` (or `osx-64`, `win-64`, `linux-64`) instead runs `conda create --dry-run` on
+that platform's specs with faked virtual packages. This is only an approximation for
+debugging conflicts on OSes you do not have; CI is the source of truth.
+
 Full installer builds take a long time and need the platform they target, so most
 recipe changes are validated by opening a PR and letting CI build all platforms. For a
 quick local check of the `specs` list against conda-forge:

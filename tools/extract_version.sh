@@ -5,7 +5,7 @@ export RECIPE_DIR=${SCRIPT_DIR}/../recipes/mne-python
 export MNE_INSTALLER_VERSION=$(grep "^version: .*$" ${RECIPE_DIR}/construct.yaml | cut -d' ' -f2)
 export PYSHORT=$(python -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
 UNAME="$(uname -s)"
-if [[ "$1" != "" ]] && [[ "$1" != "--dry-run" ]]; then
+if [[ "$1" != "" ]] && [[ "$1" != --* ]]; then
     MACHINE="$1"
 else
     case "${UNAME}" in
