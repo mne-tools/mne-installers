@@ -281,8 +281,6 @@ specs:
   - pre-commit =4.6.2
   - prek =0.5.4
   - ruff =0.16.9
-  - uv =0.12.19
-  - python-uv =0.12.19  # uv dist-info for pip, must match uv
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
@@ -345,6 +343,10 @@ specs:
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   - ty =0.0.56  # [not (osx and x86_64)]
   - ty =0.0.55  # [osx and x86_64]  # allow_outdated
+  - uv =0.12.19  # [not (osx and x86_64)]
+  - python-uv =0.12.19  # [not (osx and x86_64)]  # uv dist-info for pip, must match uv
+  - uv =0.12.17  # [osx and x86_64]
+  - python-uv =0.12.17  # [osx and x86_64]
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
   - gfortran =16.2.0  # [not win]  # scipy
   - git =2.55.0  # [win]
