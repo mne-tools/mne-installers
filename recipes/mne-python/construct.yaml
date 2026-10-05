@@ -79,7 +79,7 @@ specs:
   # Python
   - pip =26.2.1
   - wheel =0.48.0
-  - conda =26.7.2
+  - conda =26.9.1
   - mamba =2.9.0
   - libmamba =2.9.0
   # MNE ecosystem
@@ -93,7 +93,7 @@ specs:
 
   # vvv this line is special and used by MNE-Python, do not change it!
   # <<< BEGIN RELATED SOFTWARE LIST >>>
-  - mne-bids =0.19.0
+  - mne-bids =0.20.0
   - mne-bids-pipeline =1.10.1
   - mne-qt-browser =0.7.5
   - mne-connectivity =0.9.0
@@ -104,7 +104,7 @@ specs:
   - mne-rsa =1.0
   - mne-rt =1.1.0
   - mne-ari =0.1.2
-  - mne-icalabel =0.9.0
+  - mne-icalabel =0.10.0
   - mne-gui-addons =0.1=*_1
   - mne-kit-gui =2.0.0
   - mne-lsl =1.14.0
@@ -138,7 +138,7 @@ specs:
   - openneuro-py =2026.9.1
   # sleep staging
   - sleepecg =0.5.9
-  - yasa =0.7.0
+  - yasa =0.8.0
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
   - mnelab =1.5.4
@@ -150,10 +150,10 @@ specs:
   - pybv =0.8.1
   - pymef =1.4.8
   - pybvrf =0.1.4
-  - edfio =0.4.17
+  - edfio =0.4.18
   - eeglabio =0.1.3
   - mffpy =0.11.0
-  - openmeeg =2.5.16
+  - openmeeg =2.6.0
   - python-neo =0.14.5
   - nitime =0.12.1
   - snirf =0.8.0
@@ -209,7 +209,7 @@ specs:
   - qtconsole-base =5.7.2
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
-  - numba =0.67.0
+  - numba =0.68.0
   - cython =3.3.0
   - joblib =1.6.0
   # I/O
@@ -231,7 +231,7 @@ specs:
   - matplotlib-base =3.11.2
   - tornado =6.5.10
   - pyside6 =6.11.2
-  - qt6-main =6.11.2
+  - qt6-main =6.12.0
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
@@ -270,7 +270,7 @@ specs:
   - pygments =2.21.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.101.0
+  - gh =2.102.0
   - setuptools_scm =10.3.4
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
@@ -279,8 +279,8 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.6.2
-  - prek =0.5.4
-  - ruff =0.16.9
+  - prek =0.5.5
+  - ruff =0.16.10
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
@@ -290,26 +290,26 @@ specs:
   - twine =7.0.0
   - hatchling =1.32.4
   - hatch-vcs =0.5.0
-  - mypy =2.3.1
-  - towncrier =25.8.0
+  - mypy =2.4.0
+  - towncrier =26.9.0
   - vulture =2.16
-  - grayskull =3.1.1
+  - grayskull =3.2.0
   - conda-recipe-manager =0.10.6
-  - conda-build =26.7.1
+  - conda-build =26.9.1
   - rattler-build =0.76.1
   - conda-smithy =2026.9.23
   - menuinst =2.5.2
-  - cmake =4.4.3  # scipy
+  - cmake =4.4.4  # scipy
   - pkg-config =0.29.2
   - meson =1.12.1  # matplotlib, scipy
-  - meson-python =0.22.0
+  - meson-python =0.22.1
   - abi3audit =0.0.26
-  - cibuildwheel =4.2.1
+  - cibuildwheel =4.3.0
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.27.2
   - typing-extensions =4.16.0
-  - pyrefly =1.3.1
+  - pyrefly =1.3.2
   - libffi =3.5.2  # allow_outdated, needs graphviz update
   # Doc building
   - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
@@ -317,7 +317,7 @@ specs:
   - pydata-sphinx-theme =0.22.0
   - graphviz =14.1.2
   - python-graphviz =0.21
-  - selenium =4.49.0
+  - selenium =4.50.0
   - sphinx =9.1.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.22.1
@@ -349,7 +349,7 @@ specs:
   - python-uv =0.12.17  # [osx and x86_64]  # allow_outdated
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
   - gfortran =16.2.0  # [not win]  # scipy
-  - git =2.55.0  # [win]
+  - git =2.56.0  # [win]
   - make =4.4.1  # [win]
   - pyobjc-core =12.2.1  # [osx]  # allow_outdated, 12.2.2 wants libffi 3.7, python 3.14 needs 3.5
   - pyobjc-framework-Cocoa =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
