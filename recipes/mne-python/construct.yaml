@@ -104,7 +104,7 @@ specs:
   - mne-rsa =1.0
   - mne-rt =1.1.0
   - mne-ari =0.1.2
-  - mne-icalabel =0.9.0
+  - mne-icalabel =0.10.0
   - mne-gui-addons =0.1=*_1
   - mne-kit-gui =2.0.0
   - mne-lsl =1.14.0
@@ -279,7 +279,7 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.6.2
-  - prek =0.5.4
+  - prek =0.5.5
   - ruff =0.16.10
   - check-manifest =0.51
   - refleak =0.2.2
@@ -295,7 +295,7 @@ specs:
   - vulture =2.16
   - grayskull =3.2.0
   - conda-recipe-manager =0.10.6
-  - conda-build =26.9.0
+  - conda-build =26.9.1
   - rattler-build =0.76.1
   - conda-smithy =2026.9.23
   - menuinst =2.5.2
@@ -304,7 +304,7 @@ specs:
   - meson =1.12.1  # matplotlib, scipy
   - meson-python =0.22.1
   - abi3audit =0.0.26
-  - cibuildwheel =4.2.1
+  - cibuildwheel =4.3.0
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
   - typer =0.27.2
