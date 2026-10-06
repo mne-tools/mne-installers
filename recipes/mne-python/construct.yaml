@@ -79,7 +79,7 @@ specs:
   # Python
   - pip =26.2.1
   - wheel =0.48.0
-  - conda =26.9.1
+  - conda =26.7.2  # allow_outdated, 26.9.1 needs py-rattler >=0.26 (via conda-rattler-solver) but conda-smithy 2026.9.23 needs <0.26
   - mamba =2.9.0
   - libmamba =2.9.0
   # MNE ecosystem
@@ -231,7 +231,6 @@ specs:
   - matplotlib-base =3.11.2
   - tornado =6.5.10
   - pyside6 =6.11.2
-  - qt6-main =6.12.0
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
