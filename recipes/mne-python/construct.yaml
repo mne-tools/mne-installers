@@ -279,7 +279,7 @@ specs:
   - pytest-xdist =3.8.0
   - pre-commit =4.7.0
   - prek =0.5.5
-  - ruff =0.17.0
+  - ruff =0.16.10  # allow_outdated, 0.17.0 dropped its dist-info so pip sees it as missing (conda-forge/ruff-feedstock#361)
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
