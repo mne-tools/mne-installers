@@ -102,7 +102,7 @@ specs:
   - mne-nirs =0.7.3
   - mne-features =0.3.2
   - mne-rsa =1.0
-  - mne-rt =1.1.0
+  - mne-rt =1.2.0
   - mne-ari =0.1.2
   - mne-icalabel =0.10.0
   - mne-gui-addons =0.1=*_1
@@ -177,7 +177,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =3.32.6  # allow_outdated, virtualenv (via pre-commit) needs <4
+  - filelock =4.1.1
   - lazy-loader =0.6
   - packaging =26.3
   - pooch =1.9.0
@@ -188,7 +188,7 @@ specs:
   - numexpr =2.14.2
   - antropy =0.2.2
   - threadpoolctl =3.7.0
-  - scikit-learn =1.8.0  # allow_outdated, nilearn incompatible
+  - scikit-learn =1.9.1
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
   - pandas =3.0.6
@@ -199,7 +199,7 @@ specs:
   - notebook =7.6.3
   - nbconvert =7.17.2
   - jupyterlab =4.6.4
-  - ipykernel =6.31.0  # allow_outdated, 7+ incompatible with spyder_kernels 3.1.3
+  - ipykernel =7.2.0  # allow_outdated, spyder-kernels 3.2.0a1 needs <7.3
   - spyder-kernels =3.2.0a1
   # spyder-base rather than spyder: the `spyder` output pins pyqt 5.15 and
   # pyqtwebengine, whereas `spyder-base` leaves the Qt binding free (qtpy only),
@@ -236,19 +236,19 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =7.1.0
-  - vtk-base =9.6.2  # allow_outdated, 9.7.0 needs ffmpeg 9 -> opencv w/ hdf5 2.2 -> aws-c-common 0.14.3, but libarrow needs <0.14.3
-  - vtk =9.6.2  # allow_outdated, must match vtk-base
+  - vtk-base =9.7.0
+  - vtk =9.7.0  # must match vtk-base
   - lightgbm =4.7.0  # from yasa
-  - proj =9.8.1  # allow_outdated, vtk-base 9.6.2 needs <9.9
+  - proj =9.9.0
   - ipywidgets =8.1.9
   - pyvista =0.49.1
   - pyvistaqt =0.13.1
-  - trame =3.13.2  # allow_outdated, trame-pyvista 0.1.7 needs <3.13.3
-  - trame-client =3.13.2  # allow_outdated, trame-pyvista 0.1.7 needs <3.13.3
+  - trame =3.13.2  # allow_outdated, mne 1.13.2 needs <4
+  - trame-client =3.13.6  # allow_outdated, mne 1.13.2 needs <4
   - trame-pyvista =0.2.0
-  - trame-server =3.12.5  # allow_outdated, trame-pyvista 0.1.7 needs <3.12.6
-  - trame-vtk =2.11.16  # allow_outdated, trame-pyvista 0.1.7 needs <2.11.17
-  - trame-vuetify =3.2.5  # allow_outdated, trame-pyvista 0.1.7 needs <3.2.6
+  - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
+  - trame-vtk =2.11.17
+  - trame-vuetify =3.2.6  # allow_outdated, trame-pyvista 0.2.0 needs <3.2.7
   - pyvista-js =0.18.0
   - nest-asyncio2 =1.7.3
   - termcolor =3.3.0
@@ -305,11 +305,11 @@ specs:
   - abi3audit =0.0.26
   - cibuildwheel =4.3.1
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
-  - click =8.2.1  # allow_outdated, needs conda-recipe-manager update
+  - click =8.4.1  # allow_outdated, conda-recipe-manager 0.10.6 needs <=8.4.1
   - typer =0.27.3
   - typing-extensions =4.16.0
   - pyrefly =1.3.2
-  - libffi =3.5.2  # allow_outdated, needs graphviz update
+  - libffi =3.7.0
   # Doc building
   - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
   - numpydoc =1.11.0
@@ -332,27 +332,23 @@ specs:
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
-  - python =3.14.4  # [not (osx and x86_64)]
-  - python =3.13.9  # [osx and x86_64]  # allow_outdated, onnx
-  - pyarrow =25.0.0  # [not (osx and x86_64)]
-  - pyarrow =24.0.0  # [osx and x86_64]  # allow_outdated
-  - python_abi =3.14  # [not (osx and x86_64)]
+  - python =3.14.8  # [not (osx and x86_64)]  # allow_outdated, 3.15 needs vtk-base and libmambapy py315 builds
+  - python =3.13.16  # [osx and x86_64]  # allow_outdated, onnx
+  - pyarrow =25.0.0
+  - python_abi =3.14  # [not (osx and x86_64)]  # allow_outdated, must match python
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
-  - onnxruntime =1.24.4  # [not (osx and x86_64)]
+  - onnxruntime =1.31.0  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
-  - ty =0.0.56  # [not (osx and x86_64)]
-  - ty =0.0.55  # [osx and x86_64]  # allow_outdated
-  - uv =0.12.19  # [not (osx and x86_64)]
-  - uv =0.12.17  # [osx and x86_64]  # allow_outdated
-  - python-uv =0.12.19  # [not (osx and x86_64)]  # uv dist-info for pip, must match uv
-  - python-uv =0.12.17  # [osx and x86_64]  # allow_outdated
+  - ty =0.0.86
+  - uv =0.13.0
+  - python-uv =0.13.0  # uv dist-info for pip, must match uv
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
   - gfortran =16.2.0  # [not win]  # scipy
   - git =2.56.0  # [win]
   - make =4.4.1  # [win]
-  - pyobjc-core =12.2.1  # [osx]  # allow_outdated, 12.2.2 wants libffi 3.7, python 3.14 needs 3.5
-  - pyobjc-framework-Cocoa =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
-  - pyobjc-framework-FSEvents =12.2.1  # [osx]  # allow_outdated, must match pyobjc-core
+  - pyobjc-core =12.2.2  # [osx]
+  - pyobjc-framework-Cocoa =12.2.2  # [osx]  # must match pyobjc-core
+  - pyobjc-framework-FSEvents =12.2.2  # [osx]  # must match pyobjc-core
   # BLAS: Apple Silicon uses the reworked Accelerate, everything else OpenBLAS
   - libblas =3.11.0*=*newaccelerate  # [osx and arm64]
   - libblas =3.11.0*=*openblas  # [not (osx and arm64)]
