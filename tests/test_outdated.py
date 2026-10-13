@@ -50,9 +50,10 @@ class Package:  # noqa: D101
     name: str
     version_spec: str | None
     version_conda_forge: str | None = None
+    # per line, not per name, so one held-back OS-specific line doesn't hide the others
+    allow_outdated: bool = False
 
 
-allowed_outdated: set[str] = set()
 packages: list[Package] = []
 
 for line, spec in zip(lines, specs):
@@ -76,14 +77,18 @@ for line, spec in zip(lines, specs):
         name = spec
         version = None
 
-    if "allow_outdated" in comment:
-        allowed_outdated.add(name)
     if "locally_built" in comment:
         # This is a locally built package, we can skip it
         print(f"Skipping locally built package: {name}")
         continue
 
-    packages.append(Package(name=name, version_spec=version))
+    packages.append(
+        Package(
+            name=name,
+            version_spec=version,
+            allow_outdated="allow_outdated" in comment,
+        )
+    )
     del name, version
 
 
@@ -271,7 +276,7 @@ for package in packages:
         and not re.match(".*[0-9.]rc[0-9].*", package.version_conda_forge)
     ):
         mismatch = f"{package.version_spec} < {package.version_conda_forge}"
-        if package.name in allowed_outdated:
+        if package.allow_outdated:
             print(f"  {package.name.ljust(LJUST)} ✓ allowed  {mismatch}")
         else:
             print(f"* {package.name.ljust(LJUST)} ✗ OUTDATED {mismatch}")

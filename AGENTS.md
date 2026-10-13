@@ -133,7 +133,7 @@ in hours and every added check runs several times per PR.
   BLAS, notebooks, GUIs), plus `test_outdated.py`, which runs in a plain environment
   and compares pins in `construct.yaml` against conda-forge.
 - `.github/workflows/` — `build.yml` builds and tests all installers on every PR and
-  push, and creates a GitHub prerelease on tag pushes; `update_deps.yml` runs
+  push, and creates a GitHub release on tag pushes; `update_deps.yml` runs
   `test_outdated.py` weekly and opens a bot PR; `automerge.yml` merges bot PRs when
   green.
 
