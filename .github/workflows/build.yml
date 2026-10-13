@@ -333,8 +333,6 @@ jobs:
         with:
           artifacts: "MNE-Python-*.*"
           token: ${{ secrets.GITHUB_TOKEN }}
-          draft: true
-          prerelease: true
           allowUpdates: true
           generateReleaseNotes: true
         if: github.ref_type == 'tag'
