@@ -260,7 +260,7 @@ specs:
   - jupyter_client =8.10.0
   - nbclient =0.11.0
   - nbformat =5.11.1
-  - pillow =12.3.0
+  - pillow =13.0.0
   - pyzmq =27.2.0
   - traitlets =5.16.1
   - pyopengl =3.1.10
@@ -284,7 +284,7 @@ specs:
   - refleak =0.2.2
   - codespell =2.4.3
   - py-spy =0.4.2
-  - line_profiler =5.0.2
+  - line_profiler =5.1.0
   - memory_profiler =0.61.0
   - twine =7.0.0
   - hatchling =1.32.4
@@ -296,7 +296,7 @@ specs:
   - conda-recipe-manager =0.10.6
   - conda-build =26.9.1
   - rattler-build =0.77.0
-  - conda-smithy =2026.10.19
+  - conda-smithy =2026.10.20
   - menuinst =2.5.2
   - cmake =4.4.4  # scipy
   - pkg-config =0.29.2
