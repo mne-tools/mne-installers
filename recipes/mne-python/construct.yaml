@@ -177,7 +177,7 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =4.1.1
+  - filelock =4.2.4
   - lazy-loader =0.6
   - packaging =26.3
   - pooch =1.9.0
@@ -186,7 +186,7 @@ specs:
   - h5io =0.2.5
   - pymatreader =1.3.2
   - numexpr =2.14.2
-  - antropy =0.2.2
+  - antropy =0.2.3
   - threadpoolctl =3.7.0
   - scikit-learn =1.9.1
   - scikit-image =0.26.0  # from rsatoolbox
@@ -224,7 +224,7 @@ specs:
   # NeuroSpin needs the following
   - questionary =2.1.1
   - pqdm =0.2.0
-  - astropy =8.0.1
+  - astropy =8.0.2
   # Viz
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
@@ -245,7 +245,7 @@ specs:
   - pyvistaqt =0.13.1
   - trame =3.13.2  # allow_outdated, mne 1.13.2 needs <4
   - trame-client =3.13.6  # allow_outdated, mne 1.13.2 needs <4
-  - trame-pyvista =0.2.0
+  - trame-pyvista =0.2.1
   - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
   - trame-vtk =2.11.17
   - trame-vuetify =3.2.6  # allow_outdated, trame-pyvista 0.2.0 needs <3.2.7
@@ -295,8 +295,8 @@ specs:
   - grayskull =3.2.0
   - conda-recipe-manager =0.10.6
   - conda-build =26.9.1
-  - rattler-build =0.76.1
-  - conda-smithy =2026.9.23
+  - rattler-build =0.77.0
+  - conda-smithy =2026.10.19
   - menuinst =2.5.2
   - cmake =4.4.4  # scipy
   - pkg-config =0.29.2
@@ -308,7 +308,7 @@ specs:
   - click =8.4.1  # allow_outdated, conda-recipe-manager 0.10.6 needs <=8.4.1
   - typer =0.27.3
   - typing-extensions =4.16.0
-  - pyrefly =1.3.2
+  - pyrefly =1.4.0
   - libffi =3.7.0
   # Doc building
   - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
@@ -339,9 +339,9 @@ specs:
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.31.0  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
-  - ty =0.0.86
-  - uv =0.13.0
-  - python-uv =0.13.0  # uv dist-info for pip, must match uv
+  - ty =0.0.89
+  - uv =0.13.1
+  - python-uv =0.13.1  # uv dist-info for pip, must match uv
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
   - gfortran =16.2.0  # [not win]  # scipy
   - git =2.56.0  # [win]
