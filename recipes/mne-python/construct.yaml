@@ -79,7 +79,7 @@ specs:
   # Python
   - pip =26.2.2
   - wheel =0.48.0
-  - conda =26.7.2  # allow_outdated, 26.9.1 needs py-rattler >=0.26 (via conda-rattler-solver) but conda-smithy 2026.9.23 needs <0.26
+  - conda =26.9.4
   - mamba =2.9.0
   - libmamba =2.9.0
   # MNE ecosystem
@@ -248,7 +248,7 @@ specs:
   - trame-pyvista =0.2.1
   - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
   - trame-vtk =2.11.17
-  - trame-vuetify =3.2.6  # allow_outdated, trame-pyvista 0.2.0 needs <3.2.7
+  - trame-vuetify =3.3.0
   - pyvista-js =0.18.0
   - nest-asyncio2 =1.7.3
   - termcolor =3.3.0
@@ -311,7 +311,7 @@ specs:
   - pyrefly =1.4.0
   - libffi =3.7.0
   # Doc building
-  - docutils =0.22.4  # allow_outdated, sphinx 9.1.0 needs docutils <0.23
+  - docutils =0.22.4  # allow_outdated, sphinx 9.2.0 needs docutils <0.23
   - numpydoc =1.11.0
   - pydata-sphinx-theme =0.23.0
   - graphviz =14.1.2
@@ -332,7 +332,7 @@ specs:
   # vvv This line is special so we know what packages to ignore in our JSON version
   # vvv test, do not change it!
   # OS-specific
-  - python =3.14.8  # [not (osx and x86_64)]  # allow_outdated, 3.15 needs vtk-base and libmambapy py315 builds
+  - python =3.14.8  # [not (osx and x86_64)]  # allow_outdated, 3.15 needs vtk-base py315 builds
   - python =3.13.16  # [osx and x86_64]  # allow_outdated, onnx
   - pyarrow =25.0.0
   - python_abi =3.14  # [not (osx and x86_64)]  # allow_outdated, must match python
