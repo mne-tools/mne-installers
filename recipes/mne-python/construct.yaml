@@ -77,7 +77,7 @@ channels:
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS STOP: COMMENT OUT BEFORE RELEASE! ⛔️ ⛔️ ⛔️
 specs:
   # Python
-  - pip =26.2.1
+  - pip =26.2.2
   - wheel =0.48.0
   - conda =26.7.2  # allow_outdated, 26.9.1 needs py-rattler >=0.26 (via conda-rattler-solver) but conda-smithy 2026.9.23 needs <0.26
   - mamba =2.9.0
@@ -154,7 +154,7 @@ specs:
   - eeglabio =0.1.3
   - mffpy =0.11.0
   - openmeeg =2.6.0
-  - python-neo =0.14.5
+  - python-neo =0.14.6
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
@@ -191,7 +191,7 @@ specs:
   - scikit-learn =1.9.1
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.6.0
-  - pandas =3.0.6
+  - pandas =3.1.0
   - polars =2.0.0
   - numpy =2.5.4
   - scipy =1.18.1
@@ -236,8 +236,8 @@ specs:
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =7.1.0
-  - vtk-base =9.7.0
-  - vtk =9.7.0  # must match vtk-base
+  - vtk-base =9.7.1
+  - vtk =9.7.1  # must match vtk-base
   - lightgbm =4.7.0  # from yasa
   - proj =9.9.0
   - ipywidgets =8.1.9
@@ -260,7 +260,7 @@ specs:
   - jupyter_client =8.10.0
   - nbclient =0.11.0
   - nbformat =5.11.1
-  - pillow =12.3.0
+  - pillow =13.0.0
   - pyzmq =27.2.0
   - traitlets =5.16.1
   - pyopengl =3.1.10
@@ -269,7 +269,7 @@ specs:
   - pygments =2.21.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.102.0
+  - gh =2.102.1
   - setuptools_scm =10.3.4
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
@@ -278,13 +278,13 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.7.0
-  - prek =0.5.5
+  - prek =0.5.7
   - ruff =0.16.10  # allow_outdated, 0.17.0 dropped its dist-info so pip sees it as missing (conda-forge/ruff-feedstock#361)
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
   - py-spy =0.4.2
-  - line_profiler =5.0.2
+  - line_profiler =5.1.0
   - memory_profiler =0.61.0
   - twine =7.0.0
   - hatchling =1.32.4
@@ -296,14 +296,14 @@ specs:
   - conda-recipe-manager =0.10.6
   - conda-build =26.9.1
   - rattler-build =0.77.0
-  - conda-smithy =2026.10.19
+  - conda-smithy =2026.10.21
   - menuinst =2.5.2
   - cmake =4.4.4  # scipy
   - pkg-config =0.29.2
   - meson =1.12.1  # matplotlib, scipy
   - meson-python =0.22.1
   - abi3audit =0.0.26
-  - cibuildwheel =4.3.1
+  - cibuildwheel =4.3.3
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.4.1  # allow_outdated, conda-recipe-manager 0.10.6 needs <=8.4.1
   - typer =0.27.3
@@ -317,7 +317,7 @@ specs:
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.51.0
-  - sphinx =9.1.0
+  - sphinx =9.2.0
   - sphinx-design =0.7.0
   - sphinx-gallery =0.22.1
   - sphinxcontrib-bibtex =2.7.0
@@ -339,9 +339,9 @@ specs:
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.31.0  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
-  - ty =0.0.89
-  - uv =0.13.1
-  - python-uv =0.13.1  # uv dist-info for pip, must match uv
+  - ty =0.0.90
+  - uv =0.13.5
+  - python-uv =0.13.5  # uv dist-info for pip, must match uv
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
   - gfortran =16.2.0  # [not win]  # scipy
   - git =2.56.0  # [win]

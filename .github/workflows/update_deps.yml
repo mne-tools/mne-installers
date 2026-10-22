@@ -76,6 +76,7 @@ jobs:
           if [[ -z "$PR_URL" ]]; then
             PR_URL=$(gh pr create --head "$BRANCH" --title "$TITLE" --body-file deps_body.md)
           else
-            gh pr edit "$PR_URL" --body-file deps_body.md
+            # REST rather than `gh pr edit`, whose GraphQL query needs read:org
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/pulls/${PR_URL##*/}" -F body=@deps_body.md --silent
           fi
           echo "PR: $PR_URL" >> $GITHUB_STEP_SUMMARY
