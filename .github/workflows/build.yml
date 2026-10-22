@@ -97,7 +97,9 @@ jobs:
       - name: Patch config (non-PR)
         if: ${{ github.event_name != 'pull_request' }}
         run: |
-          sed -i "" "s/_name: *# \[osx\]/_name: 9779L28NP8  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
+          sed -i "" "s/_name: *# \[osx\]/_name: ${APPLE_TEAM_ID}  # \[osx\]/" ${RECIPE_DIR}/construct.yaml
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
       - run: ./tools/run_constructor.sh
         timeout-minutes: 20
       - run: ./tools/macos_check_installer_signature.sh
