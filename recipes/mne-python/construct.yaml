@@ -80,8 +80,8 @@ specs:
   - pip =26.2.2
   - wheel =0.48.0
   - conda =26.9.4
-  - mamba =2.9.0
-  - libmamba =2.9.0
+  - mamba =2.10.0
+  - libmamba =2.10.0
   # MNE ecosystem
   - mne-installer-menu =1.13.2=*  # locally_built
   # TODO: ⛔️ ⛔️ ⛔️ DEV BUILDS START: CHANGE BEFORE RELEASE! ⛔️ ⛔️ ⛔️
@@ -138,7 +138,7 @@ specs:
   - openneuro-py =2026.9.1
   # sleep staging
   - sleepecg =0.6.0
-  - yasa =0.8.0
+  - yasa =0.8.1
   # various biological signals (ECG, EOG, EMG, …)
   - neurokit2 =0.2.13
   - mnelab =1.5.4
@@ -249,7 +249,7 @@ specs:
   - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
   - trame-vtk =2.11.17
   - trame-vuetify =3.3.0
-  - pyvista-js =0.18.0
+  - pyvista-js =0.19.0
   - nest-asyncio2 =1.7.3
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -269,7 +269,7 @@ specs:
   - pygments =2.21.0
   - psutil =7.2.2
   - memory_profiler =0.61.0
-  - gh =2.102.1
+  - gh =2.103.2
   - setuptools_scm =10.3.4
   - pytest =9.0.3  # allow_outdated, bugs with indirect=True
   - pytest-cov =7.1.0
@@ -296,14 +296,14 @@ specs:
   - conda-recipe-manager =0.10.6
   - conda-build =26.9.1
   - rattler-build =0.77.0
-  - conda-smithy =2026.10.21
+  - conda-smithy =2026.10.24
   - menuinst =2.5.2
   - cmake =4.4.4  # scipy
   - pkg-config =0.29.2
   - meson =1.12.1  # matplotlib, scipy
   - meson-python =0.22.1
   - abi3audit =0.0.26
-  - cibuildwheel =4.3.3
+  - cibuildwheel =4.3.4
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.4.1  # allow_outdated, conda-recipe-manager 0.10.6 needs <=8.4.1
   - typer =0.27.3
@@ -339,7 +339,7 @@ specs:
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.31.0  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
-  - ty =0.0.90
+  - ty =0.0.92
   - uv =0.13.5
   - python-uv =0.13.5  # uv dist-info for pip, must match uv
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
