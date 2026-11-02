@@ -210,7 +210,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.68.0
-  - cython =3.3.0
+  - cython =3.3.1
   - joblib =1.6.0
   # I/O
   - pyxdf =1.18.0
