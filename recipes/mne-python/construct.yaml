@@ -246,6 +246,8 @@ specs:
   - trame =3.13.2  # allow_outdated, mne 1.13.2 needs <4
   - trame-client =3.13.6  # allow_outdated, mne 1.13.2 needs <4
   - trame-pyvista =0.3.1
+  - anywidget =0.11.0  # from trame-pyvista jupyter extra
+  - psygnal =0.16.1  # from anywidget
   - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
   - trame-vtk =2.11.17
   - trame-vuetify =3.3.0
