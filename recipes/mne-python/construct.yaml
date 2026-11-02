@@ -140,7 +140,7 @@ specs:
   - sleepecg =0.6.0
   - yasa =0.8.1
   # various biological signals (ECG, EOG, EMG, …)
-  - neurokit2 =0.2.13
+  - neurokit2 =0.3.0
   - mnelab =1.5.4
   # other
   - pyriemann =0.12
@@ -210,7 +210,7 @@ specs:
   - darkdetect =0.8.0
   - qdarkstyle =3.2.3
   - numba =0.68.0
-  - cython =3.3.0
+  - cython =3.3.1
   - joblib =1.6.0
   # I/O
   - pyxdf =1.18.0
@@ -230,7 +230,7 @@ specs:
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.11.2
   - tornado =6.5.10
-  - pyside6 =6.11.2
+  - pyside6 =6.11.3
   - pcre2 =10.47
   - ipympl =0.10.0
   - qtpy =2.4.3
@@ -245,7 +245,9 @@ specs:
   - pyvistaqt =0.13.1
   - trame =3.13.2  # allow_outdated, mne 1.13.2 needs <4
   - trame-client =3.13.6  # allow_outdated, mne 1.13.2 needs <4
-  - trame-pyvista =0.2.3
+  - trame-pyvista =0.3.1
+  - anywidget =0.11.0  # from trame-pyvista jupyter extra
+  - psygnal =0.16.1  # from anywidget
   - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
   - trame-vtk =2.11.17
   - trame-vuetify =3.3.0
@@ -255,7 +257,7 @@ specs:
   - defusedxml =0.7.1
   - imageio =2.38.1
   - ipyevents =2.0.4
-  - ipython =9.18.0
+  - ipython =9.18.1
   - jinja2 =3.1.6
   - jupyter_client =8.10.0
   - nbclient =0.11.0
@@ -278,7 +280,7 @@ specs:
   - pytest-timeout =2.4.0
   - pytest-xdist =3.8.0
   - pre-commit =4.7.0
-  - prek =0.5.7
+  - prek =0.5.9
   - ruff =0.16.10  # allow_outdated, 0.17.0 dropped its dist-info so pip sees it as missing (conda-forge/ruff-feedstock#361)
   - check-manifest =0.51
   - refleak =0.2.2
@@ -325,7 +327,7 @@ specs:
   - sphinxcontrib-youtube =1.5.0
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2609.5
-  - jupyterlite =0.8.6
+  - jupyterlite =0.8.7
   - jupyterlite-pyodide-kernel =0.8.6
   - pyodide-lock =0.2.1  # jupyterlite-pyodide-kernel lock
   - jupyterlite-sphinx =0.23.0
@@ -334,10 +336,10 @@ specs:
   # OS-specific
   - python =3.14.8  # [not (osx and x86_64)]  # allow_outdated, 3.15 needs vtk-base py315 builds
   - python =3.13.16  # [osx and x86_64]  # allow_outdated, onnx
-  - pyarrow =25.0.0
+  - pyarrow =26.0.0
   - python_abi =3.14  # [not (osx and x86_64)]  # allow_outdated, must match python
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
-  - onnxruntime =1.31.0  # [not (osx and x86_64)]
+  - onnxruntime =1.31.1  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
   - ty =0.0.95
   - uv =0.13.6
