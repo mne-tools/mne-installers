@@ -109,7 +109,7 @@ specs:
   - mne-kit-gui =2.0.0
   - mne-lsl =1.14.0
   - mne-videobrowser =0.2.1
-  - autoreject =0.5.1
+  - autoreject =0.5.2
   - antio =0.7.1
   - hedtools =1.3.0
   - wfdb =4.3.1
@@ -177,13 +177,13 @@ specs:
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
   - opencv =5.0.0
   - decorator =5.3.1
-  - filelock =4.2.4
+  - filelock =4.2.9
   - lazy-loader =0.6
   - packaging =26.3
   - pooch =1.9.0
   - tqdm =4.70.1
   - h5py =3.16.0
-  - h5io =0.2.5
+  - h5io =0.2.6
   - pymatreader =1.3.2
   - numexpr =2.14.2
   - antropy =0.2.3
@@ -191,14 +191,14 @@ specs:
   - scikit-learn =1.9.1
   - scikit-image =0.26.0  # from rsatoolbox
   - imageio-ffmpeg =0.8.0
-  - pandas =3.1.0
+  - pandas =3.1.1
   - polars =2.1.0
   - numpy =2.5.4
   - scipy =1.18.1
   - jupyter =1.1.1
-  - notebook =7.6.4
+  - notebook =7.6.5
   - nbconvert =7.17.2
-  - jupyterlab =4.6.5
+  - jupyterlab =4.6.6
   - ipykernel =7.2.0  # allow_outdated, spyder-kernels 3.2.0a1 needs <7.3
   - spyder-kernels =3.2.0a1
   # spyder-base rather than spyder: the `spyder` output pins pyqt 5.15 and
@@ -229,29 +229,29 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.11.2
-  - tornado =6.5.10
+  - tornado =6.6
   - pyside6 =6.11.3
-  - pcre2 =10.47
+  - pcre2 =10.49
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
   - plotly =7.1.0
-  - vtk-base =9.7.1
-  - vtk =9.7.1  # must match vtk-base
+  - vtk-base =9.7.2
+  - vtk =9.7.2  # must match vtk-base
   - lightgbm =4.7.0  # from yasa
   - proj =9.9.0
   - ipywidgets =8.1.9
   - pyvista =0.49.2
-  - pyvistaqt =0.13.1
+  - pyvistaqt =0.13.2
   - trame =3.13.2  # allow_outdated, mne 1.13.2 needs <4
   - trame-client =3.13.6  # allow_outdated, mne 1.13.2 needs <4
-  - trame-pyvista =0.3.4
+  - trame-pyvista =0.3.6
   - anywidget =0.11.0  # from trame-pyvista jupyter extra
   - psygnal =0.16.1  # from anywidget
   - trame-server =3.15.0  # allow_outdated, mne 1.13.2 needs <4
   - trame-vtk =2.11.17
   - trame-vuetify =3.3.0
-  - pyvista-js =0.19.0
+  - pyvista-js =0.21.0
   - nest-asyncio2 =1.7.4
   - termcolor =3.3.0
   - defusedxml =0.7.1
@@ -263,7 +263,7 @@ specs:
   - nbclient =0.11.0
   - nbformat =5.11.1
   - pillow =13.0.0
-  - pyzmq =27.2.0
+  - pyzmq =27.3.0
   - traitlets =5.16.1
   - pyopengl =3.1.10
   - pyqtgraph =0.14.0
@@ -285,7 +285,7 @@ specs:
   - check-manifest =0.51
   - refleak =0.2.2
   - codespell =2.4.3
-  - py-spy =0.4.2
+  - py-spy =0.4.3
   - line_profiler =5.1.0
   - memory_profiler =0.61.0
   - twine =7.0.0
@@ -298,7 +298,7 @@ specs:
   - conda-recipe-manager =0.10.6
   - conda-build =26.9.1
   - rattler-build =0.80.0
-  - conda-smithy =2026.10.24
+  - conda-smithy =2026.11.6
   - menuinst =2.5.2
   - cmake =4.4.5  # scipy
   - pkg-config =0.29.2
@@ -308,9 +308,9 @@ specs:
   - cibuildwheel =4.3.5
   - pybind11 =3.0.3  # allow_outdated, 3.1.0 constrains pybind11-abi ==12 but libmambapy needs ==11
   - click =8.4.1  # allow_outdated, conda-recipe-manager 0.10.6 needs <=8.4.1
-  - typer =0.27.3
+  - typer =0.28.0
   - typing-extensions =4.16.0
-  - pyrefly =1.4.0
+  - pyrefly =1.4.1
   - libffi =3.7.0
   # Doc building
   - docutils =0.22.4  # allow_outdated, sphinx 9.2.0 needs docutils <0.23
@@ -328,7 +328,7 @@ specs:
   - sphinxcontrib-towncrier =0.5.0a0
   - intersphinx-registry =0.2609.5
   - jupyterlite =0.8.7
-  - jupyterlite-pyodide-kernel =0.8.6
+  - jupyterlite-pyodide-kernel =0.8.7
   - pyodide-lock =0.2.1  # jupyterlite-pyodide-kernel lock
   - jupyterlite-sphinx =0.23.0
   # vvv This line is special so we know what packages to ignore in our JSON version
@@ -336,14 +336,14 @@ specs:
   # OS-specific
   - python =3.14.8  # [not (osx and x86_64)]  # allow_outdated, 3.15 needs vtk-base py315 builds
   - python =3.13.16  # [osx and x86_64]  # allow_outdated, onnx
-  - pyarrow =26.0.0
+  - pyarrow =26.0.1
   - python_abi =3.14  # [not (osx and x86_64)]  # allow_outdated, must match python
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.31.1  # [not (osx and x86_64)]
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
-  - ty =0.0.95
-  - uv =0.13.6
-  - python-uv =0.13.6  # uv dist-info for pip, must match uv
+  - ty =0.0.99
+  - uv =0.13.7
+  - python-uv =0.13.7  # uv dist-info for pip, must match uv
   - pythran =0.19.0  # [not win]  # pulls in clang, scipy
   - gfortran =16.2.0  # [not win]  # scipy
   - git =2.56.0  # [win]
