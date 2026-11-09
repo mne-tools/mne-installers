@@ -231,7 +231,7 @@ specs:
   - matplotlib-base =3.11.2
   - tornado =6.6
   - pyside6 =6.11.3
-  - pcre2 =10.49
+  - pcre2 =10.47  # allow_outdated, libglib (via graphviz) still needs pcre2 <10.48
   - ipympl =0.10.0
   - qtpy =2.4.3
   - seaborn =0.13.2
@@ -336,7 +336,7 @@ specs:
   # OS-specific
   - python =3.14.8  # [not (osx and x86_64)]  # allow_outdated, 3.15 needs vtk-base py315 builds
   - python =3.13.16  # [osx and x86_64]  # allow_outdated, onnx
-  - pyarrow =26.0.1
+  - pyarrow =26.0.0  # allow_outdated, 26.0.1 needs libabseil 20260817 but opencv (via libopenvino) is on 20260526
   - python_abi =3.14  # [not (osx and x86_64)]  # allow_outdated, must match python
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
   - onnxruntime =1.31.1  # [not (osx and x86_64)]
