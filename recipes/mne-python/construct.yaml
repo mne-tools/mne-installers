@@ -149,7 +149,7 @@ specs:
   - jamica =0.3.0
   - pybv =0.8.1
   - pymef =1.4.8
-  - pybvrf =0.1.4
+  - pybvrf =0.2.0
   - edfio =0.4.18
   - eeglabio =0.1.3
   - mffpy =0.11.0
