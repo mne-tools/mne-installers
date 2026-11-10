@@ -158,6 +158,7 @@ specs:
   - nitime =0.12.1
   - snirf =0.8.0
   - alphacsc =0.4.1
+  - mvpure-py =2.3.5
   # Not on PyPI or no wheels on PyPI
   # conpy: https://aaltoimaginglanguage.github.io/conpy/
   # posthoc: https://users.aalto.fi/~vanvlm1/posthoc/python/
