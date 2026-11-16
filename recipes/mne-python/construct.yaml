@@ -230,7 +230,8 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.11.2
-  - tornado =6.6.1
+  - tornado =6.6.1  # [not (osx and x86_64)]
+  - tornado =6.5.8  # [osx and x86_64]  # allow_outdated, 6.6.1 has no osx-64 cp313 build
   - pyside6 =6.11.3
   - pcre2 =10.47  # allow_outdated, libglib (via graphviz) still needs pcre2 <10.48
   - ipympl =0.10.0
