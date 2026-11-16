@@ -318,6 +318,7 @@ specs:
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.52.0
+  - pysocks =1.7.1  # from selenium via urllib3[socks]
   - sphinx =9.2.0
   - sphinx-design =0.8.0
   - sphinx-gallery =0.22.1
