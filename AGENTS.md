@@ -150,8 +150,14 @@ Dependency pins live in the `specs` list in `construct.yaml`. Conventions:
   `# OS-specific` ... `# End OS-specific defs` block. `test_json_versions.py` ignores
   selectors and skips only that block, so elsewhere it checks every platform against
   the last such line.
-- No parentheses in a comment after a `# [selector]`: constructor's selector regex then
-  fails to match and the line is silently included on every platform.
+- Never put brackets or parentheses in a comment on a spec line. Constructor reads any
+  trailing `[...]` as a selector (`# from urllib3[socks]` fails the build), and
+  parentheses after a real `# [selector]` stop it matching, so the line is silently kept
+  on every platform. After editing `specs`, check what each platform gets:
+
+  ```bash
+  for p in osx-64 osx-arm64 linux-64 win-64; do python -c "import sys; from constructor.construct import parse; print(sys.argv[1], parse('recipes/mne-python/construct.yaml', sys.argv[1])['specs'])" $p; done
+  ```
 - The `# TODO: ⛔️ ... DEV BUILDS ...` blocks are toggled during the MNE-Python release
   cycle to build against `conda-forge/label/mne_dev`; leave them alone otherwise.
 - Installers must stay under 2 GB (GitHub release asset limit). Adding a package with
