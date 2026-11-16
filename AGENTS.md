@@ -146,6 +146,12 @@ Dependency pins live in the `specs` list in `construct.yaml`. Conventions:
 - To hold a package back on purpose, append `# allow_outdated` (with a reason) to its
   line so the updater skips it. Roll back a single pin this way rather than reverting a
   whole update PR.
+- A package pinned differently per platform (one line per selector) must go inside the
+  `# OS-specific` ... `# End OS-specific defs` block. `test_json_versions.py` ignores
+  selectors and skips only that block, so elsewhere it checks every platform against
+  the last such line.
+- No parentheses in a comment after a `# [selector]`: constructor's selector regex then
+  fails to match and the line is silently included on every platform.
 - The `# TODO: ⛔️ ... DEV BUILDS ...` blocks are toggled during the MNE-Python release
   cycle to build against `conda-forge/label/mne_dev`; leave them alone otherwise.
 - Installers must stay under 2 GB (GitHub release asset limit). Adding a package with
