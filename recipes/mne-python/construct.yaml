@@ -176,7 +176,6 @@ specs:
   - libgfortran5 =16.2.0
   - quantities =0.16.4
   - tinycss2 =1.4.0  # allow_outdated, the bleach css extra via nbconvert needs <1.5
-  - opencv =5.1.0
   - decorator =5.3.1
   - filelock =4.2.9
   - lazy-loader =0.6
@@ -230,7 +229,6 @@ specs:
   # matplotilb is just matplotlib-base, tornado, and pyqt
   # https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml
   - matplotlib-base =3.11.2
-  - tornado =6.6.1
   - pyside6 =6.11.3
   - pcre2 =10.47  # allow_outdated, libglib (via graphviz) still needs pcre2 <10.48
   - ipympl =0.10.0
@@ -320,6 +318,7 @@ specs:
   - graphviz =14.1.2
   - python-graphviz =0.21
   - selenium =4.52.0
+  - pysocks =1.7.1  # from selenium via the urllib3 socks extra
   - sphinx =9.2.0
   - sphinx-design =0.8.0
   - sphinx-gallery =0.22.1
@@ -340,8 +339,14 @@ specs:
   - pyarrow =26.0.0  # allow_outdated, 26.0.1 needs libabseil 20260817 but opencv (via libopenvino) is on 20260526
   - python_abi =3.14  # [not (osx and x86_64)]  # allow_outdated, must match python
   - python_abi =3.13  # [osx and x86_64]  # allow_outdated, onnx
-  - onnxruntime =1.32.0  # [not (osx and x86_64)]
+  - onnxruntime =1.32.0  # [win or (osx and arm64)]
+  - onnxruntime =1.31.1  # [linux]  # allow_outdated, 1.32.0 needs libabseil 20260817 but opencv build _8 uses 20260526
   - onnxruntime =1.22.2  # [osx and x86_64]  # allow_outdated, last version they made
+  - opencv =5.1.0  # [osx]
+  - opencv =5.0.0  # [win]  # allow_outdated, until libmatio, via openmeeg, has hdf5 2 builds on win-64
+  - opencv =5.0.0=headless*_8  # [linux]  # allow_outdated, newest linux build on hdf5 1.14; same libmatio reason
+  - tornado =6.6.1  # [not (osx and x86_64)]
+  - tornado =6.5.8  # [osx and x86_64]  # allow_outdated, 6.6.1 has no osx-64 cp313 build
   - ty =0.0.104
   - uv =0.13.8
   - python-uv =0.13.8  # uv dist-info for pip, must match uv
