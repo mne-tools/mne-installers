@@ -217,6 +217,7 @@ specs:
   - openpyxl =3.1.5
   - xlrd =2.0.2
   - nibabel =5.5.0
+  - pynwb =4.2.0
   # Statistics
   - pingouin =0.7.0
   - statsmodels =0.15.0
